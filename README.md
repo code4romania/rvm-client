@@ -2,11 +2,12 @@
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/templates-for-standard-project-md-files.svg?style=for-the-badge)](https://github.com/code4romania/templates-for-standard-project-md-files/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/templates-for-standard-project-md-files.svg?style=for-the-badge)](https://github.com/code4romania/templates-for-standard-project-md-files/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
-Insert bullets description of the project if available.
+Webapp client of the resource and volunteers management app of DSU (Dispeceratul pentru Situatii de Urgenta)
 
 [See the project live](insert_link_here)
 
-Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+DSU (Dispeceratul pentru Situatii de Urgenta) needs a digital tool to manage the resources it has at its disposal, their location, as well as the volunteers and NGOs that are registered to offer help during a crisis situation. The aim of this project is to offer a better management solution so that DSU is better prepared for an emergency situation.
+
 
 [Contributing](#contributing) | [Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
 
@@ -20,27 +21,27 @@ You can also list any pending features and planned improvements for the project 
 
 ### Programming languages
 
+JavaScript
+
 ### Platforms
 
 ### Frontend framework
 
+Angular
+
 ### Package managers
+
+Yarn
 
 ### Database technology & provider
 
 ## Repos and projects
 
-Mention all related repos and projects.
+API: https://github.com/code4romania/rvm-api
 
 ## Deployment
 
-Guide users through getting your code up and running on their own system. In this section you can talk about:
-1. Installation process
-2. Software dependencies
-3. Latest releases
-4. API references
-
-Describe and show how to build your code and run the tests. 
+TBD
 
 ## Feedback
 
