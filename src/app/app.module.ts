@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { CurrentProfileComponent } from './current-profile/current-profile.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { VolunteerListComponent } from './volunteer-list/volunteer-list.component';
+import { MapComponent } from './map/map.component';
+import { InfoComponent} from './info/info.component';
+import { ResourceListComponent } from './resource-list/resource-list.component';
+import { OrganizationListComponent } from './organization-list/organization-list.component';
 
 @NgModule({
   imports: [
@@ -15,9 +19,10 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list.componen
     RouterModule.forRoot([
       { path: '', component: VolunteerListComponent },
       { path: 'volunteers', component: VolunteerListComponent },
-      { path: 'resources', component: VolunteerListComponent },
-      { path: 'organizations', component: VolunteerListComponent },
-      { path: 'map', component: VolunteerListComponent },
+      { path: 'resources', component: ResourceListComponent },
+      { path: 'organizations', component: OrganizationListComponent },
+      { path: 'info', component: InfoComponent },
+      { path: 'map', component: MapComponent },
     ])
   ],
   declarations: [
@@ -25,6 +30,10 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list.componen
     TopBarComponent,
     VolunteerListComponent,
     CurrentProfileComponent,
+    OrganizationListComponent,
+    ResourceListComponent,
+    InfoComponent,
+    MapComponent
   ],
   bootstrap: [ AppComponent ]
 })
