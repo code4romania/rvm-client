@@ -14,6 +14,10 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list.componen
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: VolunteerListComponent },
+      { path: 'volunteers', component: VolunteerListComponent },
+      { path: 'resources', component: VolunteerListComponent },
+      { path: 'organizations', component: VolunteerListComponent },
+      { path: 'map', component: VolunteerListComponent },
     ])
   ],
   declarations: [
