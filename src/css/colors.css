@@ -1,0 +1,27 @@
+/* Theme  */
+.black {
+  background-color: #000;
+}
+
+.black-text {
+  color: #000;
+}
+
+.white-text {
+  color: #fff;
+}
+
+/* Grey */
+.grey-text-1 {
+  color: #7C8284;
+}
+
+/* Yellow */
+.yellow-1 {
+  background-color: rgba(255, 204, 0, 0.5);
+}
+
+/* Blue */
+.blue-1 {
+  background-color: #264998;
+}

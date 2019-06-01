@@ -1,18 +1,30 @@
-<a [routerLink]="['/']">
-  <h1>RVM</h1>
-</a>
+<header>
+  <div class="flex-container flex-row container-full-height">
+    <div class="padding-left-medium padding-right-medium">
+      <a [routerLink]="['/']" class="logo">
+        <img src="assets/logo.svg" alt="RVM logo">
+      </a>
+    </div>
 
-<a [routerLink]="['/voluntari']" class="button">
-  Voluntari
-</a>
-<a [routerLink]="['/resurse']" class="button">
-  Resurse
-</a>
-<a [routerLink]="['/organizatii']" class="button">
-  Organizatii
-</a>
-<a [routerLink]="['/harta']" class="button">
-  Harta
-</a>
+    <nav class="flex-container flex-row yellow-1 padding-right-xmedium padding-left-xmedium">
+      <ul class="nav">
+        <li>
+            <a [routerLink]="['/voluntari']" class="nav__link">Voluntari</a>
+        </li>
+        <li>
+            <a [routerLink]="['/resurse']" class="nav__link">Resurse</a>
+        </li>
+        <li>
+            <a [routerLink]="['/organizatii']" class="nav__link">Organizatii</a>
+        </li>
+        <li>
+            <a [routerLink]="['/harta']" class="nav__link">Harta</a>
+        </li>
+      </ul>
 
-<app-current-profile></app-current-profile>
+      <div class="flex-container flex-row justify-end align-center">
+        <app-current-profile></app-current-profile>
+      </div>
+    </nav>
+  </div>
+</header>
