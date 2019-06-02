@@ -6,7 +6,7 @@
       </a>
     </div>
 
-    <nav class="flex-container flex-row yellow-1 padding-right-xmedium padding-left-xmedium">
+    <nav class="flex-container flex-row yellow-1 padding-right-xmedium padding-left-xmedium" *ngIf="currentUser">
       <ul class="nav">
         <li>
             <a [routerLink]="['/voluntari']" class="nav__link">Voluntari</a>

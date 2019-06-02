@@ -1,0 +1,15 @@
+.button {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.button.button--action {
+  background-color: #ffcc00;
+  font-size: 15px;
+  font-weight: bold;
+  height: 60px;
+}
+
+.button--full {
+  width: 100%;
+}

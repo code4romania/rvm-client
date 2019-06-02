@@ -12,12 +12,27 @@
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
 .justify-end {
   justify-content: flex-end;
 }
 
 .container-full-height {
  height: 100%;
+}
+
+.container-full {
+  height: 100vh;
+}
+
+.container-medium {
+  width: 375px;
+}
+
+.center-align {
+  text-align: center;
 }
 
 /* Paddings */

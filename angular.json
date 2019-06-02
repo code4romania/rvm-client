@@ -26,7 +26,8 @@
               "node_modules/normalize.css/normalize.css",
               "src/css/app.css",
               "src/css/layout.css",
-              "src/css/colors.css"
+              "src/css/colors.css",
+              "src/css/components.css"
             ],
             "scripts": []
           },

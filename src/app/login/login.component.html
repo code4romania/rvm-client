@@ -1,0 +1,20 @@
+<div class="container-full blue-1">
+  <div class="flex-container flex-row container-full-height justify-center">
+      <div class="container-medium">
+          <div class="center-align">
+              <img src="assets/img_6387.png" alt="Departamentul pentru situatii de urgenta">
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="padding-medium">
+                <label for="username">Nume utilizator</label>
+                <input type="text" formControlName="username" />
+                <div>
+                  <label for="password">Parola</label>
+                  <input type="password" formControlName="password" />
+                </div>
+            </div>
+          </form>
+          <button class="button button--action button--full">Login</button>
+      </div>
+  </div>
+</div>
