@@ -1,17 +1,29 @@
 export const volunteers = [
     {
-      name: 'Phone XL',
-      price: 799,
-      description: 'A large phone with one of the best screens'
+      first_name: 'Ion',
+      last_name: 'Popescu',
+      email: 'ion.popescu@example.com',
+      phone_number: '555-1212',
+      access_code: '1234',
+      county: 'Bihor',
+      specialization: 'Dogs',
     },
     {
-      name: 'Phone Mini',
-      price: 699,
-      description: 'A great phone with one of the best cameras'
+      first_name: 'Ion',
+      last_name: 'Popescu',
+      email: 'ion.popescu@example.com',
+      phone_number: '555-1212',
+      access_code: '1234',
+      county: 'Bihor',
+      specialization: 'Dogs',
     },
     {
-      name: 'Phone Standard',
-      price: 299,
-      description: ''
+      first_name: 'Ion',
+      last_name: 'Popescu',
+      email: 'ion.popescu@example.com',
+      phone_number: '555-1212',
+      access_code: '1234',
+      county: 'Bihor',
+      specialization: 'Dogs',
     }
   ];
