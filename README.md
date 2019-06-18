@@ -1,6 +1,6 @@
 # Resource & Volunteers Management App - Webapp
 
-[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/templates-for-standard-project-md-files.svg?style=for-the-badge)](https://github.com/code4romania/templates-for-standard-project-md-files/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/templates-for-standard-project-md-files.svg?style=for-the-badge)](https://github.com/code4romania/templates-for-standard-project-md-files/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
+[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/rvm-client.svg?style=for-the-badge)](https://github.com/code4romania/rvm-client/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/rvm-client.svg?style=for-the-badge)](https://github.com/code4romania/rvm-client/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
 Webapp client of the resource and volunteers management app of DSU (Departamentul pentru Situatii de Urgenta)
 
