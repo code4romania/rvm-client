@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlankComponent, FullComponent } from '@app/shared';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AuthenticationGuard } from './core';
-import { LoginComponent } from './authentication';
+import { LoginComponent } from './pages/authentication';
 import { NgModule } from '@angular/core';
 
 const AppRoutes: Routes = [
