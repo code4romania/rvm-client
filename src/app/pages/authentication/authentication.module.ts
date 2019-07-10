@@ -4,10 +4,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NotFoundComponent } from '@app/authentication/404/not-found.component';
-import { AuthenticationRoutingModule } from '@app/authentication/authentication.routing';
-import { LoginComponent } from '@app/authentication/login/login.component';
-import { SignupComponent } from '@app/authentication/signup/signup.component';
+import { NotFoundComponent } from './404/not-found.component';
+import { AuthenticationRoutingModule } from './authentication.routing';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 import { SharedModule } from '@app/shared';
 
 @NgModule({

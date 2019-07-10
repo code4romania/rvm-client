@@ -1,5 +1,5 @@
 // start:ng42.barrel
-export * from '@app/dashboard/dashboard.module';
-export * from '@app/dashboard/dashboard.routing';
-export * from '@app/dashboard/dashboard';
+export * from './dashboard.module';
+export * from './dashboard.routing';
+export * from './dashboard';
 // end:ng42.barrel

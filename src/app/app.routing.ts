@@ -19,7 +19,7 @@ const AppRoutes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
+        loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
       }
     ]
   },
@@ -29,7 +29,7 @@ const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './authentication/authentication.module#AuthenticationModule'
+        loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
       }
     ]
   },
