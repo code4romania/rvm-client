@@ -1,0 +1,17 @@
+<h2>Voluntari</h2>
+
+<div class="volunteer" *ngFor="let volunteer of volunteers">
+    <h3>{{ volunteer.first_name }} {{ volunteer.last_name }}</h3>
+    <p>
+        <i class="material-icons">email</i>
+        <span>{{ volunteer.email }}</span>
+    </p>
+    <p>
+        <i class="material-icons">phone</i>
+        <span>{{ volunteer.phone_number }}</span>
+    </p>
+    <a class="button">
+        <i class="material-icons">vpn_key</i>
+        <span>Vezi Profil</span>
+    </a>
+</div>
