@@ -1,0 +1,82 @@
+header {
+  height: 60px;
+}
+
+.logo {
+  display: inline-block;
+  height: 60px;
+}
+
+.nav {
+  display: flex;
+  height: 60px;
+  flex-direction: row;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+.nav .nav__link {
+  color: #000;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0 25px;
+  text-transform: uppercase;
+}
+
+.nav .nav__link:hover {
+  background-color: #264998;
+  color: #fff;
+}
+.yellow{
+  background-color:rgb(243,	217,	115	);
+}
+/* Layout */
+.flex-container {
+  display: flex;
+  width: 100%;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.container-full-height {
+ height: 100%;
+}
+
+/* Paddings */
+.padding-medium {
+  padding: 24px;
+}
+
+.padding-left-medium {
+  padding-left: 24px;
+}
+
+.padding-right-medium {
+  padding-right: 24px;
+}
+
+.padding-left-xmedium {
+  padding-left: 30px;
+}
+
+.padding-right-xmedium {
+  padding-right: 30px;
+}
+
+.padding-top-xlarge {
+  padding-top: 54px;
+}
+
+/* Margins */
+

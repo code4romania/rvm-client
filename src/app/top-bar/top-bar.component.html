@@ -1,0 +1,46 @@
+<header>
+  <div class="flex-container flex-row container-full-height mx-0 yellow row">
+    <div class="padding-left-medium padding-right-medium col-xs-2 col-sm-2 col-md-2 col-lg-1 bg-white">
+      <a [routerLink]="['/']" class="logo">
+        <img src="assets/logo.svg" alt="RVM logo">
+      </a>
+    </div>
+
+    <nav class=" flex-column  padding-right-xmedium padding-left-xmediumc d-none d-lg-block col-lg-9 ">
+      <ul class="nav">
+        <li>
+            <a [routerLink]="['/volunteers']" class="nav__link">Voluntari</a>
+        </li>
+        <li>
+            <a [routerLink]="['/resources']" class="nav__link">Resurse</a>
+        </li>
+        <li>
+            <a [routerLink]="['/organizations']" class="nav__link">Organizatii</a>
+        </li>
+        <li>
+            <a [routerLink]="['/map']" class="nav__link">Harta</a>
+        </li>
+        <li>
+            <a [routerLink]="['/info']" class="nav__link">Info</a>
+        </li>
+      </ul>
+    </nav>
+      <div class="flex-row d-flex justify-end align-center col-xs-10 col-sm-10 col-md-10 col-lg-2">
+        <div class="btn-group" dropdown>
+          <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+            Button dropdown <span class="caret"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+            </li>
+          </ul>
+          </div>
+      </div>
+    
+  </div>
+</header>
+<router-outlet></router-outlet>
