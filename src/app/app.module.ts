@@ -16,10 +16,16 @@ import { OrganizationsComponent } from './pages/organizations/organizations/orga
 import { NgodashboardComponent } from './pages/organizations/organizations/components/ngodashboard/ngodashboard.component';
 import { NgodetailsComponent } from './pages/organizations/organizations/components/ngodetails/ngodetails.component';
 import { NgoaddComponent } from './pages/organizations/organizations/components/ngoadd/ngoadd.component';
-
+import { InfoComponent } from './pages/info/info/info.component';
+import { MapComponent } from './pages/map/map/map.component';
+import { ResourcesComponent } from './pages/resources/resources/resources.component';
+import { VolunteersComponent } from './pages/volunteers/volunteers/volunteers.component';
 
 @NgModule({
-  declarations: [TopBarComponent, AppComponent, OrganizationsComponent, NgodashboardComponent, NgodetailsComponent, NgoaddComponent],
+  declarations: [
+    TopBarComponent,
+    AppComponent,
+   ],
   imports: [
     CommonModule,
     BrowserModule,

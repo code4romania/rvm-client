@@ -14,11 +14,6 @@ const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
         loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
       }
     ]

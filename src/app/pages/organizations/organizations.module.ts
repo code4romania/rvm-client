@@ -26,6 +26,6 @@ import { OrganizationsRoutingModule } from './organizations.routing';
   ]
 })
 
-export class ReportsModule {
+export class OrganizationsModule {
 
 }
