@@ -5,29 +5,29 @@ import { NgodashboardComponent } from './organizations/components/ngodashboard/n
 import { NgoaddComponent } from './organizations/components/ngoadd/ngoadd.component';
 import { NgodetailsComponent } from './organizations/components/ngodetails/ngodetails.component';
 const routes: Routes = [
-    {
-        path: '',
-        component: OrganizationsComponent,
-        children: [
-            {
-                path: '',
-                component: NgodashboardComponent,
-            },
-            {
-                path: 'ngo/:ngoid',
-                component: NgodetailsComponent,
-            },
-            {
-                path: 'add',
-                component: NgoaddComponent,
-            }
-        ]
-    }
+	{
+		path: '',
+		component: OrganizationsComponent,
+		children: [
+			{
+				path: '',
+				component: NgodashboardComponent,
+			},
+			{
+				path: 'add',
+				component: NgoaddComponent,
+			},
+			{
+				path: 'id/:id',
+				component: NgodetailsComponent,
+			},
+		]
+	}
 ];
 
 @NgModule({
-    exports: [RouterModule],
-    imports: [RouterModule.forChild(routes)]
+	exports: [RouterModule],
+	imports: [RouterModule.forChild(routes)]
 })
 export class OrganizationsRoutingModule {
 

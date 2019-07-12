@@ -1,0 +1,26 @@
+.current-profile{
+    .frame {
+        white-space: nowrap;
+        text-align: center;
+        margin-right: 5px;
+        .helper {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+    
+        img {
+           border-radius: 50%;
+            vertical-align: middle;
+            max-height: 25px;
+            max-width: 160px;
+        }
+    }
+    .name{
+        span{
+            display: block;
+            width: 100%;
+        }
+    }
+    
+}

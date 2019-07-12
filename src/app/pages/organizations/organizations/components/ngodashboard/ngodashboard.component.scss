@@ -1,0 +1,31 @@
+.cardlist{
+    // background-color: darkblue;
+}
+.card{
+    background-color: transparent;
+    margin: 10px;
+}
+.card-body{
+    padding: 0.25rem;
+    background-color:white;
+}
+@media (max-width: 425px) {
+    .container {
+      width: 100%;
+      max-width: none;
+    }
+  }
+  
+.btn-group{
+    height: 47px;
+    .btn-primary{
+        background: white;
+        color: black;
+        border:none;
+    }
+    .btn-primary.focus{
+        background-color:blue;
+        color: white;
+        box-shadow: none
+    }
+}

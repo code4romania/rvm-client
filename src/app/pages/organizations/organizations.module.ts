@@ -6,24 +6,30 @@ import { NgoaddComponent } from './organizations/components/ngoadd/ngoadd.compon
 import { NgodetailsComponent } from './organizations/components/ngodetails/ngodetails.component';
 import { OrganizationService } from './organizations.service';
 import { OrganizationsRoutingModule } from './organizations.routing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbTabsetModule, NgbRadioGroup, NgbButtonsModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    OrganizationsComponent,
-    NgodetailsComponent,
-    NgoaddComponent,
-    NgodashboardComponent,
-  ],
-  imports: [
-    CommonModule,
-    OrganizationsRoutingModule,
-  ],
-  entryComponents: [
+	declarations: [
+		OrganizationsComponent,
+		NgodetailsComponent,
+		NgoaddComponent,
+		NgodashboardComponent,
+	],
+	imports: [
+		NgbTabsetModule,
+		NgbButtonsModule,
+		FormsModule,
+		ReactiveFormsModule,
+		CommonModule,
+		OrganizationsRoutingModule,
+	],
+	entryComponents: [
 
-  ],
-  providers: [
-    OrganizationService
-  ]
+	],
+	providers: [
+		OrganizationService
+	]
 })
 
 export class OrganizationsModule {

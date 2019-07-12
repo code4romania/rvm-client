@@ -7,10 +7,10 @@
   <div class="login-box col-md-12">
     <div class="card-body">
       <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material" id="loginform" novalidate>
-        <div class="form-group mt-20">
+        <div class="form-group mt-4">
           <div class="col-xs-12">
-            <app-form-error-wrapper [control]="loginForm.controls['username']" [controlName]="'Username'">
-              <input autocomplete="new-password" class="form-control" type="text" formControlName="username" placeholder="Nume Utilizator">
+            <app-form-error-wrapper [control]="loginForm.controls['email']" [controlName]="'email'">
+              <input autocomplete="new-password" class="form-control" type="text" formControlName="email" placeholder="Nume Utilizator">
             </app-form-error-wrapper>
           </div>
         </div>
@@ -21,9 +21,9 @@
             </app-form-error-wrapper>
           </div>
         </div>
-        <div class="form-group text-center mt-20">
+        <div class="form-group text-center mt-4">
           <div class="col-xs-12">
-            <button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light" [disabled]="loginForm.invalid || isLoading">
+            <button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light" (click)="login()" [disabled]="loginForm.invalid || isLoading">
               <app-button-loader [isLoading]="isLoading" [label]="'Login'"></app-button-loader>
             </button>
           </div>

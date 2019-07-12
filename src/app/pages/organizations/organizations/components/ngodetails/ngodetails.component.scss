@@ -1,0 +1,18 @@
+
+.px-15{
+    padding-left:15px;
+    padding-right:15px;
+}
+::ng-deep .resource-list{
+    margin-top:15px;
+    .nav-item .nav-link.active{
+            color:blue;
+            text-decoration: underline;
+            background-color: transparent;      
+        }
+    .nav-item .nav-link{
+        color:gray;
+        text-decoration: underline;
+        background-color: transparent;
+        }    
+}

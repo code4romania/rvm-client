@@ -1,1 +1,41 @@
-<p>ngodashboard works!</p>
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <h4 class="navtitle mb-2"> Organizatii </h4> 
+        <div class="form-inline">
+            <div class="input-group mr-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
+            </div>
+            <div class="btn-group btn-group-toggle mr-2" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                    <label ngbButtonLabel class="btn-primary">
+                      <input ngbButton type="radio" value="block"><span class="fa fa-th-large"></span>
+                    </label>
+                    <label ngbButtonLabel class="btn-primary">
+                        <input ngbButton type="radio" value="list"><span class="fa fa-bars"></span>
+                    </label>
+                  </div>
+            <a [routerLink]="['/organizations/add']" class="btn btn-info btn-rounded waves-effect waves-light m-b-40"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</a>
+        </div>
+    </nav>
+
+    <div class="cardlist row">
+        <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-6 col-lg-4">
+            <div class="card">
+                <a [routerLink]="['id',elem.id]" class="btn btn-fix text-left">
+                    <div class="card-body">
+                        <h4 class="card-title">{{elem.nume}}</h4>
+                        <div class="card-text row"> 
+                            <span class="col-md-12">{{elem.email}}</span>
+                            <span class="col-md-12" >{{elem.telefon}}</span>
+                            </div>
+                        Resurse:<br>
+                        <a href="#" class="card-link">12 voluntari</a>
+                        &sdot;<a href="#" class="card-link">30 resurse</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

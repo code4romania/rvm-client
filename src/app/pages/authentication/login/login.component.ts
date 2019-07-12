@@ -5,61 +5,59 @@ import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  resetPasswordForm: FormGroup;
-  isLoading = false;
-  constructor(
-    public router: Router,
-    private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
-  ) {
-    this.createForm();
-  }
+	loginForm: FormGroup;
+	resetPasswordForm: FormGroup;
+	isLoading = false;
+	constructor(
+		public router: Router,
+		private formBuilder: FormBuilder,
+		private authenticationService: AuthenticationService
+	) {
+		this.createForm();
+	}
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  login() {
-    this.router.navigate(['/'], {
-              replaceUrl: true
-            });
-    // this.isLoading = true;
-    // this.authenticationService
-    //   .login(this.loginForm.value)
-    //   .pipe(
-    //     finalize(() => {
-    //       this.loginForm.markAsPristine();
-    //       this.isLoading = false;
-    //     })
-    //   )
-    //   .subscribe(
-    //     (credentials: Authentication.Credentials) => {
-    //       console.log(credentials);
-    //       this.router.navigate(['/'], {
-    //         replaceUrl: true
-    //       });
-    //     },
-    //     (error: any) => {
-    //       console.log(`Login error: ${error}`);
-    //     }
-    //   );
-  }
+	login() {
+		console.log("fgdjgk");
+		this.router.navigate(['/'], {
+							replaceUrl: true
+						});
+		this.isLoading = true;
+		this.authenticationService
+			.login(this.loginForm.value)
+			.pipe(
+				finalize(() => {
+					this.loginForm.markAsPristine();
+					this.isLoading = false;
+				})
+			)
+			.subscribe(
+				(credentials: Authentication.Credentials) => {
+					console.log(credentials);
+					this.router.navigate(['/'], {
+						replaceUrl: true
+					});
+				},
+				(error: any) => {
+					console.log('Login error: ',error);
+				}
+			);
+	}
 
-  resetPassword() {
-    // TODO: Implement Reset Password
-  }
+	resetPassword() {
+		// TODO: Implement Reset Password
+	}
 
-  private createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', Validators.required]
-    });
-    this.resetPasswordForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
-    });
-  }
+	private createForm() {
+		this.loginForm = this.formBuilder.group({
+			email: ['', [Validators.required]],
+			password: ['', Validators.required]
+		});
+	}
 }

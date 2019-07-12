@@ -5,20 +5,20 @@ import { AuthenticationService } from '@app/core/authentication/authentication.s
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {}
+	constructor(
+		private router: Router,
+		private authenticationService: AuthenticationService
+	) {}
 
-  canActivate(): boolean {
-    //if (this.authenticationService.isAuthenticated()) {
-      return true;
-    //}
+	canActivate(): boolean {
+		if (this.authenticationService.isAuthenticated()) {
+			return true;
+		}
 
-    console.log('Not authenticated, redirecting...');
-    this.router.navigate(['/login'], {
-      replaceUrl: true
-    });
-    return false;
-  }
+		console.log('Not authenticated, redirecting...');
+		this.router.navigate(['/login'], {
+			replaceUrl: true
+		});
+		return false;
+	}
 }
