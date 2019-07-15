@@ -2,27 +2,40 @@
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <h4 class="navtitle mb-2"> Organizatii </h4> 
         <div class="form-inline">
-            <div class="input-group mr-2">
+            <div class="input-group m-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
             </div>
-            <div class="btn-group btn-group-toggle mr-2" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
-                    <label ngbButtonLabel class="btn-primary">
+            <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                    <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary">
                       <input ngbButton type="radio" value="block"><span class="fa fa-th-large"></span>
                     </label>
-                    <label ngbButtonLabel class="btn-primary">
+                    <label ngbButtonLabel (click)="switchtolist()" class="btn-primary">
                         <input ngbButton type="radio" value="list"><span class="fa fa-bars"></span>
                     </label>
                   </div>
-            <a [routerLink]="['/organizations/add']" class="btn btn-info btn-rounded waves-effect waves-light m-b-40"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</a>
+            <button [routerLink]="['/organizations/add']" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</button>
         </div>
     </nav>
-
+    <div class="filters row" >
+        <span >4 total</span>
+        <!-- <span class='mx-2'></span>
+        <span >Sorteaza dupa</span>
+        <div ngbDropdown class="d-inline-block">
+            <div class="userarea" id="dropdown1" ngbDropdownToggle>
+                Nume
+                </div>
+            <div ngbDropdownMenu aria-labelledby="dropdown1">
+                <a ngbDropdownItem>A-Z</a>
+                <a ngbDropdownItem>Z-A</a>
+            </div>
+        </div> -->
+    </div>
     <div class="cardlist row">
-        <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-6 col-lg-4">
-            <div class="card">
+        <div *ngFor="let elem of data" [ngClass]="listoptions">
+            <div class="card" style="flex-grow: 1">
                 <a [routerLink]="['id',elem.id]" class="btn btn-fix text-left">
                     <div class="card-body">
                         <h4 class="card-title">{{elem.nume}}</h4>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -46,17 +46,29 @@ export class AuthenticationService {
 			})
 		);
 	}
+	profile(): Observable<Authentication.User> {
+		const header = {
+			headers: new HttpHeaders()
+			.set('Authorization',  `Bearer ${this.accessToken}`)
+		};
+		return this.httpClient.get('/profile', header).pipe(
+			map((body: Authentication.User) => {
+				return body;
+			})
+		);
+	}
 
 	/**
 	 * Logs out the user and clear credentials.
 	 * @return {Observable<boolean>} True if the user was logged out successfully.
 	 */
 	logout(): Observable<boolean> {
-		return this.httpClient
-			.post('/logout', {
-				sessionId: this.credentials.session
-			})
-			.pipe(
+		console.log('logout');
+		const header = {
+			headers: new HttpHeaders()
+			.set('Authorization',  `Bearer ${this.accessToken}`)
+		};
+		return this.httpClient.get('/logout',header).pipe(
 				map(() => {
 					this.setCredentials();
 					return true;
@@ -85,7 +97,7 @@ export class AuthenticationService {
 	 * @return {string} The auth token is null if user is not authenticated.
 	 */
 	get accessToken(): string | null {
-		return this.credentials ? this.credentials.accessToken : null;
+		return this.credentials ? this.credentials.token : null;
 	}
 
 	/**

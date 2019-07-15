@@ -1,44 +1,50 @@
 <header>
-  <nav class="flex-container flex-row container-full-height mx-0 yellow">
-    <div class="padding-left-medium padding-right-medium bg-white">
-      <a [routerLink]="['/']" class="logo navbar-brand">
-        <img src="assets/logo.svg" alt="RVM logo">
-      </a>
-    </div>
-    <div class="row" style="width: 100%; margin: 0">
-      <div class=" flex-column  padding-right-xmedium padding-left-xmediumc d-none d-lg-block col-lg-10 ">
-        <ul class="nav">
-          <li>
-              <a routerLink='/volunteers' class="nav__link">Voluntari</a>
-          </li>
-          <li>
-              <a routerLink='/resources' class="nav__link">Resurse</a>
-          </li>
-          <li>
-              <a routerLink='/organizations' class="nav__link">Organizatii</a>
-          </li>
-          <li>
-              <a routerLink='/map' class="nav__link">Harta</a>
-          </li>
-          <li>
-              <a routerLink='/info' class="nav__link">Info</a>
-          </li>
-        </ul>
-      </div>
-      <div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-2 pr-4 pl-0">
-          <div ngbDropdown class="d-inline-block">
-              <!-- <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button> -->
-              <div class="userarea" id="dropdownBasic1" ngbDropdownToggle>
-                  <app-current-profile></app-current-profile>
-                </div>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>Profile</button>
-                <button ngbDropdownItem>Settings</button>
-                <button ngbDropdownItem>Logout</button>
-              </div>
-            </div>
-      </div>
-    </div>
-    </nav>
+	<nav class="flex-container flex-row container-full-height mx-0 yellow">
+		<div class="px-3 bg-white">
+			<a [routerLink]="['/']" class="logo navbar-brand">
+				<img src="assets/logo.svg" alt="RVM logo">
+			</a>
+		</div>
+		<div class="row" style="width: 100%; margin: 0">
+			<div class=" flex-column px-3 d-none d-lg-block col-lg-10 ">
+				<ul class="nav">
+					<li>
+							<a routerLink='/volunteers' class="nav__link">Voluntari</a>
+					</li>
+					<li>
+							<a routerLink='/resources' class="nav__link">Resurse</a>
+					</li>
+					<li>
+							<a routerLink='/organizations' class="nav__link">Organizatii</a>
+					</li>
+					<li>
+							<a routerLink='/map' class="nav__link">Harta</a>
+					</li>
+					<li>
+							<a routerLink='/info' class="nav__link">Info</a>
+					</li>
+				</ul>
+			</div>
+			<div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-2 pr-4 pl-0">
+					<div ngbDropdown class="d-inline-block">
+							<!-- <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button> -->
+							<div class="userarea" id="dropdown1" ngbDropdownToggle>
+									<app-current-profile></app-current-profile>
+								</div>
+							<div ngbDropdownMenu aria-labelledby="dropdown1">
+								<button ngbDropdownItem routerLink='/'>Profil</button>
+								<button ngbDropdownItem>Setari</button>
+								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
+								<button ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
+								<button ngbDropdownItem routerLink='/organizations' class="hidden-button">Organizatii</button>
+								<button ngbDropdownItem routerLink='/map' class="hidden-button">Harta</button>
+								<button ngbDropdownItem routerLink='/info' class="hidden-button">Info</button>
+								<div class="dropdown-divider"></div>
+								<button ngbDropdownItem (click)="logout()">Delogare</button>
+							</div>
+						</div>
+			</div>
+		</div>
+		</nav>
 </header>
 <router-outlet></router-outlet>

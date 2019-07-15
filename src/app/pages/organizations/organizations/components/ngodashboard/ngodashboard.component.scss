@@ -15,17 +15,28 @@
       max-width: none;
     }
   }
-  
+@media (max-width: 1199px){
+    .btn-adjusting{
+        width: min-content;       
+    }
+}
 .btn-group{
     height: 47px;
     .btn-primary{
+        border-radius:none;
         background: white;
         color: black;
         border:none;
     }
-    .btn-primary.focus{
+    .btn-primary.focus, .btn-primary.active{
         background-color:blue;
         color: white;
         box-shadow: none
+    }
+
+}
+@media (max-width: 767px) {
+    .hidden-button{
+        display: none;
     }
 }

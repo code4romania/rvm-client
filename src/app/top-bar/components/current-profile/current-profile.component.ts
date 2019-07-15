@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-current-profile',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentProfileComponent implements OnInit {
 
-	constructor() { }
-
+	user: any = {
+		'email': 'no login'
+	};
+	constructor(private authService: AuthenticationService) {}
 	ngOnInit() {
+		this.authService.profile().subscribe(
+			(user: any) => {
+				this.user = user;
+				this.user.role = 'DSU';
+			}, (error: any) => {
+				console.log('Profile error: ', error);
+			}
+		);
 	}
+
 
 }

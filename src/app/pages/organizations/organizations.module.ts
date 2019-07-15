@@ -7,7 +7,7 @@ import { NgodetailsComponent } from './organizations/components/ngodetails/ngode
 import { OrganizationService } from './organizations.service';
 import { OrganizationsRoutingModule } from './organizations.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbTabsetModule, NgbRadioGroup, NgbButtonsModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	declarations: [
@@ -17,8 +17,7 @@ import { NgbTabsetModule, NgbRadioGroup, NgbButtonsModule } from '@ng-bootstrap/
 		NgodashboardComponent,
 	],
 	imports: [
-		NgbTabsetModule,
-		NgbButtonsModule,
+		NgbModule,
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,

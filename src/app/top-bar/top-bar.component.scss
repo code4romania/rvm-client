@@ -52,31 +52,18 @@ header {
 .container-full-height {
  height: 100%;
 }
-
-/* Paddings */
-.padding-medium {
-  padding: 24px;
+.hidden-button{
+  display: none;
 }
-
-.padding-left-medium {
-  padding-left: 24px;
+@media (max-width: 991px){
+  .hidden-button{
+    display: block;
+  }
 }
-
-.padding-right-medium {
-  padding-right: 24px;
+.dropdown-item:active{
+  background-color: gray;
 }
-
-.padding-left-xmedium {
-  padding-left: 30px;
+.dropdown-item:focus{
+  outline:none;
+  border:none;
 }
-
-.padding-right-xmedium {
-  padding-right: 30px;
-}
-
-.padding-top-xlarge {
-  padding-top: 54px;
-}
-
-/* Margins */
-

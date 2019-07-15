@@ -5,53 +5,53 @@ import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+	selector: 'app-signup',
+	templateUrl: './signup.component.html',
+	styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  signupForm: FormGroup;
-  isLoading = false;
+	signupForm: FormGroup;
+	isLoading = false;
 
-  constructor(
-    public router: Router,
-    private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
-  ) {
-    this.createForm();
-  }
+	constructor(
+		public router: Router,
+		private formBuilder: FormBuilder,
+		private authenticationService: AuthenticationService
+	) {
+		this.createForm();
+	}
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  signup() {
-    this.isLoading = true;
-    this.authenticationService
-      .signup(this.signupForm.value)
-      .pipe(
-        finalize(() => {
-          this.signupForm.markAsPristine();
-          this.isLoading = false;
-        })
-      )
-      .subscribe(
-        (user: Authentication.User) => {
-          console.log(user);
-          this.router.navigate(['/login']);
-        },
-        (error: any) => {
-          console.log(`Signup error: ${error}`);
-        }
-      );
-  }
+	signup() {
+		this.isLoading = true;
+		this.authenticationService
+			.signup(this.signupForm.value)
+			.pipe(
+				finalize(() => {
+					this.signupForm.markAsPristine();
+					this.isLoading = false;
+				})
+			)
+			.subscribe(
+				(user: Authentication.User) => {
+					console.log(user);
+					this.router.navigate(['/login']);
+				},
+				(error: any) => {
+					console.log('Signup error: ', error);
+				}
+			);
+	}
 
-  private createForm() {
-    this.signupForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      password: ['', Validators.required],
-      cPassword: ['', Validators.required]
-    });
-  }
+	private createForm() {
+		this.signupForm = this.formBuilder.group({
+			firstName: ['', [Validators.required]],
+			lastName: ['', [Validators.required]],
+			email: ['', [Validators.required, Validators.email]],
+			phone: ['', [Validators.required]],
+			password: ['', Validators.required],
+			cPassword: ['', Validators.required]
+		});
+	}
 }

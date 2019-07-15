@@ -21,6 +21,7 @@
             </app-form-error-wrapper>
           </div>
         </div>
+        <ngb-alert *ngIf="errorMessage" class="errormsg" type="success" (close)="successMessage = null">{{ errorMessage }}</ngb-alert>
         <div class="form-group text-center mt-4">
           <div class="col-xs-12">
             <button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light" (click)="login()" [disabled]="loginForm.invalid || isLoading">
