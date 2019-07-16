@@ -64,7 +64,7 @@ export class OrganizationService {
 			controlType: 'dropdown'
 		},
 		{
-			key: 'locality',
+			key: 'city',
 			label: 'Oras',
 			options: [
 				{key: 'AlbaIulia',  value: 'Alba Iulia'},
