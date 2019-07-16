@@ -9,6 +9,7 @@
 	.login-box {
 		.card-body {
 			flex: 1 1 auto;
+			flex-wrap: wrap;
 			padding: 1.25rem;
 			margin-left: auto;
 			margin-right: auto;
@@ -19,10 +20,6 @@
 		input:-webkit-autofill {
 			-webkit-box-shadow: 0 0 0px 1000px white inset;
 		}
-	}
-	.col-md-12 {
-		padding-left: 0px;
-		padding-right: 0px;
 	}
 	.form-horizontal {
 		label {

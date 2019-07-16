@@ -9,18 +9,18 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Cauta" aria-describedby="basic-addon1">
                   </div>
-                  <button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</button>
+                  <!-- <button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</button> -->
                 </div>
     </nav>
     <div class="ngo-details row">
-        <h3 class="col-md-12">Profil organizatie: {{data.nume}}</h3>
-        <h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data.perscontact}}</h5>
+        <h3 class="col-md-12">Profil organizatie: {{data.name}}</h3>
+        <h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data.contact_person}}</h5>
         <span class="col-md-12"><span class="fa fa-envelope"></span>  {{data.email}}</span>
-        <span class="col-md-12"><span class="fa fa-phone"></span>  {{data.telefon}}</span>
-        <span class="col-md-12"><b>Status organizatie: </b> {{data.status}}</span>
-        <span class="col-md-12"><b>Total voluntari: </b>{{data.voluntari}}</span>
-        <span class="col-md-12"><b>Acoperire: </b> {{data.acoperire}}</span>
-        <span class="px-15"><b>Data ultimului update: </b> {{data.data}}</span> <button class=" btn-info"> Trimite Notificare</button>
+        <span class="col-md-12"><span class="fa fa-phone"></span>  {{data.phone}}</span>
+        <span class="col-md-12"><b>Status organizatie: </b> {{data.status || 'active' }}</span>
+        <span class="col-md-12"><b>Total voluntari: </b>{{data.voluntari || '0' }}</span>
+        <span class="col-md-12"><b>Acoperire: </b> {{data.acoperire || 'Nationala' }}</span>
+        <span class="px-15"><b>Data ultimului update: </b> {{data.data || 'Nu exista' }}</span> <button class=" btn-info"> Trimite Notificare</button>
     </div>
     <div class="resource-list">
             <ngb-tabset type="pills">

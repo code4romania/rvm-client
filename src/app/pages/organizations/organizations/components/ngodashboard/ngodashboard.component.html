@@ -20,7 +20,7 @@
         </div>
     </nav>
     <div class="filters row" >
-        <span >4 total</span>
+        <span >{{count}}</span>
         <!-- <span class='mx-2'></span>
         <span >Sorteaza dupa</span>
         <div ngbDropdown class="d-inline-block">
@@ -36,12 +36,12 @@
     <div class="cardlist row">
         <div *ngFor="let elem of data" [ngClass]="listoptions">
             <div class="card" style="flex-grow: 1">
-                <a [routerLink]="['id',elem.id]" class="btn btn-fix text-left">
+                <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">
-                        <h4 class="card-title">{{elem.nume}}</h4>
+                        <h4 class="card-title">{{elem.name}}</h4>
                         <div class="card-text row"> 
                             <span class="col-md-12">{{elem.email}}</span>
-                            <span class="col-md-12" >{{elem.telefon}}</span>
+                            <span class="col-md-12" >{{elem.phone}}</span>
                             </div>
                         Resurse:<br>
                         <a href="#" class="card-link">12 voluntari</a>

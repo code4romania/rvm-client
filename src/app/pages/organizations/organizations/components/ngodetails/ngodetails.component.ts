@@ -14,8 +14,9 @@ export class NgodetailsComponent implements OnInit {
 		private organizationService: OrganizationService) { }
 
 	ngOnInit() {
-		this.data = this.organizationService.getOne(this.route.snapshot.paramMap.get('id'));
-		
+		this.organizationService.getOrganization(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
+			this.data = data;
+		});
 	}
 
 }

@@ -12,7 +12,6 @@ export class NgoaddComponent implements OnInit {
 	form: FormGroup;
 	isValid = true;
 	data: any;
-	
 	constructor(public organizationService: OrganizationService, private router: Router) { }
 
 	ngOnInit() {
@@ -28,8 +27,10 @@ export class NgoaddComponent implements OnInit {
 		return new FormGroup(group);
 		}
 	onSubmit() {
-		this.organizationService.addToData(this.form.value);
-		this.navigateToDashboard();
+		this.organizationService.addOrganization(this.form.value).subscribe((element: any) => {
+			console.log(element);
+			this.navigateToDashboard();
+		})
 	}
 	navigateToDashboard() {
 		this.router.navigate(['organizations']);

@@ -7,12 +7,18 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 	styleUrls: ['./ngodashboard.component.scss']
 })
 export class NgodashboardComponent implements OnInit {
-	data: any[] = [];
+	data: any = [];
+	count: String;
 	model = 'block';
 	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
 	constructor(private organizationService: OrganizationService, public breakpointObserver: BreakpointObserver) { }
 	ngOnInit() {
-		this.data = this.organizationService.getData();
+		this.organizationService.getOrganizations().subscribe(element =>{
+			if(element){
+				this.data = element;
+				this.count = `${element.length} total`
+			}
+		});
 		this.breakpointObserver.observe([
 			'(max-width: 768px)'
 				]).subscribe(result => {
