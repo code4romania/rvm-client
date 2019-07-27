@@ -9,7 +9,11 @@ export class AuthenticationGuard implements CanActivate {
 		private router: Router,
 		private authenticationService: AuthenticationService
 	) {}
-
+	/**
+	 * @returns Boolean based on authentification Service isAuthenificated Answer
+	 *
+	 * else redirect to login
+	 */
 	canActivate(): boolean {
 		if (this.authenticationService.isAuthenticated()) {
 			return true;

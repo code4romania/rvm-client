@@ -28,8 +28,6 @@ declare namespace Authentication {
 	}
 
 	export interface Credentials {
-		user: User;
 		token: string;
-		session: string;
 	}
 }

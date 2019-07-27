@@ -14,7 +14,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ErrorHandlerInterceptor } from '@app/core/http/error-handler.interceptor';
 
 // From @angular/common/http/src/interceptor: allows to chain interceptors
 class HttpInterceptorHandler implements HttpHandler {
@@ -54,24 +53,18 @@ export class HttpService extends HttpClient {
 	) {
 		super(httpHandler);
 
-		if (!this.interceptors) {
-			// Configure default interceptors that can be disabled here
-			this.interceptors = [this.injector.get(ErrorHandlerInterceptor)];
-		}
+		
 	}
 
-	skipErrorHandler(): HttpClient {
-		return this.removeInterceptor(ErrorHandlerInterceptor);
-	}
 
 	// Override the original method to wire interceptors when triggering the request.
-	request(method?: any, url?: any, options?: any): any {
-		const handler = this.interceptors.reduceRight(
-			(next, interceptor) => new HttpInterceptorHandler(next, interceptor),
-			this.httpHandler
-		);
-		return new HttpClient(handler).request(method, url, options);
-	}
+	// request(method?: any, url?: any, options?: any): any {
+	// 	const handler = this.interceptors.reduceRight(
+	// 		(next, interceptor) => new HttpInterceptorHandler(next, interceptor),
+	// 		this.httpHandler
+	// 	);
+	// 	return new HttpClient(handler).request(method, url, options);
+	// }
 
 	private removeInterceptor(interceptorType: Function): HttpService {
 		return new HttpService(

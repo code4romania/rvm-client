@@ -1,6 +1,6 @@
 export const environment = {
   env: 'PROD',
   production: true,
-  serverBaseUrl: 'http://productionurl.com',
-  serverUrl: 'http://productionurl.com'
+  serverBaseUrl: 'https://rvm-api.lxhost.ro',
+  serverUrl: 'https://rvm-api.lxhost.ro/api'
 };

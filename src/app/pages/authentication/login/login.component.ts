@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 import { finalize, debounceTime } from 'rxjs/operators';
@@ -30,13 +30,20 @@ export class LoginComponent implements OnInit {
 			debounceTime(5000)
 		).subscribe(() => this.errorMessage = null);
 	}
+	/**
+	 * On error broadcast message to ngb-alert.
+	 * After DeboundeTime we set errorMessage to null
+	 */
 	public changeErrorMessage() {
 		this._success.next('Nu s-a putut realiza autentificarea, va rugam verificati datele si reincercati');
 	}
+	/**
+	 * Login with username and password obtained from form {@link loginForm}.
+	 *
+	 * On success redirects to dashboard
+	 */
 	login() {
-		this.router.navigate(['/'], {
-							replaceUrl: true
-						});
+		this.router.navigate(['/'], {replaceUrl: true});
 		this.isLoading = true;
 		this.authenticationService
 			.login(this.loginForm.value)
@@ -55,7 +62,7 @@ export class LoginComponent implements OnInit {
 				},
 				(error: any) => {
 					this.changeErrorMessage()
-					console.log('Login error: ',error);
+					console.log('Login error: ', error);
 				}
 			);
 	}
@@ -65,9 +72,16 @@ export class LoginComponent implements OnInit {
 	}
 
 	private createForm() {
-		this.loginForm = this.formBuilder.group({
-			email: ['', [Validators.required]],
-			password: ['', Validators.required]
+		this.loginForm = new FormGroup({
+			email: new FormControl('', [Validators.required]),
+			password: new FormControl('', [Validators.required])
 		});
+		// const group: any = {};
+		// this.data.forEach((question: any ) => {
+		// 	group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
+		// 											: new FormControl(question.value || '');
+		// });
+		// return new FormGroup(group);
+		// }
 	}
 }

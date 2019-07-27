@@ -25,7 +25,15 @@ export class AuthenticationService {
 			this._credentials = JSON.parse(savedCredentials);
 		}
 	}
-
+	/**
+	 *
+	 * @param {Authentication.LoginPayload} payload  Login with object of specific type
+	 *
+	 * Function auto stores credentials for future use.
+	 *
+	 * @returns The post result mapped to Credentials type, not useful since its just a token
+	 *
+	 */
 	login(
 		payload: Authentication.LoginPayload
 	): Observable<Authentication.Credentials> {
@@ -36,7 +44,13 @@ export class AuthenticationService {
 			})
 		);
 	}
-
+	/**
+	 *
+	 * @param {Authentication.SignupPayload} payload  Signup with object of specific type
+	 *
+	 * @returns The post result mapped to User type, not very useful
+	 *
+	 */
 	signup(
 		payload: Authentication.SignupPayload
 	): Observable<Authentication.User> {
@@ -46,6 +60,11 @@ export class AuthenticationService {
 			})
 		);
 	}
+	/**
+	 *	Auto add token from Credential {@link accessToken}
+	 *
+	 * @returns The profile of the currently logged in user
+	 */
 	profile(): Observable<Authentication.User> {
 		const header = {
 			headers: new HttpHeaders()
@@ -68,7 +87,7 @@ export class AuthenticationService {
 			headers: new HttpHeaders()
 			.set('Authorization',  `Bearer ${this.accessToken}`)
 		};
-		return this.httpClient.get('/logout',header).pipe(
+		return this.httpClient.get('/logout', header).pipe(
 				map(() => {
 					this.setCredentials();
 					return true;
@@ -78,6 +97,7 @@ export class AuthenticationService {
 
 	/**
 	 * Checks is the user is authenticated.
+	 * 
 	 * @return {boolean} True if the user is authenticated.
 	 */
 	isAuthenticated(): boolean {
@@ -86,6 +106,7 @@ export class AuthenticationService {
 
 	/**
 	 * Gets the user credentials.
+	 * 
 	 * @return {Credentials} The user credentials or null if the user is not authenticated.
 	 */
 	get credentials(): Authentication.Credentials | null {
@@ -94,14 +115,16 @@ export class AuthenticationService {
 
 	/**
 	 * Get the auth token.
+	 * 
 	 * @return {string} The auth token is null if user is not authenticated.
 	 */
 	get accessToken(): string | null {
 		return this.credentials ? this.credentials.token : null;
 	}
-
+	
 	/**
 	 * Sets the user credentials.
+	 * 
 	 * @param {Credentials=} Authentication.Credentials The user credentials.
 	 */
 	private setCredentials(credentials?: Authentication.Credentials) {

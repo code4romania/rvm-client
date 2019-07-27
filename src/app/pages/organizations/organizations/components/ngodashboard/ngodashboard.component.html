@@ -21,15 +21,29 @@
     </nav>
     <div class="filters row" >
         <span >{{count}}</span>
-        <!-- <span class='mx-2'></span>
-        <span >Sorteaza dupa</span>
-        <div ngbDropdown class="d-inline-block">
+        <span class='mx-2'></span>
+        <!-- <span >Sorteaza dupa &nbsp;</span>
+        <div ngbDropdown class="d-inline-block" autoClose="outside">
             <div class="userarea" id="dropdown1" ngbDropdownToggle>
                 Nume
                 </div>
             <div ngbDropdownMenu aria-labelledby="dropdown1">
-                <a ngbDropdownItem>A-Z</a>
-                <a ngbDropdownItem>Z-A</a>
+                <a ngbDropdownItem>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Default checkbox
+                        </label>
+                    </div>
+                </a>
+                      
+                <a ngbDropdownItem><div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Disabled checkbox
+                        </label>
+                      </div>
+                </a>
             </div>
         </div> -->
     </div>

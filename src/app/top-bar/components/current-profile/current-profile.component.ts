@@ -12,11 +12,24 @@ export class CurrentProfileComponent implements OnInit {
 		'email': 'no login'
 	};
 	constructor(private authService: AuthenticationService) {}
+	/**
+	 * get Organization by id
+	 */
 	ngOnInit() {
 		this.authService.profile().subscribe(
 			(user: any) => {
 				this.user = user;
-				this.user.role = 'DSU';
+				switch (this.user.role) {
+					case '1':
+						this.user.role = 'ONG';
+						break;
+					case '2':
+						this.user.role = 'DSU';
+						break;
+					default:
+						this.user.role = 'Ofiter';
+						break;
+				}
 			}, (error: any) => {
 				console.log('Profile error: ', error);
 			}

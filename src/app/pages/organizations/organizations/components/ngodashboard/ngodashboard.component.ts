@@ -12,11 +12,15 @@ export class NgodashboardComponent implements OnInit {
 	model = 'block';
 	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
 	constructor(private organizationService: OrganizationService, public breakpointObserver: BreakpointObserver) { }
+	/**
+	 * subscribe to screen size in order to use list instead of grid for display
+	 */
 	ngOnInit() {
-		this.organizationService.getOrganizations().subscribe(element =>{
-			if(element){
+		console.log('fdsf');
+		this.organizationService.getOrganizations().subscribe(element => {
+			if (element) {
 				this.data = element;
-				this.count = `${element.length} total`
+				this.count = `${element.length} total`;
 			}
 		});
 		this.breakpointObserver.observe([
@@ -32,9 +36,15 @@ export class NgodashboardComponent implements OnInit {
 				// }
 			});
 	}
+	/**
+	 * set class of display element with list view
+	 */
 	switchtolist() {
 		this.listoptions = 'd-flex col-md-12 col-sm-12 col-lg-12';
 	}
+	/**
+	 * set class of display element with grid view
+	 */
 	switchtoblock() {
 		this.listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
 	}

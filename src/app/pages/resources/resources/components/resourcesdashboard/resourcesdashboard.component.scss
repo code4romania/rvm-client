@@ -1,0 +1,74 @@
+.cardlist{
+    // background-color: darkblue;
+}
+.card{
+    background-color: transparent;
+    margin: 10px;
+}
+.card-body{
+    padding: 0.25rem;
+    background-color:white;
+}
+@media (max-width: 425px) {
+    .container {
+      width: 100%;
+      max-width: none;
+    }
+  }
+@media (max-width: 1199px){
+    .btn-adjusting{
+        width: min-content;       
+    }
+}
+.btn-group{
+    height: 47px;
+    .btn-primary{
+        border-radius:none;
+        background: white;
+        color: black;
+        border:none;
+    }
+    .btn-primary.focus, .btn-primary.active{
+        background-color:blue;
+        color: white;
+        box-shadow: none
+    }
+
+}
+@media (max-width: 767px) {
+    .hidden-button{
+        display: none;
+    }
+}
+.table{
+    th{
+        padding: 15px;
+        border:none;
+        border-bottom: 1px solid black;
+    }
+    td{
+        padding: 15px;
+        border-top: 1px solid black;
+    }
+    
+}
+@media (min-width: 768px){
+    .responsive-btn{
+        margin-left:15px;
+    }
+}
+@media (max-width: 767px){
+    .responsive-btn{
+        float: right;
+        white-space: normal;
+        margin: 25px;
+        width: min-content;
+    }
+}
+.vertical-bar{
+    background-color: #67757c;
+    width: 1px;
+    height: 80%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
