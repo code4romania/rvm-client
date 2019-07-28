@@ -5,7 +5,7 @@ import {
   OnInit,
   AfterViewInit
 } from '@angular/core';
-import { ERROR_OBJECTS, ErrorMessageService } from '@app/core';
+import { ERROR_OBJECTS } from '@app/core';
 
 @Component({
   selector: 'app-form-error-wrapper',
@@ -27,8 +27,8 @@ export class FormErrorWrapperComponent
   public errorKeys: string[];
   public apiErrorMessage: string;
 
-  constructor(private errorMessageService: ErrorMessageService) {
-    errorMessageService.errors$.subscribe(
+  constructor() {
+    /*errorMessageService.errors$.subscribe(
       (errors: ErrorModel.ErrorMessageObject[]) => {
         errors
           .filter(
@@ -39,7 +39,7 @@ export class FormErrorWrapperComponent
             this.apiErrorMessage = e.error;
           });
       }
-    );
+    );*/
   }
 
   ngOnInit() {}

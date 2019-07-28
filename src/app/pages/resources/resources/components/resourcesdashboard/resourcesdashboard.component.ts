@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
-import { NgbdSortableHeader, SortEvent } from '@app/shared/sortable-header/NgbdSortableHeader.class';
+//import { NgbdSortableHeader, SortEvent } from '@app/shared/sortable-header/NgbdSortableHeader.class';
 
 @Component({
 	selector: 'app-resourcesdashboard',
@@ -9,7 +9,7 @@ import { NgbdSortableHeader, SortEvent } from '@app/shared/sortable-header/NgbdS
 })
 export class ResourcesdashboardComponent implements OnInit {
 	resourcesData: any;
-	@ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+	/*@ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
 	onSort({column, direction}: SortEvent) {
 
@@ -30,7 +30,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		// 	return direction === 'asc' ? res : -res;
 		//})
 		}
-	}
+	}*/
 	constructor(private resourceService: ResourcesService) { }
 	ngOnInit() {
 		this.resourceService.getResources().subscribe((data) => {
