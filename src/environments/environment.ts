@@ -5,8 +5,8 @@
 export const environment = {
 	env: 'DEFAULT',
 	production: false,
-	serverBaseUrl: 'http://192.168.0.110',
-	serverUrl: 'http://192.168.0.110/api'
+	serverBaseUrl: 'https://rvm-api.lxhost.ro',
+	serverUrl: 'https://rvm-api.lxhost.ro/api'
 };
 
 /*

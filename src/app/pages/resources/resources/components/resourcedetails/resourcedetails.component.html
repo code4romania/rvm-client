@@ -18,42 +18,28 @@
     <div class="resource-list">
 
     <div class="table-responsive-md">
-    <table class="table table-sm">
+        <table class="table table-sm">
             <thead>
                 <tr>
-                <!-- <th scope="col" sortable="name" (sort)="onSort($event)">Tip Resursa</th>
-                <th scope="col" sortable="quantity" (sort)="onSort($event)">Cantitate</th>
-                <th scope="col" sortable="location" (sort)="onSort($event)">Localizare</th>
-                <th scope="col" sortable="date" (sort)="onSort($event)">Data ultimului update</th> -->
+                    <!-- sortable="name" (sort)="onSort($event)" -->
+                    <th scope="col" >Organizatie</th>
+                    <th scope="col" >Cantitate</th>
+                    <th scope="col" >Adresa</th>
+                    <th scope="col" >Judet</th>
+                    <th scope="col" >Data ultimului Update</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let res of organizations">
                 
-                <td>Mark</td>
-                <td >1</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><button class="btn-info">Vezi detalii</button></td>
-                </tr>
-                <tr>
-                
-                <td>Jacob</td>
-                <td >2</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td><button class="btn-info">Vezi detalii</button></td>
-                </tr>
-                <tr>
-                
-                <td>Larry</td>
-                <td>3</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td><button class="btn-info">Vezi detalii</button></td>
+                    <td>{{res.name}}</td>
+                    <td>{{res.quantity}}</td>
+                    <td>{{res.address}}</td>
+                    <td>{{res.city}}, {{res.county}}</td>
+                    <td>{{res.updated_at}}</td>
+                    <td><button class="btn-info" [routerLink]="['/organizations/id',res._id]">Vezi detalii</button></td>
                 </tr>
             </tbody>
-            </table>
-            </div>
-        </div>
+        </table>
+    </div>
 </div>

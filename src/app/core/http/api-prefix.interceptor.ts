@@ -20,12 +20,15 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
 		request: HttpRequest<any>,
 		next: HttpHandler
 	): Observable<HttpEvent<any>> {
-		request = request.clone({
-			setHeaders: {
-				'Authorization': `Bearer ${this.authService.accessToken}`
-			},
-			url: environment.serverUrl + request.url
-		});
+		if (request.url.indexOf('assets') === -1) {
+			const token = this.authService.accessToken || null;
+			request = request.clone({
+				setHeaders: {
+					'Authorization': (token ? `Bearer ${token}` : '')
+				},
+				url: environment.serverUrl + request.url
+			});
+		}
 		return next.handle(request);
 	}
 }

@@ -94,9 +94,7 @@
 						<th scope="col" >Nume Resursa</th>
 						<th scope="col" >Tip Resursa</th>
 						<th scope="col" >Cantitate</th>
-						<th scope="col" >Localizare</th>
 						<th scope="col" >Nr. Organizatii</th>
-						<th scope="col" >Data ultimului update</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -105,9 +103,8 @@
 							<td>{{res.name}}</td>
 							<td>{{res.type}}</td>
 							<td>{{res.quantity}}</td>
-							<td>{{res.city}}, {{res.county}}</td>
 							<td>1</td>
-							<td>{{res.updated_at}}</td>
+							<!-- <td>{{res.updated_at}}</td> -->
 							<td><button class="btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
 						</tr>
 					<!-- </div> -->

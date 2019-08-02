@@ -6,78 +6,14 @@ import { map } from 'rxjs/internal/operators/map';
 		providedIn: 'root'
 	})
 export class ResourcesService {
-	resourcefields = [
-		{
-			key: 'organisation_id',
-			label: 'Nume Resursa',
-			required: false,
-			value: '',
-			size: 'd-none',
-			controlType: 'textbox'
-		},
-		{
-			key: 'name',
-			label: 'Nume Resursa',
-			required: true,
-			value: '',
-			size: 'col-md-12',
-			controlType: 'textbox'
-		},
-		{
-			key: 'type',
-			label: 'Tip Resursa',
-			required: true,
-			value: '',
-			size: 'col-md-12',
-			controlType: 'textbox'
-		},
-		{
-			key: 'quantity',
-			label: 'Nr. bucati',
-			required: true,
-			value: '',
-			size: 'col-md-12',
-			controlType: 'textbox'
-		},
-		{
-			key: 'county',
-			label: 'Judet',
-			options: [
-				{key: 'Alba',  value: 'Alba'},
-				{key: 'Arad',  value: 'Arad'},
-				{key: 'Arges', value: 'Pitesti'},
-				{key: 'Bacau',   value: 'Bacau'},
-				{key: 'Bihor', value: 'Bihor'}
-			],
-			value: '',
-			size: 'col-md-6',
-			controlType: 'dropdown'
-		},
-		{
-			key: 'city',
-			label: 'Oras',
-			options: [
-				{key: 'Alba Iulia',  value: 'Alba Iulia'},
-				{key: 'Arad',  value: 'Arad'},
-				{key: 'Arges', value: 'Pitesti'},
-				{key: 'Bacau',   value: 'Bacau'},
-				{key: 'Oradea', value: 'Oradea'}
-			],
-			value: '',
-			size: 'col-md-6',
-			controlType: 'dropdown'
-		},
-];
 	constructor(private httpClient: HttpClient) {}
 	/**
 	 * get all Resources
 	 */
-	getResources(): Observable<any> {
-		return this.httpClient.get('/resources' );
-	}
-	
-	getResourceFields() {
-		return this.resourcefields;
+	getResources(paginationObj?: any): Observable<any> {
+		let params = {};
+		params = {...params, ...paginationObj};
+		return this.httpClient.get('/resources', { params: params });
 	}
 	/**
 	 * get Resource by id

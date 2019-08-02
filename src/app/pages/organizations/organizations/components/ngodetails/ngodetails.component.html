@@ -21,7 +21,7 @@
 				<span class="col-md-12"><b>Total voluntari: </b>{{data?.voluntari || '0' }}</span>
 				<span class="col-md-12"><b>Acoperire: </b> {{data?.acoperire || 'Nationala' }}</span>
 				<div class="col-md-12">
-						<span><b>Data ultimului update: </b> {{data?.data || 'Nu exista' }}</span> <button class="responsive-btn btn-info"> Trimite Notificare</button>
+						<span><b>Data ultimului update: </b> {{data?.data || 'Nu exista' }}</span>
 				</div>
 		</div>
 		<div class="resource-list">
@@ -42,7 +42,6 @@
 									<th scope="col" >Tip Resursa</th>
 									<th scope="col" >Cantitate</th>
 									<th scope="col" >Localizare</th>
-									<th scope="col" >Data ultimului update</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -51,14 +50,18 @@
 										<td>{{res.name}}</td>
 										<td>{{res.quantity}}</td>
 										<td>{{res.city}}, {{res.county}}</td>
-										<td>{{res.updated_at}}</td>
-										<td><button class="btn-info">Vezi detalii</button></td>
+										<!-- <td>{{res.updated_at}}</td> -->
+										<td><button class="btn-info" [routerLink]="['/resources/id',res._id]">Vezi detalii</button></td>
 									</tr>
 								<!-- </div> -->
 							</tbody>
 						</table>
 					</div>
-					<span>Aceasta organizatie nu are nici o resursa adaugata in sistem </span><button class="btn-info" (click)="openVerticallyCentered(content)"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
+					<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
+					<button class="btn-info" (click)="openVerticallyCentered(content)">
+						<span class="fa fa-plus-circle"></span>
+						&nbsp;&nbsp;Adauga Resurse
+					</button>
 				</ng-template>
 				</ngb-tab>
 			</ngb-tabset>
@@ -74,31 +77,47 @@
 		<form [formGroup]="form">
 			<div class="modal-body">
 				<div class="row">
-					<div *ngFor="let question of resourceFields" [class]="question.size">
-						<div [ngSwitch]="question.controlType" >
-							<div *ngSwitchCase="'textbox'" class="form-group">
-									<label >{{question.label}}</label>
-									<input [formControlName]="question.key" class="form-control"
-											[id]="question.key" [type]="question.type">
-									</div>
-							<div *ngSwitchCase="'dropdown'" class="form-group">
-									<label >{{question.label}}</label>
-									<select class="form-control" [id]="question.key"  [formControlName]="question.key">
-											<option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-									</select>
-							</div>
-							<div *ngSwitchCase="'textarea'" class="form-group">
-									<label >{{question.label}}</label>
-									<textarea class="form-control" rows=3 [formControlName]="question.key"
-											[id]="question.key"></textarea>
-							</div>
-						</div> 
+					<div class="mt-4 col-md-12">
+						<div class="form-group">
+							<label >Categorie Resursa</label>
+							<input formControlName="category" class="form-control">
+						</div>
+					</div>
+					<div class="mt-4 col-md-12">
+						<div class="form-group">
+							<label >Nume Resursa</label>
+							<input formControlName="name" class="form-control">
+						</div>
+					</div>
+					<div class="mt-4 col-md-12">
+						<div class="form-group">
+							<label >Cantitate</label>
+							<input type="number" formControlName="quantity" class="form-control">
+						</div>
+					</div>
+					<div class="mt-4 col-md-6">
+						<div class="form-group">
+							<label >Judet</label>
+							<input formControlName="county" class="form-control">
+						</div>
+					</div>
+					<div class="mt-4 col-md-6">
+						<div class="form-group">
+							<label >Oras</label>
+							<input formControlName="city" class="form-control">
+						</div>
+					</div>
+					<div class="mt-4 col-md-4">
+						<div class="form-group">
+							<label >Mentiuni</label>
+							<input formControlName="comments" class="form-control">
+						</div>
+					</div>
 						<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
 					</div>
-				</div>
 			</div>
-		<div class="modal-footer">
+			<div class="modal-footer">
 				<button type="button" ngbAutofocus class="btn btn-info" (click)="onSubmit()">Ok</button>
-		</div>
+			</div>
 		</form>
 </ng-template>

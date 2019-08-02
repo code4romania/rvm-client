@@ -12,24 +12,28 @@ import {
 } from '@app/core/authentication';
 import {
 	ApiPrefixInterceptor,
-
+	ErrorHandlerInterceptor,
 	HttpService
 } from '@app/core/http';
 import { LocalStorageService } from '@app/core/local-storage.service';
 import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
 import {
-	UtilService
+	ErrorMessageService,
+	UtilService,
+	CitiesCountiesService
 } from '@app/core/service';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
 	declarations: [],
 	providers: [
+		ErrorHandlerInterceptor,
+		ErrorMessageService,
 		LocalStorageService,
 		AuthenticationService,
 		AuthenticationGuard,
 		ApiPrefixInterceptor,
-
+		CitiesCountiesService,
 		UtilService,
 		{
 			provide: HTTP_INTERCEPTORS,

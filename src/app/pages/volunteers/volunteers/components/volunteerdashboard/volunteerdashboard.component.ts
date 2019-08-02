@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '@app/pages/organizations/organizations.service';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { VolunteerService } from '@app/pages/volunteers/volunteers.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+
 @Component({
-	selector: 'app-ngodashboard',
-	templateUrl: './ngodashboard.component.html',
-	styleUrls: ['./ngodashboard.component.scss']
+	selector: 'app-volunteerdashboard',
+	templateUrl: './volunteerdashboard.component.html',
+	styleUrls: ['./volunteerdashboard.component.scss']
 })
-export class NgodashboardComponent implements OnInit {
+export class VolunteerdashboardComponent implements OnInit {
+
 	data: any = [];
 	count: String;
+	pagination = {}
+		// limit: 1,
+		// page: 2,
+		// order: 'ASC',
+		// sort: 'name' };
 	model = 'block';
 	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
-	constructor(private organizationService: OrganizationService, public breakpointObserver: BreakpointObserver) { }
+	constructor(private volunteerService: VolunteerService, public breakpointObserver: BreakpointObserver) { }
 	/**
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
 	ngOnInit() {
-		this.organizationService.getOrganizations().subscribe(element => {
+		this.volunteerService.getVolunteers(this.pagination).subscribe(element => {
 			if (element) {
 				this.data = element;
 				this.count = `${element.length} total`;

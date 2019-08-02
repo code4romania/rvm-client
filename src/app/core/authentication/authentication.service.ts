@@ -127,7 +127,7 @@ export class AuthenticationService {
 	 * 
 	 * @param {Credentials=} Authentication.Credentials The user credentials.
 	 */
-	private setCredentials(credentials?: Authentication.Credentials) {
+	public setCredentials(credentials?: Authentication.Credentials) {
 		this._credentials = credentials || null;
 		if (credentials) {
 			this.localStorageService.setItem(
