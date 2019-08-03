@@ -26,43 +26,78 @@
 		</div>
 		<div class="resource-list">
 			<ngb-tabset type="pills">
-				<ngb-tab><ng-template ngbTabTitle>Lista Voluntari</ng-template>
-						<ng-template ngbTabContent>
-						<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
-				</ng-template>
+				<ngb-tab>
+					<ng-template ngbTabTitle>Lista Voluntari</ng-template>
+					<ng-template ngbTabContent>
+						<div *ngIf="hasVolunteers; else noVolunteers">
+							<div class="table-responsive-md">
+								<table class="table table-sm">
+									<thead>
+										<tr>
+											<!-- sortable="name" (sort)="onSort($event)" -->
+											<th scope="col" >Nume</th>
+											<th scope="col" >Specializare</th>
+											<th scope="col" >Status</th>
+											<th scope="col" >Localizare</th>
+											<th scope="col" >Data uiltimului training</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let res of data.volunteerData">
+											<!-- <tr> -->
+												<td>{{res.name}}</td>
+												<td>{{res.job}}</td>
+												<td>activ</td>
+												<td>{{res.city}}, {{res.county}}</td>
+												<td>{{res.updated_at}}</td>
+												<td>
+													<button class="btn-info" [routerLink]="['/volunteers/id',res._id]">Vezi profil</button>
+												</td>
+											</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<ng-template #noVolunteers>
+							<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
+						</ng-template>
+					</ng-template>
 				</ngb-tab>
 				<ngb-tab title="|" [disabled]="true"></ngb-tab>
-				<ngb-tab><ng-template ngbTabTitle>Lista Resurse</ng-template>
+				<ngb-tab>
+					<ng-template ngbTabTitle>Lista Resurse</ng-template>
 					<ng-template ngbTabContent>
-						<div class="table-responsive-md">
-						<table class="table table-sm">
-							<thead>
-								<tr>
-									<!-- sortable="name" (sort)="onSort($event)" -->
-									<th scope="col" >Tip Resursa</th>
-									<th scope="col" >Cantitate</th>
-									<th scope="col" >Localizare</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let res of resourceData">
-									<!-- <tr> -->
-										<td>{{res.name}}</td>
-										<td>{{res.quantity}}</td>
-										<td>{{res.city}}, {{res.county}}</td>
-										<!-- <td>{{res.updated_at}}</td> -->
-										<td><button class="btn-info" [routerLink]="['/resources/id',res._id]">Vezi detalii</button></td>
+						<div *ngIf="hasResources; else noResources" class="table-responsive-md">
+							<table class="table table-sm">
+								<thead>
+									<tr>
+										<!-- sortable="name" (sort)="onSort($event)" -->
+										<th scope="col" >Tip Resursa</th>
+										<th scope="col" >Cantitate</th>
+										<th scope="col" >Localizare</th>
 									</tr>
-								<!-- </div> -->
-							</tbody>
-						</table>
-					</div>
-					<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
-					<button class="btn-info" (click)="openVerticallyCentered(content)">
-						<span class="fa fa-plus-circle"></span>
-						&nbsp;&nbsp;Adauga Resurse
-					</button>
-				</ng-template>
+								</thead>
+								<tbody>
+									<tr *ngFor="let res of data.resourceData">
+											<td>{{res.name}}</td>
+											<td>{{res.quantity}}</td>
+											<td>{{res.city}}, {{res.county}}</td>
+											<td>
+												<button class="btn-info" [routerLink]="['/resources/id',res._id]">Vezi detalii</button>
+											</td>
+										</tr>
+								</tbody>
+							</table>
+						</div>
+						<ng-template #noResources>
+							<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
+							<button class="btn-info" (click)="openVerticallyCentered(content)">
+								<span class="fa fa-plus-circle"></span>
+								&nbsp;&nbsp;Adauga Resurse
+							</button>
+						</ng-template>
+					</ng-template>
 				</ngb-tab>
 			</ngb-tabset>
 	</div>
@@ -98,13 +133,25 @@
 					<div class="mt-4 col-md-6">
 						<div class="form-group">
 							<label >Judet</label>
-							<input formControlName="county" class="form-control">
+							<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+							class="form-control"
+							[ngbTypeahead]="searchcounty"
+							(focus)="focus$.next($event.target.value)"
+							(click)="click$.next($event.target.value)"
+							#instance="ngbTypeahead"/>
 						</div>
 					</div>
 					<div class="mt-4 col-md-6">
 						<div class="form-group">
-							<label >Oras</label>
-							<input formControlName="city" class="form-control">
+							<label >Localitate</label>
+							<input type="text" formControlName="city"
+							class="form-control"
+							[ngbTypeahead]="searchcity"
+							placeholder="{{cityPlaceholder}}"
+							autocomplete="new-password"
+							(focus)="focus1$.next($event.target.value)"
+							(click)="click1$.next($event.target.value)"
+							#instance="ngbTypeahead"/>
 						</div>
 					</div>
 					<div class="mt-4 col-md-4">

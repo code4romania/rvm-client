@@ -27,11 +27,12 @@ export class ResourcesService {
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
 	}
-	// getResourcesbyOrganization(id: String): Observable<any> {
-		// const header = {
-		// 	headers: new HttpHeaders()
-		// 	.set('Authorization',  `Bearer ${this.accessToken}`)
-		// };
+	getOrganizationbyResources(id: String): Observable<any> {
+		
+			let params = {};
+			params = {...params, ...{name: name}};
+			return this.httpClient.get('/resources/organisations', {params: params} );
+		}
 		// return this.httpClient.get(`/organisations/${id}` );
 	// }
 }

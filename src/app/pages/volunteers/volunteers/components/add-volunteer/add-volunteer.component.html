@@ -107,6 +107,9 @@
 										<label >Specializare</label>
 									</th>
 									<th >
+										<label >Data acreditari</label>
+									</th>
+									<th >
 										<label >Acreditat de</label>
 									</th>
 								</tr>
@@ -115,6 +118,11 @@
 									<td style="padding-right:15px">
 										<div class="form-group">
 											<input formControlName="name" class="form-control">
+										</div>
+									</td>
+									<td style="padding-right:15px">
+										<div class="form-group">
+											<input formControlName="obtained" class="form-control">
 										</div>
 									</td> 
 									<td >
@@ -132,6 +140,11 @@
 									<td style="padding-right:15px">
 										<div class="form-group" >
 											<input [(ngModel)]="coursename" [ngModelOptions]="{standalone: true}" class="form-control">
+										</div>
+									</td>
+									<td style="padding-right:15px">
+										<div class="form-group" >
+											<input [(ngModel)]="obtained" [ngModelOptions]="{standalone: true}" class="form-control">
 										</div>
 									</td>
 									<td>

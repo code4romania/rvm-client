@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
 	constructor(
 		public router: Router,
 		private formBuilder: FormBuilder,
-		private authenticationService: AuthenticationService
-	) {
-		this.createForm();
+		private authenticationService: AuthenticationService) {
+		this.loginForm = new FormGroup({
+			email: new FormControl('', [Validators.required]),
+			password: new FormControl('', [Validators.required])
+		});
 	}
 	private _success = new Subject<string>();
 
@@ -55,13 +57,12 @@ export class LoginComponent implements OnInit {
 			)
 			.subscribe(
 				(credentials: Authentication.Credentials) => {
-					console.log("jfhdgknl;", credentials);
 					this.router.navigate(['/'], {
 						replaceUrl: true
 					});
 				},
 				(error: any) => {
-					this.changeErrorMessage()
+					this.changeErrorMessage();
 					console.log('Login error: ', error);
 				}
 			);
@@ -69,19 +70,5 @@ export class LoginComponent implements OnInit {
 
 	resetPassword() {
 		// TODO: Implement Reset Password
-	}
-
-	private createForm() {
-		this.loginForm = new FormGroup({
-			email: new FormControl('', [Validators.required]),
-			password: new FormControl('', [Validators.required])
-		});
-		// const group: any = {};
-		// this.data.forEach((question: any ) => {
-		// 	group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-		// 											: new FormControl(question.value || '');
-		// });
-		// return new FormGroup(group);
-		// }
 	}
 }

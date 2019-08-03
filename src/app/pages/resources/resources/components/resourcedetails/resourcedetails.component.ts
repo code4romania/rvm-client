@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute } from '@angular/router';
+import { OrganizationService } from '@app/pages/organizations/organizations.service';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class ResourcedetailsComponent implements OnInit {
 	ngOnInit() {
 		this.resourceService.getResource((this.route.snapshot.paramMap.get('id'))).subscribe((data) => {
 			this.data = data;
-			this.organizations = data.organization ? [data.organisation] : null;
+			this.resourceService.getOrganizationbyResources(data.name).subscribe((resdata) => {
+				this.organizations = resdata;
+			});
 		});
 	}
 

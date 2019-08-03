@@ -17,8 +17,9 @@ export class AddVolunteerComponent implements OnInit {
 	searching = false;
 	searchFailed = false;
 	form: FormGroup;
-	coursename = '';
-	acreditedby = '';
+	coursename: string;
+	acreditedby: string;
+	obtained: string;
 	counties: String[] = [];
 	cities: String[] = [];
 	cityPlaceholder = 'Selectati mai intai judetul';
@@ -31,6 +32,7 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', {static: true}) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
+	
 	constructor(public volunteerService: VolunteerService, private orgService: OrganizationService, private router: Router,
 				private fb: FormBuilder, private citiesandCounties: CitiesCountiesService) {
 					this.counties = citiesandCounties.getCounties();
@@ -91,12 +93,12 @@ export class AddVolunteerComponent implements OnInit {
 			: this.cities.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
 		);
 	}
-	
 	addCourse() {
 		if (!(this.coursename === '' || this.acreditedby === '')) {
 			this.c.push(this.fb.group({
-				name: ['' +  this.coursename],
-				acreditedby: ['' + this.acreditedby]
+				name: this.coursename,
+				obtained: this.obtained,
+				acreditedby: this.acreditedby
 			}));
 			this.coursename = null;
 			this.acreditedby = null;
