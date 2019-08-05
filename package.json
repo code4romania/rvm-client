@@ -24,7 +24,6 @@
 	},
 	"lint-staged": {
 		"src/**/*.ts": [
-			"pretty-quick --staged",
 			"tslint --fix --config tslint.json --project tsconfig.json",
 			"git add"
 		]

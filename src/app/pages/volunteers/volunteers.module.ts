@@ -7,26 +7,24 @@ import { AddVolunteerComponent } from './volunteers/components/add-volunteer/add
 import { VolunteerdetailsComponent } from './volunteers/components/volunteerdetails/volunteerdetails.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImportVolunteersComponent } from './volunteers/components/import-volunteers/import-volunteers.component';
 
 @NgModule({
-		declarations: [
-				VolunteersComponent,
-				VolunteerdashboardComponent,
-				AddVolunteerComponent,
-				VolunteerdetailsComponent
-		],
-		imports: [
-			NgbModule,
-			ReactiveFormsModule,
-			FormsModule,
-			CommonModule,
-			VolunteersRoutingModule,
-		],
-		entryComponents: [
-		],
-		providers: [
-		]
-	})
-export class VolunteersModule {
-
-}
+	declarations: [
+		VolunteersComponent,
+		VolunteerdashboardComponent,
+		AddVolunteerComponent,
+		VolunteerdetailsComponent,
+		ImportVolunteersComponent
+	],
+	imports: [
+		NgbModule,
+		ReactiveFormsModule,
+		FormsModule,
+		CommonModule,
+		VolunteersRoutingModule
+	],
+	entryComponents: [],
+	providers: []
+})
+export class VolunteersModule {}

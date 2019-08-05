@@ -1,10 +1,9 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
-$fa-font-path: "../node_modules/font-awesome/fonts";
-@import "../node_modules/font-awesome/scss/font-awesome.scss";
+$fa-font-path: '../node_modules/font-awesome/fonts';
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -20,7 +19,11 @@ $rvm-client-accent: mat-palette($mat-pink, A200, A100, A400);
 $rvm-client-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$rvm-client-theme: mat-light-theme($rvm-client-primary, $rvm-client-accent, $rvm-client-warn);
+$rvm-client-theme: mat-light-theme(
+	$rvm-client-primary,
+	$rvm-client-accent,
+	$rvm-client-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -28,20 +31,106 @@ $rvm-client-theme: mat-light-theme($rvm-client-primary, $rvm-client-accent, $rvm
 @include angular-material-theme($rvm-client-theme);
 
 /* You can add global styles to this file, and also import other style files */
-html, body {
-  height: 100%;
+html,
+body {
+	height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 .page-title {
-  font-size: 26px;
-  font-weight: 400;
-  color: black;
-  
+	font-size: 26px;
+	font-weight: 400;
+	color: black;
 }
-::ng-deep input{
-  box-shadow: none;
+::ng-deep input {
+	box-shadow: none;
 }
-.navtitle{
-  text-decoration: underline;
+.navtitle {
+	text-decoration: underline;
+}
+
+.note {
+	background-color: #bec9e1;
+	padding: 5px;
+	color: black;
+}
+
+.note a {
+	color: black;
+	text-decoration: underline;
+}
+
+.form-control:focus {
+	box-shadow: none !important;
+	border-color: #ced4da !important;
+}
+
+.logo-container {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.logo-container img {
+	border-radius: 50%;
+	display: block;
+	margin: auto;
+	height: 250px;
+	border: 15px solid white;
+}
+
+.login-register {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(38, 73, 152);
+}
+
+.login-register .form-horizontal label {
+	margin-left: 5px;
+}
+
+.login-register .button-login {
+	margin-top: 20px;
+	background-color: rgb(255, 204, 0);
+	color: black;
+}
+
+.login-register .login-box .card-body {
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	padding: 1.25rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 550px;
+}
+
+.login-register .login-box input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+	box-shadow: 0 0 0px 1000px white inset;
+}
+
+.login-box .card-body .form-group {
+	background-color: transparent;
+}
+
+.login-box .card-body .form-control {
+	border: none;
+	color: white;
+	background-color: transparent;
+	border-bottom: 1px solid white;
+	border-radius: 0px;
+}
+
+.login-box .card-body:focus {
+	outline: none;
+}
+
+.login-box .card-body::placeholder {
+	color: white;
 }

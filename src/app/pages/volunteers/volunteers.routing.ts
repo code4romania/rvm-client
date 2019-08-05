@@ -4,6 +4,7 @@ import { VolunteersComponent } from './volunteers/volunteers.component';
 import { VolunteerdashboardComponent } from './volunteers/components/volunteerdashboard/volunteerdashboard.component';
 import { AddVolunteerComponent } from './volunteers/components/add-volunteer/add-volunteer.component';
 import { VolunteerdetailsComponent } from './volunteers/components/volunteerdetails/volunteerdetails.component';
+import { ImportVolunteersComponent } from './volunteers/components/import-volunteers/import-volunteers.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -11,16 +12,20 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: VolunteerdashboardComponent,
+				component: VolunteerdashboardComponent
 			},
 			{
 				path: 'add',
-				component: AddVolunteerComponent,
+				component: AddVolunteerComponent
 			},
 			{
 				path: 'id/:id',
-				component: VolunteerdetailsComponent,
+				component: VolunteerdetailsComponent
 			},
+			{
+				path: 'import',
+				component: ImportVolunteersComponent
+			}
 		]
 	}
 ];
@@ -29,6 +34,4 @@ const routes: Routes = [
 	exports: [RouterModule],
 	imports: [RouterModule.forChild(routes)]
 })
-export class VolunteersRoutingModule {
-
-}
+export class VolunteersRoutingModule {}

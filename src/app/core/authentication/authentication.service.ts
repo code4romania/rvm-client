@@ -20,7 +20,9 @@ export class AuthenticationService {
 		private httpClient: HttpClient,
 		private localStorageService: LocalStorageService
 	) {
-		const savedCredentials = this.localStorageService.getItem(credentialsKey);
+		const savedCredentials = this.localStorageService.getItem(
+			credentialsKey
+		);
 		if (savedCredentials) {
 			this._credentials = JSON.parse(savedCredentials);
 		}
@@ -67,8 +69,10 @@ export class AuthenticationService {
 	 */
 	profile(): Observable<Authentication.User> {
 		const header = {
-			headers: new HttpHeaders()
-			.set('Authorization',  `Bearer ${this.accessToken}`)
+			headers: new HttpHeaders().set(
+				'Authorization',
+				`Bearer ${this.accessToken}`
+			)
 		};
 		return this.httpClient.get('/profile', header).pipe(
 			map((body: Authentication.User) => {
@@ -82,22 +86,23 @@ export class AuthenticationService {
 	 * @return {Observable<boolean>} True if the user was logged out successfully.
 	 */
 	logout(): Observable<boolean> {
-		console.log('logout');
 		const header = {
-			headers: new HttpHeaders()
-			.set('Authorization',  `Bearer ${this.accessToken}`)
+			headers: new HttpHeaders().set(
+				'Authorization',
+				`Bearer ${this.accessToken}`
+			)
 		};
 		return this.httpClient.get('/logout', header).pipe(
-				map(() => {
-					this.setCredentials();
-					return true;
-				})
-			);
+			map(() => {
+				this.setCredentials();
+				return true;
+			})
+		);
 	}
 
 	/**
 	 * Checks is the user is authenticated.
-	 * 
+	 *
 	 * @return {boolean} True if the user is authenticated.
 	 */
 	isAuthenticated(): boolean {
@@ -106,7 +111,7 @@ export class AuthenticationService {
 
 	/**
 	 * Gets the user credentials.
-	 * 
+	 *
 	 * @return {Credentials} The user credentials or null if the user is not authenticated.
 	 */
 	get credentials(): Authentication.Credentials | null {
@@ -115,16 +120,16 @@ export class AuthenticationService {
 
 	/**
 	 * Get the auth token.
-	 * 
+	 *
 	 * @return {string} The auth token is null if user is not authenticated.
 	 */
 	get accessToken(): string | null {
 		return this.credentials ? this.credentials.token : null;
 	}
-	
+
 	/**
 	 * Sets the user credentials.
-	 * 
+	 *
 	 * @param {Credentials=} Authentication.Credentials The user credentials.
 	 */
 	public setCredentials(credentials?: Authentication.Credentials) {
@@ -138,5 +143,19 @@ export class AuthenticationService {
 		} else {
 			this.localStorageService.clearItem(credentialsKey);
 		}
+	}
+
+	/**
+	 * @return Current user's role
+	 */
+	public getRole() {
+		this.profile().subscribe(
+			(user: any) => {
+				return user.role;
+			},
+			(error: any) => {
+				console.log('Profile error: ', error);
+			}
+		);
 	}
 }

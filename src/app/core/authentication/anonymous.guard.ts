@@ -4,22 +4,22 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
 
 @Injectable()
-export class AuthenticationGuard implements CanActivate {
+export class AnonymousGuard implements CanActivate {
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService
 	) {}
 	/**
-	 * @returns Boolean based on authentification Service isAuthenificated Answer
+	 * @returns Boolean based on authentification Service isAuthenticated Answer
 	 *
-	 * else redirect to login
+	 * else redirect to home
 	 */
 	canActivate(): boolean {
-		if (this.authenticationService.isAuthenticated()) {
+		if (!this.authenticationService.isAuthenticated()) {
 			return true;
 		}
 
-		this.router.navigate(['/login'], {
+		this.router.navigate(['/'], {
 			replaceUrl: true
 		});
 		return false;

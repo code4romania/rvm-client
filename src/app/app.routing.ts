@@ -1,9 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { BlankComponent, FullComponent } from '@app/shared';
+import { BlankComponent } from '@app/shared';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { AuthenticationGuard } from './core';
-import { LoginComponent } from './pages/authentication';
+import { AuthenticationGuard, AnonymousGuard, RoleGuard } from './core';
 import { NgModule } from '@angular/core';
 
 const AppRoutes: Routes = [
@@ -14,24 +13,27 @@ const AppRoutes: Routes = [
 		children: [
 			{
 				path: '',
-				loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
+				loadChildren:
+					'./pages/dashboard/dashboard.module#DashboardModule'
 			}
 		]
 	},
 	{
 		path: '',
 		component: BlankComponent,
+		canActivate: [AnonymousGuard],
 		children: [
 			{
 				path: '',
-				loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
+				loadChildren:
+					'./pages/authentication/authentication.module#AuthenticationModule'
 			}
 		]
 	},
-	{path: '**', redirectTo: '/404'}
+	{ path: '**', redirectTo: '/404' }
 ];
 @NgModule({
 	imports: [RouterModule.forRoot(AppRoutes)],
 	exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

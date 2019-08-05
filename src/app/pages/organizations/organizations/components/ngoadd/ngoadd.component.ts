@@ -1,12 +1,22 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {
+	FormGroup,
+	FormControl,
+	Validators,
+	FormBuilder
+} from '@angular/forms';
 import { OrganizationService } from '@app/pages/organizations/organizations.service';
 import { Router } from '@angular/router';
 import { CitiesCountiesService } from '@app/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/internal/Observable';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import {
+	debounceTime,
+	distinctUntilChanged,
+	filter,
+	map
+} from 'rxjs/operators';
 import { merge } from 'rxjs';
 
 @Component({
@@ -18,17 +28,21 @@ export class NgoaddComponent implements OnInit {
 	form: FormGroup;
 	isValid = true;
 	data: any;
-	cityPlaceholder = 'Selectati mai intai judetul';
-	@ViewChild('instance', {static: true}) instance1: NgbTypeahead;
+	cityPlaceholder = 'Selectați mai întâi județul';
+	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
 	focus1$ = new Subject<string>();
 	click1$ = new Subject<string>();
-	@ViewChild('instance', {static: true}) instance2: NgbTypeahead;
+	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	counties: string[] = [];
 	cities: string[] = [];
-	constructor(private organizationService: OrganizationService, private router: Router, private citiesandCounties: CitiesCountiesService,
-		private fb: FormBuilder) {
+	constructor(
+		private organizationService: OrganizationService,
+		private router: Router,
+		private citiesandCounties: CitiesCountiesService,
+		private fb: FormBuilder
+	) {
 		this.counties = citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			name: ['', Validators.required],
@@ -38,37 +52,59 @@ export class NgoaddComponent implements OnInit {
 			address: ['', Validators.required],
 			email: ['', Validators.required],
 			county: ['', Validators.required],
-			city: [{value: '', disabled: true}, Validators.required],
+			city: [{ value: '', disabled: true }, Validators.required],
 			comments: ['', Validators.required]
 		});
 	}
 
 	ngOnInit() {}
 	searchcounty = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-		const clicksWithClosedPopup$ = this.click1$.pipe(filter(() => !this.instance1.isPopupOpen()));
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click1$.pipe(
+			filter(() => !this.instance1.isPopupOpen())
+		);
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			map((term: string) => {
 				if (term === '') {
 					return this.counties;
 				} else {
-					return this.counties.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+					return this.counties
+						.filter(
+							v =>
+								v.toLowerCase().indexOf(term.toLowerCase()) > -1
+						)
+						.slice(0, 10);
 				}
 			})
 		);
 	}
 	searchcity = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-		const clicksWithClosedPopup$ = this.click2$.pipe(filter(() => !this.instance2.isPopupOpen()));
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click2$.pipe(
+			filter(() => !this.instance2.isPopupOpen())
+		);
 		const inputFocus$ = this.focus2$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map((term: string) => (term === '' ? this.cities
-			: this.cities.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
+			map((term: string) =>
+				(term === ''
+					? this.cities
+					: this.cities.filter(
+							v =>
+								v.toLowerCase().indexOf(term.toLowerCase()) > -1
+					)
+				).slice(0, 10)
+			)
 		);
 	}
-	selectedCounty(val: { item: string; }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe((k) => {
+	selectedCounty(val: { item: string }) {
+		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeti Orasul';
@@ -78,10 +114,12 @@ export class NgoaddComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		this.organizationService.addOrganization(this.form.value).subscribe((element: any) => {
-			console.log(element);
-			this.navigateToDashboard();
-		});
+		this.organizationService
+			.addOrganization(this.form.value)
+			.subscribe((element: any) => {
+				console.log(element);
+				this.navigateToDashboard();
+			});
 	}
 	navigateToDashboard() {
 		this.router.navigate(['organizations']);

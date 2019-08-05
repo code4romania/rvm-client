@@ -8,7 +8,9 @@ import { NgModule } from '@angular/core';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import {
 	AuthenticationGuard,
-	AuthenticationService
+	AuthenticationService,
+	AnonymousGuard,
+	RoleGuard
 } from '@app/core/authentication';
 import {
 	ApiPrefixInterceptor,
@@ -32,6 +34,8 @@ import {
 		LocalStorageService,
 		AuthenticationService,
 		AuthenticationGuard,
+		AnonymousGuard,
+		RoleGuard,
 		ApiPrefixInterceptor,
 		CitiesCountiesService,
 		UtilService,

@@ -1,0 +1,30 @@
+<div class="container mt-5">
+	<nav
+		class="navbar navbar-expand-lg justify-content-between navbar-light my-5"
+	>
+		<a [routerLink]="['/add']" class="mb-2"> <<Back </a>
+	</nav>
+	<p class="page-title">Adauga voluntari:</p>
+
+	<div class="note col-md-6">
+		<span>
+			Vrei să adaugi voluntari individual?
+			<a [routerLink]="['volunteers/add']">Adaugă un voluntar</a>.
+		</span>
+	</div>
+
+	<div class="import-box">
+		<button class="btn btn-success mt-4 btn-import">
+			Importați un fișier CSV
+		</button>
+		<input
+			type="file"
+			#csvReader
+			name="Upload CSV"
+			id="txtFileUpload"
+			(change)="uploadListener($event)"
+			accept=".csv"
+			class="import-csv"
+		/>
+	</div>
+</div>

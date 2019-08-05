@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganizationService } from '@app/pages/organizations/organizations.service';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
 	selector: 'app-ngodashboard',
 	templateUrl: './ngodashboard.component.html',
@@ -11,7 +11,10 @@ export class NgodashboardComponent implements OnInit {
 	count: String;
 	model = 'block';
 	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
-	constructor(private organizationService: OrganizationService, public breakpointObserver: BreakpointObserver) { }
+	constructor(
+		private organizationService: OrganizationService,
+		public breakpointObserver: BreakpointObserver
+	) {}
 	/**
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
@@ -22,9 +25,9 @@ export class NgodashboardComponent implements OnInit {
 				this.count = `${element.length} total`;
 			}
 		});
-		this.breakpointObserver.observe([
-			'(max-width: 768px)'
-				]).subscribe(result => {
+		this.breakpointObserver
+			.observe(['(max-width: 768px)'])
+			.subscribe(result => {
 				if (result.matches) {
 					this.model = 'list';
 					this.switchtolist();
@@ -47,5 +50,4 @@ export class NgodashboardComponent implements OnInit {
 	switchtoblock() {
 		this.listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
 	}
-
 }

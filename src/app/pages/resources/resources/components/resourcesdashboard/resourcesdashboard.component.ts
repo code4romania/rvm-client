@@ -7,12 +7,13 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 	styleUrls: ['./resourcesdashboard.component.scss']
 })
 export class ResourcesdashboardComponent implements OnInit {
-	resourcesData: any;
-	constructor(private resourceService: ResourcesService) { }
+	resourcesData: any = [];
+
+	constructor(private resourceService: ResourcesService) {}
+
 	ngOnInit() {
-		this.resourceService.getResources().subscribe((data) => {
+		this.resourceService.getResources().subscribe(data => {
 			this.resourcesData = data;
 		});
 	}
-
 }
