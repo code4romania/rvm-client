@@ -1,0 +1,53 @@
+<div class="container mt-5">
+	<nav
+		class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<a [routerLink]="['/organizations']" class="mb-2">
+			<< Back
+		</a>
+	</nav>
+    <p class="page-title">Adaugă un utilizator:</p>
+    
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="mt-4 col-md-4">
+				<div class="form-group">
+					<label>Nume și Prenume</label>
+					<input
+						formControlName="name"
+						class="form-control"
+						type="text"/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4">
+				<div class="form-group">
+					<label>Email</label>
+					<input
+						formControlName="email"
+						class="form-control"
+						type="email"
+					/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4">
+				<div class="form-group">
+					<label>Telefon</label>
+					<input
+						formControlName="phone"
+						class="form-control"
+						type="tel"
+					/>
+				</div>
+			</div>
+
+		</div>
+		<button
+			class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
+            type="submit"
+            [disabled]="form.invalid"
+			style="color:white; float:right">
+			{{ user?._id ? 'Editează' : 'Adaugă' }}
+		</button>
+	</form>
+</div>

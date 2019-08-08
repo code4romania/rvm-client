@@ -1,0 +1,22 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <a [routerLink]="['/users']" class="mb-2"> << Back </a> 
+    </nav>
+    <div class="ngo-details row">
+            <h3 class="col-md-12">Profil Utilizator: {{data?.name}}</h3>
+            
+            <span class="col-md-12 mt-1"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
+            <span class="col-md-12 mt-1"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
+            
+            <div class="col-md-12 mt-1">
+                <span><b>Tipul utilizatorului: </b> {{ userTypes[data?.role] }}</span>
+            </div>
+            <div class="col-md-12 mt-1">
+                    <span><b>Data adăugării: </b> {{ data?.created_at | date }}</span>
+            </div>
+    </div>
+
+    <button class="btn btn-info rounded mt-3" (click)="edit()">
+        Editează utilizatorul
+    </button>
+</div>

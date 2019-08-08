@@ -22,7 +22,8 @@ import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
 import {
 	ErrorMessageService,
 	UtilService,
-	CitiesCountiesService
+	CitiesCountiesService,
+	UsersService
 } from '@app/core/service';
 
 @NgModule({
@@ -38,6 +39,7 @@ import {
 		RoleGuard,
 		ApiPrefixInterceptor,
 		CitiesCountiesService,
+		UsersService,
 		UtilService,
 		{
 			provide: HTTP_INTERCEPTORS,

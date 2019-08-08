@@ -1,4 +1,3 @@
-// import { AuthenticationGuard } from '@app/core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,8 +29,8 @@ const DashboardRoutes: Routes = [
 		loadChildren: '../info/info.module#InfoModule'
 	},
 	{
-		path: 'admin',
-		loadChildren: '../admin/admin.module#AdminModule'
+		path: 'users',
+		loadChildren: '../users/users.module#UsersModule'
 	}
 ];
 @NgModule({

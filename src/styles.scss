@@ -128,13 +128,13 @@ body {
 	color: white;
 }
 	
-.navtitle{
+.navtitle {
 	text-decoration: underline;
 }
 
 .sort {
 	
-	&.asc::after{
+	&.asc::after {
 		content: '\f062';
 		font-family: FontAwesome;
 		font-weight: normal;
@@ -153,15 +153,113 @@ body {
 	}
 }
 
-.filterbutton{
+.filterbutton {
     .btn-link:focus, .btn-link.focus {
         text-decoration: none !important;
 	}   
 	
-	.btn-link:hover{
+	.btn-link:hover {
 		text-decoration: none !important;
 	}
-	.btn-link{
+
+	.btn-link {
 		color:black;
 	}
+}
+
+.btn-right {
+	margin-left: auto;
+	margin-right: 0;
+	display: block!important;
+}
+
+.px-15 {
+    padding-left:15px;
+    padding-right:15px;
+}
+
+.resource-list {
+	margin-top:15px;
+	
+    .nav-item .nav-link.active {
+        color:blue;
+        text-decoration: underline;
+        background-color: transparent;      
+	}
+		
+    .nav-item .nav-link {
+        color:gray;
+        text-decoration: underline;
+        background-color: transparent;
+    }    
+}
+
+
+.table {
+   
+	th {
+        padding: 15px;
+        border:none;
+        border-bottom: 1px solid black;
+	}
+	
+    td {
+        padding: 15px;
+        border-top: 1px solid black;
+    }    
+}
+
+@media (min-width: 768px){
+    .responsive-btn{
+        margin-left:15px;
+    }
+}
+
+@media (max-width: 767px){
+    .responsive-btn{
+        float: right;
+        white-space: normal;
+        margin: 25px;
+        width: min-content;
+    }
+}
+
+.dropup, .dropright, .dropdown, .dropleft {
+	cursor: pointer;
+}
+
+.btn-primary {
+	cursor: pointer;
+}
+
+
+.btn-group{
+	height: 47px;
+	
+    .btn-primary {
+        background-color: #ffffff;
+        color: #4c2bee;
+        border-color: #dddddd;
+	}
+	
+    .btn-primary.focus, .btn-primary.active{
+        background-color: #4c2bee;
+        color: #ffffff;
+        border-color: #421fed;
+    }
+}
+
+.filters {
+	margin-left: 30px;
+	
+    .padding-rem {
+        padding: 0.375rem 0.75rem
+	}
+	
+    .vertical-bar {
+        background-color: #67757c;
+        width: 2px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

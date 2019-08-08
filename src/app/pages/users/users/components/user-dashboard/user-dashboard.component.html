@@ -1,0 +1,80 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <h4 class="navtitle mb-2"> Utilizatori </h4> 
+        <div class="form-inline">
+            <div class="input-group m-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
+            </div>
+            <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary">
+                    <input ngbButton type="radio" value="block"><span class="fa fa-th-large"></span>
+                </label>
+                <label ngbButtonLabel (click)="switchtolist()" class="btn-primary">
+                    <input ngbButton type="radio" value="list"><span class="fa fa-bars"></span>
+                </label>
+            </div>
+            <button (click)="addUser(content)" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
+        </div>
+    </nav>
+    <div class="filters row">
+        <span >{{count}}</span>
+        <span class='mx-2'></span>
+        <span >Sortează după</span>
+        <div ngbDropdown class="d-inline-block ml-2">
+            <div class="userarea" id="dropdown1" ngbDropdownToggle>
+                Nume
+                </div>
+            <div ngbDropdownMenu aria-labelledby="dropdown1">
+                <a ngbDropdownItem>A-Z</a>
+                <a ngbDropdownItem>Z-A</a>
+            </div>
+        </div>
+    </div>
+    <div class="cardlist row mt-2">
+        <div *ngFor="let elem of data" [ngClass]="listoptions">
+            <div class="card" style="flex-grow: 1">
+                <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
+                    <div class="card-body">
+                        <h4 class="card-title">{{elem.name}}</h4>
+                        <div class="card-text row"> 
+                            <span class="col-md-12">{{elem.email}}</span>
+                            <span class="col-md-12" >{{elem.phone}}</span>
+                        </div>                       
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Utilizator nou</h4>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="form">
+        <div class="modal-body">
+            <div class="row">
+                <div class="mt-4 col-md-12">
+                    <div class="form-group">
+                        <label>Tipul utilizatorului</label>
+                        <select formControlName="role" class="form-control">
+                            <option value="0">DSU</option>
+                            <option value="1">NGO</option>
+                            <option value="2">Rescue Officer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ngbAutofocus class="btn btn-info rounded" (click)="continue()" [disabled]="form.invalid">Continuă</button>
+        </div>
+    </form>
+</ng-template>
+    
