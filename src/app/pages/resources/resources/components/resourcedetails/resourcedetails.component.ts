@@ -12,15 +12,23 @@ import { OrganizationService } from '@app/pages/organizations/organizations.serv
 export class ResourcedetailsComponent implements OnInit {
 	data: any;
 	organizations: any[] = null;
+
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute) { }
 
 	ngOnInit() {
+		this.getData();
+	}
+
+
+	getData() {
 		this.resourceService.getResource((this.route.snapshot.paramMap.get('id'))).subscribe((data) => {
 			this.data = data;
-			this.resourceService.getOrganizationbyResources(data.name).subscribe((resdata) => {
-				this.organizations = resdata;
-			});
+			this.organizations = [data.organisation];
+			// this.resourceService.getOrganizationbyResources(data.name).subscribe((resdata) => {
+			// 	this.organizations = resdata;
+			// 	console.log(resdata);
+			// });
 		});
 	}
 

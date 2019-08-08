@@ -40,3 +40,16 @@
         width: min-content;
     }
 }
+
+.filters{
+    margin-left: 30px;
+    .padding-rem{
+        padding: 0.375rem 0.75rem
+    }
+    .vertical-bar{
+        background-color: #67757c;
+        width: 2px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

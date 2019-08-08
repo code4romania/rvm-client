@@ -4,8 +4,11 @@ import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesRoutingModule } from './resources.routing';
 import { ResourcesdashboardComponent } from './resources/components/resourcesdashboard/resourcesdashboard.component';
 import { ResourcedetailsComponent } from './resources/components/resourcedetails/resourcedetails.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResourcesService } from './resources.service';
+import { SharedModule } from '../../shared/shared.module';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 @NgModule({
 		declarations: [
 			ResourcesComponent,
@@ -13,15 +16,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 			ResourcedetailsComponent,
 		],
 		imports: [
+			MultiselectDropdownModule,
 			NgbModule,
 			CommonModule,
+			FormsModule,
 			ReactiveFormsModule,
 			ResourcesRoutingModule,
+			SharedModule,
+
 		],
 		entryComponents: [
 		],
 		providers: [
-			//OrganizationService
+			ResourcesService,
 		]
 	})
 export class ResourcesModule {

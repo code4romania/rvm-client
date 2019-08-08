@@ -5,8 +5,10 @@ import {
 	Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '@app/core';
+import { AuthenticationService } from '@app/core/authentication/authentication.service';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class RoleGuard implements CanActivate {
 	constructor(
 		private authService: AuthenticationService,

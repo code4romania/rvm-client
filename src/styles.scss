@@ -35,10 +35,6 @@ html,
 body {
 	height: 100%;
 }
-html,
-body {
-	height: 100%;
-}
 body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -47,9 +43,6 @@ body {
 	font-size: 26px;
 	font-weight: 400;
 	color: black;
-}
-::ng-deep input {
-	box-shadow: none;
 }
 .navtitle {
 	text-decoration: underline;
@@ -133,4 +126,42 @@ body {
 
 .login-box .card-body::placeholder {
 	color: white;
+}
+	
+.navtitle{
+	text-decoration: underline;
+}
+
+.sort {
+	
+	&.asc::after{
+		content: '\f062';
+		font-family: FontAwesome;
+		font-weight: normal;
+		font-style: normal;
+		margin:0px 0px 0px 10px;
+		text-decoration:none;
+	}
+
+	&.desc::after {
+		content: '\f063';
+		font-family: FontAwesome;
+		font-weight: normal;
+		font-style: normal;
+		margin:0px 0px 0px 10px;
+		text-decoration:none;
+	}
+}
+
+.filterbutton{
+    .btn-link:focus, .btn-link.focus {
+        text-decoration: none !important;
+	}   
+	
+	.btn-link:hover{
+		text-decoration: none !important;
+	}
+	.btn-link{
+		color:black;
+	}
 }

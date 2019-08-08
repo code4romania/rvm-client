@@ -1,6 +1,6 @@
 import { Component, OnInit, ɵConsole, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { VolunteerService } from '@app/pages/volunteers/volunteers.service';
+import { VolunteerService } from '../../../volunteers.service';
 import { Router } from '@angular/router';
 import { Observable, merge, Subject, of } from 'rxjs';
 import {
@@ -13,8 +13,8 @@ import {
 	catchError
 } from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import { CitiesCountiesService } from '@app/core/service/cities-counties.service';
-import { OrganizationService } from '@app/pages/organizations/organizations.service';
+import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
+import { OrganizationService } from '../../../../organizations/organizations.service';
 
 @Component({
 	selector: 'app-add-volunteer',

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VolunteersComponent } from './volunteers/volunteers.component';
-import { VolunteerdashboardComponent } from './volunteers/components/volunteerdashboard/volunteerdashboard.component';
 import { AddVolunteerComponent } from './volunteers/components/add-volunteer/add-volunteer.component';
-import { VolunteerdetailsComponent } from './volunteers/components/volunteerdetails/volunteerdetails.component';
 import { ImportVolunteersComponent } from './volunteers/components/import-volunteers/import-volunteers.component';
+import { VolunteerDashboardComponent } from './volunteers/components/volunteer-dashboard/volunteer-dashboard.component';
+import { VolunteerDetailsComponent } from './volunteers/components/volunteer-details/volunteer-details.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -12,7 +12,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: VolunteerdashboardComponent
+				component: VolunteerDashboardComponent
 			},
 			{
 				path: 'add',
@@ -20,7 +20,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'id/:id',
-				component: VolunteerdetailsComponent
+				component: VolunteerDetailsComponent
 			},
 			{
 				path: 'import',

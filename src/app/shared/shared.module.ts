@@ -8,8 +8,16 @@ import { FullComponent } from '@app/shared/layouts/full/full.component';
 import { SpinnerComponent } from '@app/shared/spinner.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonLoaderComponent } from '@app/shared/button-loader';
+import { TableSortDirective } from './table-sort/table-sort.directive';
 
-
+const list = [
+	SpinnerComponent,
+	BreadcrumbComponent,
+	BlankComponent,
+	FullComponent,
+	ButtonLoaderComponent,
+	TableSortDirective,
+];
 
 @NgModule({
 	imports: [
@@ -19,22 +27,8 @@ import { ButtonLoaderComponent } from '@app/shared/button-loader';
 		NgbModule,
 		ReactiveFormsModule
 	],
-	declarations: [
-
-		SpinnerComponent,
-		BreadcrumbComponent,
-		BlankComponent,
-		FullComponent,
-		ButtonLoaderComponent,
-	],
-	exports: [
-		SpinnerComponent,
-		BreadcrumbComponent,
-		BlankComponent,
-		FullComponent,
-		ButtonLoaderComponent,
-
-	],
+	declarations: [...list],
+	exports: [...list],
 	entryComponents: [],
 	providers: []
 })

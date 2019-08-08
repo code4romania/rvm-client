@@ -11,11 +11,11 @@ export class OrganizationService {
 	/**
 	 * fields for adding a new NGO
 	 */
-	
+
 	/**
 	 * fields for adding a new resource
 	 */
-	constructor(private httpClient: HttpClient){}
+	constructor(private httpClient: HttpClient) {}
 	/**
 	 * post a new organization to website, auto add Header
 	 */
@@ -38,7 +38,7 @@ export class OrganizationService {
 		return this.httpClient.get(`/organisations/${id}` );
 	}
 	/**
-	 * get Organization by id
+	 * get Organization by name
 	 */
 	getOrganizationbyName(name: String): Observable<any> {
 		let params = {};
@@ -51,11 +51,11 @@ export class OrganizationService {
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
 	}
-	//getResourcesbyOrganization(id: String): Observable<any> {
+	// getResourcesbyOrganization(id: String): Observable<any> {
 		// const header = {
 		// 	headers: new HttpHeaders()
 		// 	.set('Authorization',  `Bearer ${this.accessToken}`)
 		// };
 		// return this.httpClient.get(`/organisations/${id}` );
-	//}
+	// }
 }

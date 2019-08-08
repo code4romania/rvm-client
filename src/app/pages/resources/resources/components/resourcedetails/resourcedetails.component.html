@@ -9,7 +9,7 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Cauta" aria-describedby="basic-addon1">
                   </div>
-                  <!-- <button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</button> -->
+                  <button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Sterge Resursa</button>
                 </div>
     </nav>
     <div class="ngo-details row">
@@ -22,11 +22,11 @@
             <thead>
                 <tr>
                     <!-- sortable="name" (sort)="onSort($event)" -->
-                    <th scope="col" >Organizatie</th>
-                    <th scope="col" >Cantitate</th>
-                    <th scope="col" >Adresa</th>
-                    <th scope="col" >Judet</th>
-                    <th scope="col" >Data ultimului Update</th>
+                    <th scope="col">Organizatie</th>
+                    <th scope="col">Cantitate</th>
+                    <th scope="col">Adresa</th>
+                    <th scope="col">Judet</th>
+                    <th scope="col">Data ultimului Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                     <td>{{res.name}}</td>
                     <td>{{res.quantity}}</td>
                     <td>{{res.address}}</td>
-                    <td>{{res.city}}, {{res.county}}</td>
+                    <td>{{res.county}}</td>
                     <td>{{res.updated_at}}</td>
                     <td><button class="btn-info" [routerLink]="['/organizations/id',res._id]">Vezi detalii</button></td>
                 </tr>

@@ -8,100 +8,34 @@
 							</div>
 							<input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
 					</div>
-					<!-- <button [routerLink]="['/resources/add']" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resursa</button> -->
 			</div>
 	</nav>
 	<div class="filters row" >
-		<!-- <span >{{count}}</span> -->
-		<span >Filtreaza dupa: &nbsp;</span>
-		<div ngbDropdown class="d-inline-block" autoClose="outside">
-			<div class="userarea" id="dropdown1" ngbDropdownToggle>
-				Nume
-				</div>
-			<div ngbDropdownMenu aria-labelledby="dropdown1">
-				<a ngbDropdownItem>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-						<label class="form-check-label" for="defaultCheck1">
-						Default checkbox
-						</label>
-					</div>
-				</a>
-					
-				<a ngbDropdownItem><div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-						<label class="form-check-label" for="defaultCheck2">
-						Disabled checkbox
-						</label>
-					</div>
-				</a>
-			</div>
-		</div>
+		<span class='padding-rem'>Total: {{pagerTotal}}</span>
+		<span class='padding-rem'>&nbsp;&nbsp;</span>
+		<span class='padding-rem'>Filtreaza dupa: &nbsp;</span>
+		<ss-multiselect-dropdown [options]="typeFilterValues" class="filterbutton" [(ngModel)]="typefilterResult" [texts]="typeTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'1')">Tip</ss-multiselect-dropdown>
 		<span class="vertical-bar">&nbsp;</span>
-		<div ngbDropdown class="d-inline-block" autoClose="outside">
-				<div class="userarea" id="dropdown1" ngbDropdownToggle>
-					Tip
-					</div>
-				<div ngbDropdownMenu aria-labelledby="dropdown1">
-					<a ngbDropdownItem>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-							<label class="form-check-label" for="defaultCheck1">
-							Default checkbox
-							</label>
-						</div>
-					</a>
-						
-					<a ngbDropdownItem><div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-							<label class="form-check-label" for="defaultCheck2">
-							Disabled checkbox
-							</label>
-						</div>
-					</a>
-				</div>
-			</div>
+		<ss-multiselect-dropdown [options]="LocationFilterValues" class="filterbutton" [(ngModel)]="locationfilterResult" [texts]="locationTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'2')">Locatie</ss-multiselect-dropdown>
 		<span class="vertical-bar">&nbsp;</span>
-		<div ngbDropdown class="d-inline-block" autoClose="outside">
-			<div class="userarea" id="dropdown1" ngbDropdownToggle>
-				Locatie
-				</div>
-			<div ngbDropdownMenu aria-labelledby="dropdown1">
-				<a ngbDropdownItem>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-						<label class="form-check-label" for="defaultCheck1">
-						Default checkbox
-						</label>
-					</div>
-				</a>
-					
-				<a ngbDropdownItem><div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-						<label class="form-check-label" for="defaultCheck2">
-						Disabled checkbox
-						</label>
-					</div>
-				</a>
-			</div>
-		</div>
+		<ss-multiselect-dropdown [options]="NGOFilterValues" class="filterbutton" [(ngModel)]="ngofilterResult" [texts]="NGOTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'3')">Organizatii</ss-multiselect-dropdown>
 	</div>
 	<div class="table-responsive-md">
 		<table class="table table-sm">
 			<thead>
 					<tr>
 						<!-- sortable="name" (sort)="onSort($event)" -->
-						<th scope="col" >Nume Resursa</th>
-						<th scope="col" >Tip Resursa</th>
-						<th scope="col" >Cantitate</th>
-						<th scope="col" >Nr. Organizatii</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume Resursa</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Tip Resursa</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Cantitate</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">Nr. Organizatii</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let res of resourcesData">
 						<!-- <tr> -->
 							<td>{{res.name}}</td>
-							<td>{{res.type}}</td>
+							<td>{{res.type_name}}</td>
 							<td>{{res.quantity}}</td>
 							<td>1</td>
 							<!-- <td>{{res.updated_at}}</td> -->
@@ -110,5 +44,12 @@
 					<!-- </div> -->
 				</tbody>
 		</table>
+
+		<ngb-pagination
+			[(page)]="pager.page"
+			[pageSize]="pager.size"
+			(pageChange)="getData()"
+			[collectionSize]="pagerTotal">
+		</ngb-pagination>
 	</div>
 </div>

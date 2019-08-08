@@ -7,12 +7,36 @@ import { map } from 'rxjs/internal/operators/map';
 	})
 export class ResourcesService {
 	constructor(private httpClient: HttpClient) {}
+
+	pager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
+
+	getPager() {
+		return {...this.pager};
+	}
+
 	/**
 	 * get all Resources
 	 */
 	getResources(paginationObj?: any): Observable<any> {
-		let params = {};
+		let params: any = {};
+
 		params = {...params, ...paginationObj};
+
+		Object.keys(params.filters).forEach((key) => {
+			params['filters[' + key + ']'] = params.filters[key];
+		});
+		delete params.filters;
+
 		return this.httpClient.get('/resources', { params: params });
 	}
 	/**
@@ -28,11 +52,9 @@ export class ResourcesService {
 		return this.httpClient.post('/resources', payload );
 	}
 	getOrganizationbyResources(id: String): Observable<any> {
-		
-			let params = {};
-			params = {...params, ...{name: name}};
-			return this.httpClient.get('/resources/organisations', {params: params} );
-		}
-		// return this.httpClient.get(`/organisations/${id}` );
-	// }
+
+		let params = {};
+		params = {...params, ...{name: id}};
+		return this.httpClient.get('/resources/organisations', {params: params} );
+	}
 }
