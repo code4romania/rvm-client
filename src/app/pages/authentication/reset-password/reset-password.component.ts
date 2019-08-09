@@ -26,8 +26,8 @@ export class ResetPasswordComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.route.queryParams.subscribe(queryParams => {
-			this.token = queryParams['token'];
+		this.route.params.subscribe(params => {
+			this.token = params['token'];
 		});
 
 		this.resetPasswordForm = this.formBuilder.group(
@@ -42,7 +42,10 @@ export class ResetPasswordComponent implements OnInit {
 	}
 
 	resetPassword() {
-		console.log('sent');
 		// TODO handles this when backend ready
+		this.authenticationService.resetPassword(this.resetPasswordForm.value.password, this.token).subscribe(response => {
+			console.log(response);
+			this.router.navigate(['/login']);
+		});
 	}
 }

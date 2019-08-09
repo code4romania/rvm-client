@@ -16,21 +16,19 @@ export class UserDetailsComponent implements OnInit {
 		private usersService: UsersService) { }
 
 	ngOnInit() {
-		// this.usersService.getUser(this.route.snapshot.paramMap.get('id')).subscribe(response => {
-		// 	console.log(response);
-		// });
-
-		// TEMP
-		const id = this.route.snapshot.paramMap.get('id');
-		this.usersService.getUsers({}).subscribe(element => {
-			if (element.data) {
-				this.data = element.data.find((elem: any) => elem._id === id);
-			}
+		this.usersService.getUser(this.route.snapshot.paramMap.get('id')).subscribe(response => {
+			this.data = response;
 		});
 	}
 
 	edit() {
 		this.router.navigate(['/users/edit/' + this.data._id]);
+	}
+
+	delete() {
+		this.usersService.deleteUser(this.data._id).subscribe(response => {
+			this.router.navigate(['/users' + this.data._id]);
+		});
 	}
 
 }

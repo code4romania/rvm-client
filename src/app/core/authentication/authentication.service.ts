@@ -158,4 +158,12 @@ export class AuthenticationService {
 			}
 		);
 	}
+
+	public recoverPassword(email: string) {
+		return this.httpClient.post('/password/recovery', {email: email});
+	}
+
+	public resetPassword(password: string, token: string) {
+		return this.httpClient.post('/password/reset', {passowrd: password, password_confirm: password, token: token});
+	}
 }

@@ -30,6 +30,7 @@ export class AddUserComponent implements OnInit {
 			this.role = this.route.snapshot.paramMap.get('role');
 		}
 
+
 		if (this.route.snapshot.paramMap.get('id')) {
 			this.id = this.route.snapshot.paramMap.get('id');
 
@@ -38,16 +39,9 @@ export class AddUserComponent implements OnInit {
 	}
 
 	getData() {
-		// this.usersService.getUser(this.route.snapshot.paramMap.get('id')).subscribe(response => {
-		// 	console.log(response);
-		// });
-
-		// TEMP
-		this.usersService.getUsers({}).subscribe(element => {
-			if (element.data) {
-				this.user = element.data.find((elem: any) => elem._id === this.id);
-				this.editForm();
-			}
+		this.usersService.getUser(this.id).subscribe(response => {
+			this.user = response;
+			this.editForm();
 		});
 	}
 
@@ -68,16 +62,14 @@ export class AddUserComponent implements OnInit {
 
 		if (this.user._id) {
 			// edit
-			console.log('edit');
-			// this.usersService.updateUser(user).subscribe((response) => {
-			// 	this.router.navigate(['users']);
-			// });
+			this.usersService.updateUser(this.user).subscribe((response) => {
+				this.router.navigate(['users']);
+			});
 		} else {
 			// add
-			console.log('add');
-			// this.usersService.addUser(user).subscribe((response) => {
-			// 	this.router.navigate(['users']);
-			// });
+			this.usersService.addUser(this.user).subscribe((response) => {
+				this.router.navigate(['users']);
+			});
 		}
 	}
 }
