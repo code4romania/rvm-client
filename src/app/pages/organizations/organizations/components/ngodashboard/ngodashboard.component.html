@@ -8,14 +8,14 @@
                 </div>
                 <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
             </div>
-            <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayModel">
-                    <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary">
-                      <input ngbButton type="radio" value="block"><span class="fa fa-th-large"></span>
-                    </label>
-                    <label ngbButtonLabel (click)="switchtolist()" class="btn-primary">
-                        <input ngbButton type="radio" value="list"><span class="fa fa-bars"></span>
-                    </label>
-                  </div>
+            <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
+                <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary btn active">
+                    <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
+                </label>
+                <label ngbButtonLabel (click)="switchtolist()" class="btn-primary">
+                    <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
+                </label>
+            </div>
             <button [routerLink]="['/organizations/add']" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Organizatie</button>
         </div>
     </nav>
@@ -29,13 +29,13 @@
             <span class='padding-rem'>Total: {{pagerTotal}}</span>
             <span class='padding-rem'>&nbsp;&nbsp;</span>
             <span class='padding-rem'>Filtreaza dupa: &nbsp;</span>
-            <ss-multiselect-dropdown [options]="typeFilterValues" class="filterbutton" [(ngModel)]="typefilterResult" [texts]="typeTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'1')">Tipul resurselor</ss-multiselect-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,1)" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
             <span class="vertical-bar">&nbsp;</span>
-            <ss-multiselect-dropdown [options]="LocationFilterValues" class="filterbutton" [(ngModel)]="locationfilterResult" [texts]="locationTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'2')">Locatie</ss-multiselect-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,2)" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
             <span class="vertical-bar">&nbsp;</span>
-            <ss-multiselect-dropdown [options]="specializationFilterValues" class="filterbutton" [(ngModel)]="specializationFilterResult" [texts]="specializationTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'3')">Specializari</ss-multiselect-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,3)" class="filterbutton" [multiple]="true" [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
         </div>
-    <div class="cardlist row">
+    <div *ngIf="displayBlock; else displayList" class="cardlist row">
         <div *ngFor="let elem of Ngosdata" [ngClass]="listoptions">
             <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
@@ -53,4 +53,36 @@
             </div>
         </div>
     </div>
+    <ng-template #displayList class="table-responsive-md">
+            <table class="table customTable table-sm">
+                <thead>
+                        <tr>
+                            <!-- sortable="name" (sort)="onSort($event)" -->
+                            <th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume</th>
+                            <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Locatie</th>
+                            <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Nr. Voluntarii</th>
+                            <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">Nr. Resurse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let res of Ngosdata">
+                            <!-- <tr> -->
+                                <td>{{res.name}}</td>
+                                <td>{{res.city}}, {{res.county}}</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <!-- <td>{{res.updated_at}}</td> -->
+                                <td><button class="btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+                            </tr>
+                        
+                    </tbody>
+            </table>
+    
+            <ngb-pagination
+                [(page)]="pager.page"
+                [pageSize]="pager.size"
+                (pageChange)="getData()"
+                [collectionSize]="pagerTotal">
+            </ngb-pagination>
+    </ng-template>
 </div>

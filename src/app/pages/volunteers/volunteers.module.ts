@@ -8,10 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImportVolunteersComponent } from './volunteers/components/import-volunteers/import-volunteers.component';
 import { VolunteerDashboardComponent } from './volunteers/components/volunteer-dashboard/volunteer-dashboard.component';
 import { VolunteerDetailsComponent } from './volunteers/components/volunteer-details/volunteer-details.component';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { SelectDropDownModule } from 'custom-select-dropdown';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
 	declarations: [
+
 		VolunteersComponent,
 		VolunteerDashboardComponent,
 		AddVolunteerComponent,
@@ -19,7 +21,8 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 		ImportVolunteersComponent
 	],
 	imports: [
-		MultiselectDropdownModule,
+		SharedModule,
+		SelectDropDownModule,
 		NgbModule,
 		ReactiveFormsModule,
 		FormsModule,

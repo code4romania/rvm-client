@@ -15,6 +15,7 @@ import {
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganizationService } from '../../../../organizations/organizations.service';
+import { NgPlural } from '@angular/common';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -25,6 +26,8 @@ export class AddVolunteerComponent implements OnInit {
 	searching = false;
 	searchFailed = false;
 	form: FormGroup;
+	orgDisabled = false;
+	defaultOrgValue = '';
 	coursename: string;
 	acreditedby: string;
 	obtained: string;
@@ -40,13 +43,12 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganizationService,
 		private router: Router,
 		private fb: FormBuilder,
-		private citiesandCounties: CitiesCountiesService
+		private citiesandCounties: CitiesCountiesService,
 	) {
 		this.counties = citiesandCounties.getCounties();
 		this.form = this.fb.group({
@@ -62,6 +64,16 @@ export class AddVolunteerComponent implements OnInit {
 			courses: this.fb.array([]),
 			comments: ['', Validators.required]
 		});
+		const navigation = this.router.getCurrentNavigation();
+		const ngo = navigation.extras.state as { ngoid: string, name: string };
+		if (ngo) {
+			// if
+			console.log(ngo);
+			this.defaultOrgValue = ngo.name;
+			this.form.patchValue({
+				'organization_id': ngo.ngoid
+			});
+		}
 	}
 	ngOnInit() {}
 	get f() {

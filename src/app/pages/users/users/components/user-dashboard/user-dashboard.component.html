@@ -19,7 +19,7 @@
             <button (click)="addUser(content)" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
         </div>
     </nav>
-    <div class="filters row">
+    <!-- <div class="filters row">
         <span >{{count}}</span>
         <span class='mx-2'></span>
         <span >Sortează după</span>
@@ -32,7 +32,7 @@
                 <a ngbDropdownItem>Z-A</a>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="cardlist row mt-2">
         <div *ngFor="let elem of data" [ngClass]="listoptions">
             <div class="card mb-2" style="flex-grow: 1">

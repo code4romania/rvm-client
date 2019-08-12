@@ -4,7 +4,7 @@
 			<a [routerLink]="['/organizations']" class="mb-2"> <<Back </a> 
 			<div class="form-inline">
 				<div *ngIf="hasResources;">
-					<button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
+					<button (click)="openVerticallyCentered(content)" class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
 				</div>
 				<div *ngIf="hasVolunteers;">
 						<button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari</button>
@@ -20,7 +20,7 @@
 				<span class="col-md-12"><b>Total voluntari: </b>{{data?.voluntari || '0' }}</span>
 				<span class="col-md-12"><b>Acoperire: </b> {{data?.acoperire || 'Nationala' }}</span>
 				<div class="col-md-12">
-						<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
+					<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
 				</div>
 		</div>
 		<div class="resource-list">
@@ -30,7 +30,7 @@
 					<ng-template ngbTabContent>
 						<div *ngIf="hasVolunteers; else noVolunteers">
 							<div class="table-responsive-md">
-								<table class="table table-sm">
+								<table class="table customTable table-sm">
 									<thead>
 										<tr>
 											<!-- sortable="name" (sort)="onSort($event)" -->
@@ -43,7 +43,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let res of data.volunteerData">
+										<tr *ngFor="let res of volunteersData">
 											<!-- <tr> -->
 												<td>{{res.name}}</td>
 												<td>{{res.job}}</td>
@@ -59,7 +59,7 @@
 							</div>
 						</div>
 						<ng-template #noVolunteers>
-							<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
+							<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button (click)="addvolunteer()" class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
 						</ng-template>
 					</ng-template>
 				</ngb-tab>
@@ -68,7 +68,7 @@
 					<ng-template ngbTabTitle>Lista Resurse</ng-template>
 					<ng-template ngbTabContent>
 						<div *ngIf="hasResources; else noResources" class="table-responsive-md">
-							<table class="table table-sm">
+							<table class="table customTable table-sm">
 								<thead>
 									<tr>
 										<!-- sortable="name" (sort)="onSort($event)" -->
@@ -78,12 +78,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let res of data.resourceData">
+									<tr *ngFor="let res of resourceData">
 											<td>{{res.name}}</td>
 											<td>{{res.quantity}}</td>
 											<td>{{res.city}}, {{res.county}}</td>
 											<td>
-												<button class="btn-info" [routerLink]="['/resources/id',res._id]">Editeaza</button>
+												<button class="btn-info" (click)="editResource(res)">Editeaza</button>
 												<button class="btn-info" [routerLink]="['/resources/id',res._id]">Vezi detalii</button>
 											</td>
 										</tr>
@@ -115,7 +115,7 @@
 					<div class="mt-4 col-md-12">
 						<div class="form-group">
 							<label >Categorie Resursa</label>
-							<input formControlName="category" class="form-control"
+							<input formControlName="type_name" class="form-control"
 							[ngbTypeahead]="searchCategory"
 							(selectItem)="selectedCategory($event)">
 						</div>
@@ -163,6 +163,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" ngbAutofocus class="btn btn-info" (click)="onSubmit()">Ok</button>
+				<button type="button" ngbAutofocus class="btn btn-danger" (click)="deleteRes(form)">Delete</button>
 			</div>
 		</form>
 </ng-template>

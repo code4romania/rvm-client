@@ -14,14 +14,15 @@
 		<span class='padding-rem'>Total: {{pagerTotal}}</span>
 		<span class='padding-rem'>&nbsp;&nbsp;</span>
 		<span class='padding-rem'>Filtreaza dupa: &nbsp;</span>
-		<ss-multiselect-dropdown [options]="typeFilterValues" class="filterbutton" [(ngModel)]="typefilterResult" [texts]="typeTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'1')">Tip</ss-multiselect-dropdown>
+		
+		<ngx-select-dropdown (change)="filterChanged($event,1)" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues">Type</ngx-select-dropdown>
 		<span class="vertical-bar">&nbsp;</span>
-		<ss-multiselect-dropdown [options]="LocationFilterValues" class="filterbutton" [(ngModel)]="locationfilterResult" [texts]="locationTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'2')">Locatie</ss-multiselect-dropdown>
+		<ngx-select-dropdown (change)="filterChanged($event,2)" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues">Location</ngx-select-dropdown>
 		<span class="vertical-bar">&nbsp;</span>
-		<ss-multiselect-dropdown [options]="NGOFilterValues" class="filterbutton" [(ngModel)]="ngofilterResult" [texts]="NGOTexts" [settings]="mySettings" (ngModelChange)="filterChanged($event,'3')">Organizatii</ss-multiselect-dropdown>
+		<ngx-select-dropdown (change)="filterChanged($event,3)" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues">NGO</ngx-select-dropdown>
 	</div>
 	<div class="table-responsive-md">
-		<table class="table table-sm">
+		<table class="table customTable table-sm">
 			<thead>
 					<tr>
 						<!-- sortable="name" (sort)="onSort($event)" -->
@@ -41,7 +42,7 @@
 							<!-- <td>{{res.updated_at}}</td> -->
 							<td><button class="btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
 						</tr>
-					<!-- </div> -->
+					
 				</tbody>
 		</table>
 

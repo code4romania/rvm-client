@@ -11,6 +11,21 @@ export class OrganizationService {
 	/**
 	 * fields for adding a new NGO
 	 */
+	pager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
+
+	getPager() {
+		return {...this.pager};
+	}
 
 	/**
 	 * fields for adding a new resource
@@ -27,8 +42,16 @@ export class OrganizationService {
 	 * get all Organizations
 	 */
 	getOrganizations(paginationObj?: any): Observable<any> {
-		let params = {};
+		let params: any = {};
+
 		params = {...params, ...paginationObj};
+
+		Object.keys(params.filters).forEach((key) => {
+			if (params.filters[key]) {
+				params['filters[' + key + ']'] = params.filters[key];
+			}
+		});
+		delete params.filters;
 		return this.httpClient.get('/organisations', { params: params });
 	}
 	/**
@@ -51,11 +74,10 @@ export class OrganizationService {
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
 	}
-	// getResourcesbyOrganization(id: String): Observable<any> {
-		// const header = {
-		// 	headers: new HttpHeaders()
-		// 	.set('Authorization',  `Bearer ${this.accessToken}`)
-		// };
-		// return this.httpClient.get(`/organisations/${id}` );
-	// }
+	getResourcesbyOrganization(id: String): Observable<any> {
+		return this.httpClient.get(`/organisations/${id}/resources` );
+	}
+	getVolunteersbyOrganization(id: String): Observable<any> {
+		return this.httpClient.get(`/organisations/${id}/volunteers` );
+	}
 }

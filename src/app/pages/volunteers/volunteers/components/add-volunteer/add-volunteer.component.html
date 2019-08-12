@@ -1,8 +1,6 @@
 <div class="container mt-5">
-	<nav
-		class="navbar navbar-expand-lg justify-content-between navbar-light my-5"
-	>
-		<a [routerLink]="['/organizations']" class="mb-2">
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<a [routerLink]="['/volunteers']" class="mb-2">
 			<<Back
 		</a>
 	</nav>
@@ -73,7 +71,8 @@
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
 					<label>Organizație</label>
-					<input
+					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
+						[attr.disabled]="orgDisabled"
 						type="text"
 						(selectItem)="selectedOrganization($event)"
 						class="form-control"
@@ -150,11 +149,9 @@
 							<label>Acreditat de</label>
 						</th>
 					</tr>
-					<tr
-						*ngFor="let course of c.controls; let i = index"
+					<tr	*ngFor="let course of c.controls; let i = index"
 						[formGroup]="course"
-						class="mb-3"
-					>
+						class="mb-3">
 						<td style="padding-right:15px">
 							<div class="form-group">
 								<input
@@ -166,28 +163,22 @@
 						</td>
 						<td style="padding-right:15px">
 							<div class="form-group">
-								<input
-									formControlName="obtained"
+								<input	formControlName="obtained"
 									class="form-control"
-									type="date"
-								/>
+									type="date"	/>
 							</div>
 						</td>
 						<td>
 							<div class="form-group">
-								<input
-									formControlName="acreditedby"
+								<input	formControlName="acreditedby"
 									class="form-control"
-									type="text"
-								/>
+									type="text"	/>
 							</div>
 						</td>
 						<td>
-							<button
-								(click)="removeCourse(i)"
+							<button	(click)="removeCourse(i)"
 								class="btn-danger btn margin-auto-center"
-								type="button"
-							>
+								type="button">
 								<span class="fa fa-trash"></span>
 							</button>
 						</td>
@@ -251,8 +242,7 @@
 		<button
 			class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
 			type="submit"
-			style="color:white; float:right"
-		>
+			style="color:white; float:right">
 			Adaugă
 		</button>
 	</form>

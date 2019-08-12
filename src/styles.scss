@@ -154,16 +154,27 @@ body {
 }
 
 .filterbutton {
-    .btn-link:focus, .btn-link.focus {
-        text-decoration: none !important;
-	}   
-	
-	.btn-link:hover {
-		text-decoration: none !important;
+	.ngx-dropdown-container .select-all {
+		white-space: nowrap;
+		margin: 10px 15px 0 15px;
 	}
-
-	.btn-link {
-		color:black;
+	.ngx-dropdown-button{
+		border:none !important;
+		min-width: 100px;
+	}
+	.ngx-dropdown-button:focus{
+		outline:none !important;
+	}
+	.nsdicon-angle-down:before{
+		content:'\F107';
+		font-family: FontAwesome;
+		font-weight: normal;
+		font-style: normal;
+		margin:0px 0px 0px 10px;
+		text-decoration:none;
+	}
+	.ngx-dropdown-list-container{
+		width: fit-content !important;
 	}
 }
 
@@ -195,7 +206,7 @@ body {
 }
 
 
-.table {
+.table.customTable {
    
 	th {
         padding: 15px;

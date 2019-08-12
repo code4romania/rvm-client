@@ -9,8 +9,7 @@ import { OrganizationsRoutingModule } from './organizations.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../shared/shared.module';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-
+import { SelectDropDownModule } from 'custom-select-dropdown';
 @NgModule({
 	declarations: [
 		OrganizationsComponent,
@@ -19,7 +18,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 		NgodashboardComponent,
 	],
 	imports: [
-		MultiselectDropdownModule,
+		SelectDropDownModule,
 		SharedModule,
 		NgbModule,
 		FormsModule,

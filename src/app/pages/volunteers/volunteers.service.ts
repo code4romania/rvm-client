@@ -6,10 +6,24 @@ import { map } from 'rxjs/internal/operators/map';
 		providedIn: 'root'
 	})
 export class VolunteerService {
-	
-	
-	constructor(private httpClient: HttpClient){}
-	
+
+	pager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		// filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
+
+	getPager() {
+		return {...this.pager};
+	}
+	constructor(private httpClient: HttpClient) {}
+
 	/**
 	 * post a new Volunteer to website, auto add Header
 	 */

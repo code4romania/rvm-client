@@ -33,7 +33,9 @@ export class ResourcesService {
 		params = {...params, ...paginationObj};
 
 		Object.keys(params.filters).forEach((key) => {
-			params['filters[' + key + ']'] = params.filters[key];
+			if (params.filters[key]) {
+				params['filters[' + key + ']'] = params.filters[key];
+			}
 		});
 		delete params.filters;
 
@@ -50,6 +52,9 @@ export class ResourcesService {
 	 */
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
+	}
+	deleteResource(id: any) {
+		return this.httpClient.delete(`/resources/${id}`);
 	}
 	getOrganizationbyResources(id: String): Observable<any> {
 
