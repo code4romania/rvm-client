@@ -35,7 +35,7 @@
     </div>
     <div class="cardlist row mt-2">
         <div *ngFor="let elem of data" [ngClass]="listoptions">
-            <div class="card" style="flex-grow: 1">
+            <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">
                         <h4 class="card-title">{{elem.name}}</h4>
@@ -64,9 +64,7 @@
                     <div class="form-group">
                         <label>Tipul utilizatorului</label>
                         <select formControlName="role" class="form-control">
-                            <option value="0">DSU</option>
-                            <option value="1">NGO</option>
-                            <option value="2">Rescue Officer</option>
+                            <option [value]="role.id" *ngFor="let role of roles"> {{role.name}} </option>
                         </select>
                     </div>
                 </div>

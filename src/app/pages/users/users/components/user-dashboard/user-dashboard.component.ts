@@ -27,6 +27,25 @@ export class UserDashboardComponent implements OnInit {
 	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
 	form: FormGroup;
 
+	roles = [
+		{
+			id: 0,
+			name: 'Administrator DSU'
+		},
+		{
+			id: 1,
+			name: 'Administratorul instituțional'
+		},
+		{
+			id: 2,
+			name: 'Administrator ONG'
+		},
+		{
+			id: 3,
+			name: 'Ofițer de intervenție'
+		},
+	];
+
 	constructor(private usersService: UsersService,
 		public breakpointObserver: BreakpointObserver,
 		private modalService: NgbModal,
@@ -64,7 +83,7 @@ export class UserDashboardComponent implements OnInit {
 	}
 
 	continue() {
-		if (this.form.value.role === 1) {
+		if (this.form.value.role === '2') {
 			this.router.navigate(['/organizations/add']);
 		} else {
 			this.router.navigateByUrl('/users/add/' + this.form.value.role);

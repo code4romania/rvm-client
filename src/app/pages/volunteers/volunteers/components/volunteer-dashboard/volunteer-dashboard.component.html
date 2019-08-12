@@ -35,7 +35,7 @@
         </div>
     <div class="cardlist row">
         <div *ngFor="let elem of volunteersData" [ngClass]="listoptions">
-            <div class="card" style="flex-grow: 1">
+            <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">
                         <h4 class="card-title">{{elem.name}}</h4>
