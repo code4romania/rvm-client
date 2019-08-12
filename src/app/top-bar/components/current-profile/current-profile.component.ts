@@ -20,14 +20,17 @@ export class CurrentProfileComponent implements OnInit {
 			(user: any) => {
 				this.user = user;
 				switch (this.user.role) {
-					case '1':
-						this.user.role = 'ONG';
-						break;
-					case '2':
+					case '0':
 						this.user.role = 'DSU';
 						break;
+					case '1':
+						this.user.role = 'Administratorul instituțional';
+						break;
+					case '2':
+						this.user.role = 'Administratorul ONG';
+						break;
 					default:
-						this.user.role = 'Ofiter';
+						this.user.role = 'Ofițer de intervenție';
 						break;
 				}
 			}, (error: any) => {
