@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '@app/pages/organizations/organizations.service';
 
 
@@ -12,17 +12,24 @@ import { OrganizationService } from '@app/pages/organizations/organizations.serv
 export class ResourcedetailsComponent implements OnInit {
 	data: any;
 	organizations: any[] = null;
-
+	resid: string;
 	constructor(private resourceService: ResourcesService,
-				private route: ActivatedRoute) { }
+				private route: ActivatedRoute,
+				private router: Router) {
+					this.resid = this.route.snapshot.paramMap.get('id');
+				}
 
 	ngOnInit() {
 		this.getData();
 	}
 
-
+	deleteSelf() {
+		this.resourceService.deleteResource(this.resid).subscribe((data) => {
+			this.router.navigateByUrl('/resources');
+		});
+	}
 	getData() {
-		this.resourceService.getResource((this.route.snapshot.paramMap.get('id'))).subscribe((data) => {
+		this.resourceService.getResource((this.resid)).subscribe((data) => {
 			this.data = data;
 			this.organizations = [data.organisation];
 			// this.resourceService.getOrganizationbyResources(data.name).subscribe((resdata) => {

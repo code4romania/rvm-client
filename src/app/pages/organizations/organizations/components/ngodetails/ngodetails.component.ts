@@ -219,8 +219,10 @@ export class NgodetailsComponent implements OnInit {
 	addvolunteer() {
 		const navigationExtras: NavigationExtras = {
 			state: {
-				name: this.data.name,
-				orgid: this.data._id
+				ngo: {
+					name: this.data.name,
+					orgid: this.data._id
+				}
 			}
 		};
 		this.router.navigateByUrl('/volunteers/add', navigationExtras);

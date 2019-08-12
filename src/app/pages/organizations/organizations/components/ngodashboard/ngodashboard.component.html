@@ -29,11 +29,11 @@
             <span class='padding-rem'>Total: {{pagerTotal}}</span>
             <span class='padding-rem'>&nbsp;&nbsp;</span>
             <span class='padding-rem'>Filtreaza dupa: &nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,1)" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
             <span class="vertical-bar">&nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,2)" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
             <span class="vertical-bar">&nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,3)" class="filterbutton" [multiple]="true" [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
+            <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
         </div>
     <div *ngIf="displayBlock; else displayList" class="cardlist row">
         <div *ngFor="let elem of Ngosdata" [ngClass]="listoptions">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { VolunteerService } from '../../../volunteers.service';
 
 @Component({
@@ -12,12 +12,21 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAlocation = false;
 	hasAccreditation = false;
 
-	constructor(private volunteerService: VolunteerService, private route: ActivatedRoute) { }
+	constructor(private volunteerService: VolunteerService, private route: ActivatedRoute,
+				private router: Router) { }
 
 	ngOnInit() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
 		});
+	}
+	edit() {
+		const navigationExtras: NavigationExtras = {
+			state: {
+				volunteer:	this.data
+			}
+		};
+		this.router.navigateByUrl('/volunteers/add', navigationExtras);
 	}
 
 }

@@ -65,14 +65,28 @@ export class AddVolunteerComponent implements OnInit {
 			comments: ['', Validators.required]
 		});
 		const navigation = this.router.getCurrentNavigation();
-		const ngo = navigation.extras.state as { ngoid: string, name: string };
-		if (ngo) {
-			// if
-			console.log(ngo);
-			this.defaultOrgValue = ngo.name;
-			this.form.patchValue({
-				'organization_id': ngo.ngoid
-			});
+		const extras = navigation.extras;
+		if (extras) {
+			const state = extras.state;
+			if (state) {
+				const ngo = state.ngo;
+				if (ngo) {
+					// if
+					console.log('ngo', ngo);
+					this.defaultOrgValue = ngo.name;
+					this.form.patchValue({
+						'organization_id': ngo.ngoid
+					});
+				} else {
+					const volunteer = state.volunteer as { name: string, ssn: string, email: string,
+																	phone: string, address: string, job: string, county: string,
+																	city: string, organization_id: string, courses: any[], comments: string };
+					if (volunteer) {
+						console.log(volunteer);
+						this.form.patchValue(volunteer);
+					}
+				}
+			}
 		}
 	}
 	ngOnInit() {}

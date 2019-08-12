@@ -9,7 +9,7 @@ import { VolunteerService } from '../../../volunteers.service';
 })
 export class VolunteerDashboardComponent implements OnInit {
 	volunteersData: any = [];
-	count: String;
+	pagerTotal: String;
 	pager: any = {};
 	filterResult: any = {};
 	displayBlock = true;
@@ -31,7 +31,7 @@ export class VolunteerDashboardComponent implements OnInit {
 	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
 	typeFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
 	NGOFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
-	LocationFilterValues: any[] = [{id: 'test', name: 'test'}, {id: 'test1', name: 'test1'}];
+	locationFilterValues: any[] = [{id: 'test', name: 'test'}, {id: 'test1', name: 'test1'}];
 	specializationFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
 	constructor(private volunteerService: VolunteerService, public breakpointObserver: BreakpointObserver) { }
 	ngOnInit() {
@@ -57,9 +57,14 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.volunteerService.getVolunteers(this.pager).subscribe((element: any) => {
 			if (element) {
 				this.volunteersData = element.data;
-				this.count = element.pager.total;
+				this.pagerTotal = element.pager.total;
 			}
 		});
+	}
+	filterChanged = (data?: any, id?: string) => {
+		console.log(data);
+		this.pager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+		this.getData();
 	}
 	/**
 	 * set class of display element with list view

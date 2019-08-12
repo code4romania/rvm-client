@@ -4,6 +4,9 @@
             <div class="my-2 my-sm-0" *ngIf="hasAccreditation;">
                 <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button>
             </div>
+            <div class="my-2 my-sm-0">
+                <button (click)="edit()" class="btn btn-primary"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
+            </div>
     </nav>
     <div class="ngo-details row">
             <h3 class="col-md-12">Profil Voluntar: {{data?.name}}</h3>
