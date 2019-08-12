@@ -49,7 +49,6 @@
 		"font-awesome": "^4.7.0",
 		"jquery": "^3.4.1",
 		"luxon": "^1.17.2",
-		"ngx-select-dropdown": "^1.0.1",
 		"popper.js": "^1.15.0",
 		"rxjs": "^6.5.2",
 		"websocket-driver": "^0.7.3",
