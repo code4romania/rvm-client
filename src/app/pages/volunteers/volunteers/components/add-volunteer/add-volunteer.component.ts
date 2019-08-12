@@ -65,26 +65,28 @@ export class AddVolunteerComponent implements OnInit {
 			comments: ['', Validators.required]
 		});
 		const navigation = this.router.getCurrentNavigation();
-		const extras = navigation.extras;
-		if (extras) {
-			const state = extras.state;
-			if (state) {
-				const ngo = state.ngo;
-				if (ngo) {
-					// if
-					console.log('ngo', ngo);
-					this.defaultOrgValue = ngo.name;
+		if (navigation && navigation.extras && navigation.extras.state) {
+			const ngo = navigation.extras.state.ngo;
+			if (ngo) {
+				// if
+				console.log('ngo', ngo);
+				this.orgDisabled = true;
+				this.defaultOrgValue = ngo.name;
+				this.form.patchValue({
+					'organization_id': ngo.ngoid
+				});
+			} else {
+				const volunteer = navigation.extras.state.volunteer as { name: string, ssn: string, email: string,
+																phone: string, address: string, job: string, county: string,
+																city: string, organisation: any, courses: any[], comments: string };
+				if (volunteer) {
+					this.defaultOrgValue = volunteer.organisation.name;
+					this.form.controls.city.enable();
+					console.log(volunteer);
+					this.form.patchValue(volunteer);
 					this.form.patchValue({
-						'organization_id': ngo.ngoid
+						'organization_id': volunteer.organisation._id
 					});
-				} else {
-					const volunteer = state.volunteer as { name: string, ssn: string, email: string,
-																	phone: string, address: string, job: string, county: string,
-																	city: string, organization_id: string, courses: any[], comments: string };
-					if (volunteer) {
-						console.log(volunteer);
-						this.form.patchValue(volunteer);
-					}
 				}
 			}
 		}

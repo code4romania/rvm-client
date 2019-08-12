@@ -44,6 +44,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	}
 	ngOnInit() {
 		this.pager = this.resourceService.getPager();
+
 		this.getData();
 		this.filterService.getTypeFilters().subscribe((data) => {
 			this.typeFilterValues = data.map((elem: any) => {

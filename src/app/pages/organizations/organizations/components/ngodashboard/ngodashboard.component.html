@@ -36,7 +36,7 @@
             <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
         </div>
     <div *ngIf="displayBlock; else displayList" class="cardlist row">
-        <div *ngFor="let elem of Ngosdata" [ngClass]="listoptions">
+        <div *ngFor="let elem of Ngosdata" class="d-flex col-md-6 col-sm-6 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">

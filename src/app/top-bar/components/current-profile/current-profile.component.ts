@@ -19,20 +19,25 @@ export class CurrentProfileComponent implements OnInit {
 		this.authService.profile().subscribe(
 			(user: any) => {
 				this.user = user;
-				switch (this.user.role) {
-					case '0':
-						this.user.role = 'DSU';
-						break;
-					case '1':
-						this.user.role = 'Administratorul instituțional';
-						break;
-					case '2':
-						this.user.role = 'Administratorul ONG';
-						break;
-					default:
-						this.user.role = 'Ofițer de intervenție';
-						break;
-				}
+				const roles = [
+					{
+						id: 0,
+						name: 'Ofițer'
+					},
+					{
+						id: 1,
+						name: 'Instituțional'
+					},
+					{
+						id: 2,
+						name: 'ONG'
+					},
+					{
+						id: 3,
+						name: 'DSU'
+					},
+				];
+				this.user.role = roles[this.user.role].name;
 			}, (error: any) => {
 				console.log('Profile error: ', error);
 			}

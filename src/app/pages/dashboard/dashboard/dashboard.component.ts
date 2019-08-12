@@ -18,20 +18,25 @@ export class DashboardComponent implements OnInit {
 		this.authService.profile().subscribe(
 			(user: any) => {
 				this.user = user;
-				switch (this.user.role) {
-					case '0':
-						this.user.role = 'DSU';
-						break;
-					case '1':
-						this.user.role = 'Administratorul instituțional';
-						break;
-					case '2':
-						this.user.role = 'Administratorul ONG';
-						break;
-					default:
-						this.user.role = 'Ofițer de intervenție';
-						break;
-				}
+				const roles = [
+					{
+						id: 0,
+						name: 'Ofițer de intervenție'
+					},
+					{
+						id: 1,
+						name: 'Administratorul instituțional'
+					},
+					{
+						id: 2,
+						name: 'Administrator ONG'
+					},
+					{
+						id: 3,
+						name: 'Administrator DSU'
+					},
+				];
+				this.user.role = roles[this.user.role].name;
 			}, (error: any) => {
 				console.log('Profile error: ', error);
 			}

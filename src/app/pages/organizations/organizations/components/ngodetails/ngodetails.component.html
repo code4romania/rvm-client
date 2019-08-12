@@ -7,7 +7,7 @@
 					<button (click)="openVerticallyCentered(content)" class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
 				</div>
 				<div *ngIf="hasVolunteers;">
-						<button class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari</button>
+						<button (click) = "addvolunteer()" class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari</button>
 					</div>
 			</div>
 		</nav>
@@ -21,6 +21,7 @@
 				<span class="col-md-12"><b>Acoperire: </b> {{data?.acoperire || 'Nationala' }}</span>
 				<div class="col-md-12">
 					<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
+					<button class="btn my-2 btn-info"><span class="fa fa-plus-circle"></span>Trimite Notificare</button>
 				</div>
 		</div>
 		<div class="resource-list">

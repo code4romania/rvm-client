@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label>Organizație</label>
 					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
-						[attr.disabled]="orgDisabled"
+						[disabled]="orgDisabled"
 						type="text"
 						(selectItem)="selectedOrganization($event)"
 						class="form-control"

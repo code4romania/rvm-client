@@ -23,14 +23,13 @@ export class UserDashboardComponent implements OnInit {
 		// page: 2,
 		// order: 'ASC',
 		// sort: 'name' };
-	model = 'block';
-	listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
+	displayBlock = true;
 	form: FormGroup;
 
 	roles = [
 		{
 			id: 0,
-			name: 'Administrator DSU'
+			name: 'Ofițer de intervenție'
 		},
 		{
 			id: 1,
@@ -42,7 +41,7 @@ export class UserDashboardComponent implements OnInit {
 		},
 		{
 			id: 3,
-			name: 'Ofițer de intervenție'
+			name: 'Administrator DSU'
 		},
 	];
 
@@ -59,7 +58,6 @@ export class UserDashboardComponent implements OnInit {
 			'(max-width: 768px)'
 				]).subscribe(result => {
 				if (result.matches) {
-					this.model = 'list';
 					this.switchtolist();
 				}
 			});
@@ -95,12 +93,12 @@ export class UserDashboardComponent implements OnInit {
 	 * set class of display element with list view
 	 */
 	switchtolist() {
-		this.listoptions = 'd-flex col-md-12 col-sm-12 col-lg-12';
+		this.displayBlock = false;
 	}
 	/**
 	 * set class of display element with grid view
 	 */
 	switchtoblock() {
-		this.listoptions = 'd-flex col-md-6 col-sm-6 col-lg-4';
+		this.displayBlock = true;
 	}
 }
