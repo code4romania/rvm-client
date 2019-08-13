@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { VolunteerService } from '../../../volunteers.service';
 import { Router } from '@angular/router';
@@ -9,19 +9,18 @@ import {
 	map,
 	filter,
 	switchMap,
-	tap,
-	catchError
 } from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganizationService } from '../../../../organizations/organizations.service';
-import { NgPlural } from '@angular/common';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-add-volunteer',
 	templateUrl: './add-volunteer.component.html',
 	styleUrls: ['./add-volunteer.component.scss']
 })
+
 export class AddVolunteerComponent implements OnInit {
 	searching = false;
 	searchFailed = false;
@@ -43,33 +42,38 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
+	currentUserId: string;
+
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganizationService,
 		private router: Router,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
-	) {
-		this.counties = citiesandCounties.getCounties();
+		private authService: AuthenticationService) { }
+
+	ngOnInit() {
+		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			name: ['', Validators.required],
-			ssn: ['', Validators.required],
-			email: ['', Validators.required],
-			phone: ['', Validators.required],
-			address: ['', Validators.required],
-			job: ['', Validators.required],
+			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+			email: ['', [Validators.required, Validators.email]],
+			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+			address: [''],
+			job: [''],
 			county: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
 			organization_id: ['', Validators.required],
 			courses: this.fb.array([]),
-			comments: ['', Validators.required]
+			comments: ['']
 		});
+
 		const navigation = this.router.getCurrentNavigation();
+
 		if (navigation && navigation.extras && navigation.extras.state) {
 			const ngo = navigation.extras.state.ngo;
+
 			if (ngo) {
-				// if
-				console.log('ngo', ngo);
 				this.orgDisabled = true;
 				this.defaultOrgValue = ngo.name;
 				this.form.patchValue({
@@ -82,7 +86,6 @@ export class AddVolunteerComponent implements OnInit {
 				if (volunteer) {
 					this.defaultOrgValue = volunteer.organisation.name;
 					this.form.controls.city.enable();
-					console.log(volunteer);
 					this.form.patchValue(volunteer);
 					this.form.patchValue({
 						'organization_id': volunteer.organisation._id
@@ -90,34 +93,42 @@ export class AddVolunteerComponent implements OnInit {
 				}
 			}
 		}
+
+		this.authService.profile().subscribe((response) => {
+			this.currentUserId = response._id;
+		});
 	}
-	ngOnInit() {}
+
 	get f() {
 		return this.form.controls;
 	}
+
 	get c() {
 		return this.f.courses as FormArray;
 	}
+
 	formatter = (result: { name: string }) => result.name;
+
 	searchorganization = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
 			distinctUntilChanged()
 		);
+
 		const clicksWithClosedPopup$ = this.click$.pipe(
 			filter(() => !this.instance.isPopupOpen())
 		);
+
 		const inputFocus$ = this.focus$;
+
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				if (term === '') {
-					return this.orgService.getOrganizations().pipe();
-				} else {
-					return this.orgService.getOrganizationbyName(term).pipe();
-				}
-			})
-		);
+				return this.orgService.getOrganizationbyName(term).pipe(
+					map(elem => elem.data)
+				);
+			}));
 	}
+
 	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -142,6 +153,7 @@ export class AddVolunteerComponent implements OnInit {
 			})
 		);
 	}
+
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -163,6 +175,7 @@ export class AddVolunteerComponent implements OnInit {
 			)
 		);
 	}
+
 	addCourse() {
 		if (!(this.coursename === '' || this.acreditedby === '')) {
 			this.c.push(
@@ -176,6 +189,7 @@ export class AddVolunteerComponent implements OnInit {
 			this.acreditedby = null;
 		}
 	}
+
 	removeCourse(index: number) {
 		const control = <FormArray>this.form.controls.courses;
 
@@ -183,10 +197,11 @@ export class AddVolunteerComponent implements OnInit {
 		// this.data[objIndex].value.splice(index, 1);
 		control.removeAt(index);
 	}
+
 	selectedOrganization(val: any) {
-		console.log(val.item);
 		this.form.controls['organization_id'].setValue(val.item._id);
 	}
+
 	selectedCounty(val: { item: string }) {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
@@ -194,17 +209,15 @@ export class AddVolunteerComponent implements OnInit {
 			this.cityPlaceholder = 'Alegeti Orasul';
 		});
 	}
+
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		console.log('form:', this.form.value);
-		// this.volunteerService.addVolunteer(this.form.value).subscribe((element: any) => {
-		// 	console.log(element);
-		// 	this.navigateToDashboard();
-		// });
-	}
-	navigateToDashboard() {
-		this.router.navigate(['organizations']);
+		const volunteer = this.form.value;
+		volunteer.added_by = this.currentUserId;
+		this.volunteerService.addVolunteer(volunteer).subscribe(() => {
+			this.router.navigate(['organizations']);
+		});
 	}
 }

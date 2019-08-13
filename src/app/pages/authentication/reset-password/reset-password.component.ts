@@ -17,6 +17,7 @@ import { PasswordValidation } from '@app/core/validators/password-validation';
 export class ResetPasswordComponent implements OnInit {
 	resetPasswordForm: FormGroup;
 	token: string;
+	errorMessage = 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.';
 
 	constructor(
 		public router: Router,
@@ -32,8 +33,14 @@ export class ResetPasswordComponent implements OnInit {
 
 		this.resetPasswordForm = this.formBuilder.group(
 			{
-				password: ['', Validators.required],
-				confirmPassword: ['', Validators.required]
+				password: ['', [
+					Validators.required,
+					Validators.minLength(8),
+					Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+				confirmPassword: ['', [
+					Validators.required,
+					Validators.minLength(8),
+					Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]]
 			},
 			{
 				validator: PasswordValidation.MatchPassword

@@ -274,3 +274,24 @@ body {
         margin-right: 10px;
     }
 }
+
+.login-register {
+	.navigation {
+		text-align: center;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		right: 0;
+		color: white;
+	}
+
+	.navigation:hover {
+		text-decoration: underline;
+	}
+
+	.error-message {
+		color: white;
+		background-color: red;
+		border: none;
+	}
+}

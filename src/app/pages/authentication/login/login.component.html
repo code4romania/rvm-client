@@ -6,54 +6,27 @@
 	<!-- <div class="col-md-2 col-sm-1">&nbsp;</div> -->
 	<div class="login-box col-md-12 col-sm-12 col-xs-12">
 		<div class="card-body">
-			<form
-				autocomplete="off"
-				[formGroup]="loginForm"
-				(ngSubmit)="login()"
-				class="form-horizontal form-material"
-				id="loginform"
-				novalidate
-			>
+			<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material"
+				id="loginform" novalidate>
 				<div class="form-group mt-4">
 					<div class="col-xs-12">
-						<input
-							formControlName="email"
-							autocomplete="new-password"
-							class="form-control"
-							type="text"
-							placeholder="Nume Utilizator"
-						/>
+						<input formControlName="email" autocomplete="new-password" class="form-control" type="text"
+							placeholder="Nume Utilizator" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
-						<input
-							autocomplete="new-password"
-							formControlName="password"
-							class="form-control"
-							type="password"
-							placeholder="Parola"
-						/>
+						<input autocomplete="new-password" formControlName="password" class="form-control"
+							type="password" placeholder="Parola" />
 					</div>
 				</div>
-				<ngb-alert
-					*ngIf="errorMessage"
-					class="errormsg"
-					type="success"
-					(close)="successMessage = null"
-					>{{ errorMessage }}</ngb-alert
-				>
+				<ngb-alert *ngIf="errorMessage" class="error-message" type="success" (close)="successMessage = null">
+					{{ errorMessage }}</ngb-alert>
 				<div class="form-group text-center mt-4">
 					<div class="col-xs-12">
-						<button
-							class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light"
-							type="submit"
-							[disabled]="loginForm.invalid || isLoading"
-						>
-							<app-button-loader
-								[isLoading]="isLoading"
-								[label]="'Login'"
-							></app-button-loader>
+						<button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light"
+							type="submit" [disabled]="loginForm.invalid || isLoading">
+							<app-button-loader [isLoading]="isLoading" [label]="'Login'"></app-button-loader>
 						</button>
 					</div>
 				</div>
@@ -62,7 +35,7 @@
 	</div>
 
 	<div>
-		<a [routerLink]="['/recover']" class="forgot-password">
+		<a [routerLink]="['/recover']" class="navigation">
 			Am uitat parola
 		</a>
 	</div>

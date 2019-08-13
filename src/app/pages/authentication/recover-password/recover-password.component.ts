@@ -18,7 +18,7 @@ export class RecoverPasswordComponent implements OnInit {
 
 	ngOnInit() {
 		this.resetPasswordForm = new FormGroup({
-			email: new FormControl('', [Validators.required])
+			email: new FormControl('', [Validators.required, Validators.email])
 		});
 	}
 

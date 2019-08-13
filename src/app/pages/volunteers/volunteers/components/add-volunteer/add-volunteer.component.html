@@ -1,7 +1,7 @@
 <div class="container mt-5">
 	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
 		<a [routerLink]="['/volunteers']" class="mb-2">
-			<<Back
+			<< Back
 		</a>
 	</nav>
 	<p class="page-title">Adauga un voluntar:</p>
@@ -11,11 +11,12 @@
 			<a [routerLink]="['volunteers/import']">Importă o listă</a>.
 		</span>
 	</div>
+
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Nume și Prenume</label>
+					<label>Nume și Prenume *</label>
 					<input
 						formControlName="name"
 						class="form-control"
@@ -26,7 +27,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>CNP</label>
+					<label>CNP *</label>
 					<input
 						formControlName="ssn"
 						class="form-control"
@@ -37,7 +38,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Email</label>
+					<label>Email *</label>
 					<input
 						formControlName="email"
 						class="form-control"
@@ -59,7 +60,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Telefon</label>
+					<label>Telefon *</label>
 					<input
 						formControlName="phone"
 						class="form-control"
@@ -70,7 +71,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Organizație</label>
+					<label>Organizație *</label>
 					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
 						[disabled]="orgDisabled"
 						type="text"
@@ -79,6 +80,7 @@
 						[class.is-invalid]="searchFailed"
 						[ngbTypeahead]="searchorganization"
 						[resultFormatter]="formatter"
+						[inputFormatter]="formatter"
 						(focus)="focus$.next($event.target.value)"
 						(click)="click$.next($event.target.value)"
 						#instance="ngbTypeahead"
@@ -92,7 +94,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Județ</label>
+					<label>Județ *</label>
 					<input
 						type="text"
 						formControlName="county"
@@ -108,7 +110,7 @@
 
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Localitate</label>
+					<label>Localitate *</label>
 					<input
 						type="text"
 						formControlName="city"
@@ -240,6 +242,7 @@
 			</div>
 		</div>
 		<button
+			[disabled]="form.invalid"
 			class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
 			type="submit"
 			style="color:white; float:right">
