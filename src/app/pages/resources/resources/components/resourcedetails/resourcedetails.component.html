@@ -1,45 +1,48 @@
 
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-            <a [routerLink]="['/resources']" class="mb-2"> <<Back </a> 
+            <a [routerLink]="['/resources']" class="mb-2"> << Back </a> 
         <div class="form-inline">
             <!-- <div class="input-group mr-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Cauta" aria-describedby="basic-addon1">
-                  </div> -->
-                  <button (click)="deleteSelf()" class="btn btn-danger my-2 my-sm-0"><span class="fa fa-trash-o"></span>&nbsp;&nbsp;Sterge Resursa</button>
-                </div>
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Cauta" aria-describedby="basic-addon1">
+                          </div> -->
+            <button (click)="deleteSelf()" class="btn btn-danger my-2 my-sm-0">
+                <span class="fa fa-trash-o"></span>&nbsp;&nbsp;Sterge Resursa
+            </button>
+        </div>
     </nav>
     <div class="ngo-details row">
         <h3 class="col-md-12">Denumire resursa: {{data?.name}}</h3>
     </div>
     <div class="resource-list">
-
-    <div class="table-responsive-md">
-        <table class="table customTable table-sm">
-            <thead>
-                <tr>
-                    <!-- sortable="name" (sort)="onSort($event)" -->
-                    <th scope="col">Organizatie</th>
-                    <th scope="col">Cantitate</th>
-                    <th scope="col">Adresa</th>
-                    <th scope="col">Judet</th>
-                    <th scope="col">Data ultimului Update</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let res of organizations">
-                
-                    <td>{{res.name}}</td>
-                    <td>{{res.quantity}}</td>
-                    <td>{{res.address}}</td>
-                    <td>{{res.county}}</td>
-                    <td>{{res.updated_at}}</td>
-                    <td><button class="btn-info" [routerLink]="['/organizations/id',res._id]">Vezi detalii</button></td>
-                </tr>
-            </tbody>
-        </table>
+    
+        <div class="table-responsive-md">
+            <table class="table customTable table-sm">
+                <thead>
+                    <tr>
+                        <!-- sortable="name" (sort)="onSort($event)" -->
+                        <th scope="col">Organizatie</th>
+                        <th scope="col">Cantitate</th>
+                        <th scope="col">Adresa</th>
+                        <th scope="col">Judet</th>
+                        <th scope="col">Data ultimului Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of organizations">
+    
+                        <td>{{res.name}}</td>
+                        <td>{{res.quantity}}</td>
+                        <td>{{res.address}}</td>
+                        <td>{{res.county}}</td>
+                        <td>{{res.updated_at}}</td>
+                        <td><button class="btn-info btn" [routerLink]="['/organizations/id',res._id]">Vezi detalii</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>

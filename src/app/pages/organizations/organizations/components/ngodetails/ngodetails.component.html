@@ -1,170 +1,174 @@
-
 <div class="container">
-		<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-			<a [routerLink]="['/organizations']" class="mb-2"> <<Back </a> 
-			<div class="form-inline">
-				<div *ngIf="hasResources;">
-					<button (click)="openVerticallyCentered(content)" class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
-				</div>
-				<div *ngIf="hasVolunteers;">
-						<button (click) = "addvolunteer()" class="btn btn-info my-2 my-sm-0"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari</button>
-					</div>
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<a [routerLink]="['/organizations']" class="mb-2">
+			<< Back 
+		</a> 
+		<div class="form-inline">
+			<div *ngIf="hasResources;">
+				<button (click)="openVerticallyCentered(content)" class="btn btn-info my-2 my-sm-0 d-block"><span
+						class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
 			</div>
-		</nav>
-		<div class="ngo-details row">
-				<h3 class="col-md-12">Profil organizatie: {{data?.name}}</h3>
-				<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data?.contact_person}}</h5>
-				<span class="col-md-12"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
-				<span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
-				<span class="col-md-12"><b>Status organizatie: </b> {{data?.status || 'active' }}</span>
-				<span class="col-md-12"><b>Total voluntari: </b>{{data?.voluntari || '0' }}</span>
-				<span class="col-md-12"><b>Acoperire: </b> {{data?.acoperire || 'Nationala' }}</span>
-				<div class="col-md-12">
-					<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
-					<button class="btn my-2 btn-info"><span class="fa fa-plus-circle"></span>Trimite Notificare</button>
-				</div>
+			<div *ngIf="hasVolunteers;">
+				<button (click)="addvolunteer()" class="btn btn-info my-2 my-sm-0 d-block"><span
+						class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari</button>
+			</div>
 		</div>
-		<div class="resource-list">
-			<ngb-tabset type="pills">
-				<ngb-tab>
-					<ng-template ngbTabTitle>Lista Voluntari</ng-template>
-					<ng-template ngbTabContent>
-						<div *ngIf="hasVolunteers; else noVolunteers">
-							<div class="table-responsive-md">
-								<table class="table customTable table-sm">
-									<thead>
-										<tr>
-											<!-- sortable="name" (sort)="onSort($event)" -->
-											<th scope="col" >Nume</th>
-											<th scope="col" >Specializare</th>
-											<th scope="col" >Status</th>
-											<th scope="col" >Localizare</th>
-											<th scope="col" >Data uiltimului training</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr *ngFor="let res of volunteersData">
-											<!-- <tr> -->
-												<td>{{res.name}}</td>
-												<td>{{res.job}}</td>
-												<td>activ</td>
-												<td>{{res.city}}, {{res.county}}</td>
-												<td>{{res.updated_at}}</td>
-												<td>
-													<button class="btn-info" [routerLink]="['/volunteers/id',res._id]">Vezi profil</button>
-												</td>
-											</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<ng-template #noVolunteers>
-							<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button (click)="addvolunteer()" class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
-						</ng-template>
-					</ng-template>
-				</ngb-tab>
-				<ngb-tab title="|" [disabled]="true"></ngb-tab>
-				<ngb-tab>
-					<ng-template ngbTabTitle>Lista Resurse</ng-template>
-					<ng-template ngbTabContent>
-						<div *ngIf="hasResources; else noResources" class="table-responsive-md">
+	</nav>
+	<div class="ngo-details row">
+		<h3 class="col-md-12">Profil organizatie: {{data?.name}}</h3>
+		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data?.contact_person}}</h5>
+		<span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
+		<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
+		<span class="col-md-12"><b>Status organizatie: </b> {{data?.status || 'active' }}</span>
+		<span class="col-md-12"><b>Total voluntari: </b>{{data?.voluntari || '0' }}</span>
+		<span class="col-md-12"><b>Acoperire: </b> {{data?.acoperire || 'Nationala' }}</span>
+		<div class="col-md-12">
+			<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
+			<button class="btn my-2 btn-info d-block">
+				<span class="fa fa-plus-circle"></span>
+				Trimite Notificare
+			</button>
+		</div>
+	</div>
+	<div class="resource-list">
+		<ngb-tabset type="pills">
+			<ngb-tab>
+				<ng-template ngbTabTitle>Lista Voluntari</ng-template>
+				<ng-template ngbTabContent>
+					<div *ngIf="hasVolunteers; else noVolunteers">
+						<div class="table-responsive-md">
 							<table class="table customTable table-sm">
 								<thead>
 									<tr>
 										<!-- sortable="name" (sort)="onSort($event)" -->
-										<th scope="col" >Tip Resursa</th>
-										<th scope="col" >Cantitate</th>
-										<th scope="col" >Localizare</th>
+										<th scope="col">Nume</th>
+										<th scope="col">Specializare</th>
+										<th scope="col">Status</th>
+										<th scope="col">Localizare</th>
+										<th scope="col">Data uiltimului training</th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let res of resourceData">
-											<td>{{res.name}}</td>
-											<td>{{res.quantity}}</td>
-											<td>{{res.city}}, {{res.county}}</td>
-											<td>
-												<button class="btn-info" (click)="editResource(res)">Editeaza</button>
-												<button class="btn-info" [routerLink]="['/resources/id',res._id]">Vezi detalii</button>
-											</td>
-										</tr>
+									<tr *ngFor="let res of volunteersData">
+										<!-- <tr> -->
+										<td>{{res.name}}</td>
+										<td>{{res.job}}</td>
+										<td>activ</td>
+										<td>{{res.city}}, {{res.county}}</td>
+										<td>{{res.updated_at}}</td>
+										<td>
+											<button class="btn-info btn" [routerLink]="['/volunteers/id',res._id]">Vezi
+												profil</button>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
-						<ng-template #noResources>
-							<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
-							<button class="btn-info" (click)="openVerticallyCentered(content)">
-								<span class="fa fa-plus-circle"></span>
-								&nbsp;&nbsp;Adauga Resurse
-							</button>
-						</ng-template>
+					</div>
+					<ng-template #noVolunteers>
+						<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span>
+						<button (click)="addvolunteer()" class="btn btn-info d-block mt-2"><span
+								class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar</button>
 					</ng-template>
-				</ngb-tab>
-			</ngb-tabset>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab title="|" [disabled]="true"></ngb-tab>
+			<ngb-tab>
+				<ng-template ngbTabTitle>Lista Resurse</ng-template>
+				<ng-template ngbTabContent>
+					<div *ngIf="hasResources; else noResources" class="table-responsive-md">
+						<table class="table customTable table-sm">
+							<thead>
+								<tr>
+									<!-- sortable="name" (sort)="onSort($event)" -->
+									<th scope="col">Tip Resursa</th>
+									<th scope="col">Cantitate</th>
+									<th scope="col">Localizare</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let res of resourceData">
+									<td>{{res.name}}</td>
+									<td>{{res.quantity}}</td>
+									<td>{{res.city}}, {{res.county}}</td>
+									<td class="text-right">
+										<button class="btn btn-info mr-2" (click)="editResource(res)">Editeaza</button>
+										<button class="btn btn-info" [routerLink]="['/resources/id',res._id]">Vezi
+											detalii</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<ng-template #noResources>
+						<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
+						<button class="btn btn-info d-block" (click)="openVerticallyCentered(content)">
+							<span class="fa fa-plus-circle"></span>
+							&nbsp;&nbsp;Adauga Resurse
+						</button>
+					</ng-template>
+				</ng-template>
+			</ngb-tab>
+		</ngb-tabset>
 	</div>
 </div>
 <ng-template #content let-modal>
-		<div class="modal-header">
-			<h4 class="modal-title">Adauga o Resursa</h4>
-			<button type="button" class="close" (click)="modal.dismiss('Cross click')">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<form [formGroup]="form">
-			<div class="modal-body">
-				<div class="row">
-					<div class="mt-4 col-md-12">
-						<div class="form-group">
-							<label >Categorie Resursa</label>
-							<input formControlName="type_name" class="form-control"
-							[ngbTypeahead]="searchCategory"
+	<div class="modal-header">
+		<h4 class="modal-title">Adauga o Resursa</h4>
+		<button type="button" class="close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<form [formGroup]="form">
+		<div class="modal-body">
+			<div class="row">
+				<div class="mt-4 col-md-12">
+					<div class="form-group">
+						<label>Categorie Resursa</label>
+						<input formControlName="type_name" class="form-control" [ngbTypeahead]="searchCategory"
 							(selectItem)="selectedCategory($event)">
-						</div>
 					</div>
-					<div class="mt-4 col-md-12">
-						<div class="form-group">
-							<label >Nume Resursa</label>
-							<input formControlName="name" class="form-control"
-							[ngbTypeahead]="searchResource"
+				</div>
+				<div class="mt-4 col-md-12">
+					<div class="form-group">
+						<label>Nume Resursa</label>
+						<input formControlName="name" class="form-control" [ngbTypeahead]="searchResource"
 							placeholder="{{resourcePlaceholder}}">
-						</div>
 					</div>
-					<div class="mt-4 col-md-12">
-						<div class="form-group">
-							<label >Cantitate</label>
-							<input type="number" formControlName="quantity" class="form-control">
-						</div>
+				</div>
+				<div class="mt-4 col-md-12">
+					<div class="form-group">
+						<label>Cantitate</label>
+						<input type="number" formControlName="quantity" class="form-control">
 					</div>
-					<div class="mt-4 col-md-6">
-						<div class="form-group">
-							<label >Judet</label>
-							<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
-							class="form-control"
-							[ngbTypeahead]="searchcounty"/>
-						</div>
+				</div>
+				<div class="mt-4 col-md-6">
+					<div class="form-group">
+						<label>Judet</label>
+						<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+							class="form-control" [ngbTypeahead]="searchcounty" />
 					</div>
-					<div class="mt-4 col-md-6">
-						<div class="form-group">
-							<label >Localitate</label>
-							<input type="text" formControlName="city"
-							class="form-control"
-							[ngbTypeahead]="searchcity"
-							placeholder="{{cityPlaceholder}}"
-							autocomplete="new-password"	/>
-						</div>
+				</div>
+				<div class="mt-4 col-md-6">
+					<div class="form-group">
+						<label>Localitate</label>
+						<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+							placeholder="{{cityPlaceholder}}" autocomplete="new-password" />
 					</div>
-					<div class="mt-4 col-md-12">
-						<div class="form-group">
-							<label>Mentiuni</label>
-							<textarea rows=2 formControlName="comments" class="form-control"></textarea>
-						</div>
+				</div>
+				<div class="mt-4 col-md-12">
+					<div class="form-group">
+						<label>Mentiuni</label>
+						<textarea rows=2 formControlName="comments" class="form-control"></textarea>
 					</div>
-						<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
-					</div>
+				</div>
+				<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" ngbAutofocus class="btn btn-info" (click)="onSubmit()">Ok</button>
-				<button type="button" ngbAutofocus class="btn btn-danger" (click)="deleteRes(form)">Delete</button>
-			</div>
-		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" ngbAutofocus class="btn btn-info" (click)="onSubmit()">Ok</button>
+			<button type="button" ngbAutofocus class="btn btn-danger" (click)="deleteRes(form)">Delete</button>
+		</div>
+	</form>
 </ng-template>

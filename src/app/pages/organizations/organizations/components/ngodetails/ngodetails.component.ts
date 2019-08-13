@@ -52,6 +52,7 @@ export class NgodetailsComponent implements OnInit {
 	focus1$ = new Subject<string>();
 	click1$ = new Subject<string>();
 	ngoid: string;
+
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -61,19 +62,8 @@ export class NgodetailsComponent implements OnInit {
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		private resourceService: ResourcesService
-	) {
-		this.counties = citiesandCounties.getCounties();
-		this.form = this.fb.group({
-			_id: '',
-			type_name: ['', Validators.required],
-			name: [{ value: '', disabled: true }, Validators.required],
-			quantity: ['', Validators.required],
-			city: [{ value: '', disabled: true }, Validators.required],
-			county: ['', Validators.required],
-			comments: ''
-		});
-		this.ngoid = this.route.snapshot.paramMap.get('id');
-	}
+	) {	}
+
 	searchcounty = (text$: Observable<string>) => {
 		// const clicksWithClosedPopup$ = this.click$.pipe(
 		// 	filter(() => !this.instance.isPopupOpen())
@@ -97,6 +87,7 @@ export class NgodetailsComponent implements OnInit {
 				})
 		);
 	}
+
 	searchcity = (text$: Observable<string>) => {
 		// const debouncedText$ = text$.pipe(
 		// 	debounceTime(200),
@@ -121,6 +112,7 @@ export class NgodetailsComponent implements OnInit {
 				)
 			);
 	}
+
 	searchCategory = (text$: Observable<string>) => {
 		return text$.pipe(
 			debounceTime(200),
@@ -136,6 +128,7 @@ export class NgodetailsComponent implements OnInit {
 			)
 		);
 	}
+
 	searchResource = (text$: Observable<string>) => {
 		return text$.pipe(
 			debounceTime(200),
@@ -151,16 +144,31 @@ export class NgodetailsComponent implements OnInit {
 			)
 		);
 	}
+
 	ngOnInit() {
+		this.counties = this.citiesandCounties.getCounties();
+		this.form = this.fb.group({
+			_id: '',
+			type_name: ['', Validators.required],
+			name: [{ value: '', disabled: true }, Validators.required],
+			quantity: ['', Validators.required],
+			city: [{ value: '', disabled: true }, Validators.required],
+			county: ['', Validators.required],
+			comments: ''
+		});
+		this.ngoid = this.route.snapshot.paramMap.get('id');
+
 		this.getData();
 		this.getResources();
 		this.getVolunteers();
 	}
+
 	getData() {
 		this.organizationService.getOrganization(this.ngoid).subscribe(data => {
 			this.data = data;
 		});
 	}
+
 	getResources() {
 		this.organizationService.getResourcesbyOrganization(this.ngoid).subscribe(data => {
 			if (data.data[0]) {
@@ -171,6 +179,7 @@ export class NgodetailsComponent implements OnInit {
 			}
 		});
 	}
+
 	getVolunteers() {
 		this.organizationService.getVolunteersbyOrganization(this.ngoid).subscribe(data => {
 			if (data.data[0]) {
@@ -181,6 +190,7 @@ export class NgodetailsComponent implements OnInit {
 			}
 		});
 	}
+
 	/**
 	 * open add resource modal
 	 */
@@ -190,9 +200,11 @@ export class NgodetailsComponent implements OnInit {
 		this.form.patchValue(resource);
 		this.openVerticallyCentered(this.modalcontent);
 	}
+
 	openVerticallyCentered(content: any) {
 		this.modalService.open(content, { centered: true });
 	}
+
 	/**
 	 * submit form and close modal
 	 */
@@ -204,18 +216,19 @@ export class NgodetailsComponent implements OnInit {
 			this.getResources();
 		});
 	}
+
 	onSubmit() {
-		console.log(this.form.value);
-		// this.form.controls['organisation_id'].setValue(
-		// 	this.route.snapshot.paramMap.get('id')
-		// );
-		// this.organizationService
-		// 	.addResource(this.form.value)
-		// 	.subscribe((element: any) => {
-		// 		console.log(element);
-		// 		this.modalService.dismissAll();
-		// });
+		this.form.controls['organisation_id'].setValue(
+			this.route.snapshot.paramMap.get('id')
+		);
+		this.organizationService
+			.addResource(this.form.value)
+			.subscribe((element: any) => {
+				console.log(element);
+				this.modalService.dismissAll();
+		});
 	}
+
 	addvolunteer() {
 		const navigationExtras: NavigationExtras = {
 			state: {
@@ -227,9 +240,11 @@ export class NgodetailsComponent implements OnInit {
 		};
 		this.router.navigateByUrl('/volunteers/add', navigationExtras);
 	}
+
 	clear() {
 		this.authService.setCredentials();
 	}
+
 	selectedCounty(val: { item: string }) {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
@@ -237,6 +252,7 @@ export class NgodetailsComponent implements OnInit {
 			this.cityPlaceholder = 'Alegeti Orasul';
 		});
 	}
+
 	selectedCategory(val: { item: string }) {
 		// this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			// this.cities = k;

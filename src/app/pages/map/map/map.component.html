@@ -1,4 +1,4 @@
-<div class="container container-ph">
+<div class="container container-ph mt-2">
     <div class="svg-box">
 <svg 
     class="svg-box-content"
@@ -159,7 +159,7 @@
                                 <td>10</td>
                                 <td>1</td>
                                 <!-- <td>{{res.updated_at}}</td> -->
-                                <td><button class="btn-info">Vezi detalii</button></td>
+                                <td><button class="btn-info btn">Vezi detalii</button></td>
                             </tr>
 					<tr *ngFor="let res of resourcesData">
 						<!-- <tr> -->
@@ -168,7 +168,7 @@
 							<td>{{res.quantity}}</td>
 							<td>1</td>
 							<!-- <td>{{res.updated_at}}</td> -->
-							<td><button class="btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+							<td><button class="btn-info btn" [routerLink]="['id',res._id]">Vezi detalii</button></td>
 						</tr>
 					<!-- </div> -->
 				</tbody>

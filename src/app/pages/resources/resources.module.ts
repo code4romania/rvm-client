@@ -8,8 +8,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourcesService } from './resources.service';
 import { SharedModule } from '../../shared/shared.module';
-// import { SelectDropDownModule} from 'ngx-select-dropdown';
 import { SelectDropDownModule } from 'custom-select-dropdown';
+
 @NgModule({
 		declarations: [
 			ResourcesComponent,

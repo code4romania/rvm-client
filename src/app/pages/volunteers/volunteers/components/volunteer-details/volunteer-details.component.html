@@ -1,30 +1,33 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-        <a [routerLink]="['/volunteers']" class="mb-2"> <<Back </a> 
+        <a [routerLink]="['/volunteers']" class="mb-2"> << Back </a> 
             <div class="my-2 my-sm-0" *ngIf="hasAccreditation;">
                 <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button>
             </div>
             <div class="my-2 my-sm-0">
-                <button (click)="edit()" class="btn btn-primary"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
+                <button (click)="edit()" class="btn btn-info"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
             </div>
     </nav>
     <div class="ngo-details row">
-            <h3 class="col-md-12">Profil Voluntar: {{data?.name}}</h3>
-            
-            <span class="col-md-12"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
-            <span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
-            <span class="col-md-12"><b>Organizatie: </b> {{data?.organisation.name}}</span>
-            <span class="col-md-12"><b>Localizare: </b>{{data?.city}}</span>
-            <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
-            <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
-            <div class="col-md-12">
-                <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
-                <button class="btn my-2 btn-info"><span class="fa fa-plus-circle"></span>Trimite Notificare</button>
-            </div>
+        <h3 class="col-md-12">Profil Voluntar: {{data?.name}}</h3>
+    
+        <span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
+        <span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
+        <span class="col-md-12"><b>Organizatie: </b> {{data?.organisation.name}}</span>
+        <span class="col-md-12"><b>Localizare: </b>{{data?.city}}</span>
+        <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
+        <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
+        <div class="col-md-12">
+            <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
+            <button class="btn my-2 btn-info d-block">
+                <span class="fa fa-plus-circle"></span>Trimite Notificare
+            </button>
+        </div>
     </div>
     <div class="resource-list">
         <ngb-tabset type="pills">
-            <ngb-tab><ng-template ngbTabTitle>Lista Acreditari</ng-template>
+            <ngb-tab>
+                <ng-template ngbTabTitle>Lista Acreditari</ng-template>
                 <ng-template ngbTabContent>
                     <div *ngIf="hasAccreditation; else noAccreditation">
                         <div class="table-responsive-md">
@@ -38,49 +41,51 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let res of Acreditare">
-                                            <td>{{res.name}}</td>
-                                            <td>{{res.date}}</td>
-                                            <td>{{res.org}}</td>
-                                        </tr>
+                                        <td>{{res.name}}</td>
+                                        <td>{{res.date}}</td>
+                                        <td>{{res.org}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                <ng-template #noAccreditation>
-                    <span>Aceast voluntar nu are nicio accreditare adaugata in sistem </span>
-                    <button class="btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button>
+                    <ng-template #noAccreditation>
+                        <span>Aceast voluntar nu are nicio accreditare adaugata in sistem </span>
+                        <button class="btn-info btn d-block"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga
+                            Acreditare</button>
+                    </ng-template>
                 </ng-template>
-            </ng-template>
-                    
-           
+    
+    
             </ngb-tab>
             <ngb-tab title="|" [disabled]="true"></ngb-tab>
-            <ngb-tab><ng-template ngbTabTitle>Lista Alocari</ng-template>
+            <ngb-tab>
+                <ng-template ngbTabTitle>Lista Alocari</ng-template>
                 <ng-template ngbTabContent>
                     <div *ngIf="hasAlocation; else noAlocation">
-                    <div class="table-responsive-md">
-                    <table class="table customTable table-sm">
-                        <thead>
-                            <tr>
-                                <th>Nume Ofiter</th>
-                                <th>Data Alocarii</th>
-                                <th>Localizare</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let res of Alocari">
-                                    <td>{{res.name}}</td>
-                                    <td>{{res.date}}</td>
-                                    <td>{{res.city}}, {{res.county}}</td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-                <ng-template #noAlocation>
+                        <div class="table-responsive-md">
+                            <table class="table customTable table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Nume Ofiter</th>
+                                        <th>Data Alocarii</th>
+                                        <th>Localizare</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let res of Alocari">
+                                        <td>{{res.name}}</td>
+                                        <td>{{res.date}}</td>
+                                        <td>{{res.city}}, {{res.county}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <ng-template #noAlocation>
                         <span>Aceast voluntar nu are nicio alocare adaugata in sistem </span>
                     </ng-template>
-            </ng-template>
+                </ng-template>
             </ngb-tab>
         </ngb-tabset>
     </div>

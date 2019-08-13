@@ -1,135 +1,88 @@
 <div class="container mt-5">
 	<nav
-		class="navbar navbar-expand-lg justify-content-between navbar-light my-5"
-	>
-		<a [routerLink]="['/organizations']" class="mb-2"> <<Back </a>
+		class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<a [routerLink]="['/organizations']" class="mb-2"> << Back </a>
 	</nav>
+
 	<p class="page-title">Adaugă o organizație:</p>
+	
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Nume Organizație</label>
-					<input
-						formControlName="name"
-						class="form-control"
-						type="text"
-					/>
+					<label>Nume Organizație *</label>
+					<input formControlName="name" class="form-control" type="text" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Website Organizație</label>
-					<input
-						formControlName="website"
-						class="form-control"
-						type="text"
-					/>
+					<label>Website Organizație *</label>
+					<input formControlName="website" class="form-control" type="text" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4"></div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Persoană de contact</label>
-					<input
-						formControlName="contact_person"
-						class="form-control"
-						type="text"
-					/>
+					<label>Persoană de contact *</label>
+					<input formControlName="contact_person" class="form-control" type="text" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Email</label>
-					<input
-						formControlName="email"
-						class="form-control"
-						type="email"
-					/>
+					<label>Email *</label>
+					<input formControlName="email" class="form-control" type="email" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Număr de Telefon</label>
-					<input
-						formControlName="phone"
-						class="form-control"
-						type="tel"
-					/>
+					<label>Număr de Telefon *</label>
+					<input formControlName="phone" class="form-control" type="tel" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Județ</label>
-					<input
-						type="text"
-						formControlName="county"
-						(selectItem)="selectedCounty($event)"
-						class="form-control"
-						[ngbTypeahead]="searchcounty"
-						(focus)="focus1$.next($event.target.value)"
-						(click)="click1$.next($event.target.value)"
-						#instance="ngbTypeahead"
-					/>
+					<label>Județ *</label>
+					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" class="form-control"
+						[ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
+						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
-					<label>Localitate</label>
-					<input
-						type="text"
-						formControlName="city"
-						class="form-control"
-						[ngbTypeahead]="searchcity"
-						placeholder="{{ cityPlaceholder }}"
-						autocomplete="new-password"
-						(focus)="focus2$.next($event.target.value)"
-						(click)="click2$.next($event.target.value)"
-						#instance="ngbTypeahead"
-					/>
+					<label>Localitate *</label>
+					<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+						placeholder="{{ cityPlaceholder }}" autocomplete="new-password"
+						(focus)="focus2$.next($event.target.value)" (click)="click2$.next($event.target.value)"
+						#instance="ngbTypeahead" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-4">
 				<div class="form-group">
 					<label>Adresă</label>
-					<input
-						formControlName="address"
-						class="form-control"
-						type="text"
-					/>
+					<input formControlName="address" class="form-control" type="text" />
 				</div>
 			</div>
-
+	
 			<div class="mt-4 col-md-12">
 				<div class="form-group">
 					<label>Comentarii</label>
-					<textarea
-						rows="3"
-						formControlName="comments"
-						class="form-control"
-						type="text"
-					></textarea>
+					<textarea rows="3" formControlName="comments" class="form-control" type="text"></textarea>
 				</div>
 			</div>
 		</div>
-		<div class="errorMessage" *ngIf="!isValid">
-			{{ question.label }} este obligatoriu
+	
+		<div class="text-right">
+			<button [disabled]="form.invalid" class=" btn btn-info btn-rounded waves-effect waves-light mt-5" type="submit">
+				Salvează
+			</button>
 		</div>
-
-		<button
-			class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
-			type="submit"
-			style="color:white; float:right"
-		>
-			Salvează
-		</button>
 	</form>
 </div>

@@ -26,7 +26,6 @@ import { merge } from 'rxjs';
 })
 export class NgoaddComponent implements OnInit {
 	form: FormGroup;
-	isValid = true;
 	data: any;
 	cityPlaceholder = 'Selectați mai întâi județul';
 	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
@@ -41,23 +40,23 @@ export class NgoaddComponent implements OnInit {
 		private organizationService: OrganizationService,
 		private router: Router,
 		private citiesandCounties: CitiesCountiesService,
-		private fb: FormBuilder
-	) {
-		this.counties = citiesandCounties.getCounties();
+		private fb: FormBuilder) { }
+
+	ngOnInit() {
+		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			website: ['', Validators.required],
 			contact_person: ['', Validators.required],
-			phone: ['', Validators.required],
-			address: ['', Validators.required],
-			email: ['', Validators.required],
+			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+			address: [''],
+			email: ['', [Validators.required, Validators.email]],
 			county: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
-			comments: ['', Validators.required]
+			comments: ['']
 		});
 	}
 
-	ngOnInit() {}
 	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -82,6 +81,7 @@ export class NgoaddComponent implements OnInit {
 			})
 		);
 	}
+
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -103,6 +103,7 @@ export class NgoaddComponent implements OnInit {
 			)
 		);
 	}
+
 	selectedCounty(val: { item: string }) {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
@@ -110,18 +111,15 @@ export class NgoaddComponent implements OnInit {
 			this.cityPlaceholder = 'Alegeti Orasul';
 		});
 	}
+
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
 		this.organizationService
 			.addOrganization(this.form.value)
-			.subscribe((element: any) => {
-				console.log(element);
-				this.navigateToDashboard();
+			.subscribe(() => {
+				this.router.navigate(['organizations']);
 			});
-	}
-	navigateToDashboard() {
-		this.router.navigate(['organizations']);
 	}
 }
