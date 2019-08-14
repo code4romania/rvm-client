@@ -18,6 +18,9 @@ import {
 	map
 } from 'rxjs/operators';
 import { merge } from 'rxjs';
+import { EmailValidation } from '@app/core/validators/email-validation';
+import { PhoneValidation } from '@app/core/validators/phone-validation';
+import { WebsiteValidation } from '@app/core/validators/website-validation';
 
 @Component({
 	selector: 'app-ngoadd',
@@ -46,11 +49,11 @@ export class NgoaddComponent implements OnInit {
 		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			name: ['', Validators.required],
-			website: ['', Validators.required],
+			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
 			contact_person: ['', Validators.required],
-			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			address: [''],
-			email: ['', [Validators.required, Validators.email]],
+			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			county: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
 			comments: ['']
@@ -121,5 +124,9 @@ export class NgoaddComponent implements OnInit {
 			.subscribe(() => {
 				this.router.navigate(['organisations']);
 			});
+	}
+
+	check() {
+		console.log(this.form);
 	}
 }

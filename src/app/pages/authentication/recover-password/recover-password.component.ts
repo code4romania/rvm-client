@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
+import { EmailValidation } from '@app/core/validators/email-validation';
 
 @Component({
 	selector: 'app-recover-password',
@@ -18,7 +19,7 @@ export class RecoverPasswordComponent implements OnInit {
 
 	ngOnInit() {
 		this.resetPasswordForm = new FormGroup({
-			email: new FormControl('', [Validators.required, Validators.email])
+			email: new FormControl('', [Validators.required, EmailValidation.emailValidation])
 		});
 	}
 

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
+import { EmailValidation } from '@app/core/validators/email-validation';
+import { PhoneValidation } from '@app/core/validators/phone-validation';
 
 @Component({
 	selector: 'app-signup',
@@ -48,8 +50,8 @@ export class SignupComponent implements OnInit {
 		this.signupForm = this.formBuilder.group({
 			firstName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
-			email: ['', [Validators.required, Validators.email]],
-			phone: ['', [Validators.required]],
+			email: ['', [Validators.required, EmailValidation.emailValidation]],
+			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			password: ['', Validators.required],
 			cPassword: ['', Validators.required]
 		});

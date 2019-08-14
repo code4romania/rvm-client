@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/core/service/users.service';
+import { EmailValidation } from '@app/core/validators/email-validation';
+import { PhoneValidation } from '@app/core/validators/phone-validation';
 
 @Component({
 	selector: 'app-add-user',
@@ -22,8 +24,9 @@ export class AddUserComponent implements OnInit {
 	ngOnInit() {
 		this.form = this.fb.group({
 			name: ['', Validators.required],
-			email: ['', Validators.required],
-			phone: ['', Validators.required]
+			email: ['', [ Validators.required, EmailValidation.emailValidation ]],
+			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
+			admin_at: ['']
 		});
 
 		if (this.route.snapshot.paramMap.get('role')) {

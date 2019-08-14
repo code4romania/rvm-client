@@ -5,7 +5,7 @@ import { NgodashboardComponent } from './organisations/components/ngodashboard/n
 import { NgoaddComponent } from './organisations/components/ngoadd/ngoadd.component';
 import { NgodetailsComponent } from './organisations/components/ngodetails/ngodetails.component';
 import { OrganisationService } from './organisations.service';
-import { organisationsRoutingModule } from './organisations.routing';
+import { OrganisationsRoutingModule } from './organisations.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../shared/shared.module';
@@ -24,7 +24,7 @@ import { SelectDropDownModule } from 'custom-select-dropdown';
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,
-		organisationsRoutingModule,
+		OrganisationsRoutingModule,
 	],
 	entryComponents: [
 

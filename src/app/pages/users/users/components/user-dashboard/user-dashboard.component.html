@@ -38,10 +38,20 @@
             <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">
-                        <h4 class="card-title">{{elem.name}}</h4>
+                        <h4 class="card-title">{{ elem.name }}</h4>
                         <div class="card-text row"> 
-                            <span class="col-md-12">{{elem.email}}</span>
-                            <span class="col-md-12" >{{elem.phone}}</span>
+                            <span class="col-md-12">
+                                <i class="fa fa-envelope"></i>
+                                {{ elem.email }}
+                            </span>
+                            <span class="col-md-12">
+                                <i class="fa fa-phone"></i>
+                                {{ elem.phone }}
+                            </span>
+                            <span class="col-md-12">
+                                <i class="fa fa-university"></i>
+                                {{ elem.admin_at }}
+                            </span>
                         </div>                       
                     </div>
                 </a>

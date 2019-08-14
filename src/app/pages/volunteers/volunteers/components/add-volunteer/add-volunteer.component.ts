@@ -14,6 +14,8 @@ import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganisationService } from '../../../../organisations/organisations.service';
 import { AuthenticationService } from '@app/core';
+import { EmailValidation } from '@app/core/validators/email-validation';
+import { PhoneValidation } from '@app/core/validators/phone-validation';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -52,8 +54,8 @@ export class AddVolunteerComponent implements OnInit {
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-			email: ['', [Validators.required, Validators.email]],
-			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+			email: ['', [Validators.required, EmailValidation.emailValidation]],
+			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			address: [''],
 			job: [''],
 			county: ['', Validators.required],
