@@ -9,15 +9,15 @@
                 <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
             </div>
             <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
-                    <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary">
+                    <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
                         <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
                     </label>
-                    <label ngbButtonLabel (click)="switchtolist()" class="btn-primary">
+                    <label ngbButtonLabel (click)="switchtolist()" class="btn btn-primary">
                         <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
                     </label>
                 </div>
-            <button [routerLink]="['/volunteers/add']" style="white-space: normal;" class="btn-adjusting btn btn-info btn-rounded m-2">
-                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntari
+            <button [routerLink]="['/volunteers/add']" style="white-space: normal;" class="btn-group btn-adjusting btn btn-info btn-rounded m-2">
+                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar
             </button>
         </div>
     </nav>
@@ -34,7 +34,7 @@
 		    <ngx-select-dropdown (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
         </div>
     <div *ngIf="displayBlock; else displayList" class="mt-5 cardlist row">
-        <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-6 col-lg-4">
+        <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
                 <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                     <div class="card-body">
@@ -50,7 +50,8 @@
             </div>
         </div>
     </div>
-    <ng-template #displayList class="table-responsive-md">
+    <ng-template #displayList>
+        <div class="table-responsive">
         <table class="table customTable table-sm">
             <thead>
                 <tr>
@@ -69,18 +70,18 @@
                         <td>{{res.organisation.name}}</td>
                         <td>{{res.job}}</td>
                         <!-- <td>{{res.updated_at}}</td> -->
-                        <td><button class="btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+                        <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
                     </tr>
                 
             </tbody>
         </table>
-
+        </div>
         <ngb-pagination
             [(page)]="pager.page"
             [pageSize]="pager.size"
             (pageChange)="getData()"
             [collectionSize]="pagerTotal">
         </ngb-pagination>
-</ng-template>
+    </ng-template>
 </div>
     

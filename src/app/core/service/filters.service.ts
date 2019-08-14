@@ -9,7 +9,7 @@ export class FiltersService {
 	getTypeFilters(): Observable<any> {
 		return this.http.get('/filter/resources/type_name');
 	}
-	getOrganizationsFilters(): Observable<any> {
+	getorganisationsFilters(): Observable<any> {
 		return this.http.get('/filter/organisations/name');
 	}
 

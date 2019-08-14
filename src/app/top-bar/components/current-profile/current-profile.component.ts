@@ -13,7 +13,7 @@ export class CurrentProfileComponent implements OnInit {
 	};
 	constructor(private authService: AuthenticationService) {}
 	/**
-	 * get Organization by id
+	 * get organisation by id
 	 */
 	ngOnInit() {
 		this.authService.profile().subscribe(

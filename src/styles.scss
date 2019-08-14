@@ -111,6 +111,10 @@ body {
 .login-box .card-body .form-group {
 	background-color: transparent;
 }
+.form-group .dropdown-menu.show{
+	max-height: 150px;
+	overflow: auto;
+}
 
 .login-box .card-body .form-control {
 	border: none;
@@ -207,7 +211,8 @@ body {
 
 
 .table.customTable {
-   
+	
+		overflow-y:auto;
 	th {
         padding: 15px;
         border:none;
@@ -277,13 +282,10 @@ body {
 
 .login-register {
 	.navigation {
-		text-align: center;
-		position: absolute;
-		bottom: 10px;
-		left: 0;
-		right: 0;
+		margin: auto;
 		color: white;
 	}
+	
 
 	.navigation:hover {
 		text-decoration: underline;
@@ -294,4 +296,9 @@ body {
 		background-color: red;
 		border: none;
 	}
+}
+@media (max-width: 1199px) {
+    .btn-adjusting {
+        width: min-content;       
+    }
 }

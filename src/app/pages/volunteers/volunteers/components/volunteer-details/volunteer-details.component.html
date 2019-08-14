@@ -1,28 +1,26 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <a [routerLink]="['/volunteers']" class="mb-2"> << Back </a> 
-            <div class="my-2 my-sm-0" *ngIf="hasAccreditation;">
+            <div class="mx-2 my-sm-0" *ngIf="hasAccreditation;">
                 <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button>
             </div>
-            <div class="my-2 my-sm-0">
+            <div class="mx-2 my-sm-0">
                 <button (click)="edit()" class="btn btn-info"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
             </div>
     </nav>
     <div class="ngo-details row">
-        <h3 class="col-md-12">Profil Voluntar: {{data?.name}}</h3>
-    
-        <span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
-        <span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
-        <span class="col-md-12"><b>Organizatie: </b> {{data?.organisation.name}}</span>
-        <span class="col-md-12"><b>Localizare: </b>{{data?.city}}</span>
-        <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
-        <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
-        <div class="col-md-12">
-            <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
-            <button class="btn my-2 btn-info d-block">
-                <span class="fa fa-plus-circle"></span>Trimite Notificare
-            </button>
-        </div>
+            <h3 class="col-md-12">Profil Voluntar: {{data?.name}}</h3>
+            
+            <span class="col-md-12"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
+            <span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
+            <span class="col-md-12"><b>Organizatie: </b> {{data?.organisation.name}}</span>
+            <span class="col-md-12"><b>Localizare: </b>{{data?.city}}</span>
+            <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
+            <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
+            <div class="col-md-12">
+                <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
+                <button class="btn mx-4 btn-info d-block"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Trimite Notificare</button>
+            </div>
     </div>
     <div class="resource-list">
         <ngb-tabset type="pills">
@@ -47,16 +45,19 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <ngb-pagination
+                                [(page)]="pager.page"
+                                [pageSize]="pager.size"
+                                (pageChange)="getData()"
+                                [collectionSize]="pagerTotal">
+                            </ngb-pagination>
                         </div>
                     </div>
-                    <ng-template #noAccreditation>
-                        <span>Aceast voluntar nu are nicio accreditare adaugata in sistem </span>
-                        <button class="btn-info btn d-block"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga
-                            Acreditare</button>
-                    </ng-template>
+                <ng-template #noAccreditation>
+                    <span>Aceast voluntar nu are nicio accreditare adaugata in sistem </span>
+                    <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button> -->
                 </ng-template>
-    
-    
+                </ng-template>
             </ngb-tab>
             <ngb-tab title="|" [disabled]="true"></ngb-tab>
             <ngb-tab>
@@ -78,11 +79,17 @@
                                         <td>{{res.date}}</td>
                                         <td>{{res.city}}, {{res.county}}</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
+                        <ngb-pagination
+                            [(page)]="pager.page"
+                            [pageSize]="pager.size"
+                            (pageChange)="getData()"
+                            [collectionSize]="pagerTotal">
+                        </ngb-pagination>
                     </div>
-                    <ng-template #noAlocation>
+                </div>
+                <ng-template #noAlocation>
                         <span>Aceast voluntar nu are nicio alocare adaugata in sistem </span>
                     </ng-template>
                 </ng-template>

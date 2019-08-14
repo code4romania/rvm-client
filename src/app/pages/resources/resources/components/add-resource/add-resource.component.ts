@@ -1,36 +1,41 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { VolunteerService } from '../../../volunteers.service';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+	FormGroup,
+	FormControl,
+	Validators,
+	FormBuilder
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, merge, Subject, of } from 'rxjs';
+import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
+import { Subject } from 'rxjs/internal/Subject';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs/internal/Observable';
 import {
 	debounceTime,
 	distinctUntilChanged,
-	map,
 	filter,
-	switchMap,
+	map,
+	switchMap
 } from 'rxjs/operators';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
-import { OrganisationService } from '../../../../organisations/organisations.service';
+import { merge } from 'rxjs';
+import { ResourcesService } from '@app/pages/resources/resources.service';
+import { OrganisationService } from '@app/pages/organisations/organisations.service';
 import { AuthenticationService } from '@app/core';
 
 @Component({
-	selector: 'app-add-volunteer',
-	templateUrl: './add-volunteer.component.html',
-	styleUrls: ['./add-volunteer.component.scss']
+	selector: 'app-add-resource',
+	templateUrl: './add-resource.component.html',
+	styleUrls: ['./add-resource.component.scss']
 })
-
-export class AddVolunteerComponent implements OnInit {
+export class AddResourceComponent implements OnInit {
 	form: FormGroup;
 	orgDisabled = false;
 	defaultOrgValue: {name: String, id: string};
-	coursename: string;
-	acreditedby: string;
-	obtained: string;
 	counties: String[] = [];
 	cities: String[] = [];
 	cityPlaceholder = 'Selectați mai întâi județul';
+	resourcePlaceholder = 'Selectați mai întâi categoria';
+	currentUserId: string;
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
@@ -40,33 +45,26 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-	currentUserId: string;
-
-	constructor(
-		public volunteerService: VolunteerService,
-		private orgService: OrganisationService,
+	constructor(private resourcesService: ResourcesService,
 		private router: Router,
-		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
+		private fb: FormBuilder,
+		private orgService: OrganisationService,
 		private authService: AuthenticationService) {
 		this.form = this.fb.group({
-			name: ['', Validators.required],
-			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-			email: ['', [Validators.required, Validators.email]],
-			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-			address: [''],
-			job: [''],
-			county: ['', Validators.required],
+			type_name: ['', Validators.required],
+			subcat: [/*{ value: '', disabled: true }*/'', Validators.required],
+			name: '',
+			address: '',
+			organisation_id: '',
+			quantity: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
-			organisation_id: ['', Validators.required],
-			courses: this.fb.array([]),
-			comments: ['']
+			county: ['', Validators.required],
+			comments: ''
 		});
-
 		const navigation = this.router.getCurrentNavigation();
 		if (navigation && navigation.extras && navigation.extras.state) {
 			const ngo = navigation.extras.state.ngo;
-			console.log(navigation.extras.state);
 			if (ngo) {
 				this.orgDisabled = true;
 				this.defaultOrgValue = ngo;
@@ -74,13 +72,14 @@ export class AddVolunteerComponent implements OnInit {
 					'organisation_id': ngo.ngoid
 				});
 			} else {
-				const volunteer = navigation.extras.state.volunteer as any;
-				if (volunteer) {
-					this.defaultOrgValue = volunteer.organisation;
+				const resource = navigation.extras.state.resource as any;
+				if (resource) {
+					console.log(resource);
+					this.defaultOrgValue = resource.organisation;
 					this.form.controls.city.enable();
-					this.form.patchValue(volunteer);
+					this.form.patchValue(resource);
 					this.form.patchValue({
-						'organisation_id': volunteer.organisation._id
+						'organisation_id': resource.organisation._id
 					});
 				}
 			}
@@ -93,36 +92,7 @@ export class AddVolunteerComponent implements OnInit {
 			this.currentUserId = response._id;
 		});
 	}
-
-	get f() {
-		return this.form.controls;
-	}
-
-	get c() {
-		return this.f.courses as FormArray;
-	}
-
 	formatter = (result: { name: string }) => result.name;
-
-	searchorganisation = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		);
-
-		const clicksWithClosedPopup$ = this.click$.pipe(
-			filter(() => !this.instance.isPopupOpen())
-		);
-
-		const inputFocus$ = this.focus$;
-		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				return this.orgService.getorganisationbyName(term).pipe(
-					map(elem => elem.data)
-				);
-			}));
-	}
-
 	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -147,7 +117,6 @@ export class AddVolunteerComponent implements OnInit {
 			})
 		);
 	}
-
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -169,33 +138,31 @@ export class AddVolunteerComponent implements OnInit {
 			)
 		);
 	}
-
-	addCourse() {
-		if (!(this.coursename === '' || this.acreditedby === '')) {
-			this.c.push(
-				this.fb.group({
-					name: this.coursename,
-					obtained: this.obtained,
-					acreditedby: this.acreditedby
-				})
-			);
-			this.coursename = null;
-			this.acreditedby = null;
-		}
+	searchorganisation = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click$.pipe(
+			filter(() => !this.instance.isPopupOpen())
+		);
+		const inputFocus$ = this.focus$;
+		// return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+		// 	switchMap((term: string) => {
+		// 		if (term === '') {
+		// 			return this.orgService.getorganisations().pipe();
+		// 		} else {
+		// 			return this.orgService.getorganisationbyName(term).pipe();
+		// 		}
+		// 	})
+		// );
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				return this.orgService.getorganisationbyName(term).pipe(
+					map(elem => elem.data)
+				);
+		}));
 	}
-
-	removeCourse(index: number) {
-		const control = <FormArray>this.form.controls.courses;
-
-		// const objIndex = this.data.findIndex(((obj: any) => obj.key === 'courses'));
-		// this.data[objIndex].value.splice(index, 1);
-		control.removeAt(index);
-	}
-
-	selectedorganisation(val: any) {
-		this.form.controls['organisation_id'].setValue(val.item._id);
-	}
-
 	selectedCounty(val: { item: string }) {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
@@ -203,15 +170,32 @@ export class AddVolunteerComponent implements OnInit {
 			this.cityPlaceholder = 'Alegeti Orasul';
 		});
 	}
+	// selectedorganisation() {
+	// 	this.form.controls['organisation_id'].setValue(this.defaultOrgValue.id);
+	// }
+	selectedorganisation(val: any) {
+		this.form.controls['organisation_id'].setValue(val.item._id);
+	}
 
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		const volunteer = this.form.value;
-		volunteer.added_by = this.currentUserId;
-		this.volunteerService.addVolunteer(volunteer).subscribe(() => {
-			this.router.navigate(['organisations']);
-		});
+		this.resourcesService
+			.addResource(this.form.value)
+			.subscribe((element: any) => {
+				console.log(element);
+				this.navigateToDashboard();
+			});
+	}
+	navigateToDashboard() {
+		this.router.navigate(['resources']);
+	}
+	selectedCategory(val: { item: string }) {
+		// this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
+			// this.cities = k;
+			this.form.controls.subcat.enable();
+			this.resourcePlaceholder = 'Alegeti Resursa';
+		// });
 	}
 }

@@ -5,7 +5,7 @@ import {
 	Validators,
 	FormBuilder
 } from '@angular/forms';
-import { OrganizationService } from '../../../../organizations/organizations.service';
+import { OrganisationService } from '../../../organisations.service';
 import { Router } from '@angular/router';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { Subject } from 'rxjs/internal/Subject';
@@ -37,7 +37,7 @@ export class NgoaddComponent implements OnInit {
 	counties: string[] = [];
 	cities: string[] = [];
 	constructor(
-		private organizationService: OrganizationService,
+		private organisationService: OrganisationService,
 		private router: Router,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
@@ -116,10 +116,10 @@ export class NgoaddComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		this.organizationService
-			.addOrganization(this.form.value)
+		this.organisationService
+			.addorganisation(this.form.value)
 			.subscribe(() => {
-				this.router.navigate(['organizations']);
+				this.router.navigate(['organisations']);
 			});
 	}
 }

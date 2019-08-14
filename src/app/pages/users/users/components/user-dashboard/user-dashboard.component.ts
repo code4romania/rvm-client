@@ -17,12 +17,8 @@ import { Router } from '@angular/router';
 
 export class UserDashboardComponent implements OnInit {
 	data: any = [];
-	count: String;
-	pagination = {};
-		// limit: 1,
-		// page: 2,
-		// order: 'ASC',
-		// sort: 'name' };
+	pagerTotal: String;
+	pager = {};
 	displayBlock = true;
 	form: FormGroup;
 
@@ -52,8 +48,8 @@ export class UserDashboardComponent implements OnInit {
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
+		this.pager = this.usersService.getPager();
 		this.getData();
-
 		this.breakpointObserver.observe([
 			'(max-width: 768px)'
 				]).subscribe(result => {
@@ -66,23 +62,27 @@ export class UserDashboardComponent implements OnInit {
 				role: ['', Validators.required]
 			});
 	}
-
+	getRole(id: string) {
+		for (const elem of this.roles) {
+			if (elem.id === parseInt(id, 10)) { return elem.name; }
+		}
+	}
 	addUser(content: any) {
 		this.modalService.open(content, { centered: true });
 	}
 
 	getData() {
-		this.usersService.getUsers(this.pagination).subscribe(element => {
+		this.usersService.getUsers(this.pager).subscribe(element => {
 			if (element.data) {
 				this.data = element.data;
-				this.count = `${element.data.length} total`;
+				this.pagerTotal = element.pager.total;
 			}
 		});
 	}
 
 	continue() {
 		if (this.form.value.role === '2') {
-			this.router.navigate(['/organizations/add']);
+			this.router.navigate(['/organisations/add']);
 		} else {
 			this.router.navigateByUrl('/users/add/' + this.form.value.role);
 		}

@@ -1,0 +1,131 @@
+<div class="container mt-5">
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<a [routerLink]="['/resources']" class="mb-2"> <<Back </a>
+	</nav>
+	<p class="page-title">Adaugă o resursa:</p>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Nume resursa</label>
+					<input
+						formControlName="name"
+						class="form-control"
+						type="text"	/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Categorie</label>
+					<input
+						formControlName="type_name"
+						class="form-control"
+						type="text"	/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Subcategorie</label>
+					<input
+						formControlName="subcat"
+						class="form-control"
+						type="text"	/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Cantitate</label>
+					<input
+						formControlName="quantity"
+						class="form-control"
+						type="number"	/>
+				</div>
+			</div>
+            <div class="mt-4 col-md-8 col-sm-12">
+				<div class="form-group">
+					<label>Organizație</label>
+					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
+						[disabled]="orgDisabled"
+						type="text"
+						(selectItem)="selectedorganisation($event)"
+						class="form-control"
+						[ngbTypeahead]="searchorganisation"
+						[resultFormatter]="formatter"
+						[inputFormatter]="formatter"
+						(focus)="focus$.next($event.target.value)"
+						(click)="click$.next($event.target.value)"
+						#instance="ngbTypeahead"/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Județ</label>
+					<input
+						type="text"
+						formControlName="county"
+						(selectItem)="selectedCounty($event)"
+						class="form-control"
+						[ngbTypeahead]="searchcounty"
+						(focus)="focus1$.next($event.target.value)"
+						(click)="click1$.next($event.target.value)"
+						#instance="ngbTypeahead"
+					/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Localitate</label>
+					<input
+						type="text"
+						formControlName="city"
+						class="form-control"
+						[ngbTypeahead]="searchcity"
+						placeholder="{{ cityPlaceholder }}"
+						autocomplete="new-password"
+						(focus)="focus2$.next($event.target.value)"
+						(click)="click2$.next($event.target.value)"
+						#instance="ngbTypeahead"
+					/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Adresă</label>
+					<input
+						formControlName="address"
+						class="form-control"
+						type="text"
+					/>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-12">
+				<div class="form-group">
+					<label>Comentarii</label>
+					<textarea
+						rows="3"
+						formControlName="comments"
+						class="form-control"
+						type="text"
+					></textarea>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="errorMessage" *ngIf="!isValid">
+			{{ question.label }} este obligatoriu
+		</div> -->
+
+		<button
+			class="btn btn-info btn-rounded waves-effect waves-light mt-5"
+			type="submit"
+			style="color:white; float:right">
+			Salvează
+		</button>
+	</form>
+</div>

@@ -14,85 +14,74 @@
 
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Nume și Prenume *</label>
 					<input
 						formControlName="name"
 						class="form-control"
-						type="text"
-					/>
+						type="text"	/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>CNP *</label>
 					<input
 						formControlName="ssn"
 						class="form-control"
-						type="number"
-					/>
+						type="number"	/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Email *</label>
 					<input
 						formControlName="email"
 						class="form-control"
-						type="email"
-					/>
+						type="email"/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Profesie</label>
 					<input
 						formControlName="job"
 						class="form-control"
-						type="text"
-					/>
+						type="text"	/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Telefon *</label>
 					<input
 						formControlName="phone"
 						class="form-control"
-						type="tel"
-					/>
+						type="tel"	/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Organizație *</label>
 					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
 						[disabled]="orgDisabled"
 						type="text"
-						(selectItem)="selectedOrganization($event)"
+						(selectItem)="selectedorganisation($event)"
 						class="form-control"
-						[class.is-invalid]="searchFailed"
-						[ngbTypeahead]="searchorganization"
+						[ngbTypeahead]="searchorganisation"
 						[resultFormatter]="formatter"
 						[inputFormatter]="formatter"
 						(focus)="focus$.next($event.target.value)"
 						(click)="click$.next($event.target.value)"
-						#instance="ngbTypeahead"
-					/>
-					<span *ngIf="searching">Caut...</span>
-					<div class="invalid-feedback" *ngIf="searchFailed">
-						Ne pare rau, aceasta organizatie nu a putut fi gasita!
-					</div>
+						#instance="ngbTypeahead"/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Județ *</label>
 					<input
@@ -103,12 +92,11 @@
 						[ngbTypeahead]="searchcounty"
 						(focus)="focus1$.next($event.target.value)"
 						(click)="click1$.next($event.target.value)"
-						#instance="ngbTypeahead"
-					/>
+						#instance="ngbTypeahead"/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Localitate *</label>
 					<input
@@ -120,20 +108,18 @@
 						autocomplete="new-password"
 						(focus)="focus2$.next($event.target.value)"
 						(click)="click2$.next($event.target.value)"
-						#instance="ngbTypeahead"
-					/>
+						#instance="ngbTypeahead"/>
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4">
+			<div class="mt-4 col-md-4 col-sm-12">
 				<div>
 					<div class="form-group">
 						<label>Adresă</label>
 						<input
 							formControlName="address"
 							class="form-control"
-							type="text"
-						/>
+							type="text"	/>
 					</div>
 				</div>
 			</div>
@@ -159,8 +145,7 @@
 								<input
 									formControlName="name"
 									class="form-control"
-									type="text"
-								/>
+									type="text"	/>
 							</div>
 						</td>
 						<td style="padding-right:15px">
@@ -192,8 +177,7 @@
 									[(ngModel)]="coursename"
 									[ngModelOptions]="{ standalone: true }"
 									class="form-control"
-									type="text"
-								/>
+									type="text"	/>
 							</div>
 						</td>
 						<td style="padding-right:15px">
@@ -202,8 +186,7 @@
 									[(ngModel)]="obtained"
 									[ngModelOptions]="{ standalone: true }"
 									class="form-control"
-									type="date"
-								/>
+									type="date"	/>
 							</div>
 						</td>
 						<td>
@@ -212,16 +195,14 @@
 									[(ngModel)]="acreditedby"
 									[ngModelOptions]="{ standalone: true }"
 									class="form-control"
-									type="text"
-								/>
+									type="text"	/>
 							</div>
 						</td>
 						<td>
 							<button
 								(click)="addCourse()"
 								class="btn-info btn margin-auto-center"
-								type="button"
-							>
+								type="button">
 								<span class="fa fa-plus-circle"></span>
 							</button>
 						</td>
@@ -236,8 +217,8 @@
 						class="form-control"
 						rows="3"
 						formControlName="comments"
-						type="text"
-					></textarea>
+						type="text">
+					</textarea>
 				</div>
 			</div>
 		</div>

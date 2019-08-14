@@ -16,9 +16,8 @@ const DashboardRoutes: Routes = [
 		loadChildren: '../resources/resources.module#ResourcesModule'
 	},
 	{
-		path: 'organizations',
-		loadChildren:
-			'../organizations/organizations.module#OrganizationsModule'
+		path: 'organisations',
+		loadChildren: '../organisations/organisations.module#OrganisationsModule'
 	},
 	{
 		path: 'map',

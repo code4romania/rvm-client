@@ -34,8 +34,17 @@ export class VolunteerService {
 	 * get all Volunteers
 	 */
 	getVolunteers(paginationObj?: any): Observable<any> {
-		let params = {};
+		let params: any = {};
+
 		params = {...params, ...paginationObj};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
 		return this.httpClient.get('/volunteers', { params: params });
 	}
 	/**
@@ -44,7 +53,7 @@ export class VolunteerService {
 	getVolunteer(id: String): Observable<any> {
 		return this.httpClient.get(`/volunteers/${id}` );
 	}
-	// getResourcesbyOrganization(id: String): Observable<any> {
+	// getResourcesbyorganisation(id: String): Observable<any> {
 		// const header = {
 		// 	headers: new HttpHeaders()
 		// 	.set('Authorization',  `Bearer ${this.accessToken}`)

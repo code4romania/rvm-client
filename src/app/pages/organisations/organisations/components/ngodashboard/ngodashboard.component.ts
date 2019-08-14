@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '../../../organizations.service';
+import { OrganisationService } from '../../../organisations.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FiltersService, CitiesCountiesService } from '@app/core';
 @Component({
@@ -31,7 +31,7 @@ export class NgodashboardComponent implements OnInit {
 	specializationFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
 	locationFilterValues: any[] = [{id: 'test', name: 'test'}, {id: 'test1', name: 'test1'}];
 	constructor(
-		private organizationService: OrganizationService,
+		private organisationService: OrganisationService,
 		public breakpointObserver: BreakpointObserver,
 		private filterService: FiltersService,
 		private citiesandcounties: CitiesCountiesService
@@ -40,7 +40,7 @@ export class NgodashboardComponent implements OnInit {
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
 	ngOnInit() {
-		this.pager = this.organizationService.getPager();
+		this.pager = this.organisationService.getPager();
 		this.getData();
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
@@ -58,7 +58,7 @@ export class NgodashboardComponent implements OnInit {
 		this.getData();
 	}
 	getData() {
-		this.organizationService.getOrganizations(this.pager).subscribe(element => {
+		this.organisationService.getorganisations(this.pager).subscribe(element => {
 			this.Ngosdata = element.data;
 			this.pagerTotal = element.pager.total;
 		});

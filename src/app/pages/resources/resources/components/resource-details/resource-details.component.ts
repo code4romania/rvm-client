@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrganizationService } from '@app/pages/organizations/organizations.service';
 
 
 @Component({
-	selector: 'app-resourcedetails',
-	templateUrl: './resourcedetails.component.html',
-	styleUrls: ['./resourcedetails.component.scss']
+	selector: 'app-resource-details',
+	templateUrl: './resource-details.component.html',
+	styleUrls: ['./resource-details.component.scss']
 })
 export class ResourcedetailsComponent implements OnInit {
 	data: any;
-	organizations: any[] = null;
+	organisations: any[] = null;
 	resid: string;
+	pager: any = {};
+	pagerTotal: string;
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute,
 				private router: Router) {
@@ -28,12 +29,16 @@ export class ResourcedetailsComponent implements OnInit {
 			this.router.navigateByUrl('/resources');
 		});
 	}
+	sortChanged(pager: any) {
+		this.pager = pager;
+		this.getData();
+	}
 	getData() {
-		this.resourceService.getResource((this.resid)).subscribe((data) => {
+		this.resourceService.getResource(this.resid).subscribe((data) => {
 			this.data = data;
-			this.organizations = [data.organisation];
-			// this.resourceService.getOrganizationbyResources(data.name).subscribe((resdata) => {
-			// 	this.organizations = resdata;
+			this.organisations = [data.organisation];
+			// this.resourceService.getorganisationbyResources(data.name).subscribe((resdata) => {
+			// 	this.organisations = resdata;
 			// 	console.log(resdata);
 			// });
 		});

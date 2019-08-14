@@ -9,7 +9,21 @@ import { HttpClient } from '@angular/common/http';
 export class UsersService {
 
 	constructor(private httpClient: HttpClient) {}
+	pager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
 
+	getPager() {
+		return {...this.pager};
+	}
 	/**
 	 * post a new User to website, auto add Header
 	 */
@@ -21,16 +35,26 @@ export class UsersService {
 	 * get all Users
 	 */
 	getUsers(paginationObj?: any): Observable<any> {
-		let params = {};
+		let params: any = {};
 		params = {...params, ...paginationObj};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
 		return this.httpClient.get('/users', { params: params });
 	}
 
 	/**
 	 * get User by id
 	 */
-	getUser(id: string): Observable<any> {
-		return this.httpClient.get(`/users/${id}`);
+	getUser(id: string, paginationObj?: any): Observable<any> {
+		let params: any = {};
+		params = {...params, ...paginationObj};
+		return this.httpClient.get(`/users/${id}`, {params: params});
 	}
 
 	/**

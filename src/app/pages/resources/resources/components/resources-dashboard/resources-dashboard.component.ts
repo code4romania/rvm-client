@@ -4,14 +4,15 @@ import { ResourcesService } from '../../../resources.service';
 import { FiltersService, CitiesCountiesService } from '../../../../../core/service';
 
 @Component({
-	selector: 'app-resourcesdashboard',
-	templateUrl: './resourcesdashboard.component.html',
-	styleUrls: ['./resourcesdashboard.component.scss']
+	selector: 'app-resources-dashboard',
+	templateUrl: './resources-dashboard.component.html',
+	styleUrls: ['./resources-dashboard.component.scss']
 })
 export class ResourcesdashboardComponent implements OnInit {
 	resourcesData: any[] = [];
 	pager: any = {};
 	pagerTotal = 0;
+	displayBlock = false;
 	multiselectconfig = {
 		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
 		search: true, // true/false for the search functionlity defaults to false,
@@ -51,7 +52,7 @@ export class ResourcesdashboardComponent implements OnInit {
 				return {id: elem.type_name, name: elem.type_name};
 				});
 		});
-		this.filterService.getOrganizationsFilters().subscribe((data) => {
+		this.filterService.getorganisationsFilters().subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 				});
@@ -78,5 +79,14 @@ export class ResourcesdashboardComponent implements OnInit {
 			this.resourcesData = data.data;
 			this.pagerTotal = data.pager.total;
 		});
+	}
+	switchtolist() {
+		this.displayBlock = false;
+	}
+	/**
+	 * set class of display element with grid view
+	 */
+	switchtoblock() {
+		this.displayBlock = true;
 	}
 }

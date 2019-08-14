@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrganizationsComponent } from './organizations/organizations.component';
-import { NgodashboardComponent } from './organizations/components/ngodashboard/ngodashboard.component';
-import { NgoaddComponent } from './organizations/components/ngoadd/ngoadd.component';
-import { NgodetailsComponent } from './organizations/components/ngodetails/ngodetails.component';
-import { OrganizationService } from './organizations.service';
-import { OrganizationsRoutingModule } from './organizations.routing';
+import { OrganisationsComponent } from './organisations/organisations.component';
+import { NgodashboardComponent } from './organisations/components/ngodashboard/ngodashboard.component';
+import { NgoaddComponent } from './organisations/components/ngoadd/ngoadd.component';
+import { NgodetailsComponent } from './organisations/components/ngodetails/ngodetails.component';
+import { OrganisationService } from './organisations.service';
+import { organisationsRoutingModule } from './organisations.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../shared/shared.module';
 import { SelectDropDownModule } from 'custom-select-dropdown';
 @NgModule({
 	declarations: [
-		OrganizationsComponent,
+		OrganisationsComponent,
 		NgodetailsComponent,
 		NgoaddComponent,
 		NgodashboardComponent,
@@ -24,16 +24,16 @@ import { SelectDropDownModule } from 'custom-select-dropdown';
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,
-		OrganizationsRoutingModule,
+		organisationsRoutingModule,
 	],
 	entryComponents: [
 
 	],
 	providers: [
-		OrganizationService
+		OrganisationService
 	]
 })
 
-export class OrganizationsModule {
+export class OrganisationsModule {
 
 }
