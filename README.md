@@ -36,7 +36,7 @@ Yarn
 ### Database technology & provider
 
 ## Repos and projects
-
+TBD
 API: https://github.com/code4romania/rvm-api
 
 ## Deployment
