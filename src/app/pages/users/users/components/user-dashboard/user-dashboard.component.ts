@@ -74,11 +74,13 @@ export class UserDashboardComponent implements OnInit {
 				role: ['', Validators.required]
 			});
 	}
+
 	getRole(id: string) {
 		for (const elem of this.roles) {
 			if (elem.id === parseInt(id, 10)) { return elem.name; }
 		}
 	}
+
 	addUser(content: any) {
 		if (this.isDSU) {
 			this.modalService.open(content, { centered: true });

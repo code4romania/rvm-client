@@ -27,7 +27,7 @@ export class VolunteerDashboardComponent implements OnInit {
 		searchOnKey: 'name', // key on which search should be performed this will be selective search.
 							// if undefined this will be extensive search on all keys
 		};
-		locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
+		locationconfig = {...{placeholder: 'Locație'}, ...this.multiselectconfig};
 		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 		ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
@@ -39,9 +39,11 @@ export class VolunteerDashboardComponent implements OnInit {
 	isNGO = false;
 	isDSU = false;
 	isINSTITUT = false;
+
 	constructor(private volunteerService: VolunteerService, public breakpointObserver: BreakpointObserver,
 			private citiesandcounties: CitiesCountiesService, private filterService: FiltersService,
 			private authService: AuthenticationService, private router: Router) { }
+
 	ngOnInit() {
 		switch (this.authService.role) {
 			case '1':
@@ -56,26 +58,31 @@ export class VolunteerDashboardComponent implements OnInit {
 			default:
 				break;
 		}
+
 		this.pager = this.volunteerService.getPager();
 		if (this.isNGO) {
 			// TO-DO cu filtre DE LA backend
 			this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
 		}
+
 		this.getData();
 		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
 			return {id: value, name: value};
 		});
+
 		this.filterService.getOrganisationsFilters().subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 				});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
+
 		this.filterService.getVolunteerTypeFilters().subscribe((data) => {
 			this.typeFilterValues = data.map((elem: any) => {
 				return {id: elem.type_name, name: elem.type_name};
 				});
 		});
+
 		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};

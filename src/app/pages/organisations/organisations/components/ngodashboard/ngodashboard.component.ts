@@ -8,7 +8,7 @@ import { FiltersService, CitiesCountiesService } from '@app/core';
 	styleUrls: ['./ngodashboard.component.scss']
 })
 export class NgodashboardComponent implements OnInit {
-	Ngosdata: any = [];
+	ngosData: any = [];
 	pager: any = {};
 	pagerTotal = 0;
 	displayBlock = true;
@@ -24,7 +24,7 @@ export class NgodashboardComponent implements OnInit {
 		searchOnKey: 'name', // key on which search should be performed this will be selective search.
 							// if undefined this will be extensive search on all keys
 		};
-		locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
+		locationconfig = {...{placeholder: 'Locație'}, ...this.multiselectconfig};
 		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
 
@@ -40,6 +40,7 @@ export class NgodashboardComponent implements OnInit {
 	/**
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
+
 	ngOnInit() {
 		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
 			return {id: value, name: value};
@@ -55,7 +56,9 @@ export class NgodashboardComponent implements OnInit {
 			});
 		});
 		this.pager = this.organisationService.getPager();
+
 		this.getData();
+
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
 			.subscribe(result => {
@@ -64,27 +67,31 @@ export class NgodashboardComponent implements OnInit {
 				}
 			});
 	}
+
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
+
 	getData() {
 		this.organisationService.getorganisations(this.pager).subscribe(element => {
-			this.Ngosdata = element.data;
+			this.ngosData = element.data;
 			this.pagerTotal = element.pager.total;
 		});
 	}
+
 	filterChanged = (data?: any, id?: string) => {
-		console.log(data);
 		this.pager.filters[1] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
 		this.getData();
 	}
+
 	/**
 	 * set class of display element with list view
 	 */
 	switchtolist() {
 		this.displayBlock = false;
 	}
+
 	/**
 	 * set class of display element with grid view
 	 */

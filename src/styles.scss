@@ -216,7 +216,8 @@ body {
 	th {
         padding: 15px;
         border:none;
-        border-bottom: 1px solid black;
+		border-bottom: 1px solid black;
+		cursor: pointer;
 	}
 	
     td {
@@ -297,17 +298,26 @@ body {
 		border: none;
 	}
 }
+
 @media (max-width: 1199px) {
     .btn-adjusting {
         width: min-content;       
     }
 }
+
 .navbar .add-btn{
 	white-space: normal;
     height: auto;
 }
 @media (max-width: 767px) {
-    .hidden-radio{
+	
+	.hidden-radio {
         display: none !important;
     }
+}
+
+.card-title {
+	height: 50px;
+	line-height: 25px;
+	overflow: hidden;
 }

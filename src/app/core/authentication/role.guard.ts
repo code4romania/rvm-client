@@ -26,12 +26,14 @@ export class RoleGuard implements CanActivate {
 				return true;
 			}
 		}
-			// } else if (i === roles.length - 1) {
+
 		this.router.navigate(['/'], {
 			replaceUrl: true
 		});
+
 		return false;
 	}
+
 	translate(text: string): string {
 		switch (text) {
 			case 'INSTITUT':

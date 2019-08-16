@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit {
 			name: ['', Validators.required],
 			email: ['', [ Validators.required, EmailValidation.emailValidation ]],
 			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
-			admin_at: ['']
+			institution: ['']
 		});
 
 		if (this.route.snapshot.paramMap.get('role')) {
@@ -61,6 +61,10 @@ export class AddUserComponent implements OnInit {
 
 		if (this.role) {
 			this.user.role = this.role;
+
+			if (this.role === '1') {
+				this.user.institution = this.form.value.institution;
+			}
 		}
 
 		if (this.user._id) {

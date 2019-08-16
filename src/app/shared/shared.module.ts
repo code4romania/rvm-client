@@ -9,6 +9,7 @@ import { SpinnerComponent } from '@app/shared/spinner.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonLoaderComponent } from '@app/shared/button-loader';
 import { TableSortDirective } from './table-sort/table-sort.directive';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 const list = [
 	SpinnerComponent,
@@ -17,6 +18,7 @@ const list = [
 	FullComponent,
 	ButtonLoaderComponent,
 	TableSortDirective,
+	BackButtonComponent
 ];
 
 @NgModule({
@@ -27,7 +29,7 @@ const list = [
 		NgbModule,
 		ReactiveFormsModule
 	],
-	declarations: [...list],
+	declarations: [...list, BackButtonComponent],
 	exports: [...list],
 	entryComponents: [],
 	providers: []

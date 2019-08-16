@@ -166,7 +166,7 @@ export class AddResourceComponent implements OnInit {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeti Orasul';
+			this.cityPlaceholder = 'Alegeți Orașul';
 		});
 	}
 	// selectedorganisation() {
@@ -194,7 +194,7 @@ export class AddResourceComponent implements OnInit {
 		// this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			// this.cities = k;
 			this.form.controls.subcat.enable();
-			this.resourcePlaceholder = 'Alegeti Resursa';
+			this.resourcePlaceholder = 'Alegeți Resursă';
 		// });
 	}
 }

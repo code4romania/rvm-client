@@ -36,25 +36,35 @@
     <div *ngIf="displayBlock; else displayList" class="cardlist row mt-2">
         <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
-                <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
+          
                     <div class="card-body">
-                        <h4 class="card-title">{{ elem.name }}</h4>
-                        <div class="card-text row"> 
-                            <span class="col-md-12">
-                                <i class="fa fa-envelope"></i>
-                                {{ elem.email }}
-                            </span>
-                            <span class="col-md-12">
-                                <i class="fa fa-phone"></i>
-                                {{ elem.phone }}
-                            </span>
-                            <span class="col-md-12">
-                                <i class="fa fa-university"></i>
-                                {{ elem.admin_at }}
-                            </span>
-                        </div>                       
+                        <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
+                            <h4 class="card-title">{{ elem.name }}</h4>
+                            <div class="card-text row"> 
+                                <span class="col-md-12" *ngIf="elem.email">
+                                    <i class="fa fa-envelope"></i>
+                                    {{ elem.email }}
+                                </span>
+                                <span class="col-md-12">
+                                    <i class="fa fa-phone" *ngIf="elem.phone"></i>
+                                    {{ elem.phone }}
+                                </span>
+                            </div>
+                        </a>
+                        
+                        <span *ngIf="elem.organisation"> Organizație
+                            <a class="col-md-12 d-block btn btn-fix text-left" href="../organisations/id/{{elem.organisation?._id}}">
+                                elem.organisation
+                            </a>
+                        </span>
+
+                        <span *ngIf="elem.institution"> Instituție
+                            <a class="col-md-12 d-block btn btn-fix text-left">
+                                elem.institution
+                            </a>
+                        </span>
                     </div>
-                </a>
+
             </div>
         </div>
     </div>

@@ -202,7 +202,7 @@ export class AddVolunteerComponent implements OnInit {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeti Orasul';
+			this.cityPlaceholder = 'Alegeți Orașul';
 		});
 	}
 

@@ -1,31 +1,17 @@
 import {
 	Component,
 	OnInit,
-	Directive,
-	Input,
-	EventEmitter,
-	Output,
-	ViewChild,
-	TemplateRef
 } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { OrganisationService } from '../../../organisations.service';
-import { NgbModal, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
 	FormGroup,
-	FormControl,
 	Validators,
 	FormBuilder
 } from '@angular/forms';
 import { AuthenticationService } from '../../../../../core/authentication/authentication.service';
 
-import { Observable, Subject, merge, of } from 'rxjs';
-import {
-	debounceTime,
-	distinctUntilChanged,
-	filter,
-	map
-} from 'rxjs/operators';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 
@@ -67,8 +53,10 @@ export class NgodetailsComponent implements OnInit {
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		private resourceService: ResourcesService
-	) {
-		this.counties = citiesandCounties.getCounties();
+	) {	}
+
+	ngOnInit() {
+		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			_id: '',
 			type_name: ['', Validators.required],
@@ -78,9 +66,9 @@ export class NgodetailsComponent implements OnInit {
 			county: ['', Validators.required],
 			comments: ''
 		});
+
 		this.ngoid = this.route.snapshot.paramMap.get('id');
-	}
-	ngOnInit() {
+
 		switch (this.authService.role) {
 			case '2':
 				this.isNGO = true;
@@ -91,6 +79,7 @@ export class NgodetailsComponent implements OnInit {
 			default:
 				break;
 		}
+
 		this.pager = this.organisationService.getPager();
 		this.getData();
 		this.getResources();
@@ -148,6 +137,7 @@ export class NgodetailsComponent implements OnInit {
 		};
 		this.router.navigateByUrl('/resources/add', navigationExtras);
 	}
+
 	// openVerticallyCentered(content: any) {
 	// 	this.modalService.open(content, { centered: true });
 	// }
@@ -190,7 +180,7 @@ export class NgodetailsComponent implements OnInit {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeti Orasul';
+			this.cityPlaceholder = 'Alegeți Orașul';
 		});
 	}
 }

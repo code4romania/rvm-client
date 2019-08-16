@@ -1,10 +1,8 @@
 <div class="container mt-5">
-	<nav
-		class="navbar navbar-expand-lg justify-content-between navbar-light my-5"
-	>
-		<a [routerLink]="['/add']" class="mb-2"> << Back </a>
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<app-back-button></app-back-button>
 	</nav>
-	<p class="page-title">Adauga voluntar:</p>
+	<p class="page-title">Adaugă voluntar:</p>
 
 	<div class="note col-md-6">
 		<span>
@@ -17,14 +15,7 @@
 		<button class="btn btn-success mt-4 btn-import">
 			Importați un fișier CSV
 		</button>
-		<input
-			type="file"
-			#csvReader
-			name="Upload CSV"
-			id="txtFileUpload"
-			(change)="uploadListener($event)"
-			accept=".csv"
-			class="import-csv"
-		/>
+		<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
+			accept=".csv" class="import-csv" />
 	</div>
 </div>

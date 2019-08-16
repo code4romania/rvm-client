@@ -32,7 +32,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		selectAllText: 'Select All'
 		};
 	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
-	locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
+	locationconfig = {...{placeholder: 'Locație'}, ...this.multiselectconfig};
 	ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 	typefilterResult: any[] = [];
 	locationfilterResult: any[] = [];

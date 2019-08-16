@@ -1,8 +1,8 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-        <a [routerLink]="['/volunteers']" class="mb-2"> << Back </a> 
+        <app-back-button></app-back-button>
             <div class="mx-2 my-sm-0" *ngIf="hasAccreditation;">
-                <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button>
+                <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button>
             </div>
             <div class="mx-2 my-sm-0">
                 <button (click)="edit()" class="btn btn-info"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
@@ -13,12 +13,12 @@
             
             <span class="col-md-12"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
             <span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
-            <span class="col-md-12"><b>Organizatie: </b> {{data?.organisation.name}}</span>
+            <span class="col-md-12"><b>Organizație: </b> {{data?.organisation.name}}</span>
             <span class="col-md-12"><b>Localizare: </b>{{data?.city}}</span>
             <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
             <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
             <div class="col-md-12">
-                <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
+                <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu existâ' }}</span>
                 <button class="btn mx-4 btn-info d-block"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Trimite Notificare</button>
             </div>
     </div>
@@ -55,7 +55,7 @@
                     </div>
                 <ng-template #noAccreditation>
                     <span>Aceast voluntar nu are nicio accreditare adaugata in sistem </span>
-                    <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Acreditare</button> -->
+                    <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button> -->
                 </ng-template>
                 </ng-template>
             </ngb-tab>

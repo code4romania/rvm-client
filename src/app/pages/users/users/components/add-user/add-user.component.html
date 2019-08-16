@@ -1,9 +1,7 @@
 <div class="container mt-5">
 	<nav
 		class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-		<a [routerLink]="['/users']" class="mb-2">
-			<< Back
-		</a>
+		<app-back-button></app-back-button>
 	</nav>
     <p class="page-title">Adaugă un utilizator:</p>
     
@@ -45,7 +43,7 @@
 					<div class="form-group">
 						<label>Insituție</label>
 						<input
-							formControlName="admin_at"
+							formControlName="institution"
 							class="form-control"
 							type="text"
 						/>

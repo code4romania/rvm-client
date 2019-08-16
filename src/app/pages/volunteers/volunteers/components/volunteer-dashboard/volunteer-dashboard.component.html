@@ -6,82 +6,98 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta"
+                    aria-describedby="basic-addon1">
             </div>
-            <div class="btn-group btn-group-toggle m-2 hidden-radio"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
-                    <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
-                        <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
-                    </label>
-                    <label ngbButtonLabel (click)="switchtolist()" class="btn btn-primary">
-                        <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
-                    </label>
-                </div>
+            <div class="btn-group btn-group-toggle m-2 hidden-button" ngbRadioGroup name="radioBasic"
+                [(ngModel)]="displayBlock">
+                <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
+                </label>
+                <label ngbButtonLabel (click)="switchtolist()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
+                </label>
+            </div>
             <button *ngIf ="isDSU||isNGO" (click)="addvolunteer()"  class="add-btn btn-adjusting btn btn-info btn-rounded m-2">
-                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Voluntar
+                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Voluntar
             </button>
         </div>
     </nav>
-    <div class="filters row" >
-            <span class='padding-rem'>Total: {{pagerTotal}}</span>
-            <span class='padding-rem'>&nbsp;&nbsp;</span>
-            <span class='padding-rem'>Filtreaza dupa: &nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
-            <span class="vertical-bar">&nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
-            <span class="vertical-bar">&nbsp;</span>
-            <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
-            <span class="vertical-bar">&nbsp;</span>
-		    <ngx-select-dropdown (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
-        </div>
+    <div class="filters row">
+        <span class='padding-rem'>Total: {{pagerTotal}}</span>
+        <span class='padding-rem'>&nbsp;&nbsp;</span>
+        <span class='padding-rem'>Filtrează după: &nbsp;</span>
+        <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
+            [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true"
+            [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
+            [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-select-dropdown (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
+            [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
+    </div>
+
     <div *ngIf="displayBlock; else displayList" class="mt-5 cardlist row">
         <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
-                <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
-                    <div class="card-body">
+                <div class="card-body">
+                    <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
                         <h4 class="card-title">{{elem.name}}</h4>
-                        <div class="card-text row"> 
-                            <span class="col-md-12">{{elem.email}}</span>
-                            <span class="col-md-12" >{{elem.phone}}</span>
-                            </div>
-                        <span>Organizatie: <a>{{elem.organisation.name}}</a></span>
-                       
-                    </div>
-                </a>
+                        <div class="card-text row">
+                            <span class="col-md-12" *ngIf="elem.email">
+                                <i class="fa fa-envelope"></i>
+                                {{ elem.email }}
+                            </span>
+                            <span class="col-md-12">
+                                <i class="fa fa-phone" *ngIf="elem.phone"></i>
+                                {{ elem.phone }}
+                            </span>
+                        </div>
+                    </a>
+                    <span>Organizație:
+                        <a href="../organisations/id/{{elem.organisation._id}}">{{elem.organisation.name}}</a>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
+
     <ng-template #displayList>
         <div class="table-responsive">
-        <table class="table customTable table-sm">
-            <thead>
-                <tr>
-                    <!-- sortable="name" (sort)="onSort($event)" -->
-                    <th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume</th>
-                    <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Locatie</th>
-                    <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Organizatie</th>
-                    <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">Profesie</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let res of volunteersData">
-                    <!-- <tr> -->
+            <table class="table customTable table-sm">
+                <thead>
+                    <tr>
+                        <!-- sortable="name" (sort)="onSort($event)" -->
+                        <th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">
+                            Nume</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
+                            Locație</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
+                            Organizație</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
+                            Profesie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of volunteersData">
+                        <!-- <tr> -->
                         <td>{{res.name}}</td>
                         <td>{{res.city}}, {{res.county}}</td>
                         <td>{{res.organisation.name}}</td>
                         <td>{{res.job}}</td>
                         <!-- <td>{{res.updated_at}}</td> -->
-                        <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+                        <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi
+                                detalii</button></td>
                     </tr>
-                
-            </tbody>
-        </table>
+
+                </tbody>
+            </table>
         </div>
-        <ngb-pagination
-            [(page)]="pager.page"
-            [pageSize]="pager.size"
-            (pageChange)="getData()"
+        <ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
             [collectionSize]="pagerTotal">
         </ngb-pagination>
     </ng-template>
 </div>
-    
