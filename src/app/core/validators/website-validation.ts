@@ -3,11 +3,12 @@ import { AbstractControl } from '@angular/forms';
 export class WebsiteValidation {
 	static websiteValidation(abstractControl: AbstractControl): any {
 		const website = abstractControl.value;
-		// const reg = new RegExp('^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}');
-		const reg = new RegExp('^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\.-_~:/?#[\]@!\$&\',;=.]+$');
-
-		console.log(website);
-		console.log(reg.test(website));
+		const reg = new RegExp('^(https?:\\/\\/)?' + // protocol
+		'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+		'((\\d{1,3}\\.){3}\\d{1,3}))' + // ip (v4) address
+		'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port
+		'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+		'(\\#[-a-z\\d_]*)?$', 'i');
 		if (reg.test(website)) {
 			return null;
 		}
