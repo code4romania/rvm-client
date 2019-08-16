@@ -10,7 +10,8 @@ import {
 	AuthenticationGuard,
 	AuthenticationService,
 	AnonymousGuard,
-	RoleGuard
+	RoleGuard,
+	RedirectGuard
 } from '@app/core/authentication';
 import {
 	ApiPrefixInterceptor,
@@ -37,6 +38,7 @@ import {
 		AuthenticationService,
 		AuthenticationGuard,
 		AnonymousGuard,
+		RedirectGuard,
 		RoleGuard,
 		ApiPrefixInterceptor,
 		FiltersService,

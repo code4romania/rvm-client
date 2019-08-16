@@ -67,7 +67,7 @@
 							<td>{{res.quantity}}</td>
 							<td>1</td>
 							<!-- <td>{{res.updated_at}}</td> -->
-							<td *ngIf="isDSU" class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+							<td *ngIf="authService.is('DSU')" class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
 						</tr>
 					
 				</tbody>

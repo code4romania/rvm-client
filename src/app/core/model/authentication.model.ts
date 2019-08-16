@@ -26,10 +26,11 @@ declare namespace Authentication {
 		email: string;
 		createdAt: Date;
 		updatedAt: Date;
+		organisation?: any;
 	}
 
 	export interface Credentials {
 		token: string;
-		role: string;
+		user: User;
 	}
 }

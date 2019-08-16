@@ -91,9 +91,7 @@ export class AddVolunteerComponent implements OnInit {
 	ngOnInit() {
 		if (this.authService.role === '2') {this.orgDisabled = true; }
 		this.counties = this.citiesandCounties.getCounties();
-		this.authService.profile().subscribe((response) => {
-			this.currentUserId = response._id;
-		});
+		this.currentUserId = this.authService.user._id;
 	}
 
 	get f() {

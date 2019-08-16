@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,13 +12,14 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { CurrentProfileComponent } from './top-bar/components/current-profile/current-profile.component';
+import { NotFoundComponent } from './pages/404';
 
 @NgModule({
 	declarations: [
 		CurrentProfileComponent,
 		TopBarComponent,
 		AppComponent,
-
+		NotFoundComponent
 	],
 	imports: [
 		FormsModule,

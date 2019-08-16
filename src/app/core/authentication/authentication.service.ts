@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, forkJoin } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { LocalStorageService } from '@app/core/local-storage.service';
 
@@ -15,6 +15,9 @@ const credentialsKey = 'credentials';
 export class AuthenticationService {
 	private _credentials: Authentication.Credentials | null;
 	public credentials$ = new EventEmitter<Authentication.Credentials>();
+
+	private roles = ['OFF', 'INS', 'NGO', 'DSU'];
+	private homes = ['', 'users', 'organisations/id/:id', 'organisations'];
 
 	constructor(
 		private httpClient: HttpClient,
@@ -38,13 +41,11 @@ export class AuthenticationService {
 	 */
 	login(
 		payload: Authentication.LoginPayload
-	): Observable<Authentication.Credentials> {
-		return this.httpClient.post('/login', payload).pipe(
-			map((body: Authentication.Credentials) => {
-				this.setCredentials(body);
-				return body;
-			})
-		);
+	): Observable<any> {
+
+		return this.httpClient.post('/login', payload).pipe( switchMap((credential: any) => {
+				return this.profile(credential);
+			}));
 	}
 	/**
 	 *
@@ -67,16 +68,12 @@ export class AuthenticationService {
 	 *
 	 * @returns The profile of the currently logged in user
 	 */
-	profile(): Observable<Authentication.User> {
-		const header = {
-			headers: new HttpHeaders().set(
-				'Authorization',
-				`Bearer ${this.accessToken}`
-			)
-		};
-		return this.httpClient.get('/profile', header).pipe(
+	profile(accessToken: any): Observable<Authentication.User> {
+		this.setCredentials(accessToken);
+
+		return this.httpClient.get('/profile').pipe(
 			map((body: Authentication.User) => {
-				const newobj = {token: this.accessToken, role: body.role};
+				const newobj = {...accessToken, user: body};
 				this.setCredentials(newobj);
 				return body;
 			})
@@ -88,13 +85,7 @@ export class AuthenticationService {
 	 * @return {Observable<boolean>} True if the user was logged out successfully.
 	 */
 	logout(): Observable<boolean> {
-		const header = {
-			headers: new HttpHeaders().set(
-				'Authorization',
-				`Bearer ${this.accessToken}`
-			)
-		};
-		return this.httpClient.get('/logout', header).pipe(
+		return this.httpClient.get('/logout').pipe(
 			map(() => {
 				this.setCredentials();
 				return true;
@@ -108,7 +99,7 @@ export class AuthenticationService {
 	 * @return {boolean} True if the user is authenticated.
 	 */
 	isAuthenticated(): boolean {
-		return !!this.credentials;
+		return !!this.credentials && !!this.credentials.user;
 	}
 
 	/**
@@ -126,11 +117,54 @@ export class AuthenticationService {
 	 * @return {string} The auth token is null if user is not authenticated.
 	 */
 	get accessToken(): string | null {
-		return this.credentials ? this.credentials.token : null;
+		if (!this._credentials || !this._credentials.token) {
+			return;
+		}
+		console.log(this._credentials);
+		return this._credentials.token;
 	}
-	get role(): string | null {
-		return this.credentials ? this.credentials.role : null;
+
+	get accessLevel(): any {
+		if (!this.isAuthenticated()) {
+			return;
+		}
+		return this._credentials.user.role;
 	}
+
+	get role() {
+		if (!this.isAuthenticated()) {
+			return;
+		}
+		return this.roles[this.accessLevel] ? this.roles[this.accessLevel] : 'OFF';
+	}
+
+	get user(): any | null {
+		if (!this.isAuthenticated()) {
+			return;
+		}
+
+		return this._credentials.user;
+	}
+
+	public is(...roles: string[]) {
+		if (!this.isAuthenticated()) {
+			return false;
+		}
+
+		return roles.indexOf(this.role) > -1;
+	}
+
+
+	public homePath() {
+		if (!this.isAuthenticated()) {
+			return '';
+		}
+
+		return this.homes[this.accessLevel].replace(':id', this._credentials.user.organisation);
+	}
+
+
+
 
 	/**
 	 * Sets the user credentials.
@@ -148,20 +182,6 @@ export class AuthenticationService {
 		} else {
 			this.localStorageService.clearItem(credentialsKey);
 		}
-	}
-
-	/**
-	 * @return Current user's role
-	 */
-	public getRole() {
-		this.profile().subscribe(
-			(user: any) => {
-				return user.role;
-			},
-			(error: any) => {
-				console.log('Profile error: ', error);
-			}
-		);
 	}
 
 	public recoverPassword(email: string) {

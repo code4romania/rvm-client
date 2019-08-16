@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 				})
 			)
 			.subscribe(
-				(credentials: Authentication.Credentials) => {
+				(user: any) => {
 					this.router.navigate(['/'], {
 						replaceUrl: true
 					});

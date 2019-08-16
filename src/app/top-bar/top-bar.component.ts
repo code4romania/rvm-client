@@ -8,30 +8,12 @@ import { Router } from '@angular/router';
 	styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-	isDSU = false;
-	isNGO = false;
-	isINSTITUT = false;
-	constructor(private authService: AuthenticationService, private router: Router) {
-		this.isDSU = false;
-		this.isNGO = false;
-		this.isINSTITUT = false;
+	constructor(public authService: AuthenticationService, private router: Router) {
+
 	}
 
 	ngOnInit() {
-		switch (this.authService.role) {
-			case '1':
-				this.isINSTITUT = true;
-				break;
-			case '2':
-				this.isNGO = true;
-				break;
-			case '3':
-				this.isDSU = true;
-				break;
 
-			default:
-				break;
-		}
 	}
 	logout() {
 		this.authService.logout().subscribe(

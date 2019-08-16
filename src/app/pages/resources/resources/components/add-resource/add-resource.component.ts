@@ -87,9 +87,7 @@ export class AddResourceComponent implements OnInit {
 	ngOnInit() {
 		if (this.authService.role === '2') {this.orgDisabled = true; }
 		this.counties = this.citiesandCounties.getCounties();
-		this.authService.profile().subscribe((response) => {
-			this.currentUserId = response._id;
-		});
+		this.currentUserId = this.authService.user._id;
 	}
 	formatter = (result: { name: string }) => result.name;
 	searchcounty = (text$: Observable<string>) => {

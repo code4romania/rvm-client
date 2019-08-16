@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
 
@@ -14,8 +14,15 @@ export class AuthenticationGuard implements CanActivate {
 	 *
 	 * else redirect to login
 	 */
-	canActivate(): boolean {
+	canActivate(route: ActivatedRouteSnapshot): boolean {
+		const isDashboard = !!route.data['dashboard'];
 		if (this.authenticationService.isAuthenticated()) {
+			if (isDashboard && (!route.children || !route.children.length)) {
+				// console.log(isDashboard, [this.authenticationService.homePath()]);
+				this.router.navigate(['/' + this.authenticationService.homePath()], {
+					replaceUrl: true
+				});
+			}
 			return true;
 		}
 

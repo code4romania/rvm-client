@@ -1,34 +1,63 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { BlankComponent } from '@app/shared';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { AuthenticationGuard, AnonymousGuard, RoleGuard } from './core';
+import { AuthenticationGuard, AnonymousGuard, RoleGuard, RedirectGuard } from './core';
 import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { NotFoundComponent } from './pages/404';
 
 const AppRoutes: Routes = [
 	{
 		path: '',
-		component: TopBarComponent,
+		data: {dashboard: true},
 		canActivate: [AuthenticationGuard],
 		children: [
 			{
-				path: '',
-				loadChildren:
-					'./pages/dashboard/dashboard.module#DashboardModule'
+				path: 'volunteers',
+				loadChildren: './pages/volunteers/volunteers.module#VolunteersModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO', 'INS']}
+			},
+			{
+				path: 'resources',
+				loadChildren: './pages/resources/resources.module#ResourcesModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
+				path: 'organisations',
+				loadChildren: './pages/organisations/organisations.module#OrganisationsModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
+				path: 'map',
+				loadChildren: './pages/map/map.module#MapModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU']}
+			},
+			{
+				path: 'info',
+				loadChildren: './pages/info/info.module#InfoModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO', 'INS']}
+			},
+			{
+				path: 'users',
+				loadChildren: './pages/users/users.module#UsersModule',
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'INS']}
 			}
 		]
 	},
 	{
 		path: '',
-		component: BlankComponent,
 		canActivate: [AnonymousGuard],
-		children: [
-			{
-				path: '',
-				loadChildren:
-					'./pages/authentication/authentication.module#AuthenticationModule'
-			}
-		]
+		loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
+	},
+	{
+		path: '404',
+		component: NotFoundComponent
 	},
 	{ path: '**', redirectTo: '/404' }
 ];

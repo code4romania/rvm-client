@@ -42,27 +42,15 @@ export class ResourcesdashboardComponent implements OnInit {
 	typeFilterValues: any[] = [];
 	NGOFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
-	isNGO = false;
-	isDSU = false;
 	navigationExtras: any;
 	constructor(private resourceService: ResourcesService, private filterService: FiltersService,
 		private citiesandCounties: CitiesCountiesService,  public breakpointObserver: BreakpointObserver,
-		private authService: AuthenticationService, private router: Router) {
+		public authService: AuthenticationService, private router: Router) {
 
 	}
 	ngOnInit() {
-		switch (this.authService.role) {
-			case '2':
-				this.isNGO = true;
-				break;
-			case '3':
-				this.isDSU = true;
-				break;
-			default:
-				break;
-		}
 		this.pager = this.resourceService.getPager();
-		if (this.isNGO) {
+		if (this.authService.is('NGO')) {
 			// TO-DO cu filtre DE LA backend
 			this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
 		}
@@ -98,7 +86,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	}
 
 	addresource() {
-		if (this.isNGO) {
+		if (this.authService.is('NGO')) {
 			const navigationExtras = {
 				state: {
 					ngo: {
