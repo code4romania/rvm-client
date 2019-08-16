@@ -1,7 +1,7 @@
 <div class="container">
 		<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-			<a [routerLink]="['/organisations']" class="mb-2"> <<Back </a> 
-			<div class="form-inline">
+			<a *ngIf='isDSU' [routerLink]="['/organisations']" class="mb-2"> <<Back </a> 
+			<div class="form-inline ml-auto">
 				<div *ngIf="hasResources;">
 					<button (click)="addresource()" class="btn btn-info m-2 my-sm-0 d-block"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adauga Resurse</button>
 				</div>
@@ -15,12 +15,12 @@
 				<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data?.contact_person}}</h5>
 				<span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
 				<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
-				<span class="col-md-12"><b>Status organizatie:</b> {{data?.status || 'active' }}</span>
+				<span class="col-md-12"><b>Status organizatie:</b> {{data?.status || 'Active' }}</span>
 				<span class="col-md-12"><b>Total voluntari:</b> {{data?.voluntari || '0' }}</span>
 				<span class="col-md-12"><b>Acoperire:</b> {{data?.acoperire || 'Nationala' }}</span>
 				<div class="col-md-12">
 					<span><b>Data ultimului update: </b> {{data?.updated_at || 'Nu exista' }}</span>
-					<button class="btn mx-3 btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Trimite Notificare</button>
+					<button *ngIf='isDSU' class="btn mx-3 btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Trimite Notificare</button>
 				</div>
 		</div>
 		<div class="resource-list">
@@ -90,7 +90,7 @@
 											<td>{{res.city}}, {{res.county}}</td>
 											<td class="text-right">
 												<button class="btn btn-info m-1" (click)="editResource(res)">Editeaza</button>
-												<button class="btn btn-info m-1" [routerLink]="['/resources/id',res._id]">Vezi detalii</button>
+												<button  *ngIf='isDSU' class="btn btn-info m-1" [routerLink]="['/resources/id',res._id]">Vezi detalii</button>
 											</td>
 										</tr>
 								</tbody>

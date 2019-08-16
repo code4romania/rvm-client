@@ -15,6 +15,7 @@ declare namespace Authentication {
 
 	export interface User {
 		_id: string;
+		role: string;
 		firstName: string;
 		lastName: string;
 		emailVerified: boolean;
@@ -29,5 +30,6 @@ declare namespace Authentication {
 
 	export interface Credentials {
 		token: string;
+		role: string;
 	}
 }

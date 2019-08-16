@@ -11,16 +11,16 @@
 					<li>
 						<a routerLink='/volunteers' class="nav__link">Voluntari</a>
 					</li>
-					<li>
+					<li *ngIf='isDSU||isNGO'>
 						<a routerLink='/resources' class="nav__link">Resurse</a>
 					</li>
-					<li>
+					<li *ngIf='isDSU'>
 						<a routerLink='/organisations' class="nav__link">Organizatii</a>
 					</li>
-					<li>
+					<li *ngIf='isDSU||isINSTITUT'>
 						<a routerLink='/users' class="nav__link">Utilizatori</a>
 					</li>
-					<li>
+					<li *ngIf='isDSU'>
 						<a routerLink='/map' class="nav__link">Harta</a>
 					</li>
 					<li>
@@ -38,10 +38,10 @@
 								<button ngbDropdownItem routerLink='/'>Profil</button>
 								<button ngbDropdownItem>Setari</button>
 								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
-								<button ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
-								<button ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizatii</button>
-								<button ngbDropdownItem routerLink='/users' class="hidden-button">Utilizatori</button>
-								<button ngbDropdownItem routerLink='/map' class="hidden-button">Harta</button>
+								<button *ngIf='isDSU||isNGO' ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
+								<button *ngIf='isDSU' ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizatii</button>
+								<button *ngIf='isDSU||isINSTITUT'ngbDropdownItem routerLink='/users' class="hidden-button">Utilizatori</button>
+								<button *ngIf='isDSU' ngbDropdownItem routerLink='/map' class="hidden-button">Harta</button>
 								<button ngbDropdownItem routerLink='/info' class="hidden-button">Info</button>
 								<div class="dropdown-divider"></div>
 								<button ngbDropdownItem (click)="logout()">Delogare</button>

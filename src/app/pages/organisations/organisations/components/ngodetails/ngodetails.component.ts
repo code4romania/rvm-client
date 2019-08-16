@@ -55,6 +55,8 @@ export class NgodetailsComponent implements OnInit {
 	// focus1$ = new Subject<string>();
 	// click1$ = new Subject<string>();
 	ngoid: string;
+	isDSU = false;
+	isNGO = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -79,6 +81,16 @@ export class NgodetailsComponent implements OnInit {
 		this.ngoid = this.route.snapshot.paramMap.get('id');
 	}
 	ngOnInit() {
+		switch (this.authService.role) {
+			case '2':
+				this.isNGO = true;
+				break;
+			case '3':
+				this.isDSU = true;
+				break;
+			default:
+				break;
+		}
 		this.pager = this.organisationService.getPager();
 		this.getData();
 		this.getResources();

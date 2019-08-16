@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-user-dashboard',
@@ -21,7 +22,8 @@ export class UserDashboardComponent implements OnInit {
 	pager = {};
 	displayBlock = true;
 	form: FormGroup;
-
+	isINSTITUT = false;
+	isDSU = false;
 	roles = [
 		{
 			id: 0,
@@ -44,17 +46,27 @@ export class UserDashboardComponent implements OnInit {
 	constructor(private usersService: UsersService,
 		public breakpointObserver: BreakpointObserver,
 		private modalService: NgbModal,
-		private router: Router,
+		private router: Router, private authService: AuthenticationService,
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
+		switch (this.authService.role) {
+			case '1':
+				this.isINSTITUT = true;
+				break;
+			case '3':
+				this.isDSU = true;
+				break;
+			default:
+				break;
+		}
 		this.pager = this.usersService.getPager();
 		this.getData();
 		this.breakpointObserver.observe([
 			'(max-width: 768px)'
 				]).subscribe(result => {
 				if (result.matches) {
-					this.switchtolist();
+					this.switchtoblock();
 				}
 			});
 
@@ -68,7 +80,11 @@ export class UserDashboardComponent implements OnInit {
 		}
 	}
 	addUser(content: any) {
-		this.modalService.open(content, { centered: true });
+		if (this.isDSU) {
+			this.modalService.open(content, { centered: true });
+		} else {
+			this.router.navigateByUrl('/users/add/0');
+		}
 	}
 
 	getData() {

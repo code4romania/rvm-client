@@ -5,6 +5,7 @@ import { AddVolunteerComponent } from './volunteers/components/add-volunteer/add
 import { ImportVolunteersComponent } from './volunteers/components/import-volunteers/import-volunteers.component';
 import { VolunteerDashboardComponent } from './volunteers/components/volunteer-dashboard/volunteer-dashboard.component';
 import { VolunteerDetailsComponent } from './volunteers/components/volunteer-details/volunteer-details.component';
+import { RoleGuard } from '@app/core';
 const routes: Routes = [
 	{
 		path: '',
@@ -16,15 +17,21 @@ const routes: Routes = [
 			},
 			{
 				path: 'add',
-				component: AddVolunteerComponent
+				component: AddVolunteerComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'id/:id',
-				component: VolunteerDetailsComponent
+				component: VolunteerDetailsComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'import',
-				component: ImportVolunteersComponent
+				component: ImportVolunteersComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
 			}
 		]
 	}

@@ -21,6 +21,7 @@ import { merge } from 'rxjs';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
+import { PasswordValidation } from '@app/core/validators/password-validation';
 
 @Component({
 	selector: 'app-ngoadd',
@@ -48,7 +49,7 @@ export class NgoaddComponent implements OnInit {
 	ngOnInit() {
 		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
-			name: ['', Validators.required],
+			name: ['', ],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
 			contact_person: ['', Validators.required],
 			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],

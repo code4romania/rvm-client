@@ -76,6 +76,8 @@ export class AuthenticationService {
 		};
 		return this.httpClient.get('/profile', header).pipe(
 			map((body: Authentication.User) => {
+				const newobj = {token: this.accessToken, role: body.role};
+				this.setCredentials(newobj);
 				return body;
 			})
 		);
@@ -125,6 +127,9 @@ export class AuthenticationService {
 	 */
 	get accessToken(): string | null {
 		return this.credentials ? this.credentials.token : null;
+	}
+	get role(): string | null {
+		return this.credentials ? this.credentials.role : null;
 	}
 
 	/**

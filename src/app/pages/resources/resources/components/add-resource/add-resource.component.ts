@@ -66,7 +66,6 @@ export class AddResourceComponent implements OnInit {
 		if (navigation && navigation.extras && navigation.extras.state) {
 			const ngo = navigation.extras.state.ngo;
 			if (ngo) {
-				this.orgDisabled = true;
 				this.defaultOrgValue = ngo;
 				this.form.patchValue({
 					'organisation_id': ngo.ngoid
@@ -74,7 +73,6 @@ export class AddResourceComponent implements OnInit {
 			} else {
 				const resource = navigation.extras.state.resource as any;
 				if (resource) {
-					console.log(resource);
 					this.defaultOrgValue = resource.organisation;
 					this.form.controls.city.enable();
 					this.form.patchValue(resource);
@@ -87,6 +85,7 @@ export class AddResourceComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		if (this.authService.role === '2') {this.orgDisabled = true; }
 		this.counties = this.citiesandCounties.getCounties();
 		this.authService.profile().subscribe((response) => {
 			this.currentUserId = response._id;

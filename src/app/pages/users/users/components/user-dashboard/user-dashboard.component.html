@@ -1,14 +1,14 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <h4 class="navtitle mb-2"> Utilizatori </h4> 
-        <div class="form-inline">
+        <div class="form-inline ml-auto">
             <div class="input-group m-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta" aria-describedby="basic-addon1">
             </div>
-            <div class="btn-group btn-group-toggle m-2 hidden-button"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
+            <div class="btn-group btn-group-toggle m-2 hidden-radio"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
                 <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
                     <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
                 </label>
@@ -16,7 +16,7 @@
                     <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
                 </label>
             </div>
-            <button (click)="addUser(content)" style="white-space: normal;" class="  btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
+            <button (click)="addUser(content)" class=" add-btn btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
         </div>
     </nav>
     <!-- <div class="filters row">

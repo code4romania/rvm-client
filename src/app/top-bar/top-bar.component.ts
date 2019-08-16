@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentProfileComponent } from './components/current-profile/current-profile.component'
+import { CurrentProfileComponent } from './components/current-profile/current-profile.component';
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
 @Component({
@@ -8,10 +8,30 @@ import { Router } from '@angular/router';
 	styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-
-	constructor(private authService: AuthenticationService, private router: Router) { }
+	isDSU = false;
+	isNGO = false;
+	isINSTITUT = false;
+	constructor(private authService: AuthenticationService, private router: Router) {
+		this.isDSU = false;
+		this.isNGO = false;
+		this.isINSTITUT = false;
+	}
 
 	ngOnInit() {
+		switch (this.authService.role) {
+			case '1':
+				this.isINSTITUT = true;
+				break;
+			case '2':
+				this.isNGO = true;
+				break;
+			case '3':
+				this.isDSU = true;
+				break;
+
+			default:
+				break;
+		}
 	}
 	logout() {
 		this.authService.logout().subscribe(

@@ -302,3 +302,12 @@ body {
         width: min-content;       
     }
 }
+.navbar .add-btn{
+	white-space: normal;
+    height: auto;
+}
+@media (max-width: 767px) {
+    .hidden-radio{
+        display: none !important;
+    }
+}

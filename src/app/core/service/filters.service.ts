@@ -9,9 +9,13 @@ export class FiltersService {
 	getTypeFilters(): Observable<any> {
 		return this.http.get('/filter/resources/type_name');
 	}
-	getorganisationsFilters(): Observable<any> {
+	getOrganisationsFilters(): Observable<any> {
 		return this.http.get('/filter/organisations/name');
 	}
-
-
+	getSpecializationFilters(): Observable<any> {
+		return this.http.get('/filter/specialization/name');
+	}
+	getVolunteerTypeFilters(): Observable<any> {
+		return this.http.get('/filter/job/name');
+	}
 }

@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { ResourcesService } from '../../../resources.service';
 
 import { FiltersService, CitiesCountiesService } from '../../../../../core/service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthenticationService } from '@app/core';
+import { Router } from '@angular/router';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
 	selector: 'app-resources-dashboard',
@@ -38,21 +42,37 @@ export class ResourcesdashboardComponent implements OnInit {
 	typeFilterValues: any[] = [];
 	NGOFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
-
+	isNGO = false;
+	isDSU = false;
+	navigationExtras: any;
 	constructor(private resourceService: ResourcesService, private filterService: FiltersService,
-		private citiesandCounties: CitiesCountiesService) {
+		private citiesandCounties: CitiesCountiesService,  public breakpointObserver: BreakpointObserver,
+		private authService: AuthenticationService, private router: Router) {
 
 	}
 	ngOnInit() {
+		switch (this.authService.role) {
+			case '2':
+				this.isNGO = true;
+				break;
+			case '3':
+				this.isDSU = true;
+				break;
+			default:
+				break;
+		}
 		this.pager = this.resourceService.getPager();
-
+		if (this.isNGO) {
+			// TO-DO cu filtre DE LA backend
+			this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
+		}
 		this.getData();
 		this.filterService.getTypeFilters().subscribe((data) => {
 			this.typeFilterValues = data.map((elem: any) => {
 				return {id: elem.type_name, name: elem.type_name};
 				});
 		});
-		this.filterService.getorganisationsFilters().subscribe((data) => {
+		this.filterService.getOrganisationsFilters().subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 				});
@@ -61,6 +81,37 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.locationFilterValues = this.citiesandCounties.getCounties().map((value: String) => {
 			return {id: value, name: value};
 		});
+		this.breakpointObserver
+			.observe(['(max-width: 768px)'])
+			.subscribe(result => {
+				if (result.matches) {
+					this.switchtoblock();
+				}
+			});
+	}
+
+	getData() {
+		this.resourceService.getResources(this.pager).subscribe((data) => {
+			this.resourcesData = data.data;
+			this.pagerTotal = data.pager.total;
+		});
+	}
+
+	addresource() {
+		if (this.isNGO) {
+			const navigationExtras = {
+				state: {
+					ngo: {
+						// TO-DO: extragere informatiilor din contu utilizatorului
+						name: 'Curcea Rosie',
+						ngoid: '4a7d54364a7156b6c12e5492cb0016f1'
+					}
+				}
+			};
+			this.router.navigateByUrl('/resources/add', navigationExtras);
+		} else {
+			this.router.navigate(['resources/add']);
+		}
 	}
 
 	sortChanged(pager: any) {
@@ -74,12 +125,6 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.getData();
 	}
 
-	getData() {
-		this.resourceService.getResources(this.pager).subscribe((data) => {
-			this.resourcesData = data.data;
-			this.pagerTotal = data.pager.total;
-		});
-	}
 	switchtolist() {
 		this.displayBlock = false;
 	}

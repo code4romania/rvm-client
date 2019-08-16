@@ -70,7 +70,6 @@ export class AddVolunteerComponent implements OnInit {
 			const ngo = navigation.extras.state.ngo;
 			console.log(navigation.extras.state);
 			if (ngo) {
-				this.orgDisabled = true;
 				this.defaultOrgValue = ngo;
 				this.form.patchValue({
 					'organisation_id': ngo.ngoid
@@ -90,6 +89,7 @@ export class AddVolunteerComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		if (this.authService.role === '2') {this.orgDisabled = true; }
 		this.counties = this.citiesandCounties.getCounties();
 		this.authService.profile().subscribe((response) => {
 			this.currentUserId = response._id;

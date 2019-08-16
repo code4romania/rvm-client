@@ -27,9 +27,10 @@ export class NgodashboardComponent implements OnInit {
 		locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
 		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
-	typeFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
-	specializationFilterValues: any[] = [{id: 1, name: 'test'}, {id: 2, name: 'test1'}];
-	locationFilterValues: any[] = [{id: 'test', name: 'test'}, {id: 'test1', name: 'test1'}];
+
+	typeFilterValues: any[];
+	specializationFilterValues: any[];
+	locationFilterValues: any[];
 	constructor(
 		private organisationService: OrganisationService,
 		public breakpointObserver: BreakpointObserver,
@@ -40,18 +41,28 @@ export class NgodashboardComponent implements OnInit {
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
 	ngOnInit() {
+		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
+			return {id: value, name: value};
+		});
+		this.filterService.getTypeFilters().subscribe((data) => {
+			this.typeFilterValues = data.map((elem: any) => {
+				return {id: elem.type_name, name: elem.type_name};
+				});
+		});
+		this.filterService.getSpecializationFilters().subscribe((data) => {
+			this.specializationFilterValues = data.map((elem: any) => {
+				return {id: elem.name, name: elem.name};
+			});
+		});
 		this.pager = this.organisationService.getPager();
 		this.getData();
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
 			.subscribe(result => {
 				if (result.matches) {
-					this.switchtolist();
+					this.switchtoblock();
 				}
 			});
-		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
-			return {id: value, name: value};
-		});
 	}
 	sortChanged(pager: any) {
 		this.pager = pager;
