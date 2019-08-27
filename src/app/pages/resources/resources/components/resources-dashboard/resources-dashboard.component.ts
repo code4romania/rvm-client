@@ -15,7 +15,6 @@ import { IfStmt } from '@angular/compiler';
 export class ResourcesdashboardComponent implements OnInit {
 	resourcesData: any[] = [];
 	pager: any = {};
-	pagerTotal = 0;
 	displayBlock = false;
 	multiselectconfig = {
 		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
@@ -81,7 +80,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	getData() {
 		this.resourceService.getResources(this.pager).subscribe((data) => {
 			this.resourcesData = data.data;
-			this.pagerTotal = data.pager.total;
+			this.pager.total = data.pager.total;
 		});
 	}
 

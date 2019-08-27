@@ -22,14 +22,8 @@
                     class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Organizație</button>
         </div>
     </nav>
-    <!-- <div class="filters row" >
-        <span >{{count}}</span>
-        <span class='mx-2'></span>
-        <span >Sorteaza după &nbsp;</span>
-        
-    </div> -->
     <div class="filters row">
-        <span class='padding-rem'>Total: {{pagerTotal}}</span>
+        <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
         <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
@@ -78,10 +72,10 @@
                             Nume</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
                             Locație</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Nr.
-                            Voluntarii</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">Nr.
-                            Resurse</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
+                            Nr. Voluntarii</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
+                            Nr. Resurse</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,9 +92,12 @@
 
                 </tbody>
             </table>
-
-            <ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
-                [collectionSize]="pagerTotal">
+    
+            <ngb-pagination
+                [(page)]="pager.page"
+                [pageSize]="pager.size"
+                (pageChange)="getData()"
+                [collectionSize]="pager.total">
             </ngb-pagination>
         </div>
     </ng-template>

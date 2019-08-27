@@ -49,7 +49,7 @@
                                 [(page)]="pager.page"
                                 [pageSize]="pager.size"
                                 (pageChange)="getData()"
-                                [collectionSize]="pagerTotal">
+                                [collectionSize]="pager.total">
                             </ngb-pagination>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             [(page)]="pager.page"
                             [pageSize]="pager.size"
                             (pageChange)="getData()"
-                            [collectionSize]="pagerTotal">
+                            [collectionSize]="pager.total">
                         </ngb-pagination>
                     </div>
                 </div>

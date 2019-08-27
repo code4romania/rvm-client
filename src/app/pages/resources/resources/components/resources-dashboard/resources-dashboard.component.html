@@ -22,15 +22,15 @@
         </div>
     </nav>
 	<div class="filters row" >
-		<span class='padding-rem'>Total: {{pagerTotal}}</span>
-		<span class='padding-rem'>&nbsp;&nbsp;</span>
-		<span class='padding-rem'>Filtrează după: &nbsp;</span>
+		<span class="padding-rem">Total: {{pager.total}}</span>
+		<span class="padding-rem">&nbsp;&nbsp;</span>
+		<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
 		
 		<ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true" [config]="typeconfig" [options]="typeFilterValues">Type</ngx-select-dropdown>
 		<span class="vertical-bar">&nbsp;</span>
 		<ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true" [config]="locationconfig" [options]="locationFilterValues">Location</ngx-select-dropdown>
-		<span class="vertical-bar">&nbsp;</span>
-		<ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues">NGO</ngx-select-dropdown>
+		<span *ngIf="authService.is('DSU')" class="vertical-bar">&nbsp;</span>
+		<ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues">NGO</ngx-select-dropdown>
 	</div>
 	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-2">
         <div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
@@ -77,7 +77,7 @@
 			[(page)]="pager.page"
 			[pageSize]="pager.size"
 			(pageChange)="getData()"
-			[collectionSize]="pagerTotal">
+			[collectionSize]="pager.total">
 		</ngb-pagination>
 	</ng-template>
 </div>

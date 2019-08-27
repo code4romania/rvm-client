@@ -13,6 +13,7 @@ export class ResourcesService {
 		method: 'ASC',
 		page: 1,
 		size: 20,
+		total: 0,
 		filters: {}
 		// 	'1': 'adapostire',
 		// 	'3': 'bihor',

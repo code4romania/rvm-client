@@ -10,7 +10,6 @@ import { FiltersService, CitiesCountiesService } from '@app/core';
 export class NgodashboardComponent implements OnInit {
 	ngosData: any = [];
 	pager: any = {};
-	pagerTotal = 0;
 	displayBlock = true;
 	multiselectconfig = {
 		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
@@ -76,7 +75,7 @@ export class NgodashboardComponent implements OnInit {
 	getData() {
 		this.organisationService.getorganisations(this.pager).subscribe(element => {
 			this.ngosData = element.data;
-			this.pagerTotal = element.pager.total;
+			this.pager.total = element.pager.total;
 		});
 	}
 

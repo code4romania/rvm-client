@@ -13,7 +13,6 @@ export class ResourcedetailsComponent implements OnInit {
 	organisations: any[] = null;
 	resid: string;
 	pager: any = {};
-	pagerTotal: string;
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute,
 				private router: Router) {
@@ -31,7 +30,7 @@ export class ResourcedetailsComponent implements OnInit {
 	}
 	sortChanged(pager: any) {
 		this.pager = pager;
-		this.getData();
+	// 	this.getData();
 	}
 	getData() {
 		this.resourceService.getResource(this.resid).subscribe((data) => {

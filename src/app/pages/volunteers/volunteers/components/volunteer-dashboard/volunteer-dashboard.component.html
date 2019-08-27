@@ -24,7 +24,7 @@
         </div>
     </nav>
     <div class="filters row">
-        <span class='padding-rem'>Total: {{pagerTotal}}</span>
+        <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
         <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
@@ -36,7 +36,7 @@
         <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
             [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
+        <ngx-select-dropdown *ngIf="isDSU" (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
             [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
     </div>
 
@@ -97,7 +97,7 @@
             </table>
         </div>
         <ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
-            [collectionSize]="pagerTotal">
+            [collectionSize]="pager.total">
         </ngb-pagination>
     </ng-template>
 </div>

@@ -21,7 +21,7 @@
     </nav>
     <!-- <div class="filters row">
         <span >{{count}}</span>
-        <span class='mx-2'></span>
+        <span class="mx-2"></span>
         <span >Sortează după</span>
         <div ngbDropdown class="d-inline-block ml-2">
             <div class="userarea" id="dropdown1" ngbDropdownToggle>
@@ -99,7 +99,7 @@
 			[(page)]="pager.page"
 			[pageSize]="pager.size"
 			(pageChange)="getData()"
-			[collectionSize]="pagerTotal">
+			[collectionSize]="pager.total">
 		</ngb-pagination>
 	</ng-template>
 </div>

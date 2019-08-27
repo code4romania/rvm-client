@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class VolunteerDashboardComponent implements OnInit {
 	volunteersData: any = [];
-	pagerTotal: String;
 	pager: any = {};
 	filterResult: any = {};
 	displayBlock = true;
@@ -103,7 +102,7 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.volunteerService.getVolunteers(this.pager).subscribe((element: any) => {
 			if (element) {
 				this.volunteersData = element.data;
-				this.pagerTotal = element.pager.total;
+				this.pager.total = element.pager.total;
 			}
 		});
 	}

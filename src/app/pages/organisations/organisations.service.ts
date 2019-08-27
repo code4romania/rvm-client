@@ -16,6 +16,31 @@ export class OrganisationService {
 		method: 'ASC',
 		page: 1,
 		size: 20,
+		total: 0,
+		filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
+	volunteerPager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		total: 0,
+		filters: {}
+		// 	'1': 'adapostire',
+		// 	'3': 'bihor',
+		// 	'5': 'crucea'
+		// }
+	};
+	resourcePager: any = {
+		sort: 1,
+		method: 'ASC',
+		page: 1,
+		size: 20,
+		total: 0,
 		filters: {}
 		// 	'1': 'adapostire',
 		// 	'3': 'bihor',
@@ -27,6 +52,13 @@ export class OrganisationService {
 		return {...this.pager};
 	}
 
+	getVolunteerPager() {
+		return {...this.volunteerPager};
+	}
+
+	getResourcePager() {
+		return {...this.resourcePager};
+	}
 	/**
 	 * fields for adding a new resource
 	 */
@@ -79,12 +111,30 @@ export class OrganisationService {
 	}
 	getResourcesbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
+
 		params = {...params, ...paginationObj};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
 		return this.httpClient.get(`/organisations/${id}/resources`, {params: params});
 	}
 	getVolunteersbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
+
 		params = {...params, ...paginationObj};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
 		return this.httpClient.get(`/organisations/${id}/volunteers`, {params: params});
 	}
 }

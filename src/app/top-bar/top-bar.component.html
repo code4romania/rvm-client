@@ -9,7 +9,7 @@
 			<div class="flex-column pr-3 d-none d-xl-block col-xl-10 pl-0">
 				<ul class="nav">
 					<li>
-						<a routerLink='/volunteers' class="nav__link">Voluntari</a>
+						<a routerLink="/volunteers" class="nav__link">Voluntari</a>
 					</li>
 					<li *ngIf="authService.is('DSU', 'NGO')">
 						<a routerLink='/resources' class="nav__link">Resurse</a>
@@ -24,7 +24,7 @@
 						<a routerLink='/map' class="nav__link">Hartă</a>
 					</li>
 					<li>
-						<a routerLink='/info' class="nav__link">Info</a>
+						<a routerLink="/info" class="nav__link">Info</a>
 					</li>
 				</ul>
 			</div>
@@ -35,7 +35,7 @@
 									<app-current-profile></app-current-profile>
 								</div>
 							<div ngbDropdownMenu aria-labelledby="dropdown1">
-								<button ngbDropdownItem routerLink='/'>Profil</button>
+								<button ngbDropdownItem routerLink="/">Profil</button>
 								<button ngbDropdownItem>Setari</button>
 								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
 								<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>

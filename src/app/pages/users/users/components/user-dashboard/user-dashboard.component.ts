@@ -17,9 +17,8 @@ import { AuthenticationService } from '@app/core';
 })
 
 export class UserDashboardComponent implements OnInit {
-	data: any = [];
-	pagerTotal: String;
-	pager = {};
+	data: any[] = [];
+	pager: any = {};
 	displayBlock = true;
 	form: FormGroup;
 	isINSTITUT = false;
@@ -93,7 +92,7 @@ export class UserDashboardComponent implements OnInit {
 		this.usersService.getUsers(this.pager).subscribe(element => {
 			if (element.data) {
 				this.data = element.data;
-				this.pagerTotal = element.pager.total;
+				this.pager.total = element.pager.total;
 			}
 		});
 	}
