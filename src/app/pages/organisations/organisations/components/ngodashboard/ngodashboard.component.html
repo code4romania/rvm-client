@@ -53,9 +53,9 @@
                             </span>
                         </div>
                         Resurse:<br>
-                        <a [routerLink]="['id',elem._id]" class="card-link">12 voluntari</a>
+                        <a (click)="showOrganisationDetails(elem._id, 'volunteers')" href="javascript:void(0);" class="card-link">12 voluntari</a>
                         &sdot;
-                        <a [routerLink]="['id',elem._id]" class="card-link">30 resurse</a>
+                        <a (click)="showOrganisationDetails(elem._id, 'resources')"  href="javascript:void(0);" class="card-link">30 resurse</a>
                     </div>
                 </a>
             </div>

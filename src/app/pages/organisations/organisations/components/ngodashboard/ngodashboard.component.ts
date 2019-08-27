@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganisationService } from '../../../organisations.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { FiltersService, CitiesCountiesService } from '@app/core';
+import { Router, NavigationExtras } from '@angular/router';
 @Component({
 	selector: 'app-ngodashboard',
 	templateUrl: './ngodashboard.component.html',
@@ -30,11 +31,13 @@ export class NgodashboardComponent implements OnInit {
 	typeFilterValues: any[];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];
+
 	constructor(
 		private organisationService: OrganisationService,
 		public breakpointObserver: BreakpointObserver,
 		private filterService: FiltersService,
-		private citiesandcounties: CitiesCountiesService
+		private citiesandcounties: CitiesCountiesService,
+		private router: Router
 	) {}
 	/**
 	 * subscribe to screen size in order to use list instead of grid for display
@@ -49,11 +52,14 @@ export class NgodashboardComponent implements OnInit {
 				return {id: elem.type_name, name: elem.type_name};
 				});
 		});
-		this.filterService.getSpecializationFilters().subscribe((data) => {
-			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
-			});
-		});
+
+		// TODO WHEN BACKEND FINISHED
+		// this.filterService.getSpecializationFilters().subscribe((data) => {
+		// 	this.specializationFilterValues = data.map((elem: any) => {
+		// 		return {id: elem.name, name: elem.name};
+		// 	});
+		// });
+
 		this.pager = this.organisationService.getPager();
 
 		this.getData();
@@ -96,5 +102,14 @@ export class NgodashboardComponent implements OnInit {
 	 */
 	switchtoblock() {
 		this.displayBlock = true;
+	}
+
+	showOrganisationDetails(id: string, property: string) {
+		const navigationExtras: NavigationExtras = {
+			state: {
+				tabName: property
+			}
+		};
+		this.router.navigateByUrl('/organisations/id/' + id, navigationExtras);
 	}
 }

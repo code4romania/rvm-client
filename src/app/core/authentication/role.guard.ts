@@ -22,8 +22,6 @@ export class RoleGuard implements CanActivate {
 		const roles = route.data['roles'].map((elem: string) => elem);
 		const type = this.authService.role;
 
-		console.log(roles, type);
-
 		if (roles.indexOf(type) < 0) {
 			this.router.navigate(['/'], {
 				replaceUrl: true

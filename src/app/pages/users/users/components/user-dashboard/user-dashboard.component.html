@@ -52,17 +52,17 @@
                             </div>
                         </a>
                         
-                        <span *ngIf="elem.organisation"> Organizație
-                            <a class="col-md-12 d-block btn btn-fix text-left" href="../organisations/id/{{elem.organisation?._id}}">
-                                elem.organisation
+                        <p *ngIf="!!elem.organisation" class="ml-3"> Organizație:
+                            <a class="col-md-12 btn btn-fix text-left" href="../organisations/id/{{elem.organisation?._id}}">
+                                {{ elem.organisation.name }}
                             </a>
-                        </span>
+                        </p>
 
-                        <span *ngIf="elem.institution"> Instituție
-                            <a class="col-md-12 d-block btn btn-fix text-left">
-                                elem.institution
+                        <p *ngIf="!!elem.institution" class="ml-3"> Instituție:
+                            <a class="col-md-12 btn btn-fix text-left">
+                                {{ elem.institution.name }}
                             </a>
-                        </span>
+                        </p>
                     </div>
 
             </div>

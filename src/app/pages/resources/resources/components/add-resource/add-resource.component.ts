@@ -85,7 +85,7 @@ export class AddResourceComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (this.authService.role === '2') {this.orgDisabled = true; }
+		if (this.authService.accessLevel === '2') {this.orgDisabled = true; }
 		this.counties = this.citiesandCounties.getCounties();
 		this.currentUserId = this.authService.user._id;
 	}

@@ -49,7 +49,7 @@ export class UserDashboardComponent implements OnInit {
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-		switch (this.authService.role) {
+		switch (this.authService.accessLevel) {
 			case '1':
 				this.isINSTITUT = true;
 				break;
@@ -59,6 +59,7 @@ export class UserDashboardComponent implements OnInit {
 			default:
 				break;
 		}
+
 		this.pager = this.usersService.getPager();
 		this.getData();
 		this.breakpointObserver.observe([

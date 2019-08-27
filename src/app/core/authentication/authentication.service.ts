@@ -120,7 +120,6 @@ export class AuthenticationService {
 		if (!this._credentials || !this._credentials.token) {
 			return;
 		}
-		console.log(this._credentials);
 		return this._credentials.token;
 	}
 

@@ -11,6 +11,7 @@ export class CurrentProfileComponent implements OnInit {
 	user: any = {
 		'email': 'no login'
 	};
+
 	constructor(private authService: AuthenticationService) {}
 	/**
 	 * get organisation by id
@@ -19,5 +20,8 @@ export class CurrentProfileComponent implements OnInit {
 		this.user = this.authService.user;
 	}
 
-
+	parseRole(roleNumber: number): string {
+		const roles = ['OFF', 'INS', 'NGO', 'DSU'];
+		return roles[roleNumber];
+	}
 }

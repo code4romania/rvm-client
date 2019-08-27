@@ -1,10 +1,12 @@
 import {
 	Component,
 	OnInit,
+	ViewChild,
+	AfterContentChecked,
 } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { OrganisationService } from '../../../organisations.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import {
 	FormGroup,
 	Validators,
@@ -20,7 +22,7 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 	templateUrl: './ngodetails.component.html',
 	styleUrls: ['./ngodetails.component.scss']
 })
-export class NgodetailsComponent implements OnInit {
+export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	data: any;
 	resourcePager: any = {};
 	volunteerPager: any = {};
@@ -46,16 +48,20 @@ export class NgodetailsComponent implements OnInit {
 		searchOnKey: 'name', // key on which search should be performed this will be selective search.
 							// if undefined this will be extensive search on all keys
 		};
-		locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
-		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
-		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
-		volunteerTypeFilterValues: any[] = [];
-		resourceTypeFilterValues: any[] = [];
-		specializationFilterValues: any[] = [];
-		locationFilterValues: any[] = [];
+
+	locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
+	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
+	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
+	volunteerTypeFilterValues: any[] = [];
+	resourceTypeFilterValues: any[] = [];
+	specializationFilterValues: any[] = [];
+	locationFilterValues: any[] = [];
 	ngoid: string;
 	isDSU = false;
 	isNGO = false;
+	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
+	tabsInitialized = false;
+	selectedTab = 'volunteers';
 
 	constructor(
 		private route: ActivatedRoute,
@@ -66,9 +72,16 @@ export class NgodetailsComponent implements OnInit {
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		private resourceService: ResourcesService
-	) {	}
+	) {
+		const navigation = this.router.getCurrentNavigation();
+
+		if (navigation && navigation.extras && navigation.extras.state) {
+			this.selectedTab = navigation.extras.state.tabName;
+		}
+	}
 
 	ngOnInit() {
+
 		this.counties = this.citiesandCounties.getCounties();
 		this.form = this.fb.group({
 			_id: '',
@@ -82,7 +95,7 @@ export class NgodetailsComponent implements OnInit {
 
 		this.ngoid = this.route.snapshot.paramMap.get('id');
 
-		switch (this.authService.role) {
+		switch (this.authService.accessLevel) {
 			case '2':
 				this.isNGO = true;
 				break;
@@ -92,9 +105,16 @@ export class NgodetailsComponent implements OnInit {
 			default:
 				break;
 		}
+
 		this.getData();
 		this.getResources();
 		this.getVolunteers();
+	}
+
+	ngAfterContentChecked() {
+		if (this.tabRef.tabs) {
+			this.tabRef.select(this.selectedTab);
+		}
 	}
 
 	getData() {
@@ -135,15 +155,16 @@ export class NgodetailsComponent implements OnInit {
 			}
 		});
 	}
+
 	resourceFilterChanged(data: any, id: string) {
 		this.resourcePager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
 		this.getResources();
 	}
+
 	volunteerFilterChanged(data: any, id: string) {
 		this.volunteerPager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
 		this.getVolunteers();
 	}
-
 
 	/**
 	 * open add resource modal

@@ -126,8 +126,4 @@ export class NgoaddComponent implements OnInit {
 				this.router.navigate(['organisations']);
 			});
 	}
-
-	check() {
-		console.log(this.form);
-	}
 }

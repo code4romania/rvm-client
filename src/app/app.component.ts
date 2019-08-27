@@ -11,7 +11,6 @@ export class AppComponent {
 	title = 'app';
 
 	constructor(private authService: AuthenticationService, private activatedRoute: ActivatedRoute) {
-		console.log(activatedRoute.snapshot.url);
 		if (this.authService.isAuthenticated) {
 			// this.router.navigate(['/' + this.authService.homePath()], {
 			// 	replaceUrl: true

@@ -44,7 +44,7 @@ export class VolunteerDashboardComponent implements OnInit {
 			private authService: AuthenticationService, private router: Router) { }
 
 	ngOnInit() {
-		switch (this.authService.role) {
+		switch (this.authService.accessLevel) {
 			case '1':
 				this.isINSTITUT = true;
 				break;
@@ -61,7 +61,8 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.pager = this.volunteerService.getPager();
 		if (this.isNGO) {
 			// TO-DO cu filtre DE LA backend
-			this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
+			// console.log(this.pager.filters);
+			// this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
 		}
 
 		this.getData();
@@ -76,17 +77,17 @@ export class VolunteerDashboardComponent implements OnInit {
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
 
-		this.filterService.getVolunteerTypeFilters().subscribe((data) => {
-			this.typeFilterValues = data.map((elem: any) => {
-				return {id: elem.type_name, name: elem.type_name};
-				});
-		});
-
-		this.filterService.getSpecializationFilters().subscribe((data) => {
-			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
-			});
-		});
+		// TODO WHEN BACKEND FINISHED
+		// this.filterService.getVolunteerTypeFilters().subscribe((data) => {
+		// 	this.typeFilterValues = data.map((elem: any) => {
+		// 		return {id: elem.type_name, name: elem.type_name};
+		// 		});
+		// });
+		// this.filterService.getSpecializationFilters().subscribe((data) => {
+		// 	this.specializationFilterValues = data.map((elem: any) => {
+		// 		return {id: elem.name, name: elem.name};
+		// 	});
+		// });
 
 		/* subscribe to screen size in order to use list instead of grid for display */
 		this.breakpointObserver.observe([

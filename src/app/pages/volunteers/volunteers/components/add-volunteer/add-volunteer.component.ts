@@ -33,12 +33,15 @@ export class AddVolunteerComponent implements OnInit {
 	counties: String[] = [];
 	cities: String[] = [];
 	cityPlaceholder = 'Selectați mai întâi județul';
+
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
+
 	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
 	focus1$ = new Subject<string>();
 	click1$ = new Subject<string>();
+
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
@@ -51,6 +54,7 @@ export class AddVolunteerComponent implements OnInit {
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		private authService: AuthenticationService) {
+
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
@@ -68,7 +72,7 @@ export class AddVolunteerComponent implements OnInit {
 		const navigation = this.router.getCurrentNavigation();
 		if (navigation && navigation.extras && navigation.extras.state) {
 			const ngo = navigation.extras.state.ngo;
-			console.log(navigation.extras.state);
+
 			if (ngo) {
 				this.defaultOrgValue = ngo;
 				this.form.patchValue({
@@ -89,7 +93,10 @@ export class AddVolunteerComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (this.authService.role === '2') {this.orgDisabled = true; }
+		if (this.authService.accessLevel === '2') {
+			this.orgDisabled = true;
+		}
+
 		this.counties = this.citiesandCounties.getCounties();
 		this.currentUserId = this.authService.user._id;
 	}
