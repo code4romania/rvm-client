@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { VolunteerService } from '../../../volunteers.service';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-volunteer-details',
@@ -13,7 +14,7 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAccreditation = false;
 
 	constructor(private volunteerService: VolunteerService, private route: ActivatedRoute,
-				private router: Router) { }
+			public authService: AuthenticationService, private router: Router) { }
 
 	ngOnInit() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {

@@ -20,10 +20,17 @@
 				<div class="form-group">
 					<label>Categorie *</label>
 					<input
-						formControlName="type_name"
 						[ngClass]="{ 'error': form.controls.type_name.invalid && form.controls.type_name.touched }"
+						[(ngModel)]="defaultCategory" [ngModelOptions]="{standalone: true}"
+						type="text"
+						(selectItem)="selectedCategory($event)"
 						class="form-control"
-						type="text"	/>
+						[ngbTypeahead]="searchCategory"
+						[resultFormatter]="formatter"
+						[inputFormatter]="formatter"
+						(focus)="focus3$.next($event.target.value)"
+						(click)="click3$.next($event.target.value)"
+						#instance="ngbTypeahead"/>
 				</div>
 			</div>
 
@@ -31,10 +38,18 @@
 				<div class="form-group">
 					<label>Subcategorie *</label>
 					<input
-						formControlName="subcat"
 						[ngClass]="{ 'error': form.controls.subcat.invalid && form.controls.subcat.touched }"
+					
+						[(ngModel)]="defaultSubcat" [ngModelOptions]="{standalone: true}"
+						type="text"
+						(selectItem)="selectedSubCategory($event)"
 						class="form-control"
-						type="text"	/>
+						[ngbTypeahead]="searchSubcat"
+						[resultFormatter]="formatter"
+						[inputFormatter]="formatter"
+						(focus)="focus4$.next($event.target.value)"
+						(click)="click4$.next($event.target.value)"
+						#instance="ngbTypeahead"/>
 				</div>
 			</div>
 

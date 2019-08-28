@@ -20,6 +20,7 @@ import { merge } from 'rxjs';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-ngoadd',
@@ -48,7 +49,7 @@ export class NgoaddComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
-		private router: Router,
+		private router: Router, private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
 
@@ -158,14 +159,14 @@ export class NgoaddComponent implements OnInit {
 		ngo.city = ngo.city.id;
 		ngo.county = ngo.county.id;
 		if (this.ngo) {
-			this.organisationService.editOrganisation(this.ngo._id, ngo).subscribe(() => {
-				this.router.navigate(['/users']);
+			this.organisationService.editOrganisation(this.ngo._id, this.form.value).subscribe(() => {
+				this.location.back();
 			});
 		} else {
 			this.organisationService
 			.addorganisation(ngo)
 			.subscribe(() => {
-				this.router.navigate(['organisations']);
+				this.location.back();
 			});
 		}
 	}

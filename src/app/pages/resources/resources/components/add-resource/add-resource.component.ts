@@ -20,7 +20,9 @@ import {
 import { merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { OrganisationService } from '@app/pages/organisations/organisations.service';
-import { AuthenticationService } from '@app/core';
+import { AuthenticationService, CategoriesService } from '@app/core';
+import { Location, isPlatformWorkerApp } from '@angular/common';
+import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 
 @Component({
 	selector: 'app-add-resource',
@@ -33,6 +35,8 @@ export class AddResourceComponent implements OnInit {
 	defaultOrgValue: {name: String, id: string};
 	counties: any[] = [];
 	cities: any[] = [];
+	defaultCategory: any;
+	defaultSubcat: any;
 	cityPlaceholder = 'Selectați mai întâi județul';
 	resourcePlaceholder = 'Selectați mai întâi categoria';
 	currentUserId: string;
@@ -48,9 +52,15 @@ export class AddResourceComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-
+	@ViewChild('instance', { static: true }) instance3: NgbTypeahead;
+	focus3$ = new Subject<string>();
+	click3$ = new Subject<string>();
+	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
+	focus4$ = new Subject<string>();
+	click4$ = new Subject<string>();
 	constructor(private resourcesService: ResourcesService,
-		private router: Router,
+		private router: Router, private catService: CategoriesService,
+		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder,
 		private orgService: OrganisationService,
@@ -61,6 +71,7 @@ export class AddResourceComponent implements OnInit {
 			subcat: ['', Validators.required],
 			name: ['', Validators.required],
 			address: '',
+			category: '',
 			organisation_id: '',
 			quantity: ['', [Validators.required, Validators.min(0)]],
 			city: [{ value: '', disabled: true }, Validators.required],
@@ -131,8 +142,51 @@ export class AddResourceComponent implements OnInit {
 			})
 		);
 	}
-
-	searchCity = (text$: Observable<string>) => {
+	searchCategory = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click3$.pipe(
+			filter(() => !this.instance3.isPopupOpen())
+		);
+		const inputFocus$ = this.focus3$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				return this.catService.getCategories(term).pipe(
+					map(x => {
+						if (x.length === 0) {
+							return [{id: 9, name: 'Altele'}];
+						} else { return x; }
+					})
+				);
+		}));
+	}
+	searchSubcat = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click1$.pipe(
+			filter(() => !this.instance1.isPopupOpen())
+		);
+		const inputFocus$ = this.focus1$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				if (term !== '') {
+					return this.catService.getSubCategories(1, term).pipe(
+						map(x => {
+							if (x.length === 0) {
+								return [{id: 9, name: 'Altele'}];
+							} else { return x; }
+						})
+					);
+				} else {
+					return [];
+				}
+		}));
+	}
+	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
 			distinctUntilChanged()
@@ -185,6 +239,15 @@ export class AddResourceComponent implements OnInit {
 
 	selectedOrganisation(val: any) {
 		this.form.controls['organisation_id'].setValue(val.item._id);
+	// selectedorganisation() {
+	// 	this.form.controls['organisation_id'].setValue(this.defaultOrgValue.id);
+	// }
+	}
+	selectedSubCategory(val: any) {
+		// this.form.controls['organisation_id'].setValue(val.item._id);
+	}
+	selectedorganisation(val: any) {
+		// this.form.controls['organisation_id'].setValue(val.item._id);
 	}
 
 	/**
@@ -197,14 +260,10 @@ export class AddResourceComponent implements OnInit {
 		this.resourcesService
 			.addResource(this.form.value)
 			.subscribe((element: any) => {
-				this.navigateToDashboard();
+				console.log(element);
+				this.location.back();
 			});
 	}
-
-	navigateToDashboard() {
-		this.router.navigate(['resources']);
-	}
-
 	selectedCategory(val: { item: string }) {
 		this.form.controls.subcat.enable();
 		this.resourcePlaceholder = 'Alegeți Resursă';

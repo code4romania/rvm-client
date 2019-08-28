@@ -16,6 +16,7 @@ import { OrganisationService } from '../../../../organisations/organisations.ser
 import { AuthenticationService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -51,7 +52,7 @@ export class AddVolunteerComponent implements OnInit {
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
-		private router: Router,
+		private router: Router, private location: Location,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		public authService: AuthenticationService) {
@@ -229,11 +230,11 @@ export class AddVolunteerComponent implements OnInit {
 
 		if (this.isEditing) {
 			this.volunteerService.editVolunteer(this.editeduserid, volunteer).subscribe(() => {
-				this.router.navigate(['volunteers']);
+				this.location.back();
 			});
 		} else {
 			this.volunteerService.addVolunteer(volunteer).subscribe(() => {
-				this.router.navigate(['volunteers']);
+				this.location.back();
 			});
 		}
 	}

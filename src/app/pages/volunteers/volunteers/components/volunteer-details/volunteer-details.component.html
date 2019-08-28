@@ -1,9 +1,10 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <app-back-button></app-back-button>
-            <div class="mx-2 my-sm-0" *ngIf="hasAccreditation;">
-                <button *ngIf="hasAccreditation" class="mx-2 btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button>
+            <div class="mx-2 my-sm-0">
+                <button *ngIf="hasAccreditation&&authService.is('DSU')" class="mx-2 btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button>
                 <button (click)="edit()" class="mx-2 btn btn-info"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
+                <!-- <button></button> -->
             </div>
     </nav>
     <div class="ngo-details row">

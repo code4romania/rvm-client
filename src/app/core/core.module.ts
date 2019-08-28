@@ -23,6 +23,7 @@ import {
 	ErrorMessageService,
 	UtilService,
 	CitiesCountiesService,
+	CategoriesService,
 	FiltersService,
 	UsersService
 } from '@app/core/service';
@@ -40,6 +41,7 @@ import {
 		RoleGuard,
 		ApiPrefixInterceptor,
 		FiltersService,
+		CategoriesService,
 		CitiesCountiesService,
 		UsersService,
 		UtilService,
