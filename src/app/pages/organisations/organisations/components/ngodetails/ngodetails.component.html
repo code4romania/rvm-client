@@ -26,7 +26,9 @@
 		<div class="resource-list">
 			<ngb-tabset type="pills" #tabRef>
 				<ngb-tab id="volunteers">
-					<ng-template ngbTabTitle>Lista Voluntari</ng-template>
+					<ng-template ngbTabTitle>
+						<a (click)="selectedTab = 'volunteers'">Lista Voluntari</a>
+					</ng-template>
 					<ng-template ngbTabContent>
 						<div *ngIf="hasVolunteers; else noVolunteers">
 							<div class="filters row" >
@@ -79,7 +81,8 @@
 				</ngb-tab>
 				<ngb-tab title="|" [disabled]="true"></ngb-tab>
 				<ngb-tab id="resources">
-					<ng-template ngbTabTitle>Lista Resurse</ng-template>
+					<ng-template ngbTabTitle>
+						<a (click)="selectedTab ='resources'">Lista Resurse</a></ng-template>
 					<ng-template ngbTabContent>
 						<div *ngIf="hasResources; else noResources">
 								<div class="filters row" >

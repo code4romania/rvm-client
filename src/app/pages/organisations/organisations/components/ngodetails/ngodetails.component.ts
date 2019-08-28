@@ -91,7 +91,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			county: ['', Validators.required],
 			comments: ''
 		});
-		// this.myTabs.select(`${this.route.snapshot.paramMap.get('tabName')}`);
+
 		this.ngoid = this.route.snapshot.paramMap.get('id');
 		this.getData();
 		this.getResources();
@@ -182,7 +182,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.organisationService
 			.addResource(this.form.value)
 			.subscribe((element: any) => {
-				console.log(element);
 				this.modalService.dismissAll();
 		});
 	}
