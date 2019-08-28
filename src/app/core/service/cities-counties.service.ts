@@ -5,32 +5,16 @@ import { map, filter } from 'rxjs/operators';
 
 @Injectable()
 export class CitiesCountiesService {
+
 	constructor(private http: HttpClient) {}
-	getCounties(): string[] {
-		// tslint:disable-next-line: max-line-length
-		return ['Alba', 'Arad', 'Arges', 'Bacau', 'Bihor', 'Bistrita-Nasaud', 'Botosani',
-		'Braila', 'Brasov', 'Bucuresti', 'Buzau', 'Calarasi', 'Caras-Severin',
-		'Cluj', 'Constanta', 'Covasna', 'Dambovita', 'Dolj', 'Galati',
-		'Giurgiu', 'Gorj', 'Harghita', 'Hunedoara', 'Ialomita', 'Iasi',
-		'Ilfov', 'Maramures', 'Mehedinti', 'Mures', 'Neamt', 'Olt',
-		'Prahova', 'Salaj', 'Satu Mare', 'Sibiu', 'Suceava', 'Teleorman',
-		'Timis', 'Tulcea', 'Valcea', 'Vaslui', 'Vrancea'];
+
+	getCounties()  {
+		return this.http.get('assets/json/counties.json');
 	}
-	getCitiesbyCounty(name: string): Observable<any> {
-			// get users from api
-			return this.http.get('assets/json/orase.json')
-			.pipe(map((data: any) => {
-				return data.filter((x: any) => {
-					return x.Judet === name;
-					});
-			}), map(element => element.map( (x: any) => x.Localitate)));
+
+	getCitiesbyCounty(name: string) {
+		return this.http.get('assets/json/cities.json').pipe(map((data: any) => {
+			return data.filter((elem: any) => elem.county === name);
+		}));
 	}
 }
-
-// return ['Alba', 'Arad', 'Argeş', 'Bacău', 'Bihor', 'Bistriţa-Năsăud', 'Botoşani',
-// 		'Brăila', 'Braşov', 'Bucureşti', 'Buzău', 'Călăraşi', 'Caraş-Severin',
-// 		'Cluj', 'Constanţa', 'Covasna', 'Dâmboviţa', 'Dolj', 'Galaţi',
-// 		'Giurgiu', 'Gorj', 'Harghita', 'Hunedoara', 'Ialomiţa', 'Iaşi',
-// 		'Ilfov', 'Maramureş', 'Mehedinţi', 'Mureş', 'Neamţ', 'Olt',
-// 		'Prahova', 'Sălaj', 'Satu Mare', 'Sibiu', 'Suceava', 'Teleorman',
-// 		'Timiş', 'Tulcea', 'Vâlcea', 'Vaslui', 'Vrancea'];

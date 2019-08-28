@@ -9,8 +9,9 @@
 		<div class="row">
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Nume și Prenume</label>
+					<label>Nume și Prenume *</label>
 					<input
+						[ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
 						formControlName="name"
 						class="form-control"
 						type="text"/>
@@ -19,8 +20,9 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Email</label>
+					<label>Email *</label>
 					<input
+						[ngClass]="{ 'error': form.controls.email.invalid && form.controls.email.touched }"
 						formControlName="email"
 						class="form-control"
 						type="email"
@@ -30,8 +32,9 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Telefon</label>
+					<label>Telefon *</label>
 					<input
+						[ngClass]="{ 'error': form.controls.phone.invalid && form.controls.phone.touched }"
 						formControlName="phone"
 						class="form-control"
 						type="tel"
@@ -43,6 +46,7 @@
 					<div class="form-group">
 						<label>Insituție</label>
 						<input
+							[ngClass]="{ 'error': form.controls.institution.invalid && form.controls.institution.touched }"
 							formControlName="institution"
 							class="form-control"
 							type="text"

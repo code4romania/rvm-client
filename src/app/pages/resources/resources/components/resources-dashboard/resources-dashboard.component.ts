@@ -36,38 +36,46 @@ export class ResourcesdashboardComponent implements OnInit {
 	typefilterResult: any[] = [];
 	locationfilterResult: any[] = [];
 	ngofilterResult: any[];
-	// Text configuration
 
 	typeFilterValues: any[] = [];
 	NGOFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
 	navigationExtras: any;
-	constructor(private resourceService: ResourcesService, private filterService: FiltersService,
-		private citiesandCounties: CitiesCountiesService,  public breakpointObserver: BreakpointObserver,
-		public authService: AuthenticationService, private router: Router) {
 
-	}
+	constructor(private resourceService: ResourcesService,
+		private filterService: FiltersService,
+		private citiesandCounties: CitiesCountiesService,
+		public breakpointObserver: BreakpointObserver,
+		public authService: AuthenticationService,
+		private router: Router) { }
+
 	ngOnInit() {
 		this.pager = this.resourceService.getPager();
+
 		if (this.authService.is('NGO')) {
 			// TO-DO cu filtre DE LA backend
 			this.pager.filters[3] = '7eb1c58d-703a-43a4-a9d3-0f8324550def';
 		}
+
 		this.getData();
+
 		this.filterService.getTypeFilters().subscribe((data) => {
 			this.typeFilterValues = data.map((elem: any) => {
 				return {id: elem.type_name, name: elem.type_name};
 				});
 		});
+
 		this.filterService.getOrganisationsFilters().subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 				});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
-		this.locationFilterValues = this.citiesandCounties.getCounties().map((value: String) => {
-			return {id: value, name: value};
+
+		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
+			this.locationFilterValues = response;
 		});
+
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
 			.subscribe(result => {
@@ -107,7 +115,6 @@ export class ResourcesdashboardComponent implements OnInit {
 	}
 
 	filterChanged = (data?: any, id?: string) => {
-		console.log(data);
 		this.pager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
 		this.getData();
 	}
@@ -115,6 +122,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	switchtolist() {
 		this.displayBlock = false;
 	}
+
 	/**
 	 * set class of display element with grid view
 	 */

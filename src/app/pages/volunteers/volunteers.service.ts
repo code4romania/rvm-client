@@ -13,7 +13,7 @@ export class VolunteerService {
 		page: 1,
 		size: 20,
 		total: 0,
-		// filters: {}
+		filters: {}
 		// 	'1': 'adapostire',
 		// 	'3': 'bihor',
 		// 	'5': 'crucea'

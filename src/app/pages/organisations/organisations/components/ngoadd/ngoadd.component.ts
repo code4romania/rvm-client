@@ -55,10 +55,12 @@ export class NgoaddComponent implements OnInit {
 	ngOnInit() {
 		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
 
-		this.counties = this.citiesandCounties.getCounties();
+		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
+			this.counties = response;
+		});
 
 		this.form = this.fb.group({
-			name: ['', ],
+			name: ['', [Validators.required]],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
 			contact_person: ['', Validators.required],
 			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
@@ -69,6 +71,8 @@ export class NgoaddComponent implements OnInit {
 			comments: ['']
 		});
 	}
+
+	formatter = (result: { name: string }) => result.name;
 
 	getOrganisationDetails(ngoId: string) {
 		if (ngoId) {
@@ -138,8 +142,8 @@ export class NgoaddComponent implements OnInit {
 		);
 	}
 
-	selectedCounty(val: { item: string }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
+	selectedCounty(val: { item: any }) {
+		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
@@ -150,13 +154,16 @@ export class NgoaddComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		const ngo = this.form.value;
+		ngo.city = ngo.city.id;
+		ngo.county = ngo.county.id;
 		if (this.ngo) {
-			this.organisationService.editOrganisation(this.ngo._id, this.form.value).subscribe(() => {
+			this.organisationService.editOrganisation(this.ngo._id, ngo).subscribe(() => {
 				this.router.navigate(['/users']);
 			});
 		} else {
 			this.organisationService
-			.addorganisation(this.form.value)
+			.addorganisation(ngo)
 			.subscribe(() => {
 				this.router.navigate(['organisations']);
 			});

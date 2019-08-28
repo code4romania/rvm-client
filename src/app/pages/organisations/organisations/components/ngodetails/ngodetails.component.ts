@@ -81,7 +81,10 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 	ngOnInit() {
 
-		this.counties = this.citiesandCounties.getCounties();
+		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
+			this.counties = response;
+		});
+
 		this.form = this.fb.group({
 			_id: '',
 			type_name: ['', Validators.required],
@@ -164,6 +167,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		};
 		this.router.navigateByUrl('/resources/add', navigationExtras);
 	}
+
 	/**
 	 * submit form and close modal
 	 */
@@ -198,8 +202,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.authService.setCredentials();
 	}
 
-	selectedCounty(val: { item: string }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
+	selectedCounty(val: { item: any }) {
+		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';

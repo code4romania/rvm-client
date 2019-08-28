@@ -10,6 +10,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 	templateUrl: './add-user.component.html',
 	styleUrls: ['./add-user.component.scss']
 })
+
 export class AddUserComponent implements OnInit {
 	form: FormGroup;
 	role: string;

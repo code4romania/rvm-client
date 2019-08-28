@@ -13,6 +13,7 @@ export class ResourcedetailsComponent implements OnInit {
 	organisations: any[] = null;
 	resid: string;
 	pager: any = {};
+
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute,
 				private router: Router) {

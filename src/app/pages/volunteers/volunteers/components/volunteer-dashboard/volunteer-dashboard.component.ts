@@ -44,14 +44,13 @@ export class VolunteerDashboardComponent implements OnInit {
 
 		this.pager = this.volunteerService.getPager();
 		if (this.authService.is('NGO')) {
-			// TO-DO cu filtre DE LA backend
-			// console.log(this.pager.filters);
+			// TODO cu filtre DE LA backend
 			// this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
 		}
 
 		this.getData();
-		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
-			return {id: value, name: value};
+		this.citiesandcounties.getCounties().subscribe((response: any[]) => {
+			this.locationFilterValues = response;
 		});
 
 		this.filterService.getOrganisationsFilters().subscribe((data) => {
@@ -97,7 +96,7 @@ export class VolunteerDashboardComponent implements OnInit {
 			const navigationExtras = {
 				state: {
 					ngo: {
-						// TO-DO: extragere informatiilor din contu utilizatorului
+						// TODO: extragere informatiilor din contu utilizatorului
 						name: 'Curcea Rosie',
 						ngoid: '7eb1c58d-703a-43a4-a9d3-0f8324550def'
 					}
@@ -115,7 +114,6 @@ export class VolunteerDashboardComponent implements OnInit {
 	}
 
 	filterChanged = (data?: any, id?: string) => {
-		console.log(data);
 		this.pager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
 		this.getData();
 	}

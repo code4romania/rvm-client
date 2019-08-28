@@ -47,12 +47,12 @@
                     <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left d-block">
                         <h4 class="card-title">{{elem.name}}</h4>
                         <div class="card-text row">
-                            <span class="col-md-12" *ngIf="!!elem.email">
+                            <span class="col-md-12">
                                 <i class="fa fa-envelope"></i>
                                 {{ elem.email }}
                             </span>
                             <span class="col-md-12">
-                                <i class="fa fa-phone" *ngIf="elem.phone"></i>
+                                <i class="fa fa-phone"></i>
                                 {{ elem.phone }}
                             </span>
                         </div>

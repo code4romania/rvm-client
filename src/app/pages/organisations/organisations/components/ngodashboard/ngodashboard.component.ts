@@ -44,9 +44,10 @@ export class NgodashboardComponent implements OnInit {
 	 */
 
 	ngOnInit() {
-		this.locationFilterValues = this.citiesandcounties.getCounties().map((value: String) => {
-			return {id: value, name: value};
+		this.citiesandcounties.getCounties().subscribe((response: any[]) => {
+			this.locationFilterValues = response;
 		});
+
 		this.filterService.getTypeFilters().subscribe((data) => {
 			this.typeFilterValues = data.map((elem: any) => {
 				return {id: elem.type_name, name: elem.type_name};

@@ -30,8 +30,8 @@ export class AddVolunteerComponent implements OnInit {
 	coursename: string;
 	acreditedby: string;
 	obtained: string;
-	counties: String[] = [];
-	cities: String[] = [];
+	counties: any[] = [];
+	cities: any[] = [];
 	cityPlaceholder = 'Selectați mai întâi județul';
 
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
@@ -100,7 +100,10 @@ export class AddVolunteerComponent implements OnInit {
 			this.orgDisabled = true;
 		}
 
-		this.counties = this.citiesandCounties.getCounties();
+		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
+			this.counties = response;
+		});
+
 		this.currentUserId = this.authService.user._id;
 	}
 
@@ -205,8 +208,9 @@ export class AddVolunteerComponent implements OnInit {
 	selectedorganisation(val: any) {
 		this.form.controls['organisation_id'].setValue(val.item._id);
 	}
-	selectedCounty(val: { item: string }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
+
+	selectedCounty(val: { item: any }) {
+		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
 			this.cities = k;
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
@@ -220,6 +224,8 @@ export class AddVolunteerComponent implements OnInit {
 		const volunteer = this.form.value;
 		volunteer.added_by = this.currentUserId;
 		volunteer.ssn = volunteer.ssn.toString();
+		volunteer.county = volunteer.county.id;
+		volunteer.city = volunteer.city.id;
 
 		if (this.isEditing) {
 			this.volunteerService.editVolunteer(this.editeduserid, volunteer).subscribe(() => {

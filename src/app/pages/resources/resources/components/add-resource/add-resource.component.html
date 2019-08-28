@@ -7,9 +7,10 @@
 		<div class="row">
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Nume resursa</label>
+					<label>Nume resursa *</label>
 					<input
 						formControlName="name"
+						[ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
 						class="form-control"
 						type="text"	/>
 				</div>
@@ -17,9 +18,10 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Categorie</label>
+					<label>Categorie *</label>
 					<input
 						formControlName="type_name"
+						[ngClass]="{ 'error': form.controls.type_name.invalid && form.controls.type_name.touched }"
 						class="form-control"
 						type="text"	/>
 				</div>
@@ -27,9 +29,10 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Subcategorie</label>
+					<label>Subcategorie *</label>
 					<input
 						formControlName="subcat"
+						[ngClass]="{ 'error': form.controls.subcat.invalid && form.controls.subcat.touched }"
 						class="form-control"
 						type="text"	/>
 				</div>
@@ -37,22 +40,23 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Cantitate</label>
+					<label>Cantitate *</label>
 					<input
 						formControlName="quantity"
+						[ngClass]="{ 'error': form.controls.quantity.invalid && form.controls.quantity.touched }"
 						class="form-control"
 						type="number"	/>
 				</div>
 			</div>
             <div class="mt-4 col-md-8 col-sm-12">
 				<div class="form-group">
-					<label>Organizație</label>
+					<label>Organizație *</label>
 					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
 						[disabled]="orgDisabled"
 						type="text"
-						(selectItem)="selectedorganisation($event)"
+						(selectItem)="selectedOrganisation($event)"
 						class="form-control"
-						[ngbTypeahead]="searchorganisation"
+						[ngbTypeahead]="searchOrganisation"
 						[resultFormatter]="formatter"
 						[inputFormatter]="formatter"
 						(focus)="focus$.next($event.target.value)"
@@ -63,13 +67,16 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Județ</label>
+					<label>Județ *</label>
 					<input
 						type="text"
 						formControlName="county"
 						(selectItem)="selectedCounty($event)"
 						class="form-control"
-						[ngbTypeahead]="searchcounty"
+						[ngbTypeahead]="searchCounty"
+						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched }"
+						[inputFormatter]="formatter"
+						[resultFormatter]="formatter"
 						(focus)="focus1$.next($event.target.value)"
 						(click)="click1$.next($event.target.value)"
 						#instance="ngbTypeahead"
@@ -79,12 +86,15 @@
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Localitate</label>
+					<label>Localitate *</label>
 					<input
 						type="text"
 						formControlName="city"
+						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
 						class="form-control"
-						[ngbTypeahead]="searchcity"
+						[ngbTypeahead]="searchCity"
+						[inputFormatter]="formatter"
+						[resultFormatter]="formatter"
 						placeholder="{{ cityPlaceholder }}"
 						autocomplete="new-password"
 						(focus)="focus2$.next($event.target.value)"
@@ -100,6 +110,7 @@
 					<input
 						formControlName="address"
 						class="form-control"
+						[ngClass]="{ 'error': form.controls.address.invalid && form.controls.address.touched }"
 						type="text"
 					/>
 				</div>
@@ -111,17 +122,16 @@
 					<textarea
 						rows="3"
 						formControlName="comments"
+						[ngClass]="{ 'error': form.controls.comments.invalid && form.controls.comments.touched }"
 						class="form-control"
 						type="text"
 					></textarea>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="errorMessage" *ngIf="!isValid">
-			{{ question.label }} este obligatoriu
-		</div> -->
 
 		<button
+			[disabled]="form.invalid"
 			class="btn btn-info btn-rounded waves-effect waves-light mt-5"
 			type="submit"
 			style="color:white; float:right">

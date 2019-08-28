@@ -106,4 +106,9 @@ export class UserDashboardComponent implements OnInit {
 	switchtoblock() {
 		this.displayBlock = true;
 	}
+
+	goToOrganisation(id: string, e: any) {
+		e.preventDefault();
+		this.router.navigate(['../organisations/id/' + id]);
+	}
 }
