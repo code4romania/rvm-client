@@ -217,15 +217,15 @@ export class AddVolunteerComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		const volunteer = this.form.value;
+		volunteer.added_by = this.currentUserId;
+		volunteer.ssn = volunteer.ssn.toString();
+
 		if (this.isEditing) {
-			const volunteer = this.form.value;
-			volunteer.added_by = this.currentUserId;
 			this.volunteerService.editVolunteer(this.editeduserid, volunteer).subscribe(() => {
 				this.router.navigate(['volunteers']);
 			});
 		} else {
-			const volunteer = this.form.value;
-			volunteer.added_by = this.currentUserId;
 			this.volunteerService.addVolunteer(volunteer).subscribe(() => {
 				this.router.navigate(['volunteers']);
 			});
