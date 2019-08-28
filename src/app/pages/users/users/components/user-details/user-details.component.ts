@@ -9,7 +9,7 @@ import { UsersService } from '@app/core/service/users.service';
 })
 export class UserDetailsComponent implements OnInit {
 	data: any;
-	userTypes = ['Ofițer', 'Administrator Instituție', 'Administrator Organizație', 'DSU'];
+	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator DSU'];
 
 	constructor(private route: ActivatedRoute,
 		private router: Router,
