@@ -18,7 +18,7 @@
                     <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
                 </label>
             </div>
-            <button *ngIf ="isDSU||isNGO" (click)="addvolunteer()"  class="add-btn btn-adjusting btn btn-info btn-rounded m-2">
+            <button *ngIf ="authService.is('DSU', 'NGO')" (click)="addvolunteer()"  class="add-btn btn-adjusting btn btn-info btn-rounded m-2">
                 <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Voluntar
             </button>
         </div>
@@ -36,7 +36,7 @@
         <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
             [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown *ngIf="isDSU" (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
+        <ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
             [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
     </div>
 
@@ -88,7 +88,7 @@
                     <tr *ngFor="let res of volunteersData">
                         <!-- <tr> -->
                         <td>{{res.name}}</td>
-                        <td>{{res.city}}, {{res.county}}</td>
+                        <td>{{res.city.name}}, {{res.county.name}}</td>
                         <td>{{res.organisation.name}}</td>
                         <td>{{res.job}}</td>
                         <!-- <td>{{res.updated_at}}</td> -->

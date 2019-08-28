@@ -21,8 +21,6 @@ export class UserDashboardComponent implements OnInit {
 	pager: any = {};
 	displayBlock = true;
 	form: FormGroup;
-	isINSTITUT = false;
-	isDSU = false;
 	roles = [
 		{
 			id: 0,
@@ -45,21 +43,10 @@ export class UserDashboardComponent implements OnInit {
 	constructor(private usersService: UsersService,
 		public breakpointObserver: BreakpointObserver,
 		private modalService: NgbModal,
-		private router: Router, private authService: AuthenticationService,
+		private router: Router, public authService: AuthenticationService,
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-		switch (this.authService.accessLevel) {
-			case '1':
-				this.isINSTITUT = true;
-				break;
-			case '3':
-				this.isDSU = true;
-				break;
-			default:
-				break;
-		}
-
 		this.pager = this.usersService.getPager();
 		this.getData();
 		this.breakpointObserver.observe([
@@ -82,7 +69,7 @@ export class UserDashboardComponent implements OnInit {
 	}
 
 	addUser(content: any) {
-		if (this.isDSU) {
+		if (this.authService.is('DSU')) {
 			this.modalService.open(content, { centered: true });
 		} else {
 			this.router.navigateByUrl('/users/add/0');

@@ -11,8 +11,7 @@ export class CurrentProfileComponent implements OnInit {
 	user: any = {
 		'email': 'no login'
 	};
-
-	constructor(private authService: AuthenticationService) {}
+	constructor(public authService: AuthenticationService) {}
 	/**
 	 * get organisation by id
 	 */

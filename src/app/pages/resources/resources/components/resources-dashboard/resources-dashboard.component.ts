@@ -51,7 +51,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.pager = this.resourceService.getPager();
 		if (this.authService.is('NGO')) {
 			// TO-DO cu filtre DE LA backend
-			this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
+			this.pager.filters[3] = '7eb1c58d-703a-43a4-a9d3-0f8324550def';
 		}
 		this.getData();
 		this.filterService.getTypeFilters().subscribe((data) => {
@@ -91,7 +91,7 @@ export class ResourcesdashboardComponent implements OnInit {
 					ngo: {
 						// TO-DO: extragere informatiilor din contu utilizatorului
 						name: 'Curcea Rosie',
-						ngoid: '4a7d54364a7156b6c12e5492cb0016f1'
+						ngoid: '7eb1c58d-703a-43a4-a9d3-0f8324550def'
 					}
 				}
 			};

@@ -39,8 +39,9 @@
     <div *ngIf="displayBlock; else displayList" class="cardlist row">
         <div *ngFor="let elem of ngosData" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
-                <a class="btn btn-fix text-left" [routerLink]="['id',elem._id]">
+               
                     <div class="card-body">
+                            <a class="btn btn-fix text-left" [routerLink]="['id',elem._id]">
                         <h4 class="card-title">{{elem.name}}</h4>
                         <div class="card-text row">
                             <span class="col-md-12" *ngIf="elem.email">
@@ -52,12 +53,12 @@
                                 {{elem.phone}}
                             </span>
                         </div>
+                        </a>
                         Resurse:<br>
                         <a (click)="showOrganisationDetails(elem._id, 'volunteers')" href="javascript:void(0);" class="card-link">12 voluntari</a>
                         &sdot;
                         <a (click)="showOrganisationDetails(elem._id, 'resources')"  href="javascript:void(0);" class="card-link">30 resurse</a>
                     </div>
-                </a>
             </div>
         </div>
     </div>
@@ -82,7 +83,7 @@
                     <tr *ngFor="let res of ngosData">
                         <!-- <tr> -->
                         <td>{{res.name}}</td>
-                        <td>{{res.city}}, {{res.county}}</td>
+                        <td>{{res.city.name}}, {{res.county.name}}</td>
                         <td>test</td>
                         <td>test</td>
                         <!-- <td>{{res.updated_at}}</td> -->

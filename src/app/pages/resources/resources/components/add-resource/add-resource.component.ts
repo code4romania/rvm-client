@@ -50,7 +50,7 @@ export class AddResourceComponent implements OnInit {
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder,
 		private orgService: OrganisationService,
-		private authService: AuthenticationService) {
+		public authService: AuthenticationService) {
 		this.form = this.fb.group({
 			type_name: ['', Validators.required],
 			subcat: [/*{ value: '', disabled: true }*/'', Validators.required],

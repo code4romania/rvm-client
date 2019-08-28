@@ -46,15 +46,15 @@ export class AddVolunteerComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	currentUserId: string;
-
+	isEditing = false;
+	editeduserid = '';
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
 		private router: Router,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
-		private authService: AuthenticationService) {
-
+		public authService: AuthenticationService) {
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
@@ -81,9 +81,12 @@ export class AddVolunteerComponent implements OnInit {
 			} else {
 				const volunteer = navigation.extras.state.volunteer as any;
 				if (volunteer) {
+					this.isEditing = true;
+					this.editeduserid = volunteer._id;
 					this.defaultOrgValue = volunteer.organisation;
 					this.form.controls.city.enable();
 					this.form.patchValue(volunteer);
+					this.selectedCounty({item: volunteer.county});
 					this.form.patchValue({
 						'organisation_id': volunteer.organisation._id
 					});
@@ -202,7 +205,6 @@ export class AddVolunteerComponent implements OnInit {
 	selectedorganisation(val: any) {
 		this.form.controls['organisation_id'].setValue(val.item._id);
 	}
-
 	selectedCounty(val: { item: string }) {
 		this.citiesandCounties.getCitiesbyCounty(val.item).subscribe(k => {
 			this.cities = k;
@@ -215,10 +217,18 @@ export class AddVolunteerComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		const volunteer = this.form.value;
-		volunteer.added_by = this.currentUserId;
-		this.volunteerService.addVolunteer(volunteer).subscribe(() => {
-			this.router.navigate(['organisations']);
-		});
+		if (this.isEditing) {
+			const volunteer = this.form.value;
+			volunteer.added_by = this.currentUserId;
+			this.volunteerService.editVolunteer(this.editeduserid, volunteer).subscribe(() => {
+				this.router.navigate(['volunteers']);
+			});
+		} else {
+			const volunteer = this.form.value;
+			volunteer.added_by = this.currentUserId;
+			this.volunteerService.addVolunteer(volunteer).subscribe(() => {
+				this.router.navigate(['volunteers']);
+			});
+		}
 	}
 }

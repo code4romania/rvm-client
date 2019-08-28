@@ -52,7 +52,10 @@ export class VolunteerService {
 	 * get Volunteer by id
 	 */
 	getVolunteer(id: String): Observable<any> {
-		return this.httpClient.get(`/volunteers/${id}` );
+		return this.httpClient.get(`/volunteers/${id}`);
+	}
+	editVolunteer(id: String, payload: any ): Observable<any> {
+		return this.httpClient.put(`/volunteers/${id}`, payload);
 	}
 	// getResourcesbyorganisation(id: String): Observable<any> {
 		// const header = {

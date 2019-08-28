@@ -4,7 +4,7 @@ import {
 	ViewChild,
 	AfterContentChecked,
 } from '@angular/core';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras, ParamMap } from '@angular/router';
 import { OrganisationService } from '../../../organisations.service';
 import { NgbModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -16,6 +16,7 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
+import { map, take } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-ngodetails',
@@ -57,8 +58,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	specializationFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
 	ngoid: string;
-	isDSU = false;
-	isNGO = false;
 	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
@@ -66,7 +65,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private authService: AuthenticationService,
+		public authService: AuthenticationService,
 		private organisationService: OrganisationService,
 		private modalService: NgbModal,
 		private fb: FormBuilder,
@@ -92,20 +91,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			county: ['', Validators.required],
 			comments: ''
 		});
-
+		// this.myTabs.select(`${this.route.snapshot.paramMap.get('tabName')}`);
 		this.ngoid = this.route.snapshot.paramMap.get('id');
-
-		switch (this.authService.accessLevel) {
-			case '2':
-				this.isNGO = true;
-				break;
-			case '3':
-				this.isDSU = true;
-				break;
-			default:
-				break;
-		}
-
 		this.getData();
 		this.getResources();
 		this.getVolunteers();
@@ -170,10 +157,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * open add resource modal
 	 */
 	editResource(resource: any) {
-		// this.form.controls.city.enable();
-		// this.form.controls.name.enable();
-		// this.form.patchValue(resource);
-		// this.openVerticallyCentered(this.modalcontent);
 		const navigationExtras: NavigationExtras = {
 			state: {
 				resource: resource
@@ -181,17 +164,12 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		};
 		this.router.navigateByUrl('/resources/add', navigationExtras);
 	}
-
-	// openVerticallyCentered(content: any) {
-	// 	this.modalService.open(content, { centered: true });
-	// }
 	/**
 	 * submit form and close modal
 	 */
 	deleteRes(form: any) {
 		const id = form.value._id;
 		this.resourceService.deleteResource(id).subscribe(data => {
-			// console.log(data);
 			this.modalService.dismissAll();
 			this.getResources();
 		});
@@ -212,7 +190,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.router.navigateByUrl('/resources/add', this.navigationExtras);
 	}
 	addvolunteer() {
-		console.log(this.navigationExtras);
 		this.router.navigateByUrl('/volunteers/add', this.navigationExtras);
 	}
 

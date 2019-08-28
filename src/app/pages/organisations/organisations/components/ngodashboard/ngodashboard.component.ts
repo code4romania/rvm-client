@@ -59,7 +59,6 @@ export class NgodashboardComponent implements OnInit {
 		// 		return {id: elem.name, name: elem.name};
 		// 	});
 		// });
-
 		this.pager = this.organisationService.getPager();
 
 		this.getData();
@@ -80,7 +79,11 @@ export class NgodashboardComponent implements OnInit {
 
 	getData() {
 		this.organisationService.getorganisations(this.pager).subscribe(element => {
-			this.ngosData = element.data;
+			this.ngosData = element.data.map((elem: any) => {
+				elem.nr_vol = 0;
+				elem.nr_res = 0;
+				return elem;
+			});
 			this.pager.total = element.pager.total;
 		});
 	}

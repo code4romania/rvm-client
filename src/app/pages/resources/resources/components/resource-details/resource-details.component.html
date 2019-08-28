@@ -34,7 +34,7 @@
                         <td>{{res.name}}</td>
                         <td>{{res.quantity}}</td>
                         <td>{{res.address}}</td>
-                        <td>{{res.county}}</td>
+                        <td>{{res.city.name}}, {{res.county.name}}</td>
                         <td>{{res.updated_at}}</td>
                         <td class="text-right"><button class="btn btn-info"
                                 [routerLink]="['/organisations/id',res._id]">Vezi detalii</button></td>

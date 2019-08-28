@@ -5,6 +5,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve --configuration=local --o",
+		"start:dev": "ng serve --configuration=development",
 		"start:prod": "ng serve --configuration=production",
 		"build:local": "ng build --configuration=local  && cp .htaccess dist/a/.htaccess",
 		"build:dev": "ng build --prod --configuration=development  && cp .htaccess dist/a/.htaccess",

@@ -35,31 +35,15 @@ export class VolunteerDashboardComponent implements OnInit {
 	NGOFilterValues: any[];
 	locationFilterValues: any[];
 	specializationFilterValues: any[];
-	isNGO = false;
-	isDSU = false;
-	isINSTITUT = false;
 
 	constructor(private volunteerService: VolunteerService, public breakpointObserver: BreakpointObserver,
 			private citiesandcounties: CitiesCountiesService, private filterService: FiltersService,
-			private authService: AuthenticationService, private router: Router) { }
+			public authService: AuthenticationService, private router: Router) { }
 
 	ngOnInit() {
-		switch (this.authService.accessLevel) {
-			case '1':
-				this.isINSTITUT = true;
-				break;
-			case '2':
-				this.isNGO = true;
-				break;
-			case '3':
-				this.isDSU = true;
-				break;
-			default:
-				break;
-		}
 
 		this.pager = this.volunteerService.getPager();
-		if (this.isNGO) {
+		if (this.authService.is('NGO')) {
 			// TO-DO cu filtre DE LA backend
 			// console.log(this.pager.filters);
 			// this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
@@ -109,13 +93,13 @@ export class VolunteerDashboardComponent implements OnInit {
 	}
 
 	addvolunteer() {
-		if (this.isNGO) {
+		if (this.authService.is('NGO')) {
 			const navigationExtras = {
 				state: {
 					ngo: {
 						// TO-DO: extragere informatiilor din contu utilizatorului
 						name: 'Curcea Rosie',
-						ngoid: '4a7d54364a7156b6c12e5492cb0016f1'
+						ngoid: '7eb1c58d-703a-43a4-a9d3-0f8324550def'
 					}
 				}
 			};

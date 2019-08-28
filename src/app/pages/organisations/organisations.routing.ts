@@ -26,7 +26,13 @@ const routes: Routes = [
 				path: 'id/:id',
 				component: NgodetailsComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: {roles: ['DSU', 'NGO']},
+			},
+			{
+				path: 'id/:id/:tabname',
+				component: NgodetailsComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']},
 			},
 		]
 	}

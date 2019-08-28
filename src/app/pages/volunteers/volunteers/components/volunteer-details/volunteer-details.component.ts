@@ -8,7 +8,7 @@ import { VolunteerService } from '../../../volunteers.service';
 	styleUrls: ['./volunteer-details.component.scss']
 })
 export class VolunteerDetailsComponent implements OnInit {
-	data: any;
+	public data: any;
 	hasAlocation = false;
 	hasAccreditation = false;
 
@@ -18,12 +18,16 @@ export class VolunteerDetailsComponent implements OnInit {
 	ngOnInit() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
+			if (data.courses && data.courses.length > 0) {this.hasAccreditation = true; }
 		});
 	}
 	edit() {
+		const aux = {...this.data};
+		aux.city = this.data.city.name;
+		aux.county = this.data.county.name;
 		const navigationExtras: NavigationExtras = {
 			state: {
-				volunteer:	this.data
+				volunteer: aux
 			}
 		};
 		this.router.navigateByUrl('/volunteers/add', navigationExtras);
