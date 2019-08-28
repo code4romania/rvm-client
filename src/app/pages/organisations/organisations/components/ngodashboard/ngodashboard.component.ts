@@ -107,7 +107,8 @@ export class NgodashboardComponent implements OnInit {
 		this.displayBlock = true;
 	}
 
-	showOrganisationDetails(id: string, property: string) {
+	showOrganisationDetails(id: string, property: string, e: any) {
+		e.preventDefault();
 		const navigationExtras: NavigationExtras = {
 			state: {
 				tabName: property
