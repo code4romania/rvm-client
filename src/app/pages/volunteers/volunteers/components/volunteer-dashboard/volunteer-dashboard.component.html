@@ -43,8 +43,8 @@
     <div *ngIf="displayBlock; else displayList" class="mt-5 cardlist row">
         <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
-                <div class="card-body">
-                    <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left d-block">
+                <div class="card-body" [routerLink]="['id',elem._id]">
+                    <a class="btn btn-fix text-left d-block">
                         <h4 class="card-title">{{elem.name}}</h4>
                         <div class="card-text row">
                             <span class="col-md-12">
@@ -55,14 +55,16 @@
                                 <i class="fa fa-phone"></i>
                                 {{ elem.phone }}
                             </span>
+                            <span *ngIf="!!elem.organisation" class="col-md-12">
+                                <i class="fa fa-building"></i>
+                                <a (click)="goToOrganisation(elem.organisation._id, $event)" href="javascript:void(0);" class="ml-1">{{ elem.organisation.name }}</a>        
+                            </span>
+                            <span *ngIf="!elem.organisation" class="col-md-12"> 
+                                <i class="fa fa-building"></i>
+                                Neafiliat
+                            </span>        
                         </div>
                     </a>
-                    <p *ngIf="!!elem.organisation" class="ml-3">Organizație:
-                        <a href="../organisations/id/{{elem.organisation._id}}">{{ elem.organisation.name }}</a>
-                    </p>
-                    <p *ngIf="!elem.organisation" class="ml-3"> 
-                        Neafiliat
-                    </p>
                 </div>
             </div>
         </div>

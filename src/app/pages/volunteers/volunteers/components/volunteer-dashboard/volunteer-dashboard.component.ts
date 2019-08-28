@@ -131,4 +131,9 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.displayBlock = true;
 	}
 
+	goToOrganisation(id: string, e: any) {
+		e.preventDefault();
+		this.router.navigate(['../organisations/id/' + id]);
+	}
+
 }
