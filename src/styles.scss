@@ -69,6 +69,11 @@ body {
 	margin-bottom: 50px;
 }
 
+@media (min-width: 1600px){
+	.wide-container{
+		max-width: 1540px;
+	}
+}
 .logo-container img {
 	border-radius: 50%;
 	display: block;
@@ -333,4 +338,7 @@ body {
 
 .card {
 	cursor: pointer;
+}
+.container{
+	margin-bottom: 35px;
 }
