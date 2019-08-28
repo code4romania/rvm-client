@@ -30,12 +30,11 @@
 			</div>
 			<div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pr-4 pl-0">
 					<div ngbDropdown class="d-inline-block">
-							<!-- <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account</button> -->
 							<div class="userarea" id="dropdown1" ngbDropdownToggle>
 									<app-current-profile></app-current-profile>
 								</div>
 							<div ngbDropdownMenu aria-labelledby="dropdown1">
-								<button ngbDropdownItem routerLink="/">Profil</button>
+								<button ngbDropdownItem [routerLink]="['users', 'id', currentUserId]">Profil</button>
 								<button ngbDropdownItem>Setări</button>
 								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
 								<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
