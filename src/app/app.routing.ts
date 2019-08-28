@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { BlankComponent } from '@app/shared';
-import { AuthenticationGuard, AnonymousGuard, RoleGuard, RedirectGuard } from './core';
+import { AuthenticationGuard, AnonymousGuard, RoleGuard } from './core';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/404';

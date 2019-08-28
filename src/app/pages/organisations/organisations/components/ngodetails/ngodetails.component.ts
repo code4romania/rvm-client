@@ -186,9 +186,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 				this.modalService.dismissAll();
 		});
 	}
+
 	addresource() {
 		this.router.navigateByUrl('/resources/add', this.navigationExtras);
 	}
+
 	addvolunteer() {
 		this.router.navigateByUrl('/volunteers/add', this.navigationExtras);
 	}
@@ -203,6 +205,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
 		});
+	}
+
+
+	sendNotification() {
+		console.log('will send manual notification');
 	}
 }
 

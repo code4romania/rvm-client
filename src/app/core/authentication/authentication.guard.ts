@@ -18,7 +18,6 @@ export class AuthenticationGuard implements CanActivate {
 		const isDashboard = !!route.data['dashboard'];
 		if (this.authenticationService.isAuthenticated()) {
 			if (isDashboard && (!route.children || !route.children.length)) {
-				// console.log(isDashboard, [this.authenticationService.homePath()]);
 				this.router.navigate(['/' + this.authenticationService.homePath()], {
 					replaceUrl: true
 				});

@@ -63,13 +63,19 @@ export class OrganisationService {
 	 * fields for adding a new resource
 	 */
 	constructor(private httpClient: HttpClient) {}
+
 	/**
 	 * post a new organisation to website, auto add Header
 	 */
 	addorganisation(payload: any) {
-
 		return this.httpClient.post('/organisations', payload );
 	}
+
+	editOrganisation(id: string, payload: any) {
+
+		return this.httpClient.put(`/organisations/${id}`, payload );
+	}
+
 	/**
 	 * get all organisations
 	 */
@@ -109,6 +115,7 @@ export class OrganisationService {
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
 	}
+
 	getResourcesbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
 
@@ -123,6 +130,7 @@ export class OrganisationService {
 		}
 		return this.httpClient.get(`/organisations/${id}/resources`, {params: params});
 	}
+
 	getVolunteersbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
 

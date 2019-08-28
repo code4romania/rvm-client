@@ -158,7 +158,6 @@ export class AuthenticationService {
 		if (!this.isAuthenticated()) {
 			return '';
 		}
-		console.log(this._credentials.user.organisation);
 		return this.homes[this.accessLevel].replace(':id', this._credentials.user.organisation);
 	}
 

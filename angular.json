@@ -71,6 +71,7 @@
           },
           "configurations": {
             "local": {
+              "port": 4300,
               "browserTarget": "rvm-client:build:local"
             },
             "development": {

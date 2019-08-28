@@ -15,7 +15,9 @@ export class TopBarComponent implements OnInit {
 		private router: Router) {}
 
 	ngOnInit() {
-		this.currentUserId = this.authService.user._id;
+		if (this.authService.isAuthenticated()) {
+			this.currentUserId = this.authService.user._id;
+		}
 	}
 
 	logout() {
@@ -27,6 +29,12 @@ export class TopBarComponent implements OnInit {
 		},
 		(error: any) => {
 			console.log('logout error: ', error);
+		});
+	}
+
+	goToDashboard() {
+		this.router.navigate(['/' + this.authService.homePath()], {
+			replaceUrl: true
 		});
 	}
 }

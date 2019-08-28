@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
 	FormGroup,
-	FormControl,
 	Validators,
 	FormBuilder
 } from '@angular/forms';
 import { OrganisationService } from '../../../organisations.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
@@ -21,13 +20,13 @@ import { merge } from 'rxjs';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
-import { PasswordValidation } from '@app/core/validators/password-validation';
 
 @Component({
 	selector: 'app-ngoadd',
 	templateUrl: './ngoadd.component.html',
 	styleUrls: ['./ngoadd.component.scss']
 })
+
 export class NgoaddComponent implements OnInit {
 	form: FormGroup;
 	data: any;
@@ -35,19 +34,29 @@ export class NgoaddComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
 	focus1$ = new Subject<string>();
 	click1$ = new Subject<string>();
+
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
+
 	counties: string[] = [];
 	cities: string[] = [];
+
+	ngo: any;
+	edit = false;
+
 	constructor(
+		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
 		private router: Router,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
+		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
+
 		this.counties = this.citiesandCounties.getCounties();
+
 		this.form = this.fb.group({
 			name: ['', ],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
@@ -59,6 +68,27 @@ export class NgoaddComponent implements OnInit {
 			city: [{ value: '', disabled: true }, Validators.required],
 			comments: ['']
 		});
+	}
+
+	getOrganisationDetails(ngoId: string) {
+		if (ngoId) {
+			this.edit = true;
+			this.organisationService.getorganisation(ngoId).subscribe(data => {
+				this.ngo = data;
+
+				this.form = this.fb.group({
+					name: [this.ngo.name, ],
+					website: [this.ngo.website, [Validators.required, WebsiteValidation.websiteValidation]],
+					contact_person: [this.ngo.contact_person, Validators.required],
+					phone: [this.ngo.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					address: [this.ngo.address],
+					email: [this.ngo.email, [Validators.required, EmailValidation.emailValidation]],
+					county: [this.ngo.county, Validators.required],
+					city: [{ value: this.ngo.city, disabled: true }, Validators.required],
+					comments: [this.ngo.comments]
+				});
+			});
+		}
 	}
 
 	searchcounty = (text$: Observable<string>) => {
@@ -120,10 +150,16 @@ export class NgoaddComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		this.organisationService
+		if (this.ngo) {
+			this.organisationService.editOrganisation(this.ngo._id, this.form.value).subscribe(() => {
+				this.router.navigate(['/users']);
+			});
+		} else {
+			this.organisationService
 			.addorganisation(this.form.value)
 			.subscribe(() => {
 				this.router.navigate(['organisations']);
 			});
+		}
 	}
 }

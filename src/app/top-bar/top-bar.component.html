@@ -1,7 +1,7 @@
 <header *ngIf="authService.isAuthenticated()">
 	<nav class="flex-container flex-row container-full-height mx-0 yellow">
 		<div class="px-3 bg-white">
-			<a [routerLink]="['/']" class="logo navbar-brand">
+			<a (click)="goToDashboard()" class="logo navbar-brand" href="javascript:void(0);">
 				<img src="assets/logo.svg" alt="RVM logo">
 			</a>
 		</div>

@@ -9,7 +9,7 @@ import { UsersService } from '@app/core/service/users.service';
 })
 export class UserDetailsComponent implements OnInit {
 	data: any;
-	userTypes = ['DSU', 'NGO', 'Rescue Officer'];
+	userTypes = ['Ofițer', 'Administrator Instituție', 'Administrator Organizație', 'DSU'];
 
 	constructor(private route: ActivatedRoute,
 		private router: Router,
@@ -22,7 +22,11 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	edit() {
-		this.router.navigate(['/users/edit/' + this.data._id]);
+		if (this.data.role === '2') {
+			this.router.navigate(['/organisations/edit/' + this.data.organisation._id]);
+		} else {
+			this.router.navigate(['/users/edit/' + this.data._id]);
+		}
 	}
 
 	delete() {

@@ -19,6 +19,7 @@
             <button (click)="addUser(content)" class=" add-btn btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
         </div>
     </nav>
+    
     <!-- <div class="filters row">
         <span >{{count}}</span>
         <span class="mx-2"></span>
@@ -33,6 +34,7 @@
             </div>
         </div>
     </div> -->
+
     <div *ngIf="displayBlock; else displayList" class="cardlist row mt-2">
         <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1">
@@ -53,15 +55,13 @@
                         </a>
                         
                         <p *ngIf="!!elem.organisation" class="ml-3"> Organizație:
-                            <a class="col-md-12 btn btn-fix text-left" href="../organisations/id/{{elem.organisation?._id}}">
+                            <a class="col-md-12 text-left pl-0" href="../organisations/id/{{elem.organisation?._id}}">
                                 {{ elem.organisation.name }}
                             </a>
                         </p>
 
                         <p *ngIf="!!elem.institution" class="ml-3"> Instituție:
-                            <!-- <a class="btn btn-fix text-left"> -->
                                 {{ elem.institution.name }}
-                            <!-- </a> -->
                         </p>
                     </div>
 

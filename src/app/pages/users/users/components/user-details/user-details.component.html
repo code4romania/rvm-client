@@ -16,11 +16,11 @@
             </div>
     </div>
 
-    <button class="btn btn-info rounded mt-3" (click)="edit()">
+    <button class="btn btn-info rounded mt-3" (click)="edit()" [disabled]="!data">
         <span class="fa fa-edit"></span>
         Editează utilizatorul
     </button>
-    <button class="btn btn-danger rounded mt-3 ml-3" (click)="delete()">
+    <button class="btn btn-danger rounded mt-3 ml-3" (click)="delete()" [disabled]="!data">
         <span class="fa fa-trash-o"></span>
         Șterge utilizatorul
     </button>

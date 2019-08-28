@@ -23,6 +23,12 @@ const routes: Routes = [
 				data: {roles: ['DSU']}
 			},
 			{
+				path: 'edit/:id',
+				component: NgoaddComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
 				path: 'id/:id',
 				component: NgodetailsComponent,
 				canActivate: [RoleGuard],
