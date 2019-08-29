@@ -43,8 +43,9 @@ export class AuthenticationService {
 		payload: Authentication.LoginPayload
 	): Observable<any> {
 
-		return this.httpClient.post('/login', payload).pipe( switchMap((credential: any) => {
-				return this.profile(credential);
+		return this.httpClient.post('/login', payload).pipe(map((credentials: any) => {
+				this.setCredentials(credentials);
+				return credentials;
 			}));
 	}
 	/**
@@ -59,22 +60,6 @@ export class AuthenticationService {
 	): Observable<Authentication.User> {
 		return this.httpClient.post('/register', payload).pipe(
 			map((body: Authentication.User) => {
-				return body;
-			})
-		);
-	}
-	/**
-	 *	Auto add token from Credential {@link accessToken}
-	 *
-	 * @returns The profile of the currently logged in user
-	 */
-	profile(accessToken: any): Observable<Authentication.User> {
-		this.setCredentials(accessToken);
-
-		return this.httpClient.get('/profile').pipe(
-			map((body: Authentication.User) => {
-				const newobj = {...accessToken, user: body};
-				this.setCredentials(newobj);
 				return body;
 			})
 		);
@@ -161,9 +146,6 @@ export class AuthenticationService {
 		return this.homes[this.accessLevel].replace(':id', this._credentials.user.organisation);
 	}
 
-
-
-
 	/**
 	 * Sets the user credentials.
 	 *
@@ -183,10 +165,10 @@ export class AuthenticationService {
 	}
 
 	public recoverPassword(email: string) {
-		return this.httpClient.post('/password/recovery', {email: email});
+		return this.httpClient.post('/recoverpassword', {email: email});
 	}
 
 	public resetPassword(password: string, token: string) {
-		return this.httpClient.post('/password/reset', {passowrd: password, password_confirm: password, token: token});
+		return this.httpClient.post('/resetpassword', {password: password, password_confirmation: password, token: token});
 	}
 }

@@ -22,6 +22,7 @@
 					<label>Website Organizație *</label>
 					<input formControlName="website" class="form-control" type="text"
 						[ngClass]="{ 'error': form.controls.website.invalid && form.controls.website.touched }" />
+					<span class="error-message" *ngIf="form.controls.website.invalid && form.controls.website.touched">* {{form.controls.website.errors.website}}</span>
 				</div>
 			</div>
 
@@ -40,6 +41,7 @@
 					<label>Email *</label>
 					<input formControlName="email" class="form-control" type="email"
 						[ngClass]="{ 'error': form.controls.email.invalid && form.controls.email.touched }" />
+					<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">* {{form.controls.email.errors.email}}</span>
 				</div>
 			</div>
 
@@ -48,6 +50,7 @@
 					<label>Număr de Telefon *</label>
 					<input formControlName="phone" class="form-control" type="tel"
 						[ngClass]="{ 'error': form.controls.phone.invalid && form.controls.phone.touched }" />
+					<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">* {{form.controls.phone.errors.phone}}</span>
 				</div>
 			</div>
 

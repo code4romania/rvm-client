@@ -9,6 +9,6 @@ export class PhoneValidation {
 			return null;
 		}
 
-		return { 'phone': true };
+		return { 'phone': 'Numărul de telefon introdus nu este valid (ex: +40722446688, 0733557799).' };
 	}
 }

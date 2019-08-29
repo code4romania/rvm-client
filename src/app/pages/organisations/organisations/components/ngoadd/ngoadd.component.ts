@@ -40,8 +40,8 @@ export class NgoaddComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 
-	counties: string[] = [];
-	cities: string[] = [];
+	counties: any[] = [];
+	cities: any[] = [];
 
 	ngo: any;
 	edit = false;

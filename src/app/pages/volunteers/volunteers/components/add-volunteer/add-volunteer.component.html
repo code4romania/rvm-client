@@ -31,6 +31,7 @@
 						formControlName="ssn"
 						class="form-control"
 						type="number"	/>
+					<span class="error-message" *ngIf="form.controls.ssn.invalid && form.controls.ssn.touched">* {{form.controls.ssn.errors.ssn}}</span>
 				</div>
 			</div>
 
@@ -42,6 +43,7 @@
 						formControlName="email"
 						class="form-control"
 						type="email"/>
+					<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">* {{form.controls.email.errors.email}}</span>
 				</div>
 			</div>
 
@@ -64,6 +66,7 @@
 						formControlName="phone"
 						class="form-control"
 						type="tel"	/>
+					<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">* {{form.controls.phone.errors.phone}}</span>
 				</div>
 			</div>
 

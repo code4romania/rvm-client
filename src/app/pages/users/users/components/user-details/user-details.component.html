@@ -12,7 +12,7 @@
                 <span><b>Tipul utilizatorului: </b> {{ userTypes[data?.role] }}</span>
             </div>
             <div class="col-md-12 mt-1">
-                    <span><b>Data adăugării: </b> {{ data?.created_at | date }}</span>
+                    <span><b>Data adăugării: </b> {{ data?.created_at | date: 'dd.MM.yyyy' }}</span>
             </div>
     </div>
 

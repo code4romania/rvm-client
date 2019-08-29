@@ -13,6 +13,6 @@ export class WebsiteValidation {
 			return null;
 		}
 
-		return { 'website': true };
+		return { 'website': 'Adresa paginii web introdusă nu este validă (ex: www.website.com).' };
 	}
 }

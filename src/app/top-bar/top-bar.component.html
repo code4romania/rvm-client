@@ -35,7 +35,6 @@
 								</div>
 							<div ngbDropdownMenu aria-labelledby="dropdown1">
 								<button ngbDropdownItem [routerLink]="['users', 'id', currentUserId]">Profil</button>
-								<button ngbDropdownItem>Setări</button>
 								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
 								<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
 								<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizații</button>

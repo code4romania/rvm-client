@@ -20,7 +20,7 @@ const AuthenticationRoutes: Routes = [
 				component: SignupComponent
 			},
 			{
-				path: 'reset/:token',
+				path: 'auth/reset/:token',
 				component: ResetPasswordComponent
 			},
 			{

@@ -60,7 +60,8 @@
 						formControlName="quantity"
 						[ngClass]="{ 'error': form.controls.quantity.invalid && form.controls.quantity.touched }"
 						class="form-control"
-						type="number"	/>
+						type="number"/>
+					<span class="error-message" *ngIf="form.controls.quantity.invalid && form.controls.quantity.touched">* Cantitatea trebuie să fie mai mare decât 0.</span>
 				</div>
 			</div>
             <div class="mt-4 col-md-8 col-sm-12">

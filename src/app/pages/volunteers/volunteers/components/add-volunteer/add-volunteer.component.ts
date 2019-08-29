@@ -17,6 +17,7 @@ import { AuthenticationService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
+import { SsnValidation } from '@app/core/validators/ssn-validation';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -49,6 +50,7 @@ export class AddVolunteerComponent implements OnInit {
 	currentUserId: string;
 	isEditing = false;
 	editeduserid = '';
+
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
@@ -58,7 +60,7 @@ export class AddVolunteerComponent implements OnInit {
 		public authService: AuthenticationService) {
 		this.form = this.fb.group({
 			name: ['', Validators.required],
-			ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+			ssn: ['', [Validators.required, SsnValidation.ssnValidation]],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			address: [''],
@@ -223,7 +225,6 @@ export class AddVolunteerComponent implements OnInit {
 	 */
 	onSubmit() {
 		const volunteer = this.form.value;
-		volunteer.added_by = this.currentUserId;
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county.id;
 		volunteer.city = volunteer.city.id;
