@@ -50,7 +50,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 							// if undefined this will be extensive search on all keys
 		};
 	volunteerconfig = {...{placeholder: 'Tipul'}, ...this.multiselectconfig};
-	locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
+	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
 	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
 	volunteerTypeFilterValues: any[] = [];
@@ -69,7 +69,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		private organisationService: OrganisationService,
 		private modalService: NgbModal,
 		private fb: FormBuilder,
-		private citiesandCounties: CitiesCountiesService,
+		private citiesandcounties: CitiesCountiesService,
 		private resourceService: ResourcesService
 	) {
 		const navigation = this.router.getCurrentNavigation();
@@ -81,9 +81,10 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 	ngOnInit() {
 
-		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
-			this.counties = response;
+		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+			this.locationFilterValues = response.data;
 		});
+
 
 		this.form = this.fb.group({
 			_id: '',
@@ -160,12 +161,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * open add resource modal
 	 */
 	editResource(resource: any) {
-		const navigationExtras: NavigationExtras = {
-			state: {
-				resource: resource
-			}
-		};
-		this.router.navigateByUrl('/resources/add', navigationExtras);
+		this.router.navigateByUrl(`/resources/edit/${resource._id}`);
 	}
 
 	/**
@@ -198,17 +194,9 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.router.navigateByUrl('/volunteers/add', this.navigationExtras);
 	}
 
-	clear() {
-		this.authService.setCredentials();
-	}
-
-	selectedCounty(val: { item: any }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
-			this.cities = k;
-			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeți Orașul';
-		});
-	}
+	// clear() {
+	// 	this.authService.setCredentials();
+	// }
 
 	sortChanged(pager: any) {
 		if (this.selectedTab === 'volunteers') {

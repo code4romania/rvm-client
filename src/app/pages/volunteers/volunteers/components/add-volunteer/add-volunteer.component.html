@@ -2,14 +2,16 @@
 	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
 		<app-back-button></app-back-button>
 	</nav>
-	<p class="page-title">Adaugă un voluntar:</p>
-	<div class="note col-md-8">
-		<span>
-			Vrei să adaugi mai mulți voluntari simultan?
-			<a [routerLink]="['../import']">Importă o listă</a>.
-		</span>
+	<div *ngIf="!edit">
+		<p class="page-title" *ngIf="!edit">Adaugă un voluntar:</p>
+		<div class="note col-md-8">
+			<span>
+				Vrei să adaugi mai mulți voluntari simultan?
+				<a [routerLink]="['../import']">Importă o listă</a>.
+			</span>
+		</div>
 	</div>
-
+	<p class="page-title" *ngIf="edit">Modifică voluntarul:</p>
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
 			<div class="mt-4 col-md-4 col-sm-12">
@@ -73,9 +75,9 @@
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Organizație *</label>
-					<input [(ngModel)]="defaultOrgValue" [ngModelOptions]="{standalone: true}"
-						[disabled]="orgDisabled"
+					<input formControlName="organisation"
 						type="text"
+						[ngClass]="{ 'error': form.controls.organisation.invalid && form.controls.organisation.touched }"
 						(selectItem)="selectedorganisation($event)"
 						class="form-control"
 						[ngbTypeahead]="searchorganisation"
@@ -88,41 +90,27 @@
 			</div>
 
 			<div class="mt-4 col-md-4 col-sm-12">
-				<div class="form-group">
-					<label>Județ *</label>
-					<input
-						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched }"
-						type="text"
-						formControlName="county"
-						(selectItem)="selectedCounty($event)"
-						class="form-control"
-						[ngbTypeahead]="searchcounty"
-						[resultFormatter]="formatter"
-						[inputFormatter]="formatter"
-						(focus)="focus1$.next($event.target.value)"
-						(click)="click1$.next($event.target.value)"
-						#instance="ngbTypeahead"/>
+					<div class="form-group">
+						<label>Județ *</label>
+						<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
+							class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
+							[inputFormatter]="formatter" [resultFormatter]="formatter"
+							[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
+							(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
+					</div>
 				</div>
-			</div>
-
-			<div class="mt-4 col-md-4 col-sm-12">
-				<div class="form-group">
-					<label>Localitate *</label>
-					<input
-						type="text"
-						formControlName="city"
-						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
-						class="form-control"
-						[ngbTypeahead]="searchcity"
-						placeholder="{{ cityPlaceholder }}"
-						[resultFormatter]="formatter"
-						[inputFormatter]="formatter"
-						autocomplete="new-password"
-						(focus)="focus2$.next($event.target.value)"
-						(click)="click2$.next($event.target.value)"
-						#instance="ngbTypeahead"/>
+	
+				<div class="mt-4 col-md-4 col-sm-12">
+					<div class="form-group">
+						<label>Localitate *</label>
+						<input type="text" formControlName="city" class="form-control"
+							[ngbTypeahead]="searchcity" (selectItem)="selectedCity($event)"
+							[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
+							placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
+							[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
+							(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
+					</div>
 				</div>
-			</div>
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div>

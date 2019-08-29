@@ -26,7 +26,7 @@ export class VolunteerDashboardComponent implements OnInit {
 		searchOnKey: 'name', // key on which search should be performed this will be selective search.
 							// if undefined this will be extensive search on all keys
 		};
-		locationconfig = {...{placeholder: 'Locație'}, ...this.multiselectconfig};
+		locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
 		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 		ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
@@ -49,8 +49,8 @@ export class VolunteerDashboardComponent implements OnInit {
 		}
 
 		this.getData();
-		this.citiesandcounties.getCounties().subscribe((response: any[]) => {
-			this.locationFilterValues = response;
+		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+			this.locationFilterValues = response.data;
 		});
 
 		this.filterService.getOrganisationsFilters().subscribe((data) => {

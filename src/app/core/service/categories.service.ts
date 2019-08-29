@@ -13,7 +13,7 @@ export class CategoriesService {
 				});
 			}));
 	}
-	getSubCategories(id: number, term: string): Observable<any> {
+	getSubCategories(id: string, term: string): Observable<any> {
 		return this.http.get('assets/json/subcategories.json')
 			.pipe(map((data: any) => {
 				return data.filter((x: any) => {

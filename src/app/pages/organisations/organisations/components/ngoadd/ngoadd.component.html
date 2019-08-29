@@ -57,8 +57,9 @@
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Județ *</label>
-					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
 						class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
+						
 						[inputFormatter]="formatter" [resultFormatter]="formatter"
 						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
 						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
@@ -68,10 +69,11 @@
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Localitate *</label>
-					<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+					<input type="text" formControlName="city" class="form-control"
+						[ngbTypeahead]="searchcity" (selectItem)="selectedCity($event)"
+						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
 						placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
 						[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
-						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched}"
 						(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
 				</div>
 			</div>
@@ -94,7 +96,8 @@
 		</div>
 
 		<div class="text-right">
-			<button [disabled]="form.invalid" class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
+			<!-- [disabled]="form.invalid"  -->
+			<button class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
 				type="submit">
 				Salvează
 			</button>

@@ -14,13 +14,15 @@ import {
 	debounceTime,
 	distinctUntilChanged,
 	filter,
-	map
+	map,
+	switchMap
 } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
 import { Location } from '@angular/common';
+import { LocationValidation } from '@app/core/validators/location-validation';
 
 @Component({
 	selector: 'app-ngoadd',
@@ -30,7 +32,6 @@ import { Location } from '@angular/common';
 
 export class NgoaddComponent implements OnInit {
 	form: FormGroup;
-	data: any;
 	cityPlaceholder = 'Selectați mai întâi județul';
 	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
 	focus1$ = new Subject<string>();
@@ -39,10 +40,7 @@ export class NgoaddComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-
-	counties: any[] = [];
-	cities: any[] = [];
-
+	countyid = '';
 	ngo: any;
 	edit = false;
 
@@ -56,9 +54,6 @@ export class NgoaddComponent implements OnInit {
 	ngOnInit() {
 		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
 
-		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
-			this.counties = response;
-		});
 
 		this.form = this.fb.group({
 			name: ['', [Validators.required]],
@@ -67,8 +62,8 @@ export class NgoaddComponent implements OnInit {
 			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			address: [''],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
-			county: ['', Validators.required],
-			city: [{ value: '', disabled: true }, Validators.required],
+			county: ['', [Validators.required, LocationValidation.locationValidation]],
+			city: [{value: '', disabled: true }, [Validators.required, LocationValidation.locationValidation]],
 			comments: ['']
 		});
 	}
@@ -80,16 +75,16 @@ export class NgoaddComponent implements OnInit {
 			this.edit = true;
 			this.organisationService.getorganisation(ngoId).subscribe(data => {
 				this.ngo = data;
-
+				this.countyid = data.county._id;
 				this.form = this.fb.group({
-					name: [this.ngo.name, ],
+					name: [this.ngo.name ],
 					website: [this.ngo.website, [Validators.required, WebsiteValidation.websiteValidation]],
 					contact_person: [this.ngo.contact_person, Validators.required],
 					phone: [this.ngo.phone, [Validators.required, PhoneValidation.phoneValidation]],
 					address: [this.ngo.address],
 					email: [this.ngo.email, [Validators.required, EmailValidation.emailValidation]],
-					county: [this.ngo.county, Validators.required],
-					city: [{ value: this.ngo.city, disabled: true }, Validators.required],
+					county: [this.ngo.county, [Validators.required, LocationValidation.locationValidation]],
+					city: [this.ngo.city, [Validators.required, LocationValidation.locationValidation]],
 					comments: [this.ngo.comments]
 				});
 			});
@@ -106,24 +101,20 @@ export class NgoaddComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map((term: string) => {
-				if (term === '') {
-					return this.counties;
-				} else {
-					return this.counties
-						.filter(
-							v =>
-								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-						)
-						.slice(0, 10);
-				}
+			switchMap((term: string) => {
+				return this.citiesandCounties.getCounties(term).pipe(
+					map((response: {data: any[], pager: any}) => {
+						console.log(response);
+						return response.data;
+					})
+				);
 			})
 		);
 	}
 
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
-			debounceTime(200),
+			debounceTime(500),
 			distinctUntilChanged()
 		);
 		const clicksWithClosedPopup$ = this.click2$.pipe(
@@ -131,24 +122,35 @@ export class NgoaddComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus2$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map((term: string) =>
-				(term === ''
-					? this.cities
-					: this.cities.filter(
-							v =>
-								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-					)
-				).slice(0, 10)
-			)
+			switchMap((term: string) => {
+				if (this.countyid) {
+					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
+						map((response: {data: any[], pager: any}) => {
+							console.log(response);
+							return response.data;
+						})
+					);
+				} else {
+					return [];
+				}
+			})
 		);
 	}
 
-	selectedCounty(val: { item: any }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
-			this.cities = k;
+	selectedCounty(val: any) {
+		this.form.controls.county.markAsTouched();
+		if (val.item && val.item._id) {
+			this.countyid = val.item._id;
+			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
-		});
+		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
+			this.form.patchValue({county: '', city: ''});
+		}
+	}
+	selectedCity(val: { item: any }) {
+		this.form.controls.city.markAsTouched();
+		this.form.patchValue({city: val.item});
 	}
 
 	/**
@@ -156,8 +158,8 @@ export class NgoaddComponent implements OnInit {
 	 */
 	onSubmit() {
 		const ngo = this.form.value;
-		ngo.city = ngo.city.id;
-		ngo.county = ngo.county.id;
+		ngo.city = ngo.city._id;
+		ngo.county = ngo.county._id;
 		if (this.ngo) {
 			this.organisationService.editOrganisation(this.ngo._id, this.form.value).subscribe(() => {
 				this.location.back();

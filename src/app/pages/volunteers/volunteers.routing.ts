@@ -28,6 +28,12 @@ const routes: Routes = [
 				data: {roles: ['DSU', 'NGO']}
 			},
 			{
+				path: 'edit/:id',
+				component: AddVolunteerComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
 				path: 'import',
 				component: ImportVolunteersComponent,
 				canActivate: [RoleGuard],

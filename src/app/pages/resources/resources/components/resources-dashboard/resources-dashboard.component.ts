@@ -31,7 +31,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		selectAllText: 'Select All'
 		};
 	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
-	locationconfig = {...{placeholder: 'Locație'}, ...this.multiselectconfig};
+	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
 	ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 	typefilterResult: any[] = [];
 	locationfilterResult: any[] = [];
@@ -72,8 +72,8 @@ export class ResourcesdashboardComponent implements OnInit {
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
 
-		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
-			this.locationFilterValues = response;
+		this.citiesandCounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+			this.locationFilterValues = response.data;
 		});
 
 		this.breakpointObserver

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { VolunteerService } from '../../../volunteers.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, merge, Subject, of } from 'rxjs';
 import {
 	debounceTime,
@@ -18,6 +18,8 @@ import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
 import { SsnValidation } from '@app/core/validators/ssn-validation';
+import { LocationValidation } from '@app/core/validators/location-validation';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -27,13 +29,11 @@ import { SsnValidation } from '@app/core/validators/ssn-validation';
 
 export class AddVolunteerComponent implements OnInit {
 	form: FormGroup;
-	orgDisabled = false;
-	defaultOrgValue: {name: String, id: string};
 	coursename: string;
 	acreditedby: string;
 	obtained: string;
-	counties: any[] = [];
-	cities: any[] = [];
+	countyid: string;
+	volunteer: any;
 	cityPlaceholder = 'Selectați mai întâi județul';
 
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
@@ -47,17 +47,17 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-	currentUserId: string;
-	isEditing = false;
-	editeduserid = '';
-
+	edit = false;
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
-		private router: Router, private location: Location,
+		private route: ActivatedRoute, private location: Location,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
-		public authService: AuthenticationService) {
+		public authService: AuthenticationService) {}
+
+	ngOnInit() {
+		this.getVolunteerDetails(this.route.snapshot.paramMap.get('id'));
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			ssn: ['', [Validators.required, SsnValidation.ssnValidation]],
@@ -67,49 +67,37 @@ export class AddVolunteerComponent implements OnInit {
 			job: [''],
 			county: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
-			organisation_id: ['', Validators.required],
+			organisation: this.authService.is('NGO') ?
+								[{value:
+									{name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
+									disabled: true }, Validators.required] :
+								[{value: '' , disabled: false }, Validators.required],
 			courses: this.fb.array([]),
 			comments: ['']
 		});
-
-		const navigation = this.router.getCurrentNavigation();
-		if (navigation && navigation.extras && navigation.extras.state) {
-			const ngo = navigation.extras.state.ngo;
-
-			if (ngo) {
-				this.defaultOrgValue = ngo;
-				this.form.patchValue({
-					'organisation_id': ngo.ngoid
+	}
+	getVolunteerDetails(volId: string) {
+		if (volId) {
+			this.edit = true;
+			this.volunteerService.getVolunteer(volId).subscribe(data => {
+				this.volunteer = data;
+				this.countyid = this.volunteer.county._id;
+				this.form = this.fb.group({
+					name: [this.volunteer.name, Validators.required],
+					ssn: [this.volunteer.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+					email: [this.volunteer.email, [Validators.required, EmailValidation.emailValidation]],
+					phone: [this.volunteer.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					address: this.volunteer.address,
+					job: this.volunteer.job,
+					county: [this.volunteer.county, Validators.required],
+					city: [this.volunteer.city, Validators.required],
+					organisation: [{value: this.volunteer.organisation, disabled: this.authService.is('NGO') }, Validators.required],
+					courses: this.fb.array(this.volunteer.courses),
+					comments: this.volunteer.comments
 				});
-			} else {
-				const volunteer = navigation.extras.state.volunteer as any;
-				if (volunteer) {
-					this.isEditing = true;
-					this.editeduserid = volunteer._id;
-					this.defaultOrgValue = volunteer.organisation;
-					this.form.controls.city.enable();
-					this.form.patchValue(volunteer);
-					this.selectedCounty({item: volunteer.county});
-					this.form.patchValue({
-						'organisation_id': volunteer.organisation._id
-					});
-				}
-			}
+			});
 		}
 	}
-
-	ngOnInit() {
-		if (this.authService.accessLevel === '2') {
-			this.orgDisabled = true;
-		}
-
-		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
-			this.counties = response;
-		});
-
-		this.currentUserId = this.authService.user._id;
-	}
-
 	get f() {
 		return this.form.controls;
 	}
@@ -149,24 +137,19 @@ export class AddVolunteerComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map((term: string) => {
-				if (term === '') {
-					return this.counties;
-				} else {
-					return this.counties
-						.filter(
-							v =>
-								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-						)
-						.slice(0, 10);
-				}
+			switchMap((term: string) => {
+				return this.citiesandCounties.getCounties(term).pipe(
+					map((response: {data: any[], pager: any}) => {
+						console.log(response);
+						return response.data;
+					})
+				);
 			})
 		);
 	}
-
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
-			debounceTime(200),
+			debounceTime(500),
 			distinctUntilChanged()
 		);
 		const clicksWithClosedPopup$ = this.click2$.pipe(
@@ -174,15 +157,18 @@ export class AddVolunteerComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus2$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map(term =>
-				(term === ''
-					? this.cities
-					: this.cities.filter(
-							v =>
-								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-					)
-				).slice(0, 10)
-			)
+			switchMap((term: string) => {
+				if (this.countyid) {
+					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
+						map((response: {data: any[], pager: any}) => {
+							console.log(response);
+							return response.data;
+						})
+					);
+				} else {
+					return [];
+				}
+			})
 		);
 	}
 
@@ -208,29 +194,37 @@ export class AddVolunteerComponent implements OnInit {
 		control.removeAt(index);
 	}
 
-	selectedorganisation(val: any) {
-		this.form.controls['organisation_id'].setValue(val.item._id);
-	}
-
-	selectedCounty(val: { item: any }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(k => {
-			this.cities = k;
+	selectedCounty(val: any) {
+		this.form.controls.county.markAsTouched();
+		if (val.item && val.item._id) {
+			this.countyid = val.item._id;
+			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
-		});
+		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
+			this.form.patchValue({county: '', city: ''});
+		}
 	}
-
+	selectedCity(val: { item: any }) {
+		this.form.controls.city.markAsTouched();
+		this.form.patchValue({city: val.item});
+	}
+	selectedorganisation(val: { item: any }) {
+		this.form.controls.organisation.markAsTouched();
+		this.form.patchValue({organisation: val.item});
+	}
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
 		const volunteer = this.form.value;
+		// volunteer.added_by = this.currentUserId;
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county.id;
 		volunteer.city = volunteer.city.id;
-
-		if (this.isEditing) {
-			this.volunteerService.editVolunteer(this.editeduserid, volunteer).subscribe(() => {
+		volunteer.organisation_id = volunteer.organisation._id;
+		if (this.edit) {
+			this.volunteerService.editVolunteer(volunteer._id, volunteer).subscribe(() => {
 				this.location.back();
 			});
 		} else {

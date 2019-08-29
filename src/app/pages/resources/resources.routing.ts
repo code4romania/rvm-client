@@ -17,6 +17,12 @@ const routes: Routes = [
 				data: {roles: ['DSU', 'NGO']}
 			},
 			{
+				path: 'edit/:id',
+				component: AddResourceComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
 				path: 'id/:id',
 				component: ResourcedetailsComponent,
 				canActivate: [RoleGuard],

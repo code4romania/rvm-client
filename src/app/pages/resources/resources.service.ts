@@ -64,4 +64,7 @@ export class ResourcesService {
 		params = {...params, ...{name: id}};
 		return this.httpClient.get('/resources/organisations', {params: params} );
 	}
+	editResource(id: string, payload: any) {
+		return this.httpClient.put(`/organisations/${id}`, payload );
+	}
 }

@@ -5,7 +5,7 @@ import {
 	Validators,
 	FormBuilder
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +23,7 @@ import { OrganisationService } from '@app/pages/organisations/organisations.serv
 import { AuthenticationService, CategoriesService } from '@app/core';
 import { Location, isPlatformWorkerApp } from '@angular/common';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
+import { LocationValidation } from '@app/core/validators/location-validation';
 
 @Component({
 	selector: 'app-add-resource',
@@ -31,24 +32,19 @@ import { prepareEventListenerParameters } from '@angular/compiler/src/render3/vi
 })
 export class AddResourceComponent implements OnInit {
 	form: FormGroup;
-	orgDisabled = false;
-	defaultOrgValue: {name: String, id: string};
-	counties: any[] = [];
-	cities: any[] = [];
-	defaultCategory: any;
-	defaultSubcat: any;
+	edit = false;
+	res: any;
+	countyid: string;
+	categoryid: string;
 	cityPlaceholder = 'Selectați mai întâi județul';
 	resourcePlaceholder = 'Selectați mai întâi categoria';
-	currentUserId: string;
 
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
-
 	@ViewChild('instance', { static: true }) instance1: NgbTypeahead;
 	focus1$ = new Subject<string>();
 	click1$ = new Subject<string>();
-
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
@@ -58,86 +54,97 @@ export class AddResourceComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
+
 	constructor(private resourcesService: ResourcesService,
-		private router: Router, private catService: CategoriesService,
+		private route: ActivatedRoute, private catService: CategoriesService,
 		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder,
 		private orgService: OrganisationService,
 		public authService: AuthenticationService) {
+	}
 
+	ngOnInit() {
+		this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
 		this.form = this.fb.group({
-			type_name: ['', Validators.required],
-			subcat: ['', Validators.required],
+			subCategory: [{value: '', disabled: true}, Validators.required],
 			name: ['', Validators.required],
 			address: '',
-			category: '',
-			organisation_id: '',
+			category:  ['', Validators.required],
+			organisation: this.authService.is('NGO') ?
+								[{value:
+									{name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
+									disabled: true }, Validators.required] :
+								[{value: '' , disabled: false }, Validators.required],
 			quantity: ['', [Validators.required, Validators.min(0)]],
 			city: [{ value: '', disabled: true }, Validators.required],
 			county: ['', Validators.required],
 			comments: ''
 		});
-
-		const navigation = this.router.getCurrentNavigation();
-
-		if (navigation && navigation.extras && navigation.extras.state) {
-			const ngo = navigation.extras.state.ngo;
-			if (ngo) {
-				this.defaultOrgValue = ngo;
-				this.form.patchValue({
-					'organisation_id': ngo.ngoid
+	}
+	getResourceDetails(resId: string) {
+		if (resId) {
+			this.edit = true;
+			this.resourcesService.getResource(resId).subscribe(data => {
+				this.res = data;
+				this.countyid = this.res.county._id;
+				this.categoryid = this.res.category._id;
+				this.form = this.fb.group({
+					name: this.res.name,
+					subCategory: [this.res.subCategory, Validators.required],
+					address: this.res.address,
+					category: [this.res.category, Validators.required],
+					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
+					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
+					city: [this.res.city, [Validators.required, LocationValidation.locationValidation]],
+					county: [this.res.county, [Validators.required, LocationValidation.locationValidation]],
+					comments: this.res.comments
 				});
-			} else {
-				const resource = navigation.extras.state.resource as any;
-				if (resource) {
-					this.defaultOrgValue = resource.organisation;
-					this.form.controls.city.enable();
-					this.form.patchValue(resource);
-					this.form.patchValue({
-						'organisation_id': resource.organisation._id
-					});
-				}
-			}
+			});
 		}
 	}
-
-	ngOnInit() {
-		if (this.authService.accessLevel === '2') {
-			this.orgDisabled = true;
-		}
-
-		this.citiesandCounties.getCounties().subscribe((response: any[]) => {
-			this.counties = response;
-		});
-
-		this.currentUserId = this.authService.user._id;
-	}
-
 	formatter = (result: { name: string }) => result.name;
 
-	searchCounty = (text$: Observable<string>) => {
+	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
 			distinctUntilChanged()
 		);
-
 		const clicksWithClosedPopup$ = this.click1$.pipe(
 			filter(() => !this.instance1.isPopupOpen())
 		);
-
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map((term: string) => {
-				if (term === '') {
-					return this.counties;
+			switchMap((term: string) => {
+				return this.citiesandCounties.getCounties(term).pipe(
+					map((response: {data: any[], pager: any}) => {
+						console.log(response);
+						return response.data;
+					})
+				);
+			})
+		);
+	}
+	searchcity = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+		const clicksWithClosedPopup$ = this.click2$.pipe(
+			filter(() => !this.instance2.isPopupOpen())
+		);
+		const inputFocus$ = this.focus2$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				if (this.countyid) {
+					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
+						map((response: {data: any[], pager: any}) => {
+							console.log(response);
+							return response.data;
+						})
+					);
 				} else {
-					return this.counties
-						.filter(
-							v =>
-								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-						)
-						.slice(0, 10);
+					return [];
 				}
 			})
 		);
@@ -167,47 +174,20 @@ export class AddResourceComponent implements OnInit {
 			debounceTime(200),
 			distinctUntilChanged()
 		);
-		const clicksWithClosedPopup$ = this.click1$.pipe(
-			filter(() => !this.instance1.isPopupOpen())
+		const clicksWithClosedPopup$ = this.click4$.pipe(
+			filter(() => !this.instance4.isPopupOpen())
 		);
-		const inputFocus$ = this.focus1$;
+		const inputFocus$ = this.focus4$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				if (term !== '') {
-					return this.catService.getSubCategories(1, term).pipe(
-						map(x => {
-							if (x.length === 0) {
-								return [{id: 9, name: 'Altele'}];
-							} else { return x; }
-						})
-					);
-				} else {
-					return [];
-				}
+				return this.catService.getSubCategories(this.categoryid, term).pipe(
+					map(x => {
+						if (x.length === 0) {
+							return [{id: 9, name: 'Altele'}];
+						} else { return x; }
+					})
+				);
 		}));
-	}
-	searchcity = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		);
-
-		const clicksWithClosedPopup$ = this.click2$.pipe(
-			filter(() => !this.instance2.isPopupOpen())
-		);
-
-		const inputFocus$ = this.focus2$;
-		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			map(term =>
-				(term === ''
-					? this.cities
-					: this.cities.filter(
-							v =>
-								v.name.toLowerCase().indexOf(term.toLowerCase()) > -1
-					)
-				).slice(0, 10)
-			)
-		);
 	}
 
 	searchOrganisation = (text$: Observable<string>) => {
@@ -228,44 +208,64 @@ export class AddResourceComponent implements OnInit {
 				);
 		}));
 	}
-
-	selectedCounty(val: { item: any }) {
-		this.citiesandCounties.getCitiesbyCounty(val.item.name).subscribe(response => {
-			this.cities = response;
+	selectedCounty(val: any) {
+		this.form.controls.county.markAsTouched();
+		if (val.item && val.item._id) {
+			this.countyid = val.item._id;
+			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
 			this.cityPlaceholder = 'Alegeți Orașul';
-		});
+		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
+			this.form.patchValue({county: '', city: ''});
+		}
 	}
-
+	selectedCity(val: { item: any }) {
+		this.form.controls.city.markAsTouched();
+		this.form.patchValue({city: val.item});
+	}
 	selectedOrganisation(val: any) {
-		this.form.controls['organisation_id'].setValue(val.item._id);
-	// selectedorganisation() {
-	// 	this.form.controls['organisation_id'].setValue(this.defaultOrgValue.id);
-	// }
+		this.form.controls.organisation.markAsTouched();
+		if (val.item && val.item._id) {
+			this.form.patchValue({organisation: val.item});
+		} else if (this.form.controls.organisation.value.name && val !== this.form.controls.organisation.value.name) {
+			this.form.patchValue({organisation: ''});
+		}
 	}
 	selectedSubCategory(val: any) {
-		// this.form.controls['organisation_id'].setValue(val.item._id);
+		this.form.controls.subCategory.markAsTouched();
+		this.form.patchValue({subCategory: val.item});
 	}
-	selectedorganisation(val: any) {
-		// this.form.controls['organisation_id'].setValue(val.item._id);
+	selectedCategory(val: { item: any }) {
+		this.form.controls.category.markAsTouched();
+		if (val.item && val.item._id) {
+			this.categoryid = val.item._id;
+			this.form.patchValue({category: val.item});
+			this.form.controls.subCategory.enable();
+			this.resourcePlaceholder = 'Alegeți Resursa';
+		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
+			this.form.patchValue({category: '', subCategory: ''});
+		}
 	}
-
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
 		const resource = this.form.value;
+		resource.organisation_id = this.form.value.organisation._id;
 		resource.county = resource.county.id;
 		resource.city = resource.city.id;
-		this.resourcesService
-			.addResource(this.form.value)
+		// resource.category = [resource.category._id, resource.subCategory._id];
+		if (this.edit) {
+			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {
-				console.log(element);
+				this.location.back();
+			});
+		}
+		this.resourcesService
+			.addResource(resource)
+			.subscribe((element: any) => {
 				this.location.back();
 			});
 	}
-	selectedCategory(val: { item: string }) {
-		this.form.controls.subcat.enable();
-		this.resourcePlaceholder = 'Alegeți Resursă';
-	}
+
 }

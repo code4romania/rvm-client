@@ -1,12 +1,12 @@
 [
-{"name":"Textile (ex pături, asternuturi)","category":1},
-{"name":"Mobilier (ex: paturi de campanie, patut de copil, saltele etc)","category":1},
-{"name":"Corturi","category":1},
-{"name":"Spatii de cazare","category":1},
-{"name":"Echipamente electrice (ex: motopompe, generatoare curent, pompa apa, drone etc)","category":2},
-{"name":"Echipamente utilitare (ex: rucsac de supravietuire, lanterne, lampi, instalatii de iluminat, bucatarie de campanie, reșouri etc)","category":2}, 
-{"name":"Masini (ex: duba 7 locuri, microbuz, masini 44, masini mici)","category":4},
-{"name":"Motociclete (ex: motociclete, scutere, alte vehicule motorizate)","category":4},
-{"name":"Rulote","category":4},
-{"name":"Masini specializate (ex: ambulanta)","category":4}
+{"name":"Textile (ex pături, asternuturi)","category":"1"},
+{"name":"Mobilier (ex: paturi de campanie, patut de copil, saltele etc)","category":"1"},
+{"name":"Corturi","category":"1"},
+{"name":"Spatii de cazare","category":"1"},
+{"name":"Echipamente electrice (ex: motopompe, generatoare curent, pompa apa, drone etc)","category":"2"},
+{"name":"Echipamente utilitare (ex: rucsac de supravietuire, lanterne, lampi, instalatii de iluminat, bucatarie de campanie, reșouri etc)","category":"2"}, 
+{"name":"Masini (ex: duba 7 locuri, microbuz, masini 44, masini mici)","category":"4"},
+{"name":"Motociclete (ex: motociclete, scutere, alte vehicule motorizate)","category":"4"},
+{"name":"Rulote","category":"4"},
+{"name":"Masini specializate (ex: ambulanta)","category":"4"}
 ]

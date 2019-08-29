@@ -8,13 +8,19 @@ export class CitiesCountiesService {
 
 	constructor(private http: HttpClient) {}
 
-	getCounties()  {
-		return this.http.get('assets/json/counties.json');
+	getCounties(searchterm?: string): Observable<any>  {
+		if (searchterm === '') {
+			return this.http.get(`/counties`);
+		} else {
+			return this.http.get(`/counties?filters[1]=${searchterm}`);
+		}
 	}
 
-	getCitiesbyCounty(name: string) {
-		return this.http.get('assets/json/cities.json').pipe(map((data: any) => {
-			return data.filter((elem: any) => elem.county === name);
-		}));
+	getCitiesbyCounty(county_id: string, searchterm: string):  Observable<any>  {
+		if (searchterm === '') {
+			return this.http.get(`/cities?filters[1]=${county_id}`);
+		} else {
+			return this.http.get(`/cities?filters[1]=${county_id}&filters[2]=${searchterm}`);
+		}
 	}
 }

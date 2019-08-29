@@ -5,6 +5,10 @@ header {
 .logo {
   display: inline-block;
   height: 60px;
+  width:60px;
+  img{
+    max-width: 100%;
+  }
 }
 
 .nav {

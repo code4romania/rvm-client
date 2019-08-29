@@ -1,7 +1,7 @@
 [
-{"id":1,"name":"Adapostire"},
-{"id":2,"name":"Echipamente"},
-{"id":3,"name":"Caini utilita"},
-{"id":4,"name":"Transport"},
-{"id":5,"name":"Altele "}
+{"_id":"1","name":"Adapostire"},
+{"_id":"2","name":"Echipamente"},
+{"_id":"3","name":"Caini utilitari"},
+{"_id":"4","name":"Transport"},
+{"_id":"5","name":"Altele "}
 ]

@@ -23,15 +23,7 @@ export class VolunteerDetailsComponent implements OnInit {
 		});
 	}
 	edit() {
-		const aux = {...this.data};
-		aux.city = this.data.city.name;
-		aux.county = this.data.county.name;
-		const navigationExtras: NavigationExtras = {
-			state: {
-				volunteer: aux
-			}
-		};
-		this.router.navigateByUrl('/volunteers/add', navigationExtras);
+		this.router.navigateByUrl(`/volunteers/edit/${this.data._id}`);
 	}
 
 }
