@@ -90,8 +90,8 @@
                     <tr *ngFor="let res of volunteersData">
                         <!-- <tr> -->
                         <td>{{res.name}}</td>
-                        <td>{{res.city.name}}, {{res.county.name}}</td>
-                        <td>{{res.organisation.name}}</td>
+                        <td>{{res.city?.name}}, {{res.county?.name}}</td>
+                        <td>{{res.organisation?.name}}</td>
                         <td>{{res.job}}</td>
                         <!-- <td>{{res.updated_at}}</td> -->
                         <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi
