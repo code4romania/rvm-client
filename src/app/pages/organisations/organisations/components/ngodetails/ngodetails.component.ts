@@ -49,7 +49,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		searchOnKey: 'name', // key on which search should be performed this will be selective search.
 							// if undefined this will be extensive search on all keys
 		};
-
+	volunteerconfig = {...{placeholder: 'Tipul'}, ...this.multiselectconfig};
 	locationconfig = {...{placeholder: 'Locatie'}, ...this.multiselectconfig};
 	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
@@ -210,6 +210,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		});
 	}
 
+	sortChanged(pager: any) {
+		if (this.selectedTab === 'volunteers') {
+			this.volunteerPager = pager;
+		} else {
+			this.resourcePager = pager;
+		}
+		this.getData();
+	}
 
 	sendNotification() {
 		console.log('will send manual notification');

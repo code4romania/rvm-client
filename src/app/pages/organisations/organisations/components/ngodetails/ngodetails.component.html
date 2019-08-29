@@ -42,7 +42,7 @@
 							<span class="padding-rem">&nbsp;&nbsp;</span>
 							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
 							<ngx-select-dropdown (change)="volunteerFilterChanged($event,'1')" class="filterbutton"
-								[multiple]="true" [config]="volunteerTypeFilterValues" [options]="typeFilterValues">
+								[multiple]="true" [config]="volunteerconfig" [options]="typeFilterValues">
 							</ngx-select-dropdown>
 							<span class="vertical-bar">&nbsp;</span>
 							<ngx-select-dropdown (change)="volunteerFilterChanged($event,'2')" class="filterbutton"
@@ -74,7 +74,7 @@
 										<!-- <tr> -->
 										<td>{{res.name}}</td>
 										<td>{{res.job}}</td>
-										<td>{{res.city.name}}, {{res.county.name}}</td>
+										<td>{{res.city.name||res.city}}, {{res.county.name||res.county}}</td>
 										<td>{{res.updated_at}}</td>
 										<td class="text-right">
 											<button class="btn btn-info d-block"
@@ -107,10 +107,10 @@
 							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
 
 							<ngx-select-dropdown (change)="resourceFilterChanged($event,'1')" class="filterbutton"
-								[multiple]="true" [config]="resourceTypeFilterValues" [options]="typeFilterValues">
+								[multiple]="true" [config]="typeconfig" [options]="typeFilterValues">
 							</ngx-select-dropdown>
 							<span class="vertical-bar">&nbsp;</span>
-							<ngx-select-dropdown (change)="resourceFilterChanged($event,'2')" class="filterbutton"
+							<ngx-select-dropdown (change)="locationfil($event,'2')" class="filterbutton"
 								[multiple]="true" [config]="locationconfig" [options]="locationFilterValues">
 							</ngx-select-dropdown>
 						</div>
