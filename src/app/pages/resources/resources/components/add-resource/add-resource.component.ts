@@ -76,7 +76,7 @@ export class AddResourceComponent implements OnInit {
 									{name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
 									disabled: true }, Validators.required] :
 								[{value: '' , disabled: false }, Validators.required],
-			quantity: ['', [Validators.required, Validators.min(0)]],
+			quantity: ['', [Validators.required, Validators.min(1)]],
 			city: [{ value: '', disabled: true }, Validators.required],
 			county: ['', Validators.required],
 			comments: ''

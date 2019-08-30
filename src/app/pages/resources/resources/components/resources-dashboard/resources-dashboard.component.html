@@ -39,8 +39,19 @@
                     <div class="card-body">
                         <h4 class="card-title">{{elem.name}}</h4>
                         <div class="card-text row"> 
-                            <span class="col-md-6">{{elem.type_name}}</span>
-                            <span class="col-md-6" >{{elem.quantity}}</span>
+                            <span class="col-md-6">
+								<i class="fas fa-list"></i>
+								{{elem.type_name}}
+								</span>
+                            <span class="col-md-6">
+								<i class="fa fa-hashtag"></i>
+								{{elem.quantity}}
+							</span>
+							<span class="col-md-6">
+								<i class="fas fa-building"></i>
+								1 
+								<!-- TODO add actual organisations number -->
+							</span>
                         </div>                       
                     </div>
                 </a>
