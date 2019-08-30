@@ -56,10 +56,14 @@ export class LoginComponent implements OnInit {
 				})
 			)
 			.subscribe(
-				(user: any) => {
-					this.router.navigate(['/'], {
-						replaceUrl: true
-					});
+				(credentials: any) => {
+					if (credentials.user.role !== '0') {
+						this.router.navigate(['/'], {
+							replaceUrl: true
+						});
+					} else {
+						this.changeErrorMessage();
+					}
 				},
 				(error: any) => {
 					this.changeErrorMessage();

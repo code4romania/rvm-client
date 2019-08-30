@@ -44,7 +44,9 @@ export class AuthenticationService {
 	): Observable<any> {
 
 		return this.httpClient.post('/login', payload).pipe(map((credentials: any) => {
-				this.setCredentials(credentials);
+				if (credentials.user.role !== '0') {
+					this.setCredentials(credentials);
+				}
 				return credentials;
 			}));
 	}
