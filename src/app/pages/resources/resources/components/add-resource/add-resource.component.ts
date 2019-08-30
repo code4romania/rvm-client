@@ -70,6 +70,7 @@ export class AddResourceComponent implements OnInit {
 			subCategory: [{value: '', disabled: true}, Validators.required],
 			name: ['', Validators.required],
 			address: '',
+			resource_type: ['', Validators.required],
 			category:  ['', Validators.required],
 			organisation: this.authService.is('NGO') ?
 								[{value:
@@ -93,6 +94,7 @@ export class AddResourceComponent implements OnInit {
 					name: this.res.name,
 					subCategory: [this.res.subCategory, Validators.required],
 					address: this.res.address,
+					resource_type: [this.res.resource_type, Validators.required],
 					category: [this.res.category, Validators.required],
 					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
 					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
@@ -106,6 +108,7 @@ export class AddResourceComponent implements OnInit {
 	formatter = (result: { name: string }) => result.name;
 
 	searchcounty = (text$: Observable<string>) => {
+
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
 			distinctUntilChanged()
@@ -160,15 +163,18 @@ export class AddResourceComponent implements OnInit {
 		const inputFocus$ = this.focus3$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.catService.getCategories(term).pipe(
+				return this.catService.getSubCategories('0', term).pipe(
+					map( (response: {data: any[]}) => response.data ),
 					map(x => {
+						console.log(x);
 						if (x.length === 0) {
-							return [{id: 9, name: 'Altele'}];
+							return [{id: 'd021817b6d80d7da09bece2bebc584ac', name: 'Altele'}];
 						} else { return x; }
 					})
 				);
 		}));
 	}
+
 	searchSubcat = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -181,7 +187,9 @@ export class AddResourceComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				return this.catService.getSubCategories(this.categoryid, term).pipe(
+					map( (response: {data: any[]}) => response.data ),
 					map(x => {
+
 						if (x.length === 0) {
 							return [{id: 9, name: 'Altele'}];
 						} else { return x; }
@@ -219,6 +227,22 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+	countykey(event: any) {
+		this.form.controls.county.markAsTouched();
+		if (event.code !== 'Enter') {
+			this.form.controls.city.disable();
+			this.form.controls.city.reset('');
+			this.cityPlaceholder = 'Selectați mai întâi județul';
+		}
+	}
+	categorykey(event: any) {
+		this.form.controls.category.markAsTouched();
+		if (event.code !== 'Enter') {
+			this.form.controls.subCategory.disable();
+			this.form.controls.subCategory.reset('');
+			this.resourcePlaceholder = 'Selectați mai întâi categoria';
+		}
+	}
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
@@ -252,9 +276,9 @@ export class AddResourceComponent implements OnInit {
 	onSubmit() {
 		const resource = this.form.value;
 		resource.organisation_id = this.form.value.organisation._id;
-		resource.county = resource.county.id;
-		resource.city = resource.city.id;
-		// resource.category = [resource.category._id, resource.subCategory._id];
+		resource.county = resource.county._id;
+		resource.city = resource.city._id;
+		resource.category = [resource.category._id, resource.subCategory._id];
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {

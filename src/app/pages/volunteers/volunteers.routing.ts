@@ -25,7 +25,7 @@ const routes: Routes = [
 				path: 'id/:id',
 				component: VolunteerDetailsComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				// data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'edit/:id',

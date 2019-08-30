@@ -33,30 +33,40 @@
 		<ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues">NGO</ngx-select-dropdown>
 	</div>
 	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-2">
-        <div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
-            <div class="card mb-2" style="flex-grow: 1">
-                <a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
-                    <div class="card-body">
-                        <h4 class="card-title">{{elem.name}}</h4>
-                        <div class="card-text row"> 
-                            <span class="col-md-6">
-								<i class="fas fa-list"></i>
-								{{elem.type_name}}
+		<div class="col-md-12 row">
+			<div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
+				<div class="card mb-2" style="flex-grow: 1">
+					<a [routerLink]="['id',elem._id]" class="btn btn-fix text-left">
+						<div class="card-body">
+							<h4 class="card-title">{{elem.name}}</h4>
+							<div class="card-text row"> 
+								<span class="col-md-6">
+									<i class="fa fa-list"></i>
+									{{elem.type}}
+									</span>
+								<span class="col-md-6">
+									<i class="fa fa-hashtag"></i>
+									{{elem.quantity}}
 								</span>
-                            <span class="col-md-6">
-								<i class="fa fa-hashtag"></i>
-								{{elem.quantity}}
-							</span>
-							<span class="col-md-6">
-								<i class="fas fa-building"></i>
-								1 
-								<!-- TODO add actual organisations number -->
-							</span>
-                        </div>                       
-                    </div>
-                </a>
-            </div>
-        </div>
+								<span class="col-md-6">
+									<i class="fa fa-building"></i>
+									1 
+									<!-- TODO add actual organisations number -->
+								</span>
+							</div>                       
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<ngb-pagination
+				[(page)]="pager.page"
+				[pageSize]="pager.size"
+				(pageChange)="getData()"
+				[collectionSize]="pager.total">
+			</ngb-pagination>
+		</div>
     </div>
 	<ng-template #displayList>
 		<div class="table-responsive">
@@ -65,7 +75,7 @@
 					<tr>
 						<!-- sortable="name" (sort)="onSort($event)" -->
 						<th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume Resursă</th>
-						<th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Tip Resursă</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Categorie</th>
 						<th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Cantitate</th>
 						<th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">Nr. Organizații</th>
 					</tr>
@@ -74,7 +84,7 @@
 					<tr *ngFor="let res of resourcesData">
 						<!-- <tr> -->
 							<td>{{res.name}}</td>
-							<td>{{res.type_name}}</td>
+							<td>{{res.type}}</td>
 							<td>{{res.quantity}}</td>
 							<td>1</td>
 							<!-- <td>{{res.updated_at}}</td> -->

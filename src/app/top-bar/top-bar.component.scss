@@ -6,7 +6,10 @@ header {
   display: inline-block;
   height: 60px;
   width:60px;
+  margin: auto;
   img{
+    margin: auto;
+    display: block;
     max-width: 100%;
     max-height: 100%;
   }

@@ -30,7 +30,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		selectAll: 'true', // Should enable select all feature for multiple select items
 		selectAllText: 'Select All'
 		};
-	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
+	typeconfig = {...{placeholder: 'Categorie'}, ...this.multiselectconfig};
 	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
 	ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 	typefilterResult: any[] = [];
@@ -52,10 +52,10 @@ export class ResourcesdashboardComponent implements OnInit {
 	ngOnInit() {
 		this.pager = this.resourceService.getPager();
 
-		if (this.authService.is('NGO')) {
-			// TO-DO cu filtre DE LA backend
-			this.pager.filters[3] = '7eb1c58d-703a-43a4-a9d3-0f8324550def';
-		}
+		// if (this.authService.is('NGO')) {
+		// 	// TO-DO cu filtre DE LA backend
+		// 	this.pager.filters[3] = '7eb1c58d-703a-43a4-a9d3-0f8324550def';
+		// }
 
 		this.getData();
 
@@ -88,6 +88,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	getData() {
 		this.resourceService.getResources(this.pager).subscribe((data) => {
 			this.resourcesData = data.data;
+			console.log(this.resourcesData);
 			this.pager.total = data.pager.total;
 		});
 	}

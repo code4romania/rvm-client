@@ -57,6 +57,9 @@ export class VolunteerService {
 	editVolunteer(id: String, payload: any ): Observable<any> {
 		return this.httpClient.put(`/volunteers/${id}`, payload);
 	}
+	deleteVolunteer(id: String): Observable<any> {
+		return this.httpClient.delete(`/volunteers/${id}`);
+	}
 	// getResourcesbyorganisation(id: String): Observable<any> {
 		// const header = {
 		// 	headers: new HttpHeaders()

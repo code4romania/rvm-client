@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '@app/core';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ResourcedetailsComponent implements OnInit {
 
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute,
+				public authService: AuthenticationService,
 				private router: Router) {
 					this.resid = this.route.snapshot.paramMap.get('id');
 				}

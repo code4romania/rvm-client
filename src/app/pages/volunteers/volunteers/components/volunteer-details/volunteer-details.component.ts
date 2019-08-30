@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { VolunteerService } from '../../../volunteers.service';
 import { AuthenticationService } from '@app/core';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-volunteer-details',
@@ -14,7 +15,8 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAccreditation = false;
 
 	constructor(private volunteerService: VolunteerService, private route: ActivatedRoute,
-			public authService: AuthenticationService, private router: Router) { }
+			public authService: AuthenticationService, private router: Router,
+			private location: Location) { }
 
 	ngOnInit() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
@@ -24,6 +26,11 @@ export class VolunteerDetailsComponent implements OnInit {
 	}
 	edit() {
 		this.router.navigateByUrl(`/volunteers/edit/${this.data._id}`);
+	}
+	deleteSelf() {
+		this.volunteerService.deleteVolunteer(this.data._id).subscribe(() => {
+			this.location.back();
+		});
 	}
 
 }

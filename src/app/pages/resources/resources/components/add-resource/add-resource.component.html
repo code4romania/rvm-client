@@ -24,6 +24,7 @@
 						[ngClass]="{ 'error': form.controls.category.invalid && form.controls.category.touched }"
 						formControlName="category"
 						type="text"
+						(keyup)="categorykey($event)"
 						(selectItem)="selectedCategory($event)"
 						class="form-control"
 						[ngbTypeahead]="searchCategory"
@@ -65,7 +66,20 @@
 					<span class="error-message" *ngIf="form.controls.quantity.invalid && form.controls.quantity.touched">* Cantitatea trebuie să fie mai mare decât 0.</span>
 				</div>
 			</div>
-            <div class="mt-4 col-md-8 col-sm-12">
+			<div class="mt-4 col-md-4 col-sm-12">
+					<div class="form-group">
+						<label>Tip *</label>
+						<select class="form-control" formControlName="resource_type"
+						[ngClass]="{ 'error': form.controls.resource_type.invalid && form.controls.resource_type.touched }"
+						class="form-control">
+								<option>Perisabil</option>
+								<option>Neperisabil</option>
+							
+						</select>
+						<span class="error-message" *ngIf="form.controls.resource_type.invalid && form.controls.resource_type.touched">* Trebuie sa alegeti un tip.</span>
+					</div>
+				</div>
+            <div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Organizație *</label>
 					<input formControlName="organisation"
@@ -87,7 +101,7 @@
 						<label>Județ *</label>
 						<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
 							class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
-							[inputFormatter]="formatter" [resultFormatter]="formatter"
+							[inputFormatter]="formatter" [resultFormatter]="formatter" (keyup)="countykey($event)"
 							[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
 							(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
 					</div>
@@ -130,9 +144,9 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- [disabled]="form.invalid" -->
 		<button
-			[disabled]="form.invalid"
+			
 			class="btn btn-info btn-rounded waves-effect waves-light mt-5"
 			type="submit"
 			style="color:white; float:right">

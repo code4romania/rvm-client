@@ -7,18 +7,9 @@ import { map, filter } from 'rxjs/operators';
 export class CategoriesService {
 	constructor(private http: HttpClient) {}
 	getCategories(term: String): Observable<any> {
-		return this.http.get('assets/json/category.json').pipe(map((data: any) => {
-			return data.filter((x: any) => {
-					return x.name.toLowerCase().indexOf(term) > -1;
-				});
-			}));
+		return this.http.get(`/resources/categories?filters[1]=${term}`);
 	}
 	getSubCategories(id: string, term: string): Observable<any> {
-		return this.http.get('assets/json/subcategories.json')
-			.pipe(map((data: any) => {
-				return data.filter((x: any) => {
-					return x.category === id && x.name.toLowerCase().indexOf(term) > -1;
-					});
-			}));
+		return this.http.get(`/resources/categories?filters[2]=${id}&filters[1]=${term}`);
 	}
 }

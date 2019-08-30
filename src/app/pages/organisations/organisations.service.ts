@@ -102,6 +102,12 @@ export class OrganisationService {
 		return this.httpClient.get(`/organisations/${id}`, {params: params});
 	}
 	/**
+	 * delete organisation by id
+	 */
+	deleteorganisation(id: String): Observable<any> {
+		return this.httpClient.delete(`/organisations/${id}`);
+	}
+	/**
 	 * get organisation by name
 	 */
 	getorganisationbyName(name: String): Observable<any> {
@@ -115,6 +121,7 @@ export class OrganisationService {
 	addResource(payload: any) {
 		return this.httpClient.post('/resources', payload );
 	}
+
 
 	getResourcesbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};

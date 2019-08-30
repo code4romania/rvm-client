@@ -167,11 +167,10 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	/**
 	 * submit form and close modal
 	 */
-	deleteRes(form: any) {
-		const id = form.value._id;
-		this.resourceService.deleteResource(id).subscribe(data => {
-			this.modalService.dismissAll();
-			this.getResources();
+	deleteSelf() {
+		this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
+			console.log(data);
+			this.router.navigateByUrl('/organisations');
 		});
 	}
 
