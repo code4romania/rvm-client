@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/core/service/users.service';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-add-user',
@@ -16,10 +17,12 @@ export class AddUserComponent implements OnInit {
 	role: string;
 	id: string;
 	user: any = {};
+	currentUserRole = '';
 
 	constructor(private fb: FormBuilder,
 		private router: Router,
 		public route: ActivatedRoute,
+		public authService: AuthenticationService,
 		private usersService: UsersService) { }
 
 	ngOnInit() {
@@ -29,6 +32,8 @@ export class AddUserComponent implements OnInit {
 			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
 			institution: ['']
 		});
+
+		this.currentUserRole = this.authService.accessLevel;
 
 		if (this.route.snapshot.paramMap.get('role')) {
 			this.role = this.route.snapshot.paramMap.get('role');
