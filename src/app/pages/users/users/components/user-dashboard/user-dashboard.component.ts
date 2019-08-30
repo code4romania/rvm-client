@@ -108,6 +108,7 @@ export class UserDashboardComponent implements OnInit {
 	}
 
 	goToOrganisation(id: string, e: any) {
+		console.log(id);
 		e.preventDefault();
 		this.router.navigate(['../organisations/id/' + id]);
 	}

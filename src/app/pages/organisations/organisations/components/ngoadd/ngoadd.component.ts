@@ -47,7 +47,8 @@ export class NgoaddComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
-		private router: Router, private location: Location,
+		private router: Router,
+		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
 

@@ -45,6 +45,7 @@ export class AddUserComponent implements OnInit {
 	getData() {
 		this.usersService.getUser(this.id).subscribe(response => {
 			this.user = response;
+			this.role = this.user.role;
 			this.editForm();
 		});
 	}
@@ -63,7 +64,7 @@ export class AddUserComponent implements OnInit {
 		if (this.role) {
 			this.user.role = this.role;
 
-			if (this.role === '1') {
+			if (this.role === '1' || this.role === '0') {
 				this.user.institution = this.form.value.institution;
 			}
 		}

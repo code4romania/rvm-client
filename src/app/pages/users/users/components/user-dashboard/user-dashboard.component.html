@@ -16,7 +16,7 @@
                     <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
                 </label>
             </div>
-            <button (click)="addUser(content)" class=" add-btn btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizatori</button>
+            <button (click)="addUser(content)" class=" add-btn btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizator</button>
         </div>
     </nav>
 
@@ -38,17 +38,22 @@
                             </div>
                         </a>
                         
-                        <p *ngIf="!!elem.organisation" class="ml-3"> 
+                        <span *ngIf="!!elem.organisation" class="ml-3"> 
                             <i class="fa fa-building"></i>
-                            <a class="col-md-12 text-left pl-0" (click)="goToOrganisation(elem.organisation?._id, $event)">
+                            <a class="col-md-12 text-left pl-0" (click)="goToOrganisation(elem.organisation?._id, $event)" href="javascript:void(0);">
                                 {{ elem.organisation.name }}
                             </a>
-                        </p>
+                        </span>
 
-                        <p *ngIf="!!elem.institution" class="ml-3">
+                        <span *ngIf="!!elem.institution" class="ml-3">
                             <i class="fa fa-building"></i>
-                            {{ elem.institution.name }}
-                        </p>
+                            {{ elem.institution }}
+                        </span>
+
+                        <span *ngIf="elem.role === '3'" class="ml-3">
+                            <i class="fa fa-building"></i>
+                            Administrator General
+                        </span>
                     </div>
 
             </div>
