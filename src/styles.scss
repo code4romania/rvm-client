@@ -67,19 +67,20 @@ body {
 .logo-container {
 	margin-top: 50px;
 	margin-bottom: 50px;
+	img {
+		border-radius: 50%;
+		display: block;
+		margin: auto;
+		height: 250px;
+		border: 15px solid white;
+		background: #FDCA18;
+	}
 }
 
 @media (min-width: 1600px){
 	.wide-container{
 		max-width: 1540px;
 	}
-}
-.logo-container img {
-	border-radius: 50%;
-	display: block;
-	margin: auto;
-	height: 250px;
-	border: 15px solid white;
 }
 
 .login-register {
