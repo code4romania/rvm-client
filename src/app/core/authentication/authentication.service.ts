@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable, of, forkJoin } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { LocalStorageService } from '@app/core/local-storage.service';
 
@@ -145,7 +145,12 @@ export class AuthenticationService {
 		if (!this.isAuthenticated()) {
 			return '';
 		}
-		return this.homes[this.accessLevel].replace(':id', this._credentials.user.organisation);
+
+		if (this._credentials.user.organisation) {
+			return this.homes[this.accessLevel].replace(':id', this._credentials.user.organisation._id);
+		} else {
+			return this.homes[this.accessLevel];
+		}
 	}
 
 	/**
