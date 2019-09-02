@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonLoaderComponent } from '@app/shared/button-loader';
 import { TableSortDirective } from './table-sort/table-sort.directive';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { TableSearchComponent } from './table-search/table-search.component';
 
 const list = [
 	SpinnerComponent,
@@ -18,6 +19,7 @@ const list = [
 	FullComponent,
 	ButtonLoaderComponent,
 	TableSortDirective,
+	TableSearchComponent,
 	BackButtonComponent
 ];
 
@@ -29,7 +31,7 @@ const list = [
 		NgbModule,
 		ReactiveFormsModule
 	],
-	declarations: [...list, BackButtonComponent],
+	declarations: [...list],
 	exports: [...list],
 	entryComponents: [],
 	providers: []

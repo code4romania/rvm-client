@@ -6,7 +6,6 @@
                     class="fa fa-trash-o"></span>&nbsp;&nbsp;Sterge Voluntarul</button>
                 <button *ngIf="hasAccreditation&&authService.is('DSU')" class="mx-2 btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button>
                 <button (click)="edit()" class="mx-2 btn btn-info"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifica</button>
-                <!-- <button></button> -->
             </div>
     </nav>
     <div class="ngo-details row">
@@ -14,8 +13,8 @@
             
             <span class="col-md-12"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
             <span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
-            <span class="col-md-12"><b>Organizație: </b> {{data?.organisation.name}}</span>
-            <span class="col-md-12"><b>Localizare: </b>{{data?.city.name || data?.city}}</span>
+            <span class="col-md-12"><b>Organizație: </b> {{data?.organisation?.name || 'Neafiliat'}}</span>
+            <span class="col-md-12"><b>Localizare: </b>{{data?.city.name}}, {{data?.county.name}}</span>
             <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
             <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
             <div class="col-md-12">
@@ -83,12 +82,12 @@
                                     </tr>
                             </tbody>
                         </table>
-                        <ngb-pagination
+                        <!-- <ngb-pagination
                             [(page)]="pager.page"
                             [pageSize]="pager.size"
                             (pageChange)="getData()"
                             [collectionSize]="pager.total">
-                        </ngb-pagination>
+                        </ngb-pagination> -->
                     </div>
                 </div>
                 <ng-template #noAlocation>

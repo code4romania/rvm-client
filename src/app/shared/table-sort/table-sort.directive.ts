@@ -15,6 +15,7 @@ export class TableSortDirective {
 	get pager(): any {
 		return this._pager;
 	}
+
 	@Input()
 	set pager(data: any) {
 		this._pager = data;

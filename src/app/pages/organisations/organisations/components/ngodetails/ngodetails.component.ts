@@ -115,7 +115,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 				state: {
 					ngo: {
 						name: data.name,
-						ngoid: this.ngoid
+						_id: this.ngoid
 					}
 				}
 			};
@@ -200,12 +200,33 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	sortChanged(pager: any) {
 		if (this.selectedTab === 'volunteers') {
 			this.volunteerPager = pager;
+			this.getVolunteers();
+		} else {
+			this.resourcePager = pager;
+			this.getResources();
+		}
+	}
+	searchChanged(pager: any) {
+		if (this.selectedTab === 'volunteers') {
+			this.volunteerPager = pager;
 		} else {
 			this.resourcePager = pager;
 		}
 		this.getData();
+		if (pager.search !== '') {
+			if (this.selectedTab === 'volunteers') {
+				this.volunteersData = this.volunteersData.filter((elem: any) => {
+					return elem.name.toLowerCase().indexOf(pager.search) > -1;
+				});
+			} else {
+				this.resourceData = this.resourceData.filter((elem: any) => {
+					return elem.name.toLowerCase().indexOf(pager.search) > -1;
+				});
+			}
+		} else {
+			this.getData();
+		}
 	}
-
 	sendNotification() {
 		console.log('will send manual notification');
 	}

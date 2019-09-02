@@ -94,6 +94,15 @@ export class UserDashboardComponent implements OnInit {
 		this.modalService.dismissAll();
 	}
 
+	searchChanged(pager: any) {
+		if (pager.search !== '') {
+			this.data = this.data.filter((elem: any) => {
+				return elem.name.toLowerCase().indexOf(pager.search) > -1;
+			});
+		} else {
+			this.getData();
+		}
+	}
 	/**
 	 * set class of display element with list view
 	 */

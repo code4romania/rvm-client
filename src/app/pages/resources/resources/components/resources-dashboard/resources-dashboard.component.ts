@@ -59,11 +59,11 @@ export class ResourcesdashboardComponent implements OnInit {
 
 		this.getData();
 
-		this.filterService.getTypeFilters().subscribe((data) => {
-			this.typeFilterValues = data.map((elem: any) => {
-				return {id: elem.type_name, name: elem.type_name};
-				});
-		});
+		// this.filterService.getTypeFilters().subscribe((data) => {
+		// 	this.typeFilterValues = data.map((elem: any) => {
+		// 		return {id: elem.type_name, name: elem.type_name};
+		// 		});
+		// });
 
 		this.filterService.getOrganisationsFilters().subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
@@ -72,7 +72,7 @@ export class ResourcesdashboardComponent implements OnInit {
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
 
-		this.citiesandCounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+		this.citiesandCounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
 			this.locationFilterValues = response.data;
 		});
 
@@ -114,9 +114,17 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.pager = pager;
 		this.getData();
 	}
-
+	searchChanged(pager: any) {
+		if (pager.search !== '') {
+			this.resourcesData = this.resourcesData.filter((elem: any) => {
+				return elem.name.toLowerCase().indexOf(pager.search) > -1;
+			});
+		} else {
+			this.getData();
+		}
+	}
 	filterChanged = (data?: any, id?: string) => {
-		this.pager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+		this.pager.filters[id] =  data.value.map((elem: any) => elem._id).join(',');
 		this.getData();
 	}
 

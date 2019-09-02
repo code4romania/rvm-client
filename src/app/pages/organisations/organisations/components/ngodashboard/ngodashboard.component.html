@@ -2,13 +2,7 @@
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <h4 class="navtitle mb-2"> Organizații </h4>
         <div class="form-inline ml-auto">
-            <div class="input-group m-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><span class="fa fa-search"></span></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Cauta" aria-label="Cauta"
-                    aria-describedby="basic-addon1">
-            </div>
+            <app-table-search [pager]="pager" (searchChanged)="searchChanged($event)"></app-table-search>
             <div class="btn-group btn-group-toggle m-2 hidden-radio" ngbRadioGroup name="radioBasic"
                 [(ngModel)]="displayBlock">
                 <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary btn">
@@ -23,7 +17,7 @@
                     class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Organizație</button>
         </div>
     </nav>
-    <div class="filters row">
+    <div class="filters mx-30px row">
         <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
@@ -65,6 +59,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 mx-30px">
+                <ngb-pagination
+                    [(page)]="pager.page"
+                    [pageSize]="pager.size"
+                    (pageChange)="getData()"
+                    [collectionSize]="pager.total">
+                </ngb-pagination>
+            </div>
     </div>
 
     <ng-template #displayList>

@@ -8,7 +8,11 @@ export class CitiesCountiesService {
 
 	constructor(private http: HttpClient) {}
 
-	getCounties(searchterm?: string): Observable<any>  {
+	getCounties(searchterm?: string, all?: boolean): Observable<any>  {
+		if (all) {
+			const params: any = {size: 50};
+			return this.http.get('/counties', {params: params});
+		}
 		return this.http.get(`/counties?filters[1]=${searchterm}`);
 	}
 

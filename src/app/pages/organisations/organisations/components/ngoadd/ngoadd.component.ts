@@ -103,12 +103,12 @@ export class NgoaddComponent implements OnInit {
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.citiesandCounties.getCounties(term).pipe(
-					map((response: {data: any[], pager: any}) => {
-						console.log(response);
-						return response.data;
-					})
-				);
+					return this.citiesandCounties.getCounties(term).pipe(
+						map((response: {data: any[], pager: any}) => {
+							console.log(response);
+							return response.data;
+						})
+					);
 			})
 		);
 	}

@@ -34,6 +34,7 @@ export class AddVolunteerComponent implements OnInit {
 	obtained: string;
 	countyid: string;
 	volunteer: any;
+	fixedOrg: any = undefined;
 	cityPlaceholder = 'Selectați mai întâi județul';
 
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
@@ -51,10 +52,17 @@ export class AddVolunteerComponent implements OnInit {
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
+		private router: Router,
 		private route: ActivatedRoute, private location: Location,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
-		public authService: AuthenticationService) {}
+		public authService: AuthenticationService) {
+			const navigation = this.router.getCurrentNavigation();
+			if (navigation && navigation.extras && navigation.extras.state) {
+				this.fixedOrg = navigation.extras.state.ngo;
+				console.log(this.fixedOrg);
+			}
+		}
 
 	ngOnInit() {
 		this.getVolunteerDetails(this.route.snapshot.paramMap.get('id'));
@@ -68,10 +76,12 @@ export class AddVolunteerComponent implements OnInit {
 			county: ['', Validators.required],
 			city: [{ value: '', disabled: true }, Validators.required],
 			organisation: this.authService.is('NGO') ?
-								[{value:
-									{name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
-									disabled: true }, Validators.required] :
-								[{value: '' , disabled: false }, Validators.required],
+								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
+									disabled: true }, Validators.required]
+								:	this.fixedOrg ?
+									[{value: {name: this.fixedOrg.name, _id: this.fixedOrg._id},
+										disabled: false }, Validators.required]
+										:	[{value: '' , disabled: false }, Validators.required],
 			courses: this.fb.array([]),
 			comments: ['']
 		});
@@ -217,11 +227,11 @@ export class AddVolunteerComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
-		const volunteer = this.form.value;
-		// volunteer.added_by = this.currentUserId;
+		const volunteer = {...this.form.value};
+
 		volunteer.ssn = volunteer.ssn.toString();
-		volunteer.county = volunteer.county.id;
-		volunteer.city = volunteer.city.id;
+		volunteer.county = volunteer.county._id;
+		volunteer.city = volunteer.city._id;
 		volunteer.organisation_id = volunteer.organisation._id;
 		if (this.edit) {
 			this.volunteerService.editVolunteer(volunteer._id, volunteer).subscribe(() => {

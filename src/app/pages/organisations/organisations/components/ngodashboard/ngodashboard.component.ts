@@ -44,15 +44,15 @@ export class NgodashboardComponent implements OnInit {
 	 */
 
 	ngOnInit() {
-		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+		this.citiesandcounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
 			this.locationFilterValues = response.data;
 		});
 
-		this.filterService.getTypeFilters().subscribe((data) => {
-			this.typeFilterValues = data.map((elem: any) => {
-				return {id: elem.type_name, name: elem.type_name};
-				});
-		});
+		// this.filterService.getTypeFilters().subscribe((data) => {
+		// 	this.typeFilterValues = data.map((elem: any) => {
+		// 		return {id: elem.type_name, name: elem.type_name};
+		// 		});
+		// });
 
 		// TODO WHEN BACKEND FINISHED
 		// this.filterService.getSpecializationFilters().subscribe((data) => {
@@ -77,6 +77,15 @@ export class NgodashboardComponent implements OnInit {
 		this.pager = pager;
 		this.getData();
 	}
+	searchChanged(pager: any) {
+		if (pager.search !== '') {
+			this.ngosData = this.ngosData.filter((elem: any) => {
+				return elem.name.toLowerCase().indexOf(pager.search) > -1;
+			});
+		} else {
+			this.getData();
+		}
+	}
 
 	getData() {
 		this.organisationService.getorganisations(this.pager).subscribe(element => {
@@ -90,7 +99,7 @@ export class NgodashboardComponent implements OnInit {
 	}
 
 	filterChanged = (data?: any, id?: string) => {
-		this.pager.filters[1] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+		this.pager.filters[id] =  data.value.map((elem: any) => elem._id).join(',');
 		this.getData();
 	}
 

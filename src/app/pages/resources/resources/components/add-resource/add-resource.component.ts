@@ -38,6 +38,7 @@ export class AddResourceComponent implements OnInit {
 	categoryid: string;
 	cityPlaceholder = 'Selectați mai întâi județul';
 	resourcePlaceholder = 'Selectați mai întâi categoria';
+	fixedOrg: any = undefined;
 
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
@@ -57,11 +58,15 @@ export class AddResourceComponent implements OnInit {
 
 	constructor(private resourcesService: ResourcesService,
 		private route: ActivatedRoute, private catService: CategoriesService,
-		private location: Location,
+		private location: Location, private router: Router,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder,
 		private orgService: OrganisationService,
 		public authService: AuthenticationService) {
+			const navigation = this.router.getCurrentNavigation();
+			if (navigation && navigation.extras && navigation.extras.state) {
+				this.fixedOrg = navigation.extras.state.ngo;
+			}
 	}
 
 	ngOnInit() {
@@ -73,10 +78,12 @@ export class AddResourceComponent implements OnInit {
 			resource_type: ['', Validators.required],
 			category:  ['', Validators.required],
 			organisation: this.authService.is('NGO') ?
-								[{value:
-									{name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
-									disabled: true }, Validators.required] :
-								[{value: '' , disabled: false }, Validators.required],
+								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
+									disabled: true }, Validators.required]
+								:	this.fixedOrg ?
+									[{value: {name: this.fixedOrg.name, _id: this.fixedOrg._id},
+										disabled: false }, Validators.required]
+										:	[{value: '' , disabled: false }, Validators.required],
 			quantity: ['', [Validators.required, Validators.min(1)]],
 			city: [{ value: '', disabled: true }, Validators.required],
 			county: ['', Validators.required],

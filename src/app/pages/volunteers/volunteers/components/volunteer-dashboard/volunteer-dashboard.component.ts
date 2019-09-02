@@ -49,7 +49,7 @@ export class VolunteerDashboardComponent implements OnInit {
 		}
 
 		this.getData();
-		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
+		this.citiesandcounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
 			this.locationFilterValues = response.data;
 		});
 
@@ -113,8 +113,18 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.getData();
 	}
 
+	searchChanged(pager: any) {
+		if (pager.search !== '') {
+			this.volunteersData = this.volunteersData.filter((elem: any) => {
+				return elem.name.toLowerCase().indexOf(pager.search) > -1;
+			});
+		} else {
+			this.getData();
+		}
+	}
+
 	filterChanged = (data?: any, id?: string) => {
-		this.pager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+		this.pager.filters[id] =  data.value.map((elem: any) => elem._id).join(',');
 		this.getData();
 	}
 
