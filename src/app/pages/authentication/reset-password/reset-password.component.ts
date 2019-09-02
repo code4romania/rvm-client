@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {
 	FormGroup,
 	Validators,
-	FormControl,
 	FormBuilder
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,6 +26,19 @@ export class ResetPasswordComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		if (!!this.authenticationService.isAuthenticated()) {
+			this.authenticationService.logout().subscribe(
+				(didlogout: Boolean) => {
+					if (didlogout) {
+						this.router.navigate(['/login']);
+					}
+				},
+				(error: any) => {
+					console.log('logout error: ', error);
+				});
+		}
+
+
 		this.route.params.subscribe(params => {
 			this.token = params['token'];
 		});

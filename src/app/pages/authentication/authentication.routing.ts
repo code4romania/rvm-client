@@ -1,11 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotFoundComponent } from '../404/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NgModule } from '@angular/core';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { AnonymousGuard } from '@app/core/authentication/anonymous.guard';
 
 const AuthenticationRoutes: Routes = [
 	{
@@ -13,10 +13,12 @@ const AuthenticationRoutes: Routes = [
 		children: [
 			{
 				path: 'login',
+				canActivate: [AnonymousGuard],
 				component: LoginComponent
 			},
 			{
 				path: 'signup',
+				canActivate: [AnonymousGuard],
 				component: SignupComponent
 			},
 			{
@@ -25,6 +27,7 @@ const AuthenticationRoutes: Routes = [
 			},
 			{
 				path: 'recover',
+				canActivate: [AnonymousGuard],
 				component: RecoverPasswordComponent
 			}
 		]

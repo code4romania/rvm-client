@@ -1,9 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { BlankComponent } from '@app/shared';
-import { AuthenticationGuard, AnonymousGuard, RoleGuard } from './core';
+import { AuthenticationGuard, RoleGuard } from './core';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/404';
 
 const AppRoutes: Routes = [
@@ -52,7 +50,6 @@ const AppRoutes: Routes = [
 	},
 	{
 		path: '',
-		canActivate: [AnonymousGuard],
 		loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
 	},
 	{

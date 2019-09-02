@@ -24,9 +24,7 @@ export class RecoverPasswordComponent implements OnInit {
 	}
 
 	resetPassword() {
-		// TODO handles this when backend ready
 		this.authenticationService.recoverPassword(this.resetPasswordForm.value.email).subscribe(response => {
-			console.log(response);
 			this.router.navigate(['/login']);
 		});
 	}
