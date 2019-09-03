@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class UserDetailsComponent implements OnInit {
 	data: any;
 	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator DSU'];
+	loading = false;
 
 	constructor(private route: ActivatedRoute,
 		private router: Router,
@@ -32,7 +33,11 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	delete() {
+		this.loading = true;
 		this.usersService.deleteUser(this.data._id).subscribe(response => {
+			this.loading = false;
+			this.location.back();
+		}, () => {
 			this.location.back();
 		});
 	}

@@ -14,6 +14,7 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAlocation = false;
 	hasAccreditation = false;
 	canEdit = true;
+	loading = false;
 
 	constructor(private volunteerService: VolunteerService,
 		private route: ActivatedRoute,
@@ -35,8 +36,12 @@ export class VolunteerDetailsComponent implements OnInit {
 	}
 
 	deleteSelf() {
+		this.loading = true;
 		this.volunteerService.deleteVolunteer(this.data._id).subscribe(() => {
+			this.loading = false;
 			this.location.back();
+		}, () => {
+			this.loading = false;
 		});
 	}
 

@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class ImportVolunteersComponent implements OnInit {
 	@ViewChild('csvReader', { static: true }) csvReader: any;
 	public records: any[] = [];
+	fileName = '';
 
 	constructor() {}
 
@@ -31,13 +32,14 @@ export class ImportVolunteersComponent implements OnInit {
 					csvRecordsArray,
 					headersRow.length
 				);
+				this.fileName = input.files[0].name;
 			};
 
 			reader.onerror = function() {
 				console.log('error is occured while reading file!');
 			};
 		} else {
-			alert('Vă rog introduceți un fișier .csv valid.');
+			alert('Vă rog introduceți un fișier CSV valid.');
 			this.fileReset();
 		}
 	}

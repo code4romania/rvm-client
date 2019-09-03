@@ -58,11 +58,14 @@
 
 		</div>
 		<button
-			class=" btn btn-info btn-rounded waves-effect waves-light mt-5"
+			*ngIf="!loading"
+			class="btn btn-info btn-rounded waves-effect waves-light mt-5 float-right"
             type="submit"
-            [disabled]="form.invalid"
-			style="color:white; float:right">
+            [disabled]="form.invalid">
 			{{ user?._id ? 'Editează' : 'Adaugă' }}
 		</button>
+		<div class="spinner-border text-green float-right" role="status" *ngIf="loading">
+			<span class="sr-only">Loading...</span>
+		</div>
 	</form>
 </div>

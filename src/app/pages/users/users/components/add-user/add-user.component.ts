@@ -18,6 +18,7 @@ export class AddUserComponent implements OnInit {
 	id: string;
 	user: any = {};
 	currentUserRole = '';
+	loading = false;
 
 	constructor(private fb: FormBuilder,
 		private router: Router,
@@ -62,6 +63,7 @@ export class AddUserComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.loading = true;
 		this.user.name = this.form.value.name;
 		this.user.email = this.form.value.email;
 		this.user.phone = this.form.value.phone;
@@ -77,12 +79,18 @@ export class AddUserComponent implements OnInit {
 		if (this.user._id) {
 			// edit
 			this.usersService.updateUser(this.user).subscribe((response) => {
+				this.loading = false;
 				this.router.navigate(['users']);
+			}, () => {
+				this.loading = false;
 			});
 		} else {
 			// add
 			this.usersService.addUser(this.user).subscribe((response) => {
+				this.loading = false;
 				this.router.navigate(['users']);
+			}, () => {
+				this.loading = false;
 			});
 		}
 	}

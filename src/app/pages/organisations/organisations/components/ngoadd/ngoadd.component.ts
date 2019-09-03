@@ -42,7 +42,9 @@ export class NgoaddComponent implements OnInit {
 	click2$ = new Subject<string>();
 	countyid = '';
 	ngo: any;
+
 	edit = false;
+	loading = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -151,6 +153,7 @@ export class NgoaddComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
@@ -160,18 +163,25 @@ export class NgoaddComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		this.loading = true;
 		const ngo = this.form.value;
 		ngo.city = ngo.city._id;
 		ngo.county = ngo.county._id;
 		if (this.ngo) {
 			this.organisationService.editOrganisation(this.ngo._id, this.form.value).subscribe(() => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 		} else {
 			this.organisationService
 			.addorganisation(ngo)
 			.subscribe(() => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 		}
 	}

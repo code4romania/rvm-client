@@ -6,8 +6,11 @@
 			<ng-template #resource>
 			<app-table-search [pager]="resourcePager" (searchChanged)="searchChanged($event)"></app-table-search>
 			</ng-template>
-			<button *ngIf="authService.is('DSU')" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0"><span
-				class="fa fa-trash-o"></span>&nbsp;&nbsp;Sterge Organizatia</button>
+			<button *ngIf="authService.is('DSU') && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0"><span
+				class="fa fa-trash-o"></span>&nbsp;&nbsp;Șterge Organizația</button>
+			<div class="spinner-border text-danger" role="status" *ngIf="authService.is('DSU') && loading">
+				<span class="sr-only">Loading...</span>
+			</div>
 			<div *ngIf="hasResources && selectedTab === 'resources'">
 				<button (click)="addresource()" class="btn btn-info m-2 my-sm-0 d-block">
 					<span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Resursă

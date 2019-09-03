@@ -66,6 +66,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
 	messageSent = false;
+	loading = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -173,9 +174,12 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * submit form and close modal
 	 */
 	deleteSelf() {
+		this.loading = true;
 		this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
-			console.log(data);
+			this.loading = false;
 			this.router.navigateByUrl('/organisations');
+		}, () => {
+			this.loading = false;
 		});
 	}
 

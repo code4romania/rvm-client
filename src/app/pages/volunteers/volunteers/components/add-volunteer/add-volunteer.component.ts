@@ -49,6 +49,9 @@ export class AddVolunteerComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	edit = false;
+
+	loading = false;
+
 	constructor(
 		public volunteerService: VolunteerService,
 		private orgService: OrganisationService,
@@ -86,6 +89,7 @@ export class AddVolunteerComponent implements OnInit {
 			comments: ['']
 		});
 	}
+
 	getVolunteerDetails(volId: string) {
 		if (volId) {
 			this.edit = true;
@@ -108,6 +112,7 @@ export class AddVolunteerComponent implements OnInit {
 			});
 		}
 	}
+
 	get f() {
 		return this.form.controls;
 	}
@@ -157,6 +162,7 @@ export class AddVolunteerComponent implements OnInit {
 			})
 		);
 	}
+
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(500),
@@ -215,31 +221,42 @@ export class AddVolunteerComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
 	}
+
 	selectedorganisation(val: { item: any }) {
 		this.form.controls.organisation.markAsTouched();
 		this.form.patchValue({organisation: val.item});
 	}
+
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		this.loading = true;
 		const volunteer = {...this.form.value};
 
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
 		volunteer.organisation_id = volunteer.organisation._id;
+
 		if (this.edit) {
 			this.volunteerService.editVolunteer(volunteer._id, volunteer).subscribe(() => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 		} else {
 			this.volunteerService.addVolunteer(volunteer).subscribe(() => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 		}
 	}

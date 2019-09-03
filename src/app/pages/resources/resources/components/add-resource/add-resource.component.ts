@@ -56,6 +56,8 @@ export class AddResourceComponent implements OnInit {
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
 
+	loading = false;
+
 	constructor(private resourcesService: ResourcesService,
 		private route: ActivatedRoute, private catService: CategoriesService,
 		private location: Location, private router: Router,
@@ -90,6 +92,7 @@ export class AddResourceComponent implements OnInit {
 			comments: ''
 		});
 	}
+
 	getResourceDetails(resId: string) {
 		if (resId) {
 			this.edit = true;
@@ -112,6 +115,7 @@ export class AddResourceComponent implements OnInit {
 			});
 		}
 	}
+
 	formatter = (result: { name: string }) => result.name;
 
 	searchcounty = (text$: Observable<string>) => {
@@ -135,6 +139,7 @@ export class AddResourceComponent implements OnInit {
 			})
 		);
 	}
+
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -159,6 +164,7 @@ export class AddResourceComponent implements OnInit {
 			})
 		);
 	}
+
 	searchCategory = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -223,6 +229,7 @@ export class AddResourceComponent implements OnInit {
 				);
 		}));
 	}
+
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
@@ -234,6 +241,7 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -242,6 +250,7 @@ export class AddResourceComponent implements OnInit {
 			this.cityPlaceholder = 'Selectați mai întâi județul';
 		}
 	}
+
 	categorykey(event: any) {
 		this.form.controls.category.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -250,10 +259,12 @@ export class AddResourceComponent implements OnInit {
 			this.resourcePlaceholder = 'Selectați mai întâi categoria';
 		}
 	}
+
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
 	}
+
 	selectedOrganisation(val: any) {
 		this.form.controls.organisation.markAsTouched();
 		if (val.item && val.item._id) {
@@ -262,10 +273,12 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({organisation: ''});
 		}
 	}
+
 	selectedSubCategory(val: any) {
 		this.form.controls.subCategory.markAsTouched();
 		this.form.patchValue({subCategory: val.item});
 	}
+
 	selectedCategory(val: { item: any }) {
 		this.form.controls.category.markAsTouched();
 		if (val.item && val.item._id) {
@@ -277,25 +290,35 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({category: '', subCategory: ''});
 		}
 	}
+
 	/**
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		this.loading = true;
 		const resource = this.form.value;
 		resource.organisation_id = this.form.value.organisation._id;
 		resource.county = resource.county._id;
 		resource.city = resource.city._id;
 		resource.category = [resource.category._id, resource.subCategory._id];
+
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 		}
+
 		this.resourcesService
 			.addResource(resource)
 			.subscribe((element: any) => {
+				this.loading = false;
 				this.location.back();
+			}, () => {
+				this.loading = false;
 			});
 	}
 

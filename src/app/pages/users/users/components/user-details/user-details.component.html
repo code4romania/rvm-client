@@ -20,8 +20,11 @@
         <span class="fa fa-edit"></span>
         Editează utilizatorul
     </button>
-    <button class="btn btn-danger rounded mt-3 ml-3" (click)="delete()" [disabled]="!data">
+    <button class="btn btn-danger rounded mt-3 ml-3" (click)="delete()" [disabled]="!data" *ngIf="!loading">
         <span class="fa fa-trash-o"></span>
         Șterge utilizatorul
     </button>
+    <div class="spinner-border text-danger" role="status" *ngIf="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
 </div>

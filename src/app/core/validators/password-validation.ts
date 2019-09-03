@@ -6,7 +6,9 @@ export class PasswordValidation {
 		const confirmPassword = abstractControl.get('confirmPassword').value;
 
 		if (password !== confirmPassword) {
-			return { MatchPassword: true };
+			return {
+				password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.'
+			};
 		}
 
 		return null;
@@ -20,23 +22,23 @@ export class PasswordValidation {
 		const special = new RegExp(/[!#$%&\‘\(\)\*?@\[\]^_\+\.`\{\|\}~]/);
 
 		if (!number.test(password)) {
-			return { password: true };
+			return { password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.' };
 		}
 
 		if (!uppercase.test(password)) {
-			return { password: true };
+			return { password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.' };
 		}
 
 		if (!lowercase.test(password)) {
-			return { password: true };
+			return { password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.' };
 		}
 
 		if (!special.test(password)) {
-			return { password: true };
+			return { password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.' };
 		}
 
 		if (password.length < 8) {
-			return { password: true };
+			return { password: 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.' };
 		}
 
 		return null;

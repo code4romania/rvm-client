@@ -16,7 +16,9 @@ import { PasswordValidation } from '@app/core/validators/password-validation';
 export class ResetPasswordComponent implements OnInit {
 	resetPasswordForm: FormGroup;
 	token: string;
-	errorMessage = 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.';
+	// errorMessage = 'Parolele trebuie să corespundă și să conțină minim 8 caractere, o literă mare, un număr și un caracter special.';
+	errorMessage: string = null;
+	loading = false;
 
 	constructor(
 		public router: Router,
@@ -67,10 +69,16 @@ export class ResetPasswordComponent implements OnInit {
 	}
 
 	resetPassword() {
-		// TODO handles this when backend ready
+		this.loading = true;
 		this.authenticationService.resetPassword(this.resetPasswordForm.value.password, this.token).subscribe(response => {
-			console.log(response);
+			this.loading = false;
+			this.errorMessage = null;
 			this.router.navigate(['/login']);
+		}, error => {
+			this.loading = false;
+
+			// tslint:disable-next-line: max-line-length
+			this.errorMessage = 'Token-ul de resetare al parolei nu este valid, te rugăm să reîncerci din email-ul primit. Dacă problema persistă, te rugăm să ceri din nou schimbarea parolei.';
 		});
 	}
 }

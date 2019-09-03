@@ -11,6 +11,8 @@ import { EmailValidation } from '@app/core/validators/email-validation';
 })
 export class RecoverPasswordComponent implements OnInit {
 	resetPasswordForm: FormGroup;
+	loading = false;
+	errorMessage: string = null;
 
 	constructor(
 		public router: Router,
@@ -24,8 +26,13 @@ export class RecoverPasswordComponent implements OnInit {
 	}
 
 	resetPassword() {
+		this.loading = true;
 		this.authenticationService.recoverPassword(this.resetPasswordForm.value.email).subscribe(response => {
+			this.loading = false;
 			this.router.navigate(['/login']);
+		}, error => {
+			this.loading = false;
+			this.errorMessage = 'Adresa de email specificată nu există. Te rugăm să verifici și să încerci din nou.';
 		});
 	}
 }

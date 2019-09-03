@@ -14,6 +14,7 @@ export class ResourcedetailsComponent implements OnInit {
 	organisations: any[] = null;
 	resid: string;
 	pager: any = {};
+	loading = false;
 
 	constructor(private resourceService: ResourcesService,
 				private route: ActivatedRoute,
@@ -27,14 +28,20 @@ export class ResourcedetailsComponent implements OnInit {
 	}
 
 	deleteSelf() {
+		this.loading = true;
 		this.resourceService.deleteResource(this.resid).subscribe((data) => {
+			this.loading = false;
 			this.router.navigateByUrl('/resources');
+		}, () => {
+			this.loading = false;
 		});
 	}
+
 	sortChanged(pager: any) {
 		this.pager = pager;
 	// 	this.getData();
 	}
+
 	getData() {
 		this.resourceService.getResource(this.resid).subscribe((data) => {
 			this.data = data;
