@@ -31,7 +31,7 @@
             [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
     </div>
 
-    <div *ngIf="displayBlock; else displayList" class="cardlist row">
+    <div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
         <div *ngFor="let elem of ngosData" class="d-flex col-md-6 col-sm-12 col-lg-4">
             <div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem._id]">
                 <div class="card-body">

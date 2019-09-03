@@ -49,11 +49,11 @@
                                 <i class="fa fa-phone"></i>
                                 {{ elem.phone }}
                             </span>
-                            <span *ngIf="!!elem.organisation" class="col-md-12">
+                            <span *ngIf="!!elem.organisation && !authService.is('INS')" class="col-md-12">
                                 <i class="fa fa-building"></i>
                                 <a (click)="goToOrganisation(elem.organisation._id, $event)" href="javascript:void(0);" class="ml-1">{{ elem.organisation.name }}</a>        
                             </span>
-                            <span *ngIf="!elem.organisation" class="col-md-12"> 
+                            <span *ngIf="!elem.organisation && !authService.is('INS')" class="col-md-12"> 
                                 <i class="fa fa-building"></i>
                                 Neafiliat
                             </span>        
@@ -82,7 +82,7 @@
                             Nume</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
                             Locație</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
+                        <th *ngIf="!authService.is('INS')" scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
                             Organizație</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
                             Profesie</th>
@@ -93,7 +93,7 @@
                         <!-- <tr> -->
                         <td>{{res.name}}</td>
                         <td>{{res.city?.name}}, {{res.county?.name}}</td>
-                        <td>{{res.organisation?.name}}</td>
+                        <td *ngIf="!authService.is('INS')">{{res.organisation?.name || 'Neafiliat'}}</td>
                         <td>{{res.job}}</td>
                         <!-- <td>{{res.updated_at}}</td> -->
                         <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi

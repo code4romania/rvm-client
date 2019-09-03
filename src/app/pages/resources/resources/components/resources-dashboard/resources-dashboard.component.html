@@ -31,7 +31,7 @@
 		<ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'3')" class="filterbutton"
 			[multiple]="true" [config]="ngoconfig" [options]="NGOFilterValues">NGO</ngx-select-dropdown>
 	</div>
-	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-2">
+	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
 			<div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
 				<div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem._id]">
 					<div class="card-body">
