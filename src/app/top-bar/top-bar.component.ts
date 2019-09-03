@@ -9,16 +9,11 @@ import { Router } from '@angular/router';
 })
 
 export class TopBarComponent implements OnInit {
-	currentUserId: string;
 
 	constructor(public authService: AuthenticationService,
 		private router: Router) {}
 
-	ngOnInit() {
-		if (this.authService.isAuthenticated()) {
-			this.currentUserId = this.authService.user._id;
-		}
-	}
+	ngOnInit() { }
 
 	logout() {
 		this.authService.logout().subscribe(
