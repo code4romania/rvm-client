@@ -20,6 +20,7 @@
 			</div>
 		</div>
 	</nav>
+	<ngb-alert *ngIf="messageSent" type="success" (close)="close()">Notificarea a fost trimisa</ngb-alert>
 	<div class="ngo-details row">
 		<h3 class="col-md-12">Profil organizație: {{data?.name}}</h3>
 		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data?.contact_person}}
@@ -28,7 +29,7 @@
 		<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
 		<span class="col-md-12"><b>Status organizație:</b> {{data?.status || 'activ' }}</span>
 		<span class="col-md-12"><b>Total voluntari:</b> {{data?.voluntari || '0' }}</span>
-		<span class="col-md-12"><b>Acoperire:</b> {{data?.acoperire || 'Națională' }}</span>
+		<span class="col-md-12"><b>Acoperire:</b> {{data?.cover || 'Națională' }}</span>
 		<div class="col-md-12">
 			<span><b>Data ultimului update: </b> {{ (data?.updated_at | date: 'dd.MM.yyyy') || 'Nu există' }}</span>
 			<button *ngIf="authService.is('DSU')" class="btn mx-3 btn-info" (click)="sendNotification()"><span

@@ -62,6 +62,7 @@ export class NgoaddComponent implements OnInit {
 			contact_person: ['', Validators.required],
 			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			address: [''],
+			cover: [''],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			county: ['', [Validators.required, LocationValidation.locationValidation]],
 			city: [{value: '', disabled: true }, [Validators.required, LocationValidation.locationValidation]],
@@ -79,6 +80,7 @@ export class NgoaddComponent implements OnInit {
 				this.countyid = data.county._id;
 				this.form = this.fb.group({
 					name: [this.ngo.name ],
+					cover: [this.ngo.cover],
 					website: [this.ngo.website, [Validators.required, WebsiteValidation.websiteValidation]],
 					contact_person: [this.ngo.contact_person, Validators.required],
 					phone: [this.ngo.phone, [Validators.required, PhoneValidation.phoneValidation]],

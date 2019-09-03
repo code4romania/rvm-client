@@ -16,7 +16,11 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
-import { map, take } from 'rxjs/operators';
+
+interface Alert {
+	type: string;
+	message: string;
+}
 
 @Component({
 	selector: 'app-ngodetails',
@@ -61,6 +65,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
+	messageSent = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -228,7 +233,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		}
 	}
 	sendNotification() {
-		console.log('will send manual notification');
+		this.organisationService.sendUpdateDataEmail(this.ngoid).subscribe(() => {
+			this.messageSent = true;
+			setTimeout(() => this.close(), 5000);
+		});
+	}
+	close() {
+		this.messageSent = false;
 	}
 }
 

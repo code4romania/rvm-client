@@ -26,7 +26,19 @@
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4 col-sm-12"></div>
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Acoperire *</label>
+					<select class="form-control" formControlName="cover"
+					[ngClass]="{ 'error': form.controls.cover.invalid && form.controls.cover.touched }"
+					class="form-control">
+							<option>Nationala</option>
+							<option>Locala</option>
+						
+					</select>
+					<span class="error-message" *ngIf="form.controls.cover.invalid && form.controls.cover.touched">* Trebuie sa alegeti un tip.</span>
+				</div>
+			</div>
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">

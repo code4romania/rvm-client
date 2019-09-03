@@ -13,13 +13,9 @@ export class UsersService {
 		sort: 1,
 		method: 'ASC',
 		page: 1,
-		size: 20,
+		size: 15,
 		total: 0,
 		filters: {}
-		// 	'1': 'adapostire',
-		// 	'3': 'bihor',
-		// 	'5': 'crucea'
-		// }
 	};
 
 	getPager() {
