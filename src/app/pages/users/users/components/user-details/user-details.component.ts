@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class UserDetailsComponent implements OnInit {
 	data: any;
-	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator DSU'];
+	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator General'];
 	loading = false;
 
 	constructor(private route: ActivatedRoute,
@@ -33,12 +33,14 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	delete() {
-		this.loading = true;
-		this.usersService.deleteUser(this.data._id).subscribe(response => {
-			this.loading = false;
-			this.location.back();
-		}, () => {
-			this.location.back();
-		});
+		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
+			this.loading = true;
+			this.usersService.deleteUser(this.data._id).subscribe(response => {
+				this.loading = false;
+				this.location.back();
+			}, () => {
+				this.location.back();
+			});
+		}
 	}
 }

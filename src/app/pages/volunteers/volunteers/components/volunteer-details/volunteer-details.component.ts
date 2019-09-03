@@ -36,13 +36,15 @@ export class VolunteerDetailsComponent implements OnInit {
 	}
 
 	deleteSelf() {
-		this.loading = true;
-		this.volunteerService.deleteVolunteer(this.data._id).subscribe(() => {
-			this.loading = false;
-			this.location.back();
-		}, () => {
-			this.loading = false;
-		});
+		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
+			this.loading = true;
+			this.volunteerService.deleteVolunteer(this.data._id).subscribe(() => {
+				this.loading = false;
+				this.location.back();
+			}, () => {
+				this.loading = false;
+			});
+		}
 	}
 
 }

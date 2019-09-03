@@ -174,13 +174,15 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * submit form and close modal
 	 */
 	deleteSelf() {
-		this.loading = true;
-		this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
-			this.loading = false;
-			this.router.navigateByUrl('/organisations');
-		}, () => {
-			this.loading = false;
-		});
+		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
+			this.loading = true;
+			this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
+				this.loading = false;
+				this.router.navigateByUrl('/organisations');
+			}, () => {
+				this.loading = false;
+			});
+		}
 	}
 
 	onSubmit() {

@@ -27,14 +27,16 @@ export class ResourcedetailsComponent implements OnInit {
 		this.getData();
 	}
 
-	deleteSelf() {
-		this.loading = true;
-		this.resourceService.deleteResource(this.resid).subscribe((data) => {
-			this.loading = false;
-			this.router.navigateByUrl('/resources');
-		}, () => {
-			this.loading = false;
-		});
+	deleteSelf(resId: string) {
+		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
+			this.loading = true;
+			this.resourceService.deleteResource(resId).subscribe((data) => {
+				this.loading = false;
+				this.router.navigateByUrl('/resources');
+			}, () => {
+				this.loading = false;
+			});
+		}
 	}
 
 	sortChanged(pager: any) {

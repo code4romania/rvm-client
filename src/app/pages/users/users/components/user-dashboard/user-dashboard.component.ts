@@ -36,7 +36,7 @@ export class UserDashboardComponent implements OnInit {
 		},
 		{
 			id: 3,
-			name: 'Administrator DSU'
+			name: 'Administrator General'
 		},
 	];
 
