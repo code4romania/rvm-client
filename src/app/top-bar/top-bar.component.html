@@ -9,22 +9,22 @@
 			<div class="flex-column pr-3 d-none d-xl-block col-xl-10 pl-0">
 				<ul class="nav">
 					<li>
-						<a routerLink="/volunteers" class="nav__link">Voluntari</a>
+						<a routerLink="/volunteers" class="nav__link" routerLinkActive="active-link">Voluntari</a>
 					</li>
 					<li *ngIf="authService.is('DSU', 'NGO')">
-						<a routerLink='/resources' class="nav__link">Resurse</a>
+						<a routerLink='/resources' class="nav__link" routerLinkActive="active-link">Resurse</a>
 					</li>
 					<li *ngIf="authService.is('DSU')">
-						<a routerLink='/organisations' class="nav__link">Organizații</a>
+						<a routerLink='/organisations' class="nav__link" routerLinkActive="active-link">Organizații</a>
 					</li>
 					<li *ngIf="authService.is('DSU', 'INS')">
-						<a routerLink='/users' class="nav__link">Utilizatori</a>
+						<a routerLink='/users' class="nav__link" routerLinkActive="active-link">Utilizatori</a>
 					</li>
 					<li *ngIf="authService.is('DSU')">
-						<a routerLink='/map' class="nav__link">Hartă</a>
+						<a routerLink='/map' class="nav__link" routerLinkActive="active-link">Hartă</a>
 					</li>
 					<li>
-						<a routerLink="/info" class="nav__link">Info</a>
+						<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Info</a>
 					</li>
 				</ul>
 			</div>
