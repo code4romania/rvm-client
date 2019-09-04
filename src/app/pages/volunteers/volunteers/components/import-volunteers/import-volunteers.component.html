@@ -11,14 +11,16 @@
 		</span>
 	</div>
 
-	<p class="m-2" *ngIf="!!fileName">{{ fileName }}</p>
+	<p class="m-2" *ngIf="!!file">{{ file.name }}</p>
 
-	<div class="import-box">
+	<div class="import-box" *ngIf="!loading">
 		<button class="btn btn-info mt-4 btn-import">
 			Importați un fișier CSV
 		</button>
 		<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
 			accept=".csv" class="import-csv" />
 	</div>
-
+	<div class="spinner-border text-green" role="status" *ngIf="loading">
+		<span class="sr-only">Loading...</span>
+	</div>
 </div>

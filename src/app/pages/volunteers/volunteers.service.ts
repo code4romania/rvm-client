@@ -63,4 +63,8 @@ export class VolunteerService {
 		// };
 		// return this.httpClient.get(`/organisations/${id}` );
 	// }
+
+	importCsv(file: any) {
+		return this.httpClient.post('/volunteers/import', file);
+	}
 }
