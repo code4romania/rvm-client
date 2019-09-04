@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { VolunteerService } from '../../../volunteers.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, merge, Subject, of } from 'rxjs';
+import { Observable, merge, Subject } from 'rxjs';
 import {
 	debounceTime,
 	distinctUntilChanged,
@@ -18,8 +18,6 @@ import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
 import { SsnValidation } from '@app/core/validators/ssn-validation';
-import { LocationValidation } from '@app/core/validators/location-validation';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -51,6 +49,7 @@ export class AddVolunteerComponent implements OnInit {
 	edit = false;
 
 	loading = false;
+	loadingCities = false;
 
 	constructor(
 		public volunteerService: VolunteerService,
@@ -175,9 +174,13 @@ export class AddVolunteerComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				if (this.countyid) {
+					this.loadingCities = true;
+					this.cityPlaceholder = 'Căutare...';
+
 					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
 						map((response: {data: any[], pager: any}) => {
-							console.log(response);
+							this.cityPlaceholder = 'Alegeți Orașul';
+							this.loadingCities = false;
 							return response.data;
 						})
 					);
@@ -216,7 +219,8 @@ export class AddVolunteerComponent implements OnInit {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeți Orașul';
+			this.loadingCities = true;
+			this.cityPlaceholder = 'Căutare...';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}

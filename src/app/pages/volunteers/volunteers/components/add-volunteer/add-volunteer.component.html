@@ -109,6 +109,9 @@
 							placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
 							[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
 							(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
+							<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities && form.controls.city.invalid">
+								<span class="sr-only">Loading...</span>
+							</div>
 					</div>
 				</div>
 

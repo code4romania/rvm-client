@@ -45,6 +45,7 @@ export class NgoaddComponent implements OnInit {
 
 	edit = false;
 	loading = false;
+	loadingCities = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -129,9 +130,13 @@ export class NgoaddComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				if (this.countyid) {
+					this.loadingCities = true;
+					this.cityPlaceholder = 'Căutare...';
+
 					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
 						map((response: {data: any[], pager: any}) => {
-							console.log(response);
+							this.cityPlaceholder = 'Alegeți Orașul';
+							this.loadingCities = false;
 							return response.data;
 						})
 					);
@@ -148,7 +153,8 @@ export class NgoaddComponent implements OnInit {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeți Orașul';
+			this.loadingCities = true;
+			this.cityPlaceholder = 'Căutare...';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}

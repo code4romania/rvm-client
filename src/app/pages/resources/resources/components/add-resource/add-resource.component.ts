@@ -57,6 +57,7 @@ export class AddResourceComponent implements OnInit {
 	click4$ = new Subject<string>();
 
 	loading = false;
+	loadingCities = false;
 
 	constructor(private resourcesService: ResourcesService,
 		private route: ActivatedRoute, private catService: CategoriesService,
@@ -152,9 +153,13 @@ export class AddResourceComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				if (this.countyid) {
+					this.loadingCities = true;
+					this.cityPlaceholder = 'Căutare...';
+
 					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
 						map((response: {data: any[], pager: any}) => {
-							console.log(response);
+							this.cityPlaceholder = 'Alegeți Orașul';
+							this.loadingCities = false;
 							return response.data;
 						})
 					);
@@ -236,7 +241,8 @@ export class AddResourceComponent implements OnInit {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
-			this.cityPlaceholder = 'Alegeți Orașul';
+			this.loadingCities = true;
+			this.cityPlaceholder = 'Căutare...';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}
