@@ -21,15 +21,37 @@
         <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true"
-            [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect
+			class="location"
+			[(ngModel)]="selected[0]"
+			showMaxLables = "1"
+			[options]="locationFilterValues"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)">
+		</ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
-            [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect
+			class="specialization"
+			[(ngModel)]="selected[1]"
+			showMaxLables = "1"
+			[options]="specializationFilterValues"
+			(onItemClick)="filterChanged(1)"
+			(onSelectNone)="filterChanged(1)"
+			(onSelectAll)="filterChanged(1)">
+		</ngx-multiselect>
         <span *ngIf="authService.is('DSU')" class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'4')" class="filterbutton" [multiple]="true"
-            [config]="ngoconfig" [options]="NGOFilterValues"></ngx-select-dropdown>
-    </div>
+        <ngx-multiselect
+            *ngIf="authService.is('DSU')"
+            class="NGO"
+            [(ngModel)]="selected[2]"
+            showMaxLables = "1"
+            [options]="NGOFilterValues"
+            (onItemClick)="filterChanged(2)"
+            (onSelectNone)="filterChanged(2)"
+            (onSelectAll)="filterChanged(2)">
+        </ngx-multiselect>
+        </div>
 
     <div *ngIf="displayBlock; else displayList" class="mt-5 cardlist row">
         <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-12 col-lg-4">

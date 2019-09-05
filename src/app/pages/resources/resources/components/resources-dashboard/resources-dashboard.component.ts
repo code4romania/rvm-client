@@ -109,9 +109,8 @@ export class ResourcesdashboardComponent implements OnInit {
 		const filter = event.filter;
 		console.log(filter);
 	};
-	filterChanged(data?: any, id?: number) {
-		console.log(data);
-		console.log(this.selected);
+
+	filterChanged(id?: number) {
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}

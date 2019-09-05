@@ -24,12 +24,12 @@
 		<ngx-multiselect class="category"
 			[(ngModel)]="selected[0]"
 			[options]="categoryFilterValues"
-			showMaxLables = "1"
-			(onItemClick)="filterChanged($event,0)"
-			(onSelectNone)="filterChanged($event,0)"
-			(onSelectAll)="filterChanged($event,0)"
+			(showMaxLables) = "1"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)"
+			[propertyMap]="{'parent_id':'parent_id'}"
 			>
-			Category
 			<ng-template let-option="option">
 				<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
 				   {{option.name}} 
@@ -38,11 +38,13 @@
 		</ngx-multiselect>
 		<span class="vertical-bar">&nbsp;</span>
 		<ngx-multiselect
+			class="location"
 			[(ngModel)]="selected[1]"
 			showMaxLables = "1"
 			[options]="locationFilterValues"
-			(onItemClick)="filterChanged($event,1)"
-			(onSelectNone)="filterChanged($event,1)">
+			(onItemClick)="filterChanged(1)"
+			(onSelectNone)="filterChanged(1)"
+			(onSelectAll)="filterChanged(1)">
 		</ngx-multiselect>
 	</div>
 	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">

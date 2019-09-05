@@ -18,8 +18,15 @@
 		<span class="padding-rem">Total: {{pager.total}}</span>
 		<span class="padding-rem">&nbsp;&nbsp;</span>
 		<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
-		<ngx-select-dropdown *ngIf="authService.is('DSU')" (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
-			[config]="institutionconfig" [options]="institutionfiltervalues">Type</ngx-select-dropdown>
+		<ngx-multiselect
+			class="institutie"
+			[(ngModel)]="selected[0]"
+			showMaxLables = "1"
+			[options]="institutionfiltervalues"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)">
+		</ngx-multiselect>
 	</div>
     <div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
         <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-12 col-lg-4">

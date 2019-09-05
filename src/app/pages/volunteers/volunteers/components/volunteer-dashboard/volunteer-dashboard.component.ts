@@ -14,21 +14,7 @@ export class VolunteerDashboardComponent implements OnInit {
 	pager: any = {};
 	filterResult: any = {};
 	displayBlock = true;
-	multiselectconfig = {
-		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
-		search: true, // true/false for the search functionlity defaults to false,
-		height: '100', // height of the list so that if there are more no of items it can show a scroll defaults to auto
-		limitTo: 10, // a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
-		// customComparator: ()=>{}
-		moreText: 'altele', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-		noResultsFound: 'Niciun rezultat!', // text to be displayed when no items are found while searching
-		searchPlaceholder: 'Cauta', // label thats displayed in search input,
-		searchOnKey: 'name', // key on which search should be performed this will be selective search.
-							// if undefined this will be extensive search on all keys
-		};
-		locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
-		ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
-		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
+	selected = Array(3);
 
 	NGOFilterValues: any[];
 	locationFilterValues: any[];
@@ -113,8 +99,8 @@ export class VolunteerDashboardComponent implements OnInit {
 		}
 	}
 
-	filterChanged = (data?: any, id?: string) => {
-		this.pager.filters[id] =  data.value.map((elem: any) => elem._id).join(',');
+	filterChanged(id?: number) {
+		this.pager.filters[id] =  this.selected[id].value.map((elem: any) => elem._id).join(',');
 		this.getData();
 	}
 

@@ -22,23 +22,7 @@
     }
 }
 ::ng-deep .category{
-    .multiselect-wrapper{
-        width:100% !important;
-        .listing-wrapper{
-            max-width: 300px;
-        }
-        
-        .dropdown-button{
-            .selection{
-                padding: 0;
-                border:none !important;
-                .none-selected, .selected{
-                    margin-right: 15px;
-                }
-                .none-selected:before{
-                    content:"Category"
-                }
-            }
-        }
+    .none-selected:before {
+        content: 'Categorie' !important;
     }
 }

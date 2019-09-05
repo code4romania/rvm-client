@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { SelectDropDownModule } from 'custom-select-dropdown';
-
+import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 
 @NgModule({
 	declarations: [
@@ -19,6 +19,7 @@ import { SelectDropDownModule } from 'custom-select-dropdown';
 		UserDetailsComponent
 	],
 	imports: [
+		NgxMultiselectModule,
 		SelectDropDownModule,
 		SharedModule,
 		CommonModule,

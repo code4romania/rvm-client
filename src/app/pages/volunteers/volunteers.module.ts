@@ -10,6 +10,7 @@ import { VolunteerDashboardComponent } from './volunteers/components/volunteer-d
 import { VolunteerDetailsComponent } from './volunteers/components/volunteer-details/volunteer-details.component';
 import { SelectDropDownModule } from 'custom-select-dropdown';
 import { SharedModule } from '../../shared/shared.module';
+import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from '../../shared/shared.module';
 		ImportVolunteersComponent
 	],
 	imports: [
+		NgxMultiselectModule,
 		SharedModule,
 		SelectDropDownModule,
 		NgbModule,
