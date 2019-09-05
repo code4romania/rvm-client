@@ -232,6 +232,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			this.getResources();
 		}
 	}
+
 	searchChanged(pager: any) {
 		if (this.selectedTab === 'volunteers') {
 			this.volunteerPager = pager;
@@ -253,12 +254,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			this.getData();
 		}
 	}
+
 	sendNotification() {
 		this.organisationService.sendUpdateDataEmail(this.ngoid).subscribe(() => {
 			this.messageSent = true;
 			setTimeout(() => this.close(), 5000);
 		});
 	}
+
 	close() {
 		this.messageSent = false;
 	}
