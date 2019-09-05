@@ -22,7 +22,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	subcategoryFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
 	navigationExtras: any;
-	selected: any[][] = new Array(2);
+	selected = new Array(2);
 	selectedcat: any[];
 	selectedloc: any[];
 	propertyMap = {
@@ -109,7 +109,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		const filter = event.filter;
 		console.log(filter);
 	};
-	filterChanged(data?: any, id?: string) {
+	filterChanged(data?: any, id?: number) {
 		console.log(data);
 		console.log(this.selected);
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
