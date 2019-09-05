@@ -8,6 +8,7 @@ import { UserDetailsComponent } from './users/components/user-details/user-detai
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
+import { SelectDropDownModule } from 'custom-select-dropdown';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SharedModule } from '@app/shared';
 		UserDetailsComponent
 	],
 	imports: [
+		SelectDropDownModule,
 		SharedModule,
 		CommonModule,
 		UsersRoutingModule,

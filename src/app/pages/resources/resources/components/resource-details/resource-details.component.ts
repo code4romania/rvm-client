@@ -41,17 +41,15 @@ export class ResourcedetailsComponent implements OnInit {
 
 	sortChanged(pager: any) {
 		this.pager = pager;
-	// 	this.getData();
+		this.getData();
 	}
 
 	getData() {
-		this.resourceService.getResource(this.resid).subscribe((data) => {
-			this.data = data;
-			this.organisations = [data.organisation];
-			// this.resourceService.getorganisationbyResources(data.name).subscribe((resdata) => {
-			// 	this.organisations = resdata;
-			// 	console.log(resdata);
-			// });
+		this.resourceService.getResource(this.resid).subscribe((response) => {
+			this.data = response.data[0];
+			this.organisations = response.data;
+			console.log(this.organisations);
+			this.pager = response.pager;
 		});
 	}
 

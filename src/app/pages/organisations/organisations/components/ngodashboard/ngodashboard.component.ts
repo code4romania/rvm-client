@@ -26,8 +26,9 @@ export class NgodashboardComponent implements OnInit {
 		};
 		locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
 		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
+		categoryconfig = {...{placeholder: 'Category'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
-
+	categoryFilterValues: any[];
 	typeFilterValues: any[];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];

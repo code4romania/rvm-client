@@ -17,7 +17,7 @@
                     class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Organizație</button>
         </div>
     </nav>
-    <div class="filters mx-30px row">
+    <div class="filters my-3 mx-30px row">
         <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
@@ -29,6 +29,9 @@
         <span class="vertical-bar">&nbsp;</span>
         <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
             [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
+            [config]="categoryconfig" [options]="categoryFilterValues"></ngx-select-dropdown>
     </div>
 
     <div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">

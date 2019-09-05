@@ -20,7 +20,7 @@ import {
 import { merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { OrganisationService } from '@app/pages/organisations/organisations.service';
-import { AuthenticationService, CategoriesService } from '@app/core';
+import { AuthenticationService, CategoriesService, FiltersService } from '@app/core';
 import { Location, isPlatformWorkerApp } from '@angular/common';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 import { LocationValidation } from '@app/core/validators/location-validation';
@@ -64,7 +64,7 @@ export class AddResourceComponent implements OnInit {
 		private location: Location, private router: Router,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder,
-		private orgService: OrganisationService,
+		private filterService: FiltersService,
 		public authService: AuthenticationService) {
 			const navigation = this.router.getCurrentNavigation();
 			if (navigation && navigation.extras && navigation.extras.state) {
@@ -75,7 +75,7 @@ export class AddResourceComponent implements OnInit {
 	ngOnInit() {
 		this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
 		this.form = this.fb.group({
-			subCategory: [{value: '', disabled: true}, Validators.required],
+			subCategory: [{value: '', disabled: true}],
 			name: ['', Validators.required],
 			address: '',
 			resource_type: ['', Validators.required],
@@ -103,10 +103,10 @@ export class AddResourceComponent implements OnInit {
 				this.categoryid = this.res.category._id;
 				this.form = this.fb.group({
 					name: this.res.name,
-					subCategory: [this.res.subCategory, Validators.required],
+					subCategory: [this.res.categories[1]],
 					address: this.res.address,
 					resource_type: [this.res.resource_type, Validators.required],
-					category: [this.res.category, Validators.required],
+					category: [this.res.categories[0], Validators.required],
 					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
 					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
 					city: [this.res.city, [Validators.required, LocationValidation.locationValidation]],
@@ -186,7 +186,7 @@ export class AddResourceComponent implements OnInit {
 					map(x => {
 						console.log(x);
 						if (x.length === 0) {
-							return [{id: 'd021817b6d80d7da09bece2bebc584ac', name: 'Altele'}];
+							return [{_id: '4620d41193cd85499cbfd1f67804ae52', name: 'Altele'}];
 						} else { return x; }
 					})
 				);
@@ -206,12 +206,12 @@ export class AddResourceComponent implements OnInit {
 			switchMap((term: string) => {
 				return this.catService.getSubCategories(this.categoryid, term).pipe(
 					map( (response: {data: any[]}) => response.data ),
-					map(x => {
+					// map(x => {
 
-						if (x.length === 0) {
-							return [{id: 9, name: 'Altele'}];
-						} else { return x; }
-					})
+					// 	if (x.length === 0) {
+					// 		return [{id: 9, name: 'Altele'}];
+					// 	} else { return x; }
+					// })
 				);
 		}));
 	}
@@ -229,7 +229,7 @@ export class AddResourceComponent implements OnInit {
 		const inputFocus$ = this.focus$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.orgService.getorganisationbyName(term).pipe(
+				return this.filterService.getorganisationbyName(term).pipe(
 					map(elem => elem.data)
 				);
 		}));
@@ -287,11 +287,15 @@ export class AddResourceComponent implements OnInit {
 
 	selectedCategory(val: { item: any }) {
 		this.form.controls.category.markAsTouched();
-		if (val.item && val.item._id) {
+		if (val.item && val.item._id) {// &&if ceva
 			this.categoryid = val.item._id;
 			this.form.patchValue({category: val.item});
-			this.form.controls.subCategory.enable();
-			this.resourcePlaceholder = 'Alegeți Resursa';
+			this.catService.getSubCategories(val.item._id, '').subscribe(resp => {
+				if (resp.data.length > 0) {
+					this.form.controls.subCategory.enable();
+					this.resourcePlaceholder = 'Alegeți Categoria';
+				}
+			});
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({category: '', subCategory: ''});
 		}
@@ -306,8 +310,10 @@ export class AddResourceComponent implements OnInit {
 		resource.organisation_id = this.form.value.organisation._id;
 		resource.county = resource.county._id;
 		resource.city = resource.city._id;
-		resource.category = [resource.category._id, resource.subCategory._id];
-
+		resource.categories = [resource.category._id];
+		if (resource.subCategory) {
+			resource.categories.push(resource.subCategory._id);
+		}
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {

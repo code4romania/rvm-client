@@ -10,6 +10,7 @@ import { ResourcesService } from './resources.service';
 import { SharedModule } from '../../shared/shared.module';
 import { SelectDropDownModule } from 'custom-select-dropdown';
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
+import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 @NgModule({
 		declarations: [
 			ResourcesComponent,
@@ -18,6 +19,7 @@ import { AddResourceComponent } from './resources/components/add-resource/add-re
 			AddResourceComponent,
 		],
 		imports: [
+			NgxMultiselectModule,
 			SelectDropDownModule,
 			NgbModule,
 			CommonModule,

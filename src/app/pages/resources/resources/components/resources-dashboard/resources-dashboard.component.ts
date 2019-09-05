@@ -6,6 +6,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
 import { IfStmt } from '@angular/compiler';
+import { element } from 'protractor';
+import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-resources-dashboard',
@@ -16,32 +18,16 @@ export class ResourcesdashboardComponent implements OnInit {
 	resourcesData: any[] = [];
 	pager: any = {};
 	displayBlock = false;
-	multiselectconfig = {
-		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
-		search: true, // true/false for the search functionlity defaults to false,
-		height: '100', // height of the list so that if there are more no of items it can show a scroll defaults to auto
-		limitTo: 10, // a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
-		// customComparator: ()=>{}
-		moreText: 'altele', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-		noResultsFound: 'Niciun rezultat!', // text to be displayed when no items are found while searching
-		searchPlaceholder: 'Cauta', // label thats displayed in search input,
-		searchOnKey: 'name', // key on which search should be performed this will be selective search.
-							// if undefined this will be extensive search on all keys
-		selectAll: 'true', // Should enable select all feature for multiple select items
-		selectAllText: 'Select All'
-		};
-	typeconfig = {...{placeholder: 'Categorie'}, ...this.multiselectconfig};
-	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
-	ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
-	typefilterResult: any[] = [];
-	locationfilterResult: any[] = [];
-	ngofilterResult: any[];
-
-	typeFilterValues: any[] = [];
-	NGOFilterValues: any[] = [];
+	categoryFilterValues: any[] = [];
+	subcategoryFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
 	navigationExtras: any;
-
+	selected: any[][] = new Array(2);
+	selectedcat: any[];
+	selectedloc: any[];
+	propertyMap = {
+		'_id' : 'id'
+	};
 	constructor(private resourceService: ResourcesService,
 		private filterService: FiltersService,
 		private citiesandCounties: CitiesCountiesService,
@@ -52,28 +38,25 @@ export class ResourcesdashboardComponent implements OnInit {
 	ngOnInit() {
 		this.pager = this.resourceService.getPager();
 
-		// if (this.authService.is('NGO')) {
-		// 	// TO-DO cu filtre DE LA backend
-		// 	this.pager.filters[3] = '7eb1c58d-703a-43a4-a9d3-0f8324550def';
-		// }
-
 		this.getData();
 
-		// this.filterService.getTypeFilters().subscribe((data) => {
-		// 	this.typeFilterValues = data.map((elem: any) => {
-		// 		return {id: elem.type_name, name: elem.type_name};
-		// 		});
-		// });
-
-		this.filterService.getOrganisationsFilters().subscribe((data) => {
-			this.NGOFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
-				});
-			// this.ngofilterResult = data.map((elem:any) => elem.name);
+		this.filterService.getCategoryFilters().subscribe((data) => {
+			this.categoryFilterValues = data.data.map((x: any) => {
+				const parent = data.data.find((y: any) => y._id === x.parent_id);
+				return {
+					id: x._id,
+					name: x.name,
+					parent_id: x.parent_id,
+					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					level: x.parent_id === '0' ? 0 : 1
+				};
+			});
 		});
 
 		this.citiesandCounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
-			this.locationFilterValues = response.data;
+			const aux = response.data;
+			aux.map((value: any) => value.id = value._id);
+			this.locationFilterValues = aux;
 		});
 
 		this.breakpointObserver
@@ -99,8 +82,8 @@ export class ResourcesdashboardComponent implements OnInit {
 				state: {
 					ngo: {
 						// TO-DO: extragere informatiilor din contu utilizatorului
-						name: 'Curcea Rosie',
-						ngoid: '7eb1c58d-703a-43a4-a9d3-0f8324550def'
+						name: this.authService.user.organisation.name,
+						ngoid: this.authService.user.organisation._id
 					}
 				}
 			};
@@ -109,7 +92,6 @@ export class ResourcesdashboardComponent implements OnInit {
 			this.router.navigate(['resources/add']);
 		}
 	}
-
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
@@ -123,8 +105,14 @@ export class ResourcesdashboardComponent implements OnInit {
 			this.getData();
 		}
 	}
-	filterChanged = (data?: any, id?: string) => {
-		this.pager.filters[id] =  data.value.map((elem: any) => elem._id).join(',');
+	loadData = function(event: any) {
+		const filter = event.filter;
+		console.log(filter);
+	};
+	filterChanged(data?: any, id?: string) {
+		console.log(data);
+		console.log(this.selected);
+		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
 

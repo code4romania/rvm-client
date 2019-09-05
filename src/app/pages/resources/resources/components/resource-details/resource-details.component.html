@@ -27,16 +27,14 @@
                 <tbody>
                     <tr *ngFor="let res of organisations">
                         <!-- MUST REMOVE WHEN BACKEND IS READY -->
-                        <td>{{res.name}}</td>
+                        <td>{{res.organisation[0].name}}</td>
                         <td>{{data.quantity}}</td>
                         <td>{{data.address}}</td>
-                        <td>
-                            <span *ngIf="data.city?.name">{{data.city?.name}}, {{data.county?.name}}</span>
-                        </td>
+                        <td>{{data.city?.name}}, {{data.county?.name}}</td>
                         <td>{{data.updated_at}}</td>
                         <td class="text-right">
                             <div>
-                                <button class="btn btn-info" [routerLink]="['/organisations/id',res._id]">Detalii</button>
+                                <button class="btn btn-info" [routerLink]="['/organisations/id',res.organisation[0]._id]">Detalii</button>
                                 <button *ngIf="authService.is('DSU','NGO') && !loading" (click)="deleteSelf(data._id)"
                                     class="btn btn-danger ml-1">
                                     <span class="fa fa-trash-o"></span>&nbsp;Șterge
@@ -47,16 +45,6 @@
                                 </div>
                             </div>
                         </td>
-
-                        <!-- <td>{{res.name}}</td>
-                        <td>{{res.quantity}}</td>
-                        <td>{{res.address}}</td>
-                        <td>
-                            <span *ngIf="res.city?.name">{{res.city?.name}}, {{res.county?.name}}</span>
-                        </td>
-                        <td>{{res.updated_at}}</td>
-                        <td class="text-right"><button class="btn btn-info"
-                                [routerLink]="['/organisations/id',res._id]">Vezi detalii</button></td> -->
                     </tr>
                 </tbody>
             </table>

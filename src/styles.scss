@@ -391,3 +391,17 @@ body {
     height: 1em!important;
     width: 1em!important;
 }
+.none-selected{
+	-webkit-text-fill-color: transparent !important;
+	position: relative !important;
+	color: transparent !important;
+}
+.none-selected:before {
+	content: 'Nimic selectat';
+	color: #000;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	-webkit-text-fill-color: #000;
+}

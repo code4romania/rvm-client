@@ -47,21 +47,15 @@
 				</ng-template>
 				<ng-template ngbTabContent>
 					<div *ngIf="hasVolunteers; else noVolunteers">
-						<div class="filters mx-30px row">
+						<div class="filters my-3 mx-30px row">
 							<span class="padding-rem">Total: {{volunteerPager.total}}</span>
 							<span class="padding-rem">&nbsp;&nbsp;</span>
 							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
-							<ngx-select-dropdown (change)="volunteerFilterChanged($event,'1')" class="filterbutton"
-								[multiple]="true" [config]="volunteerconfig" [options]="typeFilterValues">
-							</ngx-select-dropdown>
+							<ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true"
+								[config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
 							<span class="vertical-bar">&nbsp;</span>
-							<ngx-select-dropdown (change)="volunteerFilterChanged($event,'2')" class="filterbutton"
-								[multiple]="true" [config]="locationconfig" [options]="locationFilterValues">
-							</ngx-select-dropdown>
-							<span class="vertical-bar">&nbsp;</span>
-							<ngx-select-dropdown (change)="volunteerFilterChanged($event,'3')" class="filterbutton"
-								[multiple]="true" [config]="specializationconfig"
-								[options]="specializationFilterValues"></ngx-select-dropdown>
+							<ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
+								[config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
 						</div>
 						<div class="table-responsive-md">
 							<table class="table customTable table-sm">
@@ -111,18 +105,17 @@
 					<a (click)="selectedTab ='resources'">Lista Resurse</a></ng-template>
 				<ng-template ngbTabContent>
 					<div *ngIf="hasResources; else noResources">
-						<div class="filters mx-30px row">
+						<div class="filters my-3 mx-30px row">
 							<span class="padding-rem">Total: {{resourcePager.total}}</span>
 							<span class="padding-rem">&nbsp;&nbsp;</span>
 							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
-
-							<ngx-select-dropdown (change)="resourceFilterChanged($event,'1')" class="filterbutton"
-								[multiple]="true" [config]="typeconfig" [options]="typeFilterValues">
-							</ngx-select-dropdown>
+							<ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
+								[config]="categoryconfig" [options]="categoryFilterValues">Type</ngx-select-dropdown>
+							<ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
+								[config]="subcategoryconfig" [options]="subcategoryFilterValues">Type</ngx-select-dropdown>
 							<span class="vertical-bar">&nbsp;</span>
-							<ngx-select-dropdown (change)="locationfil($event,'2')" class="filterbutton"
-								[multiple]="true" [config]="locationconfig" [options]="locationFilterValues">
-							</ngx-select-dropdown>
+							<ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true"
+								[config]="locationconfig" [options]="locationFilterValues">Location</ngx-select-dropdown>
 						</div>
 						<div class="table-responsive-md">
 							<table class="table customTable table-sm">

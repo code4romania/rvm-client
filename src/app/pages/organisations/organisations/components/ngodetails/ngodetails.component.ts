@@ -16,6 +16,7 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
+import { Location } from '@angular/common';
 
 interface Alert {
 	type: string;
@@ -55,7 +56,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		};
 	volunteerconfig = {...{placeholder: 'Tipul'}, ...this.multiselectconfig};
 	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
-	typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
+	typeconfig = {...{placeholder: 'Categorie'}, ...this.multiselectconfig};
 	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
 	volunteerTypeFilterValues: any[] = [];
 	resourceTypeFilterValues: any[] = [];
@@ -75,6 +76,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		private organisationService: OrganisationService,
 		private modalService: NgbModal,
 		private fb: FormBuilder,
+		private location: Location,
 		private citiesandcounties: CitiesCountiesService,
 		private resourceService: ResourcesService
 	) {
@@ -174,14 +176,27 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * submit form and close modal
 	 */
 	deleteSelf() {
-		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
-			this.loading = true;
-			this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
-				this.loading = false;
-				this.router.navigateByUrl('/organisations');
-			}, () => {
-				this.loading = false;
-			});
+		if (this.authService.user._id === this.data._id) {
+			if (confirm('Sunteți sigur că doriți să vă ștergeți contul?')) {
+				this.loading = true;
+				this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
+					this.loading = false;
+					this.authService.setCredentials();
+					this.router.navigateByUrl('/login');
+				}, () => {
+					this.location.back();
+				});
+			}
+		} else {
+			if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
+				this.loading = true;
+				this.organisationService.deleteorganisation(this.ngoid).subscribe(data => {
+					this.loading = false;
+					this.router.navigateByUrl('/organisations');
+				}, () => {
+					this.loading = false;
+				});
+			}
 		}
 	}
 
@@ -248,80 +263,3 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.messageSent = false;
 	}
 }
-
-	// searchResource = (text$: Observable<string>) => {
-	// 	return text$.pipe(
-	// 		debounceTime(200),
-	// 		distinctUntilChanged(),
-	// 		map(term =>
-	// 		(term === ''
-	// 			? this.cities
-	// 			: this.cities.filter(
-	// 				v =>
-	// 					v.toLowerCase().indexOf(term.toLowerCase()) > -1
-	// 				)
-	// 			).slice(0, 10)
-	// 		)
-	// 	);
-	// }
-	// 	searchcounty = (text$: Observable<string>) => {
-	// 	// const clicksWithClosedPopup$ = this.click$.pipe(
-	// 	// 	filter(() => !this.instance.isPopupOpen())
-	// 	// );
-	// 	// const inputFocus$ = this.focus$;
-	// 	// return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-	// 		return text$.pipe(
-	// 			debounceTime(200),
-	// 			distinctUntilChanged(),
-	// 			map((term: string) => {
-	// 				if (term === '') {
-	// 					return this.counties;
-	// 				} else {
-	// 					return this.counties
-	// 						.filter(
-	// 							v =>
-	// 								v.toLowerCase().indexOf(term.toLowerCase()) > -1
-	// 						)
-	// 						.slice(0, 10);
-	// 				}
-	// 			})
-	// 	);
-	// }
-	// searchcity = (text$: Observable<string>) => {
-	// 	// const debouncedText$ = text$.pipe(
-	// 	// 	debounceTime(200),
-	// 	// 	distinctUntilChanged()
-	// 	// );
-	// 	// const clicksWithClosedPopup$ = this.click1$.pipe(
-	// 	// 	filter(() => !this.instance1.isPopupOpen())
-	// 	// );
-	// 	// const inputFocus$ = this.focus1$;
-	// 	// return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-	// 		return text$.pipe(
-	// 			debounceTime(200),
-	// 			distinctUntilChanged(),
-	// 			map(term =>
-	// 			(term === ''
-	// 				? this.cities
-	// 				: this.cities.filter(
-	// 					v =>
-	// 						v.toLowerCase().indexOf(term.toLowerCase()) > -1
-	// 					)
-	// 				).slice(0, 10)
-	// 			)
-	// 		);
-	// }
-	// searchCategory = (text$: Observable<string>) => {
-	// 	return text$.pipe(
-	// 		debounceTime(200),
-	// 		distinctUntilChanged(),
-	// 		map(term =>
-	// 		(term === ''
-	// 			? this.cities
-	// 			: this.cities.filter(
-	// 				v =>
-	// 					v.toLowerCase().indexOf(term.toLowerCase()) > -1
-	// 				)
-	// 			).slice(0, 10)
-	// 		)
-	// 	);

@@ -51,21 +51,34 @@ export class MapComponent implements OnInit, AfterViewInit {
 	{ id: 'ROU4844', name: 'Ilfov', icons: []},
 	{ id: 'ROU4847', name: 'Tulcea', icons: []}] as any[];
 		hasclicked = false;
-	@HostListener('mouseover', ['$event']) onMouseOver(event: any) {
-		if (event.target.nodeName === 'path') {
-			this.test(event.target.getAttribute('id'), event);
-		}
-	}
+		previous: any;
+	// @HostListener('mouseover', ['$event']) onMouseOver(event: any) {
+	// 	if (event.target.nodeName === 'path') {
+	// 		//
+	// 	}
+	// }
 
-	@HostListener('mouseout', ['$event']) onMouseOut(event: any) {
-		if (event.target.nodeName === 'path') {
-			this.testOut(event.target.getAttribute('id'), event);
-		}
-	}
+	// @HostListener('mouseout', ['$event']) onMouseOut(event: any) {
+	// 	if (event.target.nodeName === 'path') {
+	// 		this.testOut(event.target.getAttribute('id'), event);
+	// 	}
+	// }
 
 	@HostListener('click', ['$event']) onClick(event: any) {
-		if (event.target.nodeName === 'path') {
-			this.clicked(event.target.getAttribute('id'), event);
+		if (this.hasclicked) {
+			if (event.target.nodeName === 'path') {
+				this.testOut(this.previous.id, this.previous.event);
+				this.test(event.target.getAttribute('id'), event);
+			} else {
+				console.log(event.path);
+				// this.hasclicked = false;
+				// this.testOut(this.previous.id, this.previous.id);
+			}
+		} else {
+			this.hasclicked = true;
+			if (event.target.nodeName === 'path') {
+				this.test(event.target.getAttribute('id'), event);
+			}
 		}
 	}
 
@@ -73,10 +86,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	ngOnInit() {
 
-	}
-	clicked(id: any, e: any) {
-		this.hasclicked = true;
-		console.log(id , e);
 	}
 
 	ngAfterViewInit() {
@@ -100,29 +109,32 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	test(id: any, e: any) {
 		if (e.target && e.target.nodeName === 'path') {
+			this.previous = {id: id, event: e};
 			const p = e.target.getBBox();
 			const cx = p.x + p.width / 2;
 			const cy = p.y + p.height / 2;
-			this.tooltip(cx, cy, this.ids.find(x => x.id === id).name);
-
+			// this.tooltip(cx, cy, this.ids.find(x => x.id === id).name);
+			this.tooltip(cx, cy, this.ids.find(x => x.id === id).name + '<br/> Resurse: 20 <br/>Voluntari: 2');
 			e.target.setAttribute('fill', '#00ff00');
 		}
 	}
 
-	tooltip(x: any, y: any, txt: any) {
+	tooltip(x: any, y: any, txt: string) {
 		const text: any = document.getElementById('recttext');
 		text.innerHTML = txt;
 		const p = text.getBBox();
 		setTimeout(function() {
-		text.setAttribute('x', String(x - p.width / 2 - p.x));
-		text.setAttribute('y',  String(y - p.height / 2 - p.y));
+			text.setAttribute('width', p.width - 110);
+			text.setAttribute('height', p.height + 110);
+			text.setAttribute('x', String(x - p.width / 2 - p.x));
+			text.setAttribute('y',  String(y - p.height / 2 - p.y));
 
-		const rect = document.getElementById('recttest');
-		rect.setAttribute('x',   String(x - (p.width / 2) - 5));
-		rect.setAttribute('y',   String(y - (p.height / 2) - 5));
-		rect.setAttribute('width', p.width + 10);
-		rect.setAttribute('height', p.height + 10);
-		},0);
+			const rect = document.getElementById('recttest');
+			rect.setAttribute('x',   String(x - (p.width / 2) - 5));
+			rect.setAttribute('y',   String(y - (p.height / 2) - 5));
+			rect.setAttribute('width', p.width + 10);
+			rect.setAttribute('height', p.height + 10);
+		}, 0);
 
 	}
 

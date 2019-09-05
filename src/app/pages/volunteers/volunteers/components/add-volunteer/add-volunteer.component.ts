@@ -13,7 +13,7 @@ import {
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganisationService } from '../../../../organisations/organisations.service';
-import { AuthenticationService } from '@app/core';
+import { AuthenticationService, FiltersService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
@@ -53,7 +53,7 @@ export class AddVolunteerComponent implements OnInit {
 
 	constructor(
 		public volunteerService: VolunteerService,
-		private orgService: OrganisationService,
+		private filterService: FiltersService,
 		private router: Router,
 		private route: ActivatedRoute, private location: Location,
 		private fb: FormBuilder,
@@ -135,7 +135,7 @@ export class AddVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.orgService.getorganisationbyName(term).pipe(
+				return this.filterService.getorganisationbyName(term).pipe(
 					map(elem => elem.data)
 				);
 			}));

@@ -6,16 +6,24 @@ import { Observable } from 'rxjs';
 export class FiltersService {
 	constructor(private http: HttpClient) {}
 
-	getTypeFilters(): Observable<any> {
-		return this.http.get('/filter/resources/type_name');
+	getCategoryFilters(): Observable<any> {
+		let params = {};
+		params = {...params, ...{name: name}};
+		return this.http.get('/resources/categories');
 	}
-	getOrganisationsFilters(): Observable<any> {
-		return this.http.get('/filter/organisations/name');
+	getorganisationbyName(name?: String): Observable<any> {
+		let params = {};
+		params = {...params, ...{name: name}};
+		return this.http.get('/filter/organisations', {params: params} );
 	}
-	getSpecializationFilters(): Observable<any> {
-		return this.http.get('/filter/specialization/name');
+	getSpecializationFilters(name?: String): Observable<any> {
+		let params = {};
+		params = {...params, ...{name: name}};
+		return this.http.get('/filter/volunteers/courses', {params: params} );
 	}
-	getVolunteerTypeFilters(): Observable<any> {
-		return this.http.get('/filter/job/name');
+	getInstitutionFilters(name?: String): Observable<any> {
+		let params = {};
+		params = {...params, ...{name: name}};
+		return this.http.get('/filter/users/institutions', {params: params});
 	}
 }

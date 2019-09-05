@@ -27,11 +27,9 @@ export class VolunteerDashboardComponent implements OnInit {
 							// if undefined this will be extensive search on all keys
 		};
 		locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
-		typeconfig = {...{placeholder: 'Tip'}, ...this.multiselectconfig};
 		ngoconfig = {...{placeholder: 'ONG'}, ...this.multiselectconfig};
 		specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
 
-	typeFilterValues: any[];
 	NGOFilterValues: any[];
 	locationFilterValues: any[];
 	specializationFilterValues: any[];
@@ -44,8 +42,7 @@ export class VolunteerDashboardComponent implements OnInit {
 
 		this.pager = this.volunteerService.getPager();
 		if (this.authService.is('NGO')) {
-			// TODO cu filtre DE LA backend
-			// this.pager.filters[3] = '4a7d54364a7156b6c12e5492cb0016f1';
+			this.pager.filters[3] = this.authService.user.organisation._id;
 		}
 
 		this.getData();
@@ -53,24 +50,17 @@ export class VolunteerDashboardComponent implements OnInit {
 			this.locationFilterValues = response.data;
 		});
 
-		this.filterService.getOrganisationsFilters().subscribe((data) => {
+		this.filterService.getorganisationbyName('').subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 				});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
-
-		// TODO WHEN BACKEND FINISHED
-		// this.filterService.getVolunteerTypeFilters().subscribe((data) => {
-		// 	this.typeFilterValues = data.map((elem: any) => {
-		// 		return {id: elem.type_name, name: elem.type_name};
-		// 		});
-		// });
-		// this.filterService.getSpecializationFilters().subscribe((data) => {
-		// 	this.specializationFilterValues = data.map((elem: any) => {
-		// 		return {id: elem.name, name: elem.name};
-		// 	});
-		// });
+		this.filterService.getSpecializationFilters('').subscribe((data) => {
+			this.specializationFilterValues = data.map((elem: any) => {
+				return {id: elem.name, name: elem.name};
+			});
+		});
 
 		/* subscribe to screen size in order to use list instead of grid for display */
 		this.breakpointObserver.observe([
@@ -97,8 +87,8 @@ export class VolunteerDashboardComponent implements OnInit {
 				state: {
 					ngo: {
 						// TODO: extragere informatiilor din contu utilizatorului
-						name: 'Curcea Rosie',
-						ngoid: '7eb1c58d-703a-43a4-a9d3-0f8324550def'
+						name: this.authService.user.organisation.name,
+						ngoid: this.authService.user.organisation._id
 					}
 				}
 			};
