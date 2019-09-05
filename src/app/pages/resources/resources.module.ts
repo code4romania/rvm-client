@@ -11,9 +11,11 @@ import { SharedModule } from '../../shared/shared.module';
 import { SelectDropDownModule } from 'custom-select-dropdown';
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
+import { ImportResourcesComponent } from './resources/components/import-resources/import-resources.component';
 @NgModule({
 		declarations: [
 			ResourcesComponent,
+			ImportResourcesComponent,
 			ResourcesdashboardComponent,
 			ResourcedetailsComponent,
 			AddResourceComponent,

@@ -34,3 +34,18 @@
         margin-right: 10px;
     }
 }
+::ng-deep .specialization{
+    .none-selected:before{
+        content:'Specializari' !important;
+    }
+}
+::ng-deep .category{
+    .none-selected:before {
+        content: 'Categorie' !important;
+    }
+}
+::ng-deep .type{
+    .none-selected:before {
+        content: 'Acoperire' !important;
+    }
+}

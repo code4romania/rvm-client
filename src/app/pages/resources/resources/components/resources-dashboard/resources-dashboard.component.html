@@ -28,7 +28,7 @@
 			(onItemClick)="filterChanged(0)"
 			(onSelectNone)="filterChanged(0)"
 			(onSelectAll)="filterChanged(0)"
-			[propertyMap]="{'parent_id':'parent_id'}"
+			[propertyMap]="propertyMap"
 			>
 			<ng-template let-option="option">
 				<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
@@ -56,7 +56,11 @@
 							<div class="card-text row">
 								<span class="col-md-12">
 									<i class="fa fa-list"></i>
-									{{elem.type}}
+									<div *ngIf="elem.categories">
+										<div  *ngFor="let cat of elem.categories">
+											{{cat.name}},
+										</div>
+									</div>
 								</span>
 								<span class="col-md-12">
 									<i class="fa fa-hashtag"></i>
@@ -101,7 +105,13 @@
 					<tr *ngFor="let res of resourcesData">
 						<!-- <tr> -->
 						<td>{{res.name}}</td>
-						<td>{{res.type}}</td>
+						<td>
+							<div *ngIf="res.categories">
+								<div  *ngFor="let cat of res.categories">
+									{{cat.name}},
+								</div>
+							</div>
+						</td>
 						<td>{{res.quantity}}</td>
 						<td>1</td>
 						<!-- <td>{{res.updated_at}}</td> -->

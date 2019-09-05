@@ -1,10 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/core/service/users.service';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
-import { AuthenticationService } from '@app/core';
+import { AuthenticationService, FiltersService } from '@app/core';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, merge, Subject } from 'rxjs';
+import {
+	debounceTime,
+	distinctUntilChanged,
+	map,
+	filter,
+	switchMap,
+} from 'rxjs/operators';
 
 @Component({
 	selector: 'app-add-user',
@@ -19,9 +28,13 @@ export class AddUserComponent implements OnInit {
 	user: any = {};
 	currentUserRole = '';
 	loading = false;
+	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
+	focus$ = new Subject<string>();
+	click$ = new Subject<string>();
 
 	constructor(private fb: FormBuilder,
 		private router: Router,
+		private filterService: FiltersService,
 		public route: ActivatedRoute,
 		public authService: AuthenticationService,
 		private usersService: UsersService) { }
@@ -48,6 +61,25 @@ export class AddUserComponent implements OnInit {
 		}
 	}
 
+	formatter = (result: { name: string }) => result.name;
+	searchinstitut = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+
+		const clicksWithClosedPopup$ = this.click$.pipe(
+			filter(() => !this.instance.isPopupOpen())
+		);
+
+		const inputFocus$ = this.focus$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			// return text$.pipe(debounceTime(200),distinctUntilChanged(),
+				switchMap((term: string) => {
+					return this.filterService.getInstitutionFilters(term);
+				}));
+	}
+
 	getData() {
 		this.usersService.getUser(this.id).subscribe(response => {
 			this.user = response;
@@ -55,7 +87,10 @@ export class AddUserComponent implements OnInit {
 			this.editForm();
 		});
 	}
-
+	selectedInstitut(val: { item: any }) {
+		this.form.controls.institution.markAsTouched();
+		this.form.patchValue({institution: val.item});
+	}
 	editForm() {
 		this.form.controls['name'].setValue(this.user.name);
 		this.form.controls['email'].setValue(this.user.email);
@@ -63,16 +98,17 @@ export class AddUserComponent implements OnInit {
 	}
 
 	onSubmit() {
+		console.log(this.form);
+		/*
 		this.loading = true;
 		this.user.name = this.form.value.name;
 		this.user.email = this.form.value.email;
 		this.user.phone = this.form.value.phone;
-
 		if (this.role) {
 			this.user.role = this.role;
 
 			if (this.role === '1' || this.role === '0') {
-				this.user.institution = this.form.value.institution;
+				this.user.institution = this.form.value.institution._id;
 			}
 		}
 
@@ -92,6 +128,6 @@ export class AddUserComponent implements OnInit {
 			}, () => {
 				this.loading = false;
 			});
-		}
+		}*/
 	}
 }

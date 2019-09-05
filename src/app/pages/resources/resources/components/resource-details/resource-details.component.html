@@ -28,10 +28,10 @@
                     <tr *ngFor="let res of organisations">
                         <!-- MUST REMOVE WHEN BACKEND IS READY -->
                         <td>{{res.organisation[0].name}}</td>
-                        <td>{{data.quantity}}</td>
-                        <td>{{data.address}}</td>
-                        <td>{{data.city?.name}}, {{data.county?.name}}</td>
-                        <td>{{data.updated_at}}</td>
+                        <td>{{res.quantity}}</td>
+                        <td>{{res.address}}</td>
+                        <td>{{res.city?.name}}, {{res.county?.name}}</td>
+                        <td>{{res.updated_at}}</td>
                         <td class="text-right">
                             <div>
                                 <button class="btn btn-info" [routerLink]="['/organisations/id',res.organisation[0]._id]">Detalii</button>

@@ -21,17 +21,41 @@
         <span class='padding-rem'>Total: {{pager.total}}</span>
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'1')" class="filterbutton" [multiple]="true"
-            [config]="typeconfig" [options]="typeFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect class="type"
+			[(ngModel)]="selected[0]"
+			showMaxLables = "1"
+			[options]="typeFilterValues"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)">
+		</ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'2')" class="filterbutton" [multiple]="true"
-            [config]="locationconfig" [options]="locationFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect
+			[(ngModel)]="selected[1]"
+			showMaxLables = "1"
+			[options]="locationFilterValues"
+			(onItemClick)="filterChanged(1)"
+			(onSelectNone)="filterChanged(1)"
+			(onSelectAll)="filterChanged(1)">
+		</ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
-            [config]="specializationconfig" [options]="specializationFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect class="specialization"
+            [(ngModel)]="selected[2]"
+            showMaxLables = "1"
+            [options]="specializationFilterValues"
+            (onItemClick)="filterChanged(2)"
+            (onSelectNone)="filterChanged(2)"
+            (onSelectAll)="filterChanged(2)">
+        </ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
-        <ngx-select-dropdown (change)="filterChanged($event,'3')" class="filterbutton" [multiple]="true"
-            [config]="categoryconfig" [options]="categoryFilterValues"></ngx-select-dropdown>
+        <ngx-multiselect class="category"
+            [(ngModel)]="selected[3]"
+            showMaxLables = "1"
+            [options]="categoryFilterValues"
+            (onItemClick)="filterChanged(3)"
+            (onSelectNone)="filterChanged(3)"
+            (onSelectAll)="filterChanged(3)">
+        </ngx-multiselect>
     </div>
 
     <div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">

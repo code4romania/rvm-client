@@ -30,42 +30,30 @@ interface Alert {
 })
 export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	data: any;
-	resourcePager: any = {};
-	volunteerPager: any = {};
-	hasVolunteers = false;
-	hasResources = false;
 	resourceData: any[] = [];
 	volunteersData: any[] = [];
-	isValid = true;
-	form: FormGroup;
-	counties: String[] = [];
-	cities: String[] = [];
+
+	resourcePager: any = {};
+	resourceFiltersSelected = Array(2);
+	volunteerPager: any = {};
+	volunteerFiltersSelected = Array(2);
+
+	hasVolunteers = false;
+	hasResources = false;
+
+	ngoid: string;
 	navigationExtras: NavigationExtras;
-	cityPlaceholder = 'Selectați mai întâi județul';
-	resourcePlaceholder = 'Selectați mai întâi categoria';
-	multiselectconfig = {
-		displayKey: 'name', // if objects array passed which key to be displayed defaults to description
-		search: true, // true/false for the search functionlity defaults to false,
-		height: '100', // height of the list so that if there are more no of items it can show a scroll defaults to auto
-		limitTo: 10, // a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
-		moreText: 'altele', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-		noResultsFound: 'Niciun rezultat!', // text to be displayed when no items are found while searching
-		searchPlaceholder: 'Cauta', // label thats displayed in search input,
-		searchOnKey: 'name', // key on which search should be performed this will be selective search.
-							// if undefined this will be extensive search on all keys
-		};
-	volunteerconfig = {...{placeholder: 'Tipul'}, ...this.multiselectconfig};
-	locationconfig = {...{placeholder: 'Judet'}, ...this.multiselectconfig};
-	typeconfig = {...{placeholder: 'Categorie'}, ...this.multiselectconfig};
-	specializationconfig = {...{placeholder: 'Specializare'}, ...this.multiselectconfig};
+
 	volunteerTypeFilterValues: any[] = [];
 	resourceTypeFilterValues: any[] = [];
 	specializationFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
-	ngoid: string;
+
 	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
+
+
 	messageSent = false;
 	loading = false;
 
@@ -75,7 +63,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		public authService: AuthenticationService,
 		private organisationService: OrganisationService,
 		private modalService: NgbModal,
-		private fb: FormBuilder,
 		private location: Location,
 		private citiesandcounties: CitiesCountiesService,
 		private resourceService: ResourcesService
@@ -91,17 +78,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
 			this.locationFilterValues = response.data;
-		});
-
-
-		this.form = this.fb.group({
-			_id: '',
-			type_name: ['', Validators.required],
-			name: [{ value: '', disabled: true }, Validators.required],
-			quantity: ['', Validators.required],
-			city: [{ value: '', disabled: true }, Validators.required],
-			county: ['', Validators.required],
-			comments: ''
 		});
 
 		this.ngoid = this.route.snapshot.paramMap.get('id');
@@ -155,13 +131,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		});
 	}
 
-	resourceFilterChanged(data: any, id: string) {
-		this.resourcePager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+	resourceFilterChanged(id: string) {
+		this.resourcePager.filters[id] =  this.resourceFiltersSelected.map((elem: { name: any; }) => elem.name).join(',');
 		this.getResources();
 	}
 
-	volunteerFilterChanged(data: any, id: string) {
-		this.volunteerPager.filters[id] =  data.value.map((elem: { name: any; }) => elem.name).join(',');
+	volunteerFilterChanged(id: string) {
+		this.volunteerPager.filters[id] = this.volunteerFiltersSelected.map((elem: { name: any; }) => elem.name).join(',');
 		this.getVolunteers();
 	}
 
@@ -200,17 +176,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		}
 	}
 
-	onSubmit() {
-		this.form.controls['organisation_id'].setValue(
-			this.route.snapshot.paramMap.get('id')
-		);
-		this.organisationService
-			.addResource(this.form.value)
-			.subscribe((element: any) => {
-				this.modalService.dismissAll();
-		});
-	}
-
 	addresource() {
 		this.router.navigateByUrl('/resources/add', this.navigationExtras);
 	}
@@ -234,12 +199,12 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	}
 
 	searchChanged(pager: any) {
-		if (this.selectedTab === 'volunteers') {
-			this.volunteerPager = pager;
-		} else {
-			this.resourcePager = pager;
-		}
-		this.getData();
+		// if (this.selectedTab === 'volunteers') {
+		// 	this.volunteerPager = pager;
+		// } else {
+		// 	this.resourcePager = pager;
+		// }
+		// this.getData();
 		if (pager.search !== '') {
 			if (this.selectedTab === 'volunteers') {
 				this.volunteersData = this.volunteersData.filter((elem: any) => {

@@ -44,15 +44,20 @@
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4" *ngIf="role === '1' || (role === '0' && currentUserRole === '3')">
+			<div class="mt-4 col-md-4" [ngStyle]="{'display': authService.is('DSU') ? 'initial' : 'none'}" >
 					<div class="form-group">
-						<label>Insituție</label>
-						<input
-							[ngClass]="{ 'error': form.controls.institution.invalid && form.controls.institution.touched }"
-							formControlName="institution"
-							class="form-control"
+						<label>Insituție *</label>
+						<input formControlName="institution"
 							type="text"
-						/>
+							[ngClass]="{ 'error': form.controls.institution.invalid && form.controls.institution.touched }"
+							(selectItem)="selectedInstitut($event)"
+							class="form-control"
+							[ngbTypeahead]="searchinstitut"
+							[resultFormatter]="formatter"
+							[inputFormatter]="formatter"
+							(focus)="focus$.next($event.target.value)"
+							(click)="click$.next($event.target.value)"
+							#instance="ngbTypeahead"/>
 					</div>
 				</div>
 

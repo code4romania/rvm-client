@@ -24,6 +24,7 @@ export class ResourcedetailsComponent implements OnInit {
 				}
 
 	ngOnInit() {
+		this.pager = this.resourceService.getPager();
 		this.getData();
 	}
 
@@ -45,11 +46,10 @@ export class ResourcedetailsComponent implements OnInit {
 	}
 
 	getData() {
-		this.resourceService.getResource(this.resid).subscribe((response) => {
+		this.resourceService.getResource(this.resid, this.pager).subscribe((response) => {
 			this.data = response.data[0];
 			this.organisations = response.data;
-			console.log(this.organisations);
-			this.pager = response.pager;
+			this.pager.total = response.pager.total;
 		});
 	}
 

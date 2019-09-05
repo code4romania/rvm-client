@@ -14,16 +14,16 @@ export class FiltersService {
 	getorganisationbyName(name?: String): Observable<any> {
 		let params = {};
 		params = {...params, ...{name: name}};
-		return this.http.get('/filter/organisations', {params: params} );
+		return this.http.get('/filter/organisations'/*, {params: params}*/ );
 	}
 	getSpecializationFilters(name?: String): Observable<any> {
 		let params = {};
 		params = {...params, ...{name: name}};
-		return this.http.get('/filter/volunteers/courses', {params: params} );
+		return this.http.get('/filter/volunteers/courses'/*, {params: params}*/ );
 	}
 	getInstitutionFilters(name?: String): Observable<any> {
 		let params = {};
 		params = {...params, ...{name: name}};
-		return this.http.get('/filter/users/institutions', {params: params});
+		return this.http.get('/filter/users/institutions'/*, {params: params}*/);
 	}
 }

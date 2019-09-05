@@ -53,7 +53,6 @@ export class UserDashboardComponent implements OnInit {
 		this.pager = this.usersService.getPager();
 		this.getData();
 		this.filterService.getInstitutionFilters('').subscribe((data: any) => {
-			console.log(data);
 			this.institutionfiltervalues = data.map((elem: any) => {
 				return {id: elem.name, name: elem.name};
 			});

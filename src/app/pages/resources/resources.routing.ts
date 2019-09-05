@@ -5,6 +5,7 @@ import { ResourcesdashboardComponent } from './resources/components/resources-da
 import { ResourcedetailsComponent } from './resources/components/resource-details/resource-details.component';
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
 import { RoleGuard } from '@app/core';
+import { ImportResourcesComponent } from './resources/components/import-resources/import-resources.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -34,6 +35,12 @@ const routes: Routes = [
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']}
 			},
+			{
+				path: 'import',
+				component: ImportResourcesComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			}
 		]
 	}
 ];

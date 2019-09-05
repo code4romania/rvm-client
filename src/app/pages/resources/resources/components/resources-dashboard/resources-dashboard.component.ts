@@ -26,7 +26,8 @@ export class ResourcesdashboardComponent implements OnInit {
 	selectedcat: any[];
 	selectedloc: any[];
 	propertyMap = {
-		'_id' : 'id'
+		'_id': 'id',
+		'parent_id': 'parent_id'
 	};
 	constructor(private resourceService: ResourcesService,
 		private filterService: FiltersService,
@@ -71,7 +72,6 @@ export class ResourcesdashboardComponent implements OnInit {
 	getData() {
 		this.resourceService.getResources(this.pager).subscribe((data) => {
 			this.resourcesData = data.data;
-			console.log(this.resourcesData);
 			this.pager.total = data.pager.total;
 		});
 	}
@@ -111,6 +111,7 @@ export class ResourcesdashboardComponent implements OnInit {
 	};
 
 	filterChanged(id?: number) {
+		console.log(this.selected);
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}

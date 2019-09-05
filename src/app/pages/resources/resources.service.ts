@@ -42,8 +42,20 @@ export class ResourcesService {
 	/**
 	 * get Resource by id
 	 */
-	getResource(id: String): Observable<any> {
-		return this.httpClient.get(`/resources/${id}` );
+	getResource(id: String, paginationObj?: any): Observable<any> {
+		let params: any = {};
+
+		params = {...params, ...paginationObj};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
+
+		return this.httpClient.get(`/resources/${id}`, { params: params } );
 	}
 	/**
 	 * Add resource
@@ -61,6 +73,9 @@ export class ResourcesService {
 		return this.httpClient.get('/resources/organisations', {params: params} );
 	}
 	editResource(id: string, payload: any) {
-		return this.httpClient.put(`/organisations/${id}`, payload );
+		return this.httpClient.put(`/resources/${id}`, payload );
+	}
+	importCsv(file: any) {
+		return this.httpClient.post('/resources/import', file);
 	}
 }

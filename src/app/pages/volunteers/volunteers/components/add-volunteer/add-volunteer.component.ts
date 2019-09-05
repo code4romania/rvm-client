@@ -135,9 +135,7 @@ export class AddVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.filterService.getorganisationbyName(term).pipe(
-					map(elem => elem.data)
-				);
+				return this.filterService.getorganisationbyName(term);
 			}));
 	}
 

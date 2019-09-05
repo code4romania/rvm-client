@@ -1,10 +1,10 @@
 ::ng-deep .specialization{
-    .none-selected{
+    .none-selected:before{
         content:'Specializari' !important;
     }
 }
 ::ng-deep .ngo{
-    .none-selected{
+    .none-selected:before{
         content:'Organizatii' !important;
     }
 }
