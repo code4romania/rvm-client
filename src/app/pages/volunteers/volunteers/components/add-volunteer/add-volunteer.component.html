@@ -164,7 +164,7 @@
 						</td>
 						<td>
 							<div class="form-group">
-								<input	formControlName="acredited_by"
+								<input	formControlName="accredited_by"
 									class="form-control"
 									type="text"	/>
 							</div>
@@ -213,6 +213,8 @@
 									type="text"
 									class="form-control"
 									[ngbTypeahead]="searchacreditedby"
+									[resultFormatter]="formatter"
+									[inputFormatter]="formatter"
 									(focus)="focus4$.next($event.target.value)"
 									(click)="click4$.next($event.target.value)"
 									#instance="ngbTypeahead"/>
@@ -260,7 +262,10 @@
 			*ngIf="!loading"
 			class=" btn btn-info btn-rounded waves-effect waves-light mt-5 float-right"
 			type="submit">
-			Adaugă
+			<span *ngIf="edit; else new">Salvează</span>
+			<ng-template #new>
+				<span>Adaugă</span>
+			</ng-template>
 		</button>
 		<div class="spinner-border text-green float-right mt-5" role="status" *ngIf="loading">
 			<span class="sr-only">Loading...</span>

@@ -7,7 +7,6 @@
                 <div class="spinner-border text-danger" role="status" *ngIf="canEdit && loading">
                     <span class="sr-only">Loading...</span>
                 </div>
-                <button *ngIf="hasAccreditation&&authService.is('DSU')" class="mx-2 btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button>
                 <button (click)="edit()" class="mx-2 btn btn-info" *ngIf="canEdit"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifică</button>
                 <!-- <button></button> -->
             </div>
@@ -44,7 +43,7 @@
                                     <tr *ngFor="let res of data?.courses">
                                         <td>{{res.name}}</td>
                                         <td>{{res.obtained}}</td>
-                                        <td>{{res.acredited}}</td>
+                                        <td>{{res.accredited_by}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 export class FiltersService {
 	constructor(private http: HttpClient) {}
 
-	getCategoryFilters(): Observable<any> {
+	getCategoryFilters(name?: String): Observable<any> {
 		let params = {};
 		params = {...params, ...{name: name}};
-		return this.http.get('/resources/categories');
+		return this.http.get('/resources/categories'/*, {params: params}*/ );
 	}
 	getorganisationbyName(name?: String): Observable<any> {
 		let params = {};
@@ -25,5 +25,10 @@ export class FiltersService {
 		let params = {};
 		params = {...params, ...{name: name}};
 		return this.http.get('/filter/users/institutions'/*, {params: params}*/);
+	}
+	getAcreditedFilters(name?: String): Observable<any> {
+		let params = {};
+		params = {...params, ...{name: name}};
+		return this.http.get('/filter/accreditedby'/*, {params: params}*/ );
 	}
 }

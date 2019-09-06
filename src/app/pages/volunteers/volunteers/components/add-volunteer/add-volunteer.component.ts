@@ -106,20 +106,30 @@ export class AddVolunteerComponent implements OnInit {
 			this.edit = true;
 			this.volunteerService.getVolunteer(volId).subscribe(data => {
 				this.volunteer = data;
+				const aux = data.courses.map((element: any) => {
+					return this.fb.group({
+						name: element.name,
+						course_name_id: element.course_name_id,
+						obtained: element.obtained,
+						accredited_by: element.accredited_by
+					});
+				});
 				this.countyid = this.volunteer.county._id;
 				this.form = this.fb.group({
+					_id: volId,
 					name: [this.volunteer.name, Validators.required],
 					ssn: [this.volunteer.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
 					email: [this.volunteer.email, [Validators.required, EmailValidation.emailValidation]],
 					phone: [this.volunteer.phone, [Validators.required, PhoneValidation.phoneValidation]],
 					address: this.volunteer.address,
 					job: this.volunteer.job,
+					courses:  this.fb.array(aux),
 					county: [this.volunteer.county, Validators.required],
 					city: [this.volunteer.city, Validators.required],
 					organisation: [{value: this.volunteer.organisation, disabled: this.authService.is('NGO') }, Validators.required],
-					courses: this.fb.array(this.volunteer.courses),
 					comments: this.volunteer.comments
 				});
+				this.c.disable();
 			});
 		}
 	}
@@ -169,21 +179,21 @@ export class AddVolunteerComponent implements OnInit {
 	}
 
 	searchacreditedby = (text$: Observable<string>) => {
-		return text$.pipe(switchMap((term: string) => []));
-		// const debouncedText$ = text$.pipe(
-		// 	debounceTime(200),
-		// 	distinctUntilChanged()
-		// );
+		// return text$.pipe(switchMap((term: string) => []));
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
 
-		// const clicksWithClosedPopup$ = this.click4$.pipe(
-		// 	filter(() => !this.instance.isPopupOpen())
-		// );
+		const clicksWithClosedPopup$ = this.click4$.pipe(
+			filter(() => !this.instance.isPopupOpen())
+		);
 
-		// const inputFocus$ = this.focus4$;
-		// return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-		// 	switchMap((term: string) => {
-		// 		return this.filterService.getAcreditedBy(term);
-		// 	}));
+		const inputFocus$ = this.focus4$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				return this.filterService.getAcreditedFilters(term);
+			}));
 	}
 
 	searchcounty = (text$: Observable<string>) => {
@@ -252,7 +262,7 @@ export class AddVolunteerComponent implements OnInit {
 					name: this.coursename.name,
 					course_name_id: this.coursename._id,
 					obtained: this.obtained,
-					acredited_by: this.acreditedby
+					accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 				})
 			);
 			this.c.disable();
@@ -313,13 +323,15 @@ export class AddVolunteerComponent implements OnInit {
 	 * Send data from form to server. If success close page
 	 */
 	onSubmit() {
+		this.addCourse();
 		this.loading = true;
 		const volunteer = {...this.form.value};
-
+		volunteer.courses = this.form.controls.courses.value;
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
 		volunteer.organisation_id = volunteer.organisation._id;
+		console.log(volunteer);
 
 		if (this.edit) {
 			this.volunteerService.editVolunteer(volunteer._id, volunteer).subscribe(() => {
