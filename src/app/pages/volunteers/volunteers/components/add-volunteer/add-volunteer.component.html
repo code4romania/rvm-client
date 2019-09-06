@@ -186,7 +186,7 @@
 									type="text"
 									class="form-control"
 									[ngClass]="{ 'error': coursenameError }"
-									(selectItem)="selectedcourse($event)"
+									(selectItem)="selectedcourse()"
 									(keyup)="courseKey($event)"
 									[ngbTypeahead]="searchcourse"
 									[resultFormatter]="formatter"
