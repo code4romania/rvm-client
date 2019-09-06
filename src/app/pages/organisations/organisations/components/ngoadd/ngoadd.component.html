@@ -70,7 +70,7 @@
 					<label>Județ *</label>
 					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
 						class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
-						
+						(keyup)="countykey($event)"
 						[inputFormatter]="formatter" [resultFormatter]="formatter"
 						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
 						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />

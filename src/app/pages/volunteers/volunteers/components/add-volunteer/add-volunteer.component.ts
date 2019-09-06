@@ -27,9 +27,11 @@ import { SsnValidation } from '@app/core/validators/ssn-validation';
 
 export class AddVolunteerComponent implements OnInit {
 	form: FormGroup;
-	coursename: string;
-	acreditedby: string;
+	coursename: any;
+	coursenameError = false;
+	acreditedby: any;
 	obtained: string;
+	dateError = false;
 	countyid: string;
 	volunteer: any;
 	fixedOrg: any = undefined;
@@ -46,10 +48,20 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
+
+	@ViewChild('instance', { static: true }) instance3: NgbTypeahead;
+	focus3$ = new Subject<string>();
+	click3$ = new Subject<string>();
+
+	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
+	focus4$ = new Subject<string>();
+	click4$ = new Subject<string>();
 	edit = false;
 
 	loading = false;
 	loadingCities = false;
+
+	now = new Date();
 
 	constructor(
 		public volunteerService: VolunteerService,
@@ -139,6 +151,41 @@ export class AddVolunteerComponent implements OnInit {
 			}));
 	}
 
+	searchcourse = (text$: Observable<string>) => {
+		const debouncedText$ = text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged()
+		);
+
+		const clicksWithClosedPopup$ = this.click3$.pipe(
+			filter(() => !this.instance3.isPopupOpen())
+		);
+
+		const inputFocus$ = this.focus3$;
+		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+			switchMap((term: string) => {
+				return this.filterService.getSpecializationFilters(term);
+			}));
+	}
+
+	searchacreditedby = (text$: Observable<string>) => {
+		return text$.pipe(switchMap((term: string) => []));
+		// const debouncedText$ = text$.pipe(
+		// 	debounceTime(200),
+		// 	distinctUntilChanged()
+		// );
+
+		// const clicksWithClosedPopup$ = this.click4$.pipe(
+		// 	filter(() => !this.instance.isPopupOpen())
+		// );
+
+		// const inputFocus$ = this.focus4$;
+		// return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+		// 	switchMap((term: string) => {
+		// 		return this.filterService.getAcreditedBy(term);
+		// 	}));
+	}
+
 	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -188,16 +235,27 @@ export class AddVolunteerComponent implements OnInit {
 			})
 		);
 	}
-
+	courseKey(event: any) {
+		if (event.code !== 'Enter') {
+			this.coursenameError = true;
+		}
+	}
+	selectedcourse() {
+		this.coursenameError = false;
+	}
 	addCourse() {
-		if (!(this.coursename === '' || this.acreditedby === '')) {
+		const now = new Date();
+		const date = new Date(this.obtained);
+		if (!this.coursenameError && this.coursename && this.acreditedby && date < now) {
 			this.c.push(
 				this.fb.group({
-					name: this.coursename,
+					name: this.coursename.name,
+					course_name_id: this.coursename._id,
 					obtained: this.obtained,
-					acreditedby: this.acreditedby
+					acredited_by: this.acreditedby
 				})
 			);
+			this.c.disable();
 			this.coursename = null;
 			this.acreditedby = null;
 		}
@@ -217,13 +275,30 @@ export class AddVolunteerComponent implements OnInit {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
-			this.loadingCities = true;
-			this.cityPlaceholder = 'Căutare...';
+			// this.loadingCities = true;
+			this.cityPlaceholder = 'Alegeti Localitatea';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
 
+	// selectedcourse(val: { item: any }) {
+	// 	this.form.controls.city.markAsTouched();
+	// 	this.form.patchValue({city: val.item});
+	// }
+
+	// selectedacreditedby(val: { item: any }) {
+	// 	this.form.controls.city.markAsTouched();
+	// 	this.form.patchValue({city: val.item});
+	// }
+	countykey(event: any) {
+		this.form.controls.county.markAsTouched();
+		if (event.code !== 'Enter') {
+			this.form.controls.city.disable();
+			this.form.controls.city.reset('');
+			this.cityPlaceholder = 'Selectați mai întâi județul';
+		}
+	}
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});

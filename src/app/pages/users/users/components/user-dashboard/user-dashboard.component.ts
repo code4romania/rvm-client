@@ -54,7 +54,7 @@ export class UserDashboardComponent implements OnInit {
 		this.getData();
 		this.filterService.getInstitutionFilters('').subscribe((data: any) => {
 			this.institutionfiltervalues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
+				return {id: elem._id, name: elem.name};
 			});
 		});
 		this.breakpointObserver.observe([

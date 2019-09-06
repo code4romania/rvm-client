@@ -94,7 +94,7 @@
 						<label>Județ *</label>
 						<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
 							class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
-							[inputFormatter]="formatter" [resultFormatter]="formatter"
+							[inputFormatter]="formatter" [resultFormatter]="formatter" (keyup)="countykey($event)"
 							[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
 							(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
 					</div>
@@ -146,8 +146,9 @@
 						class="mb-3">
 						<td style="padding-right:15px">
 							<div class="form-group">
+									<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
 								<input
-									[ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }"
+									
 									formControlName="name"
 									class="form-control"
 									type="text"	/>
@@ -156,15 +157,14 @@
 						<td style="padding-right:15px">
 							<div class="form-group">
 								<input	formControlName="obtained"
-									[ngClass]="{ 'error': course.controls.obtained.invalid && course.controls.obtained.touched }"
+									
 									class="form-control"
 									type="date"	/>
 							</div>
 						</td>
 						<td>
 							<div class="form-group">
-								<input	formControlName="acreditedby"
-									[ngClass]="{ 'error': course.controls.acreditedby.invalid && course.controls.acreditedby.touched }"
+								<input	formControlName="acredited_by"
 									class="form-control"
 									type="text"	/>
 							</div>
@@ -180,11 +180,20 @@
 					<tr>
 						<td style="padding-right:15px">
 							<div class="form-group">
-								<input
+								<input 
 									[(ngModel)]="coursename"
 									[ngModelOptions]="{ standalone: true }"
+									type="text"
 									class="form-control"
-									type="text"	/>
+									[ngClass]="{ 'error': coursenameError }"
+									(selectItem)="selectedcourse($event)"
+									(keyup)="courseKey($event)"
+									[ngbTypeahead]="searchcourse"
+									[resultFormatter]="formatter"
+									[inputFormatter]="formatter"
+									(focus)="focus3$.next($event.target.value)"
+									(click)="click3$.next($event.target.value)"
+									#instance="ngbTypeahead"/>
 							</div>
 						</td>
 						<td style="padding-right:15px">
@@ -201,8 +210,12 @@
 								<input
 									[(ngModel)]="acreditedby"
 									[ngModelOptions]="{ standalone: true }"
+									type="text"
 									class="form-control"
-									type="text"	/>
+									[ngbTypeahead]="searchacreditedby"
+									(focus)="focus4$.next($event.target.value)"
+									(click)="click4$.next($event.target.value)"
+									#instance="ngbTypeahead"/>
 							</div>
 						</td>
 						<td>
@@ -214,6 +227,18 @@
 							</button>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<span class="error-message" *ngIf="coursenameError">*Alegeti un curs din lista
+							</span>
+						</td>
+						<td>
+							<span class="error-message" *ngIf="dateError">*Data trebuie sa fie anterioara
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					
 				</table>
 			</div>
 

@@ -36,12 +36,12 @@ export class NgodashboardComponent implements OnInit {
 
 		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
+				return {id: elem._id, name: elem.name};
 			});
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
 			this.specializationFilterValues = data.data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
+				return {id: elem._id, name: elem.name};
 			});
 		});
 		this.pager = this.organisationService.getPager();

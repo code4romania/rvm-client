@@ -38,13 +38,13 @@ export class VolunteerDashboardComponent implements OnInit {
 
 		this.filterService.getorganisationbyName('').subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
+				return {id: elem._id, name: elem.name};
 				});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
 		this.filterService.getSpecializationFilters('').subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem.name, name: elem.name};
+				return {id: elem._id, name: elem.name};
 			});
 		});
 

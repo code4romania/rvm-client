@@ -239,8 +239,8 @@ export class AddResourceComponent implements OnInit {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.form.controls.city.enable();
-			this.loadingCities = true;
-			this.cityPlaceholder = 'Căutare...';
+			// this.loadingCities = true;
+			this.cityPlaceholder = 'Alegeți Orașul';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}
