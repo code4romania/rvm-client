@@ -11,8 +11,8 @@
 			<div class="spinner-border text-danger" role="status" *ngIf="authService.is('DSU') && loading">
 				<span class="sr-only">Loading...</span>
 			</div>
-			<button *ngIf="authService.is('DSU') && !loading" [routerLink]="['/organisations/edit/',data._id]" class="btn btn-info mx-2 my-sm-0">
-				&nbsp;&nbsp;Modifică Organizația</button>
+			<button *ngIf="authService.is('DSU') && !loading" [routerLink]="['/organisations/edit/',data?._id]" class="btn btn-info mx-2 my-sm-0">
+				<span class="fa fa-edit"></span>&nbsp;&nbsp;Modifică Organizația</button>
 			
 			<div *ngIf="hasResources && selectedTab === 'resources'">
 				<button (click)="addresource()" class="btn btn-info m-2 my-sm-0 d-block">

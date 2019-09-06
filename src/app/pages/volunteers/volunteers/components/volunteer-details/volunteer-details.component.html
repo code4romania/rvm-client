@@ -19,7 +19,7 @@
             <span class="col-md-12"><b>Organizație: </b> {{data?.organisation?.name || 'Neafiliat'}}</span>
             <span class="col-md-12"><b>Localizare: </b>{{data?.city.name}}, {{data?.county.name}}</span>
             <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
-            <span class="col-md-12"><b>Profesie: </b> {{data?.job }}</span>
+            <span class="col-md-12"><b>Profesie: </b> {{data?.job || 'Fara' }}</span>
             <div class="col-md-12">
                 <span><b>Data ultimului training efectuat: </b> {{data?.updated_at || 'Nu exista' }}</span>
             </div>

@@ -109,7 +109,7 @@
 							placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
 							[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
 							(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
-							<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities && form.controls.city.invalid">
+							<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities">
 								<span class="sr-only">Loading...</span>
 							</div>
 					</div>
@@ -129,118 +129,125 @@
 			</div>
 
 			<div class="col-md-12 mt-4">
-				<table class="w-100 border-spacing">
-					<tr>
-						<th>
-							<label>Specializare</label>
-						</th>
-						<th>
-							<label>Data acreditării</label>
-						</th>
-						<th>
-							<label>Acreditat de</label>
-						</th>
-					</tr>
-					<tr	*ngFor="let course of c.controls; let i = index"
-						[formGroup]="course"
-						class="mb-3">
-						<td style="padding-right:15px">
-							<div class="form-group">
-									<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
-								<input
-									
-									formControlName="name"
-									class="form-control"
-									type="text"	/>
-							</div>
-						</td>
-						<td style="padding-right:15px">
-							<div class="form-group">
-								<input	formControlName="obtained"
-									
-									class="form-control"
-									type="date"	/>
-							</div>
-						</td>
-						<td>
-							<div class="form-group">
-								<input	formControlName="accredited_by"
-									class="form-control"
-									type="text"	/>
-							</div>
-						</td>
-						<td>
-							<button	(click)="removeCourse(i)"
-								class="btn-danger btn margin-auto-center"
-								type="button">
-								<span class="fa fa-trash"></span>
-							</button>
-						</td>
-					</tr>
-					<tr>
-						<td style="padding-right:15px">
-							<div class="form-group">
-								<input 
-									[(ngModel)]="coursename"
-									[ngModelOptions]="{ standalone: true }"
-									type="text"
-									class="form-control"
-									[ngClass]="{ 'error': coursenameError }"
-									(selectItem)="selectedcourse()"
-									(keyup)="courseKey($event)"
-									[ngbTypeahead]="searchcourse"
-									[resultFormatter]="formatter"
-									[inputFormatter]="formatter"
-									(focus)="focus3$.next($event.target.value)"
-									(click)="click3$.next($event.target.value)"
-									#instance="ngbTypeahead"/>
-							</div>
-						</td>
-						<td style="padding-right:15px">
-							<div class="form-group">
-								<input
-									[(ngModel)]="obtained"
-									[ngModelOptions]="{ standalone: true }"
-									class="form-control"
-									type="date"	/>
-							</div>
-						</td>
-						<td>
-							<div class="form-group">
-								<input
-									[(ngModel)]="acreditedby"
-									[ngModelOptions]="{ standalone: true }"
-									type="text"
-									class="form-control"
-									[ngbTypeahead]="searchacreditedby"
-									[resultFormatter]="formatter"
-									[inputFormatter]="formatter"
-									(focus)="focus4$.next($event.target.value)"
-									(click)="click4$.next($event.target.value)"
-									#instance="ngbTypeahead"/>
-							</div>
-						</td>
-						<td>
-							<button
-								(click)="addCourse()"
-								class="btn-info btn margin-auto-center"
-								type="button">
-								<span class="fa fa-plus-circle"></span>
-							</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="error-message" *ngIf="coursenameError">*Alegeti un curs din lista
-							</span>
-						</td>
-						<td>
-							<span class="error-message" *ngIf="dateError">*Data trebuie sa fie anterioara
-							</span>
-						</td>
-						<td></td>
-					</tr>
-					
+				<table class="w-100 table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Specializare
+							</th>
+							<th>
+								Data acreditării
+							</th>
+							<th>
+								Acreditat de
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr	*ngFor="let course of c.controls; let i = index"
+							[formGroup]="course"
+							class="mb-3">
+							<td style="padding-right:15px">
+								<div class="form-group">
+										<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
+									<input
+									readonly
+										formControlName="name"
+										class="form-control"
+										type="text"	/>
+								</div>
+							</td>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<input	formControlName="obtained"
+									readonly
+										class="form-control"
+										/>
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<input	formControlName="accredited_by"
+										class="form-control"
+										readonly
+										type="text"	/>
+								</div>
+							</td>
+							<td>
+								<button
+									placement="top" ngbTooltip="Sterge cursul"
+									(click)="removeCourse(i)"
+									class="btn-danger btn margin-auto-center"
+									type="button">
+									<span class="fa fa-trash"></span>
+								</button>
+							</td>
+						</tr>
+						<tr *ngIf="c.controls.length === 0">
+							<td colspan="4" class="text-center p-4">Nicio specializare adaugata. Va rugam completati formularul de mai jos si apasati pe butonul "<span class="fa fa-plus-circle text-info"></span>"</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<input 
+										[(ngModel)]="coursename"
+										[ngModelOptions]="{ standalone: true }"
+										type="text"
+										class="form-control"
+										[ngClass]="{ 'error': coursenameError }"
+										(selectItem)="selectedcourse()"
+										(keyup)="courseKey($event)"
+										[ngbTypeahead]="searchcourse"
+										[resultFormatter]="formatter"
+										[inputFormatter]="formatter"
+										(focus)="focus3$.next($event.target.value)"
+										(click)="click3$.next($event.target.value)"
+										#instance="ngbTypeahead"/>
+								</div>
+								<span class="error-message" *ngIf="coursenameError">*Alegeti un curs din lista</span>
+							</td>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<div class="input-group datepicker">
+										<input class="form-control" placeholder="yyyy-mm-dd" [ngModelOptions]="{ standalone: true }"
+										readonly style="background: white;"
+										(focus)="d.open()"
+										name="dp" [(ngModel)]="obtained" ngbDatepicker [maxDate]="now" #d="ngbDatepicker">
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+										</div>
+									</div>
+								</div>
+								<span class="error-message" *ngIf="dateError">*Data trebuie sa fie anterioara</span>
+							</td>
+							<td>
+								<div class="form-group">
+									<input
+										[(ngModel)]="acreditedby"
+										[ngModelOptions]="{ standalone: true }"
+										type="text"
+										class="form-control"
+										[ngbTypeahead]="searchacreditedby"
+										[resultFormatter]="formatter"
+										[inputFormatter]="formatter"
+										(focus)="focus4$.next($event.target.value)"
+										(click)="click4$.next($event.target.value)"
+										#instance="ngbTypeahead"/>
+								</div>
+							</td>
+							<td>
+								<button	placement="top" ngbTooltip="Adauga cursul"
+									(click)="addCourse()"
+									class="btn-info btn margin-auto-center"
+									type="button">
+									<span class="fa fa-plus-circle"></span>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 

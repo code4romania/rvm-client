@@ -78,4 +78,7 @@ export class ResourcesService {
 	importCsv(file: any) {
 		return this.httpClient.post('/resources/import', file);
 	}
+	getResourceBySlug(slug: string, payload: any) {
+		return this.httpClient.get(`/resources/by_slug/${slug}`);
+	}
 }

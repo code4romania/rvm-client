@@ -40,7 +40,7 @@ export class NgodashboardComponent implements OnInit {
 			});
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
-			this.specializationFilterValues = data.data.map((elem: any) => {
+			this.categoryFilterValues = data.data.map((elem: any) => {
 				return {id: elem._id, name: elem.name};
 			});
 		});

@@ -46,7 +46,7 @@ export class ResourcedetailsComponent implements OnInit {
 	}
 
 	getData() {
-		this.resourceService.getResource(this.resid, this.pager).subscribe((response) => {
+		this.resourceService.getResourceBySlug(this.resid, this.pager).subscribe((response: any) => {
 			this.data = response.data[0];
 			this.organisations = response.data;
 			this.pager.total = response.pager.total;

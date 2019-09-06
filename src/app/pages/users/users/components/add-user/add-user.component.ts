@@ -95,11 +95,10 @@ export class AddUserComponent implements OnInit {
 		this.form.controls['name'].setValue(this.user.name);
 		this.form.controls['email'].setValue(this.user.email);
 		this.form.controls['phone'].setValue(this.user.phone);
+		this.form.controls['institution'].setValue(this.user.institution);
 	}
 
 	onSubmit() {
-		console.log(this.form);
-		/*
 		this.loading = true;
 		this.user.name = this.form.value.name;
 		this.user.email = this.form.value.email;
@@ -128,6 +127,6 @@ export class AddUserComponent implements OnInit {
 			}, () => {
 				this.loading = false;
 			});
-		}*/
+		}
 	}
 }

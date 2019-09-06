@@ -10,7 +10,7 @@ import {
 	filter,
 	switchMap,
 } from 'rxjs/operators';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead, NgbDate, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganisationService } from '../../../../organisations/organisations.service';
 import { AuthenticationService, FiltersService } from '@app/core';
@@ -22,7 +22,8 @@ import { SsnValidation } from '@app/core/validators/ssn-validation';
 @Component({
 	selector: 'app-add-volunteer',
 	templateUrl: './add-volunteer.component.html',
-	styleUrls: ['./add-volunteer.component.scss']
+	styleUrls: ['./add-volunteer.component.scss'],
+	providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 
 export class AddVolunteerComponent implements OnInit {
@@ -30,7 +31,7 @@ export class AddVolunteerComponent implements OnInit {
 	coursename: any;
 	coursenameError = false;
 	acreditedby: any;
-	obtained: string;
+	obtained: Date;
 	dateError = false;
 	countyid: string;
 	volunteer: any;
@@ -61,8 +62,7 @@ export class AddVolunteerComponent implements OnInit {
 	loading = false;
 	loadingCities = false;
 
-	now = new Date();
-
+	now: any;
 	constructor(
 		public volunteerService: VolunteerService,
 		private filterService: FiltersService,
@@ -71,6 +71,11 @@ export class AddVolunteerComponent implements OnInit {
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
 		public authService: AuthenticationService) {
+			const dateObj = new Date();
+			const month = dateObj.getUTCMonth() + 1; // months from 1-12
+			const day = dateObj.getUTCDate();
+			const year = dateObj.getUTCFullYear();
+			this.now = {day: day, month: month, year: year};
 			const navigation = this.router.getCurrentNavigation();
 			if (navigation && navigation.extras && navigation.extras.state) {
 				this.fixedOrg = navigation.extras.state.ngo;
@@ -116,7 +121,6 @@ export class AddVolunteerComponent implements OnInit {
 				});
 				this.countyid = this.volunteer.county._id;
 				this.form = this.fb.group({
-					_id: volId,
 					name: [this.volunteer.name, Validators.required],
 					ssn: [this.volunteer.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
 					email: [this.volunteer.email, [Validators.required, EmailValidation.emailValidation]],
@@ -129,7 +133,6 @@ export class AddVolunteerComponent implements OnInit {
 					organisation: [{value: this.volunteer.organisation, disabled: this.authService.is('NGO') }, Validators.required],
 					comments: this.volunteer.comments
 				});
-				this.c.disable();
 			});
 		}
 	}
@@ -234,7 +237,6 @@ export class AddVolunteerComponent implements OnInit {
 
 					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
 						map((response: {data: any[], pager: any}) => {
-							this.cityPlaceholder = 'Alegeți Orașul';
 							this.loadingCities = false;
 							return response.data;
 						})
@@ -255,19 +257,23 @@ export class AddVolunteerComponent implements OnInit {
 	}
 	addCourse() {
 		const now = new Date();
-		const date = new Date(this.obtained);
-		if (!this.coursenameError && this.coursename && this.acreditedby && date < now) {
-			this.c.push(
-				this.fb.group({
-					name: this.coursename.name,
-					course_name_id: this.coursename._id,
-					obtained: this.obtained,
-					accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
-				})
-			);
-			this.c.disable();
-			this.coursename = null;
-			this.acreditedby = null;
+
+		if (this.obtained < now) {
+			if (!this.coursenameError && this.coursename && this.acreditedby) {
+				this.c.push(
+					this.fb.group({
+						name: this.coursename.name,
+						course_name_id: this.coursename._id,
+						obtained: this.formatDate(this.obtained),
+						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
+					})
+				);
+				this.coursename = null;
+				this.acreditedby = null;
+				this.obtained = null;
+			}
+		} else {
+			this.dateError = true;
 		}
 	}
 
@@ -278,7 +284,9 @@ export class AddVolunteerComponent implements OnInit {
 		// this.data[objIndex].value.splice(index, 1);
 		control.removeAt(index);
 	}
-
+	unset() {
+		console.log('unsert');
+	}
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
@@ -322,19 +330,35 @@ export class AddVolunteerComponent implements OnInit {
 	/**
 	 * Send data from form to server. If success close page
 	 */
+	formatDate(date: Date) {
+		const day = date.getDate();
+		const monthIndex = date.getMonth() + 1;
+		const year = date.getFullYear();
+
+		return year + '-' + monthIndex + '-' + day;
+	}
+
 	onSubmit() {
-		this.addCourse();
 		this.loading = true;
 		const volunteer = {...this.form.value};
-		volunteer.courses = this.form.controls.courses.value;
+		// if (!this.coursenameError && this.coursename && this.acreditedby) {
+		// 	const now = new Date();
+		// 	if (this.obtained < now) {
+		// 		volunteer.courses.push({
+		// 			name: this.coursename.name,
+		// 			course_name_id: this.coursename._id,
+		// 			obtained: this.formatDate(this.obtained),
+		// 			accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
+		// 		});
+		// 	}
+		// }
+
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
 		volunteer.organisation_id = volunteer.organisation._id;
-		console.log(volunteer);
-
 		if (this.edit) {
-			this.volunteerService.editVolunteer(volunteer._id, volunteer).subscribe(() => {
+			this.volunteerService.editVolunteer(this.volunteer._id, volunteer).subscribe(() => {
 				this.loading = false;
 				this.location.back();
 			}, () => {

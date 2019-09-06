@@ -98,15 +98,16 @@ export class AddResourceComponent implements OnInit {
 		if (resId) {
 			this.edit = true;
 			this.resourcesService.getResource(resId).subscribe(data => {
+				console.log(data);
 				this.res = data;
 				this.countyid = this.res.county._id;
-				this.categoryid = this.res.category._id;
+				// this.categoryid = this.res.category._id;
 				this.form = this.fb.group({
 					name: this.res.name,
-					subCategory: [this.res.categories[1]],
+					subCategory: '', // [this.res.categories[1]],
 					address: this.res.address,
 					resource_type: [this.res.resource_type, Validators.required],
-					category: [this.res.categories[0], Validators.required],
+					category: '', // [this.res.categories[0], Validators.required],
 					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
 					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
 					city: [this.res.city, [Validators.required, LocationValidation.locationValidation]],

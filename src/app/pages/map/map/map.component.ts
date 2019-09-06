@@ -6,9 +6,9 @@ import { MapService } from '../map.service';
 	templateUrl: './map.component.html',
 	styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, AfterViewInit {
-	ids = [
-	{id: 'ROU122', name: 'Dolj', icons: []},
+export class MapComponent implements OnInit {
+	ids: any[];
+	/*[{id: 'ROU122', name: 'Dolj', icons: []},
 	{ id: 'ROU123', name: 'Gorj', icons: []},
 	{ id: 'ROU124', name: 'Mehedinți', icons: []},
 	{ id: 'ROU126', name: 'Olt', icons: []},
@@ -49,7 +49,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 	{ id: 'ROU316', name: 'Vaslui', icons: []},
 	{ id: 'ROU317', name: 'Vrancea', icons: []},
 	{ id: 'ROU4844', name: 'Ilfov', icons: []},
-	{ id: 'ROU4847', name: 'Tulcea', icons: []}] as any[];
+	{ id: 'ROU4847', name: 'Tulcea', icons: []}] as any[];*/
 		hasclicked = false;
 		previous: any;
 	// @HostListener('mouseover', ['$event']) onMouseOver(event: any) {
@@ -82,13 +82,26 @@ export class MapComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	constructor(private mapservice: MapService) { }
-
-	ngOnInit() {
-
+	constructor(private mapservice: MapService) {
+		this.mapservice.getMapFilters().subscribe((res: any) => {
+			this.ids = res.map((elem: any) => {
+				elem.id = elem._id;
+				elem.icons = [];
+				if (elem.nrResurse !== 0) {
+					elem.icons.push('res');
+				}
+				return elem;
+			});
+			setTimeout(() => {
+				this.setIcons();
+			}, 0);
+		});
 	}
 
-	ngAfterViewInit() {
+	ngOnInit() {
+	}
+
+	setIcons() {
 		for (let i = 0; i < this.ids.length; i++) {
 			if (this.ids[i].icons.length > 0) {
 				this.setIcon(this.ids[i].id);
@@ -114,7 +127,10 @@ export class MapComponent implements OnInit, AfterViewInit {
 			const cx = p.x + p.width / 2;
 			const cy = p.y + p.height / 2;
 			// this.tooltip(cx, cy, this.ids.find(x => x.id === id).name);
-			this.tooltip(cx, cy, this.ids.find(x => x.id === id).name + '<br/> Resurse: 20 <br/>Voluntari: 2');
+			this.tooltip(cx, cy,
+				this.ids.find(x => x.id === id).name +
+				'<br/> Resurse: ' + this.ids.find(x => x.id === id).nrResurse +
+				'<br/> Voluntari: ' + this.ids.find(x => x.id === id).nrVoluntari);
 			e.target.setAttribute('fill', '#00ff00');
 		}
 	}
