@@ -52,7 +52,7 @@ export class UserDashboardComponent implements OnInit {
 	ngOnInit() {
 		this.pager = this.usersService.getPager();
 		this.getData();
-		this.filterService.getInstitutionFilters('').subscribe((data: any) => {
+		this.filterService.getInstitutionFilters().subscribe((data: any) => {
 			this.institutionfiltervalues = data.map((elem: any) => {
 				return {id: elem._id, name: elem.name};
 			});
@@ -106,13 +106,8 @@ export class UserDashboardComponent implements OnInit {
 		this.getData();
 	}
 	searchChanged(pager: any) {
-		if (pager.search !== '') {
-			this.data = this.data.filter((elem: any) => {
-				return elem.name.toLowerCase().indexOf(pager.search) > -1;
-			});
-		} else {
-			this.getData();
-		}
+		this.pager = pager;
+		this.getData();
 	}
 
 	filterChanged(id?: number) {

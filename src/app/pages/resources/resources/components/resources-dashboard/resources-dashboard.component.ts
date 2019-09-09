@@ -54,9 +54,9 @@ export class ResourcesdashboardComponent implements OnInit {
 			});
 		});
 
-		this.citiesandCounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
-			const aux = response.data;
-			aux.map((value: any) => value.id = value._id);
+		this.citiesandCounties.getCounties('').subscribe((response: any) => {
+			const aux = response;
+			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
 			this.locationFilterValues = aux;
 		});
 
@@ -97,13 +97,8 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.getData();
 	}
 	searchChanged(pager: any) {
-		if (pager.search !== '') {
-			this.resourcesData = this.resourcesData.filter((elem: any) => {
-				return elem.name.toLowerCase().indexOf(pager.search) > -1;
-			});
-		} else {
-			this.getData();
-		}
+		this.pager = pager;
+		this.getData();
 	}
 	loadData = function(event: any) {
 		const filter = event.filter;

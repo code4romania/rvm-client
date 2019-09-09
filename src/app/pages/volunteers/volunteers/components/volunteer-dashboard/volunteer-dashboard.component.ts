@@ -32,8 +32,10 @@ export class VolunteerDashboardComponent implements OnInit {
 		}
 
 		this.getData();
-		this.citiesandcounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
-			this.locationFilterValues = response.data;
+		this.citiesandcounties.getCounties('').subscribe((response:  any) => {
+			const aux = response;
+			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
+			this.locationFilterValues = aux;
 		});
 
 		this.filterService.getorganisationbyName('').subscribe((data) => {
@@ -42,7 +44,7 @@ export class VolunteerDashboardComponent implements OnInit {
 				});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
-		this.filterService.getSpecializationFilters('').subscribe((data) => {
+		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
 				return {id: elem._id, name: elem.name};
 			});
@@ -90,13 +92,8 @@ export class VolunteerDashboardComponent implements OnInit {
 	}
 
 	searchChanged(pager: any) {
-		if (pager.search !== '') {
-			this.volunteersData = this.volunteersData.filter((elem: any) => {
-				return elem.name.toLowerCase().indexOf(pager.search) > -1;
-			});
-		} else {
-			this.getData();
-		}
+		this.pager = pager;
+		this.getData();
 	}
 
 	filterChanged(id?: number) {

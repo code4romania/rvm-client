@@ -76,8 +76,10 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 	ngOnInit() {
 
-		this.citiesandcounties.getCounties().subscribe((response: {data: any[], pager: any}) => {
-			this.locationFilterValues = response.data;
+		this.citiesandcounties.getCounties().subscribe((response: any) => {
+			const aux = response;
+			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
+			this.locationFilterValues = aux;
 		});
 
 		this.ngoid = this.route.snapshot.paramMap.get('id');

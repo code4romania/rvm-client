@@ -23,6 +23,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
 import { Location } from '@angular/common';
 import { LocationValidation } from '@app/core/validators/location-validation';
+import { UtilService } from '@app/core';
 
 @Component({
 	selector: 'app-ngoadd',
@@ -46,11 +47,13 @@ export class NgoaddComponent implements OnInit {
 	edit = false;
 	loading = false;
 	loadingCities = false;
+	cities: any[] = [];
 
 	constructor(
 		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
 		private router: Router,
+		private utilService: UtilService,
 		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
@@ -68,7 +71,7 @@ export class NgoaddComponent implements OnInit {
 			cover: [''],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			county: ['', [Validators.required, LocationValidation.locationValidation]],
-			city: [{value: '', disabled: true }, [Validators.required, LocationValidation.locationValidation]],
+			city: [{value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
 	}
@@ -90,7 +93,7 @@ export class NgoaddComponent implements OnInit {
 					address: [this.ngo.address],
 					email: [this.ngo.email, [Validators.required, EmailValidation.emailValidation]],
 					county: [this.ngo.county, [Validators.required, LocationValidation.locationValidation]],
-					city: [this.ngo.city, [Validators.required, LocationValidation.locationValidation]],
+					city: [this.ngo.city, [Validators.required]],
 					comments: [this.ngo.comments]
 				});
 			});
@@ -107,20 +110,13 @@ export class NgoaddComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-					return this.citiesandCounties.getCounties(term).pipe(
-						map((response: {data: any[], pager: any}) => {
-							console.log(response);
-							return response.data;
-						})
-					);
-			})
+			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
 
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
-			debounceTime(500),
+			debounceTime(200),
 			distinctUntilChanged()
 		);
 		const clicksWithClosedPopup$ = this.click2$.pipe(
@@ -128,23 +124,16 @@ export class NgoaddComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus2$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				if (this.countyid) {
-					this.loadingCities = true;
-					this.cityPlaceholder = 'Căutare...';
-
-					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
-						map((response: {data: any[], pager: any}) => {
-							this.cityPlaceholder = 'Alegeți Orașul';
-							this.loadingCities = false;
-							return response.data;
-						})
-					);
+			map((term: string) => {
+				if (term === '') {
+					return this.cities;
 				} else {
-					return [];
+					return this.cities.filter(v => {
+						const aux: String = this.utilService.removeDiacritics(v.name).toLowerCase();
+						return aux.indexOf(term.toLowerCase()) > -1;
+					}).slice(0, 20);
 				}
-			})
-		);
+			}));
 	}
 
 	selectedCounty(val: any) {
@@ -152,16 +141,22 @@ export class NgoaddComponent implements OnInit {
 		if (val.item && val.item._id) {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
-			this.form.controls.city.enable();
-			// this.loadingCities = true;
+			this.loadingCities = true;
+			this.citiesandCounties.getCitiesbyCounty(this.countyid, '').subscribe((res: any) => {
+				this.cities = res;
+				this.loadingCities = false;
+				this.form.controls.city.enable();
+			});
 			this.cityPlaceholder = 'Alegeți Orașul';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
+			this.cities = [];
 			this.form.controls.city.disable();
 			this.form.controls.city.reset('');
 			this.cityPlaceholder = 'Selectați mai întâi județul';

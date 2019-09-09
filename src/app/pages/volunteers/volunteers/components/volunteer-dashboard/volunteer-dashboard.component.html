@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <h4 class="navtitle mb-2"> Voluntari </h4> 
         <div class="form-inline ml-auto">
-            <app-table-search [pager]="pager" (searchChanged)="searchChanged($event)"></app-table-search>
+            <app-table-search id=4 [pager]="pager" (searchChanged)="searchChanged($event)"></app-table-search>
             <div class="btn-group btn-group-toggle m-2 hidden-button" ngbRadioGroup name="radioBasic"
                 [(ngModel)]="displayBlock">
                 <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">

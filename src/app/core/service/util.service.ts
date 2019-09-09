@@ -17,6 +17,15 @@ export class UtilService {
 		}
 		return obj;
 	}
+	removeDiacritics(term: string) {
+		const diac = ['ă', 'Ă', 'â', 'Â', 'î', 'Î', 'ș', 'Ș', 'ț', 'Ț'];
+		const repl = ['a', 'A', 'a', 'A', 'i', 'I', 's', 'S', 't', 'T'];
+		for (let i = 0; i < diac.length; i++) {
+			const reg = new RegExp(diac[i], 'g');
+			term = term.replace(reg, repl[i]);
+		}
+		return term;
+	}
 
 	copyToClipboard(value: string) {
 		const selBox = document.createElement('textarea');

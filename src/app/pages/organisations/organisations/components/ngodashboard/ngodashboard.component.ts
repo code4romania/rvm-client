@@ -17,7 +17,6 @@ export class NgodashboardComponent implements OnInit {
 	typeFilterValues = [{id: 1, name: 'Nationala'}, {id: 2, name: 'Locala'}];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];
-
 	constructor(
 		private organisationService: OrganisationService,
 		public breakpointObserver: BreakpointObserver,
@@ -30,8 +29,10 @@ export class NgodashboardComponent implements OnInit {
 	 */
 
 	ngOnInit() {
-		this.citiesandcounties.getCounties('', true).subscribe((response: {data: any[], pager: any}) => {
-			this.locationFilterValues = response.data;
+		this.citiesandcounties.getCounties('').subscribe((response: any) => {
+			const aux = response;
+			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
+			this.locationFilterValues = aux;
 		});
 
 		this.filterService.getSpecializationFilters().subscribe((data) => {
@@ -62,13 +63,8 @@ export class NgodashboardComponent implements OnInit {
 		this.getData();
 	}
 	searchChanged(pager: any) {
-		if (pager.search !== '') {
-			this.ngosData = this.ngosData.filter((elem: any) => {
-				return elem.name.toLowerCase().indexOf(pager.search) > -1;
-			});
-		} else {
-			this.getData();
-		}
+		this.pager = pager;
+		this.getData();
 	}
 
 	getData() {

@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
         <h4 class="navtitle mb-2"> Organizații </h4>
         <div class="form-inline ml-auto">
-            <app-table-search [pager]="pager" (searchChanged)="searchChanged($event)"></app-table-search>
+            <app-table-search [pager]="pager" id=2 (searchChanged)="searchChanged($event)"></app-table-search>
             <div class="btn-group btn-group-toggle m-2 hidden-radio" ngbRadioGroup name="radioBasic"
                 [(ngModel)]="displayBlock">
                 <label ngbButtonLabel (click)="switchtoblock()" class="btn-primary btn">
@@ -32,7 +32,7 @@
         <span class="vertical-bar">&nbsp;</span>
         <ngx-multiselect
 			[(ngModel)]="selected[1]"
-			showMaxLables = "1"
+            showMaxLables = "1"
 			[options]="locationFilterValues"
 			(onItemClick)="filterChanged(1)"
 			(onSelectNone)="filterChanged(1)"

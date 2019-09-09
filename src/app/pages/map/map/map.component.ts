@@ -70,8 +70,8 @@ export class MapComponent implements OnInit {
 				this.testOut(this.previous.id, this.previous.event);
 				this.test(event.target.getAttribute('id'), event);
 			} else {
-				console.log(event.path);
-				// this.hasclicked = false;
+				this.testOut(this.previous.id, this.previous.event);
+				this.hasclicked = false;
 				// this.testOut(this.previous.id, this.previous.id);
 			}
 		} else {

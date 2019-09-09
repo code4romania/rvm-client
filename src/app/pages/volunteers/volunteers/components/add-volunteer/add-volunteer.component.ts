@@ -13,7 +13,7 @@ import {
 import { NgbTypeahead, NgbDate, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { OrganisationService } from '../../../../organisations/organisations.service';
-import { AuthenticationService, FiltersService } from '@app/core';
+import { AuthenticationService, FiltersService, UtilService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
@@ -61,12 +61,13 @@ export class AddVolunteerComponent implements OnInit {
 
 	loading = false;
 	loadingCities = false;
+	cities: any[] = [];
 
 	now: any;
 	constructor(
 		public volunteerService: VolunteerService,
 		private filterService: FiltersService,
-		private router: Router,
+		private router: Router, private utilService: UtilService,
 		private route: ActivatedRoute, private location: Location,
 		private fb: FormBuilder,
 		private citiesandCounties: CitiesCountiesService,
@@ -209,43 +210,27 @@ export class AddVolunteerComponent implements OnInit {
 		);
 		const inputFocus$ = this.focus1$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				return this.citiesandCounties.getCounties(term).pipe(
-					map((response: {data: any[], pager: any}) => {
-						console.log(response);
-						return response.data;
-					})
-				);
-			})
+			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
 
 	searchcity = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(500),
-			distinctUntilChanged()
-		);
+		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
 		const clicksWithClosedPopup$ = this.click2$.pipe(
 			filter(() => !this.instance2.isPopupOpen())
 		);
 		const inputFocus$ = this.focus2$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				if (this.countyid) {
-					this.loadingCities = true;
-					this.cityPlaceholder = 'Căutare...';
-
-					return this.citiesandCounties.getCitiesbyCounty(this.countyid, term).pipe(
-						map((response: {data: any[], pager: any}) => {
-							this.loadingCities = false;
-							return response.data;
-						})
-					);
+			map((term: string) => {
+				if (term === '') {
+					return this.cities;
 				} else {
-					return [];
+					return this.cities.filter(v => {
+						const aux: String = this.utilService.removeDiacritics(v.name).toLowerCase();
+						return aux.indexOf(term.toLowerCase()) > -1;
+					}).slice(0, 20);
 				}
-			})
-		);
+			}));
 	}
 	courseKey(event: any) {
 		if (event.code !== 'Enter') {
@@ -271,6 +256,7 @@ export class AddVolunteerComponent implements OnInit {
 				this.coursename = null;
 				this.acreditedby = null;
 				this.obtained = null;
+				this.dateError = false;
 			}
 		} else {
 			this.dateError = true;
@@ -292,13 +278,18 @@ export class AddVolunteerComponent implements OnInit {
 		if (val.item && val.item._id) {
 			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
-			this.form.controls.city.enable();
-			// this.loadingCities = true;
-			this.cityPlaceholder = 'Alegeti Localitatea';
+			this.loadingCities = true;
+			this.citiesandCounties.getCitiesbyCounty(this.countyid, '').subscribe((res: any) => {
+				this.cities = res;
+				this.loadingCities = false;
+				this.form.controls.city.enable();
+			});
+			this.cityPlaceholder = 'Alegeți Orașul';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
+
 
 	// selectedcourse(val: { item: any }) {
 	// 	this.form.controls.city.markAsTouched();

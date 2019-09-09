@@ -44,7 +44,7 @@ export class AddUserComponent implements OnInit {
 			name: ['', Validators.required],
 			email: ['', [ Validators.required, EmailValidation.emailValidation ]],
 			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
-			institution: ['']
+			institution: ['',  Validators.required]
 		});
 
 		this.currentUserRole = this.authService.accessLevel;

@@ -4,7 +4,7 @@ export class LocationValidation {
 	static locationValidation(abstractControl: AbstractControl): any {
 		const locationObject = abstractControl.value;
 
-		if (locationObject.name && locationObject._id) {
+		if ( locationObject.hasOwnProperty('_id')) {
 			return null;
 		}
 

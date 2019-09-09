@@ -9,9 +9,14 @@ import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators'
 })
 export class TableSearchComponent implements OnInit {
 	_pager: any = {};
-	// @HostBinding('class.sort') active = false;
-	// @HostBinding('class.asc') asc = false;
-	// @HostBinding('class.desc') desc = false;
+	_id: number;
+	@Input()
+	set id(data: any) {
+		this._id = data;
+	}
+	get id() {
+		return this._id;
+	}
 	@ViewChild('searchInput', {static: true}) movieSearchInput: ElementRef;
 
 	get pager(): any {
@@ -21,16 +26,9 @@ export class TableSearchComponent implements OnInit {
 	@Input()
 	set pager(data: any) {
 		this._pager = data;
-		// this.active = this._pager.sort === this.value;
-		// this.asc = this._pager.sort === this.value && this._pager.method === 'ASC';
-		// this.desc = this._pager.sort === this.value && this._pager.method === 'DESC';
 	}
 
 	@Output() searchChanged = new EventEmitter();
-
-	// @HostListener('click') onClick() {
-	// 	this.sort();
-	// }
 
 
 	constructor() {
@@ -55,7 +53,7 @@ export class TableSearchComponent implements OnInit {
 		// } else {
 		// 	this.pager.method = 'ASC';
 		// }
-		this.pager.search = term;
+		this.pager.filters[this.id] = term;
 		this.searchChanged.emit({...this.pager});
 	}
 

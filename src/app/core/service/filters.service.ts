@@ -8,27 +8,27 @@ export class FiltersService {
 
 	getCategoryFilters(name?: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.http.get('/resources/categories'/*, {params: params}*/ );
+		if (name) { params = {...params, ...{name: name}}; }
+		return this.http.get('/resources/categories', {params: params} );
 	}
 	getorganisationbyName(name?: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.http.get('/filter/organisations'/*, {params: params}*/ );
+		if (name) { params = {...params, ...{name: name}}; }
+		return this.http.get('/filter/organisations', {params: params} );
 	}
 	getSpecializationFilters(name?: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.http.get('/filter/volunteers/courses'/*, {params: params}*/ );
+		if (name) { params = {...params, ...{name: name}}; }
+		return this.http.get('/filter/volunteers/courses', {params: params} );
 	}
 	getInstitutionFilters(name?: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.http.get('/filter/users/institutions'/*, {params: params}*/);
+		if (name) { params = {...params, ...{name: name}}; }
+		return this.http.get('/filter/users/institutions', {params: params});
 	}
 	getAcreditedFilters(name?: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.http.get('/filter/accreditedby'/*, {params: params}*/ );
+		if (name) { params = {...params, ...{name: name}}; }
+		return this.http.get('/filter/accreditedby', {params: params} );
 	}
 }
