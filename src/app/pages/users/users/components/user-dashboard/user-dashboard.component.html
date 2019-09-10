@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label>Tipul utilizatorului</label>
                         <select formControlName="role" class="form-control">
-                            <option [value]="role.id" *ngFor="let role of roles;let isLast=last"> {{role.name}}{{isLast ? '' : ', '}} </option>
+                            <option [value]="role.id" *ngFor="let role of roles"> {{role.name}} </option>
                         </select>
                     </div>
                 </div>
