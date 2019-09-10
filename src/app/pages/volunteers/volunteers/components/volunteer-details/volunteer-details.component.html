@@ -41,7 +41,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let res of data?.courses">
-                                        <td>{{res.name}}</td>
+                                        <td>{{res.course_name}}</td>
                                         <td>{{res.obtained}}</td>
                                         <td>{{res.accredited_by}}</td>
                                     </tr>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 <ng-template #noAccreditation>
-                    <span>Aceast voluntar nu are nicio accreditare adăugată în sistem. </span>
+                    <span>Aceast voluntar nu are nicio acreditare adăugată în sistem. </span>
                     <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button> -->
                 </ng-template>
                 </ng-template>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <ng-template #noAlocation>
-                        <span>Aceast voluntar nu are nicio accreditare adăugată în sistem.</span>
+                    <span>Acest voluntar nu a fost niciodată alocat.</span>
                     </ng-template>
                 </ng-template>
             </ngb-tab>

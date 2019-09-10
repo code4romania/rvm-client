@@ -21,7 +21,7 @@
                         <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
                             Judet</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="5" (sortChanged)="sortChanged($event)">
-                            Data ultimului Update</th>
+                            Data ultimului update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,15 +30,15 @@
                         <td>{{res.quantity}}</td>
                         <td>{{res.address}}</td>
                         <td>{{res.city?.name}}, {{res.county?.name}}</td>
-                        <td>{{res.updated_at}}</td>
+                        <td>{{res.updated_at | date: 'dd.MM.yyyy'}}</td>
                         <td class="text-right">
                             <div>
-                                <button class="btn btn-info" [routerLink]="['/organisations/id',res.organisation._id]">Detalii</button>
+                                <button class="btn btn-info mb-1" [routerLink]="['/organisations/id',res.organisation._id]">Detalii</button>
                                 <button *ngIf="authService.is('DSU','NGO') && !loading" (click)="deleteSelf(data._id)"
-                                    class="btn btn-danger ml-1">
+                                    class="btn btn-danger mb-1 ml-1">
                                     <span class="fa fa-trash-o"></span>&nbsp;Șterge
                                 </button>
-                                <div class="spinner-border text-danger ml-1" role="status"
+                                <div class="spinner-border text-danger m-1" role="status"
                                     *ngIf="authService.is('DSU','NGO') && loading">
                                     <span class="sr-only">Loading...</span>
                                 </div>
