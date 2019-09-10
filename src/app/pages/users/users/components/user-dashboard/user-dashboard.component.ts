@@ -28,7 +28,7 @@ export class UserDashboardComponent implements OnInit {
 		},
 		{
 			id: 1,
-			name: 'Administratorul instituțional'
+			name: 'Administrator instituțional'
 		},
 		{
 			id: 2,
