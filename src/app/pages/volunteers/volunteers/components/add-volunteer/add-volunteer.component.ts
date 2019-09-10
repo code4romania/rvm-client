@@ -33,6 +33,7 @@ export class AddVolunteerComponent implements OnInit {
 	acreditedby: any;
 	obtained: Date;
 	dateError = false;
+	accreditedError = false;
 	countyid: string;
 	volunteer: any;
 	fixedOrg: any = undefined;
@@ -242,7 +243,12 @@ export class AddVolunteerComponent implements OnInit {
 	}
 	addCourse() {
 		const now = new Date();
-
+		if (!this.acreditedby) {
+			this.accreditedError = true;
+		}
+		if (!this.obtained) {
+			this.dateError = true;
+		}
 		if (this.obtained < now) {
 			if (!this.coursenameError && this.coursename && this.acreditedby) {
 				this.c.push(
@@ -253,6 +259,7 @@ export class AddVolunteerComponent implements OnInit {
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
+				this.accreditedError = false;
 				this.coursename = null;
 				this.acreditedby = null;
 				this.obtained = null;
