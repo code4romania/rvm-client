@@ -435,5 +435,43 @@ body {
                 }
             }
         }
-    }
+	}
+
+	.helper-buttons fieldset{
+		.helper-button {
+			margin: 0px 10px;
+			-webkit-text-fill-color: transparent !important;
+			position: relative !important;
+			color: transparent !important;
+			font-size: 0 !important;
+	
+			&:before {
+				content: "";
+				color: #000;
+				display: block;
+				font-size: 12px !important;
+				-webkit-text-fill-color: #000;
+				padding: 0 5px;
+			}
+	
+			&:nth-child(1) {
+				&:before {
+					content: "✓ Toate";
+				}
+			}
+			  
+			&:nth-child(2) {
+				&:before {
+					content: "× Niciunul";
+				}
+			}
+			  
+			&:nth-child(3) {
+				display: none !important;
+				&:before {
+					content: "↶ Reset";
+				}
+			  }
+		}
+	}
 }

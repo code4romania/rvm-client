@@ -28,8 +28,7 @@
 			(onItemClick)="filterChanged(0)"
 			(onSelectNone)="filterChanged(0)"
 			(onSelectAll)="filterChanged(0)"
-			[propertyMap]="propertyMap"
-			>
+			[propertyMap]="propertyMap"	>
 			<ng-template let-option="option">
 				<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
 				   {{option.name}} 
@@ -49,26 +48,25 @@
 	</div>
 	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
 			<div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
-				<div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem._id]">
+				<div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem.slug]">
 					<div class="card-body">
 						<a class="btn btn-fix text-left">
 							<h4 class="card-title">{{elem.name}}</h4>
 							<div class="card-text row">
-								<span class="col-md-12">
+								<div *ngIf="elem.categories" class="col-md-12 d-flex">
 									<i class="fa fa-list"></i>
-									<div *ngIf="elem.categories">
-										<div  *ngFor="let cat of elem.categories">
-											{{cat.name}},
-										</div>
-									</div>
-								</span>
+									<span *ngFor="let cat of elem.categories;let isLast=last">
+										&nbsp;{{cat?.name}}{{isLast ? '' : ', '}}
+									</span>
+								</div>
+								
 								<span class="col-md-12">
 									<i class="fa fa-hashtag"></i>
 									{{elem.quantity}}
 								</span>
 								<span class="col-md-12">
 									<i class="fa fa-building"></i>
-									1
+									{{elem.organisations_total}}
 									<!-- TODO add actual organisations number -->
 								</span>
 							</div>
@@ -107,8 +105,8 @@
 						<td>{{res.name}}</td>
 						<td>
 							<div *ngIf="res.categories">
-								<div  *ngFor="let cat of res.categories">
-									{{cat?.name}},
+								<div  *ngFor="let cat of res.categories;let isLast=last">
+									{{cat?.name}}{{isLast ? '' : ', '}}
 								</div>
 							</div>
 						</td>

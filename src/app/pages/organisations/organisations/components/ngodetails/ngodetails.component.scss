@@ -1,0 +1,10 @@
+::ng-deep .category{
+    .none-selected:before {
+        content: 'Categorie' !important;
+    }
+}
+::ng-deep .specialization{
+    .none-selected:before{
+        content:'Specializari' !important;
+    }
+}

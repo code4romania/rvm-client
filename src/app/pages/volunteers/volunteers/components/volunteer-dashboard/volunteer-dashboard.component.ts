@@ -97,7 +97,8 @@ export class VolunteerDashboardComponent implements OnInit {
 	}
 
 	filterChanged(id?: number) {
-		this.pager.filters[id] =  this.selected[id].value.map((elem: any) => elem._id).join(',');
+		console.log(this.selected[id]);
+		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
 

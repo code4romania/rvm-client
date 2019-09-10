@@ -114,7 +114,7 @@ export class AddVolunteerComponent implements OnInit {
 				this.volunteer = data;
 				const aux = data.courses.map((element: any) => {
 					return this.fb.group({
-						name: element.name,
+						course_name: element.course_name,
 						course_name_id: element.course_name_id,
 						obtained: element.obtained,
 						accredited_by: element.accredited_by
@@ -247,7 +247,7 @@ export class AddVolunteerComponent implements OnInit {
 			if (!this.coursenameError && this.coursename && this.acreditedby) {
 				this.c.push(
 					this.fb.group({
-						name: this.coursename.name,
+						course_name: this.coursename.name,
 						course_name_id: this.coursename._id,
 						obtained: moment(this.obtained).format('DD.MM.YYYY'),
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
@@ -269,9 +269,6 @@ export class AddVolunteerComponent implements OnInit {
 		// const objIndex = this.data.findIndex(((obj: any) => obj.key === 'courses'));
 		// this.data[objIndex].value.splice(index, 1);
 		control.removeAt(index);
-	}
-	unset() {
-		console.log('unsert');
 	}
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
@@ -321,17 +318,6 @@ export class AddVolunteerComponent implements OnInit {
 	onSubmit() {
 		this.loading = true;
 		const volunteer = {...this.form.value};
-		// if (!this.coursenameError && this.coursename && this.acreditedby) {
-		// 	const now = new Date();
-		// 	if (this.obtained < now) {
-		// 		volunteer.courses.push({
-		// 			name: this.coursename.name,
-		// 			course_name_id: this.coursename._id,
-		// 			obtained: this.formatDate(this.obtained),
-		// 			accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
-		// 		});
-		// 	}
-		// }
 
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;

@@ -17,6 +17,7 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
+import { FiltersService } from '@app/core';
 
 interface Alert {
 	type: string;
@@ -29,33 +30,60 @@ interface Alert {
 	styleUrls: ['./ngodetails.component.scss']
 })
 export class NgodetailsComponent implements OnInit, AfterContentChecked {
+
+	/**
+	 * var that holds data about NGO, resources and volunteers
+	 */
 	data: any;
 	resourceData: any[] = [];
 	volunteersData: any[] = [];
-
+	/**
+	 * var that holds pager and filters for resources and volunteers
+	 */
 	resourcePager: any = {};
 	resourceFiltersSelected = Array(2);
 	volunteerPager: any = {};
 	volunteerFiltersSelected = Array(2);
-
+	/**
+	 * flag for ngtemplate in HTML
+	 */
 	hasVolunteers = false;
 	hasResources = false;
-
+	/**
+	 * flag used to get ID from link and pass it to get method
+	 */
 	ngoid: string;
+	/**
+	 * var for data to send when adding new resource. Only for DSU
+	 */
 	navigationExtras: NavigationExtras;
-
+	/**
+	 * Fliterable values
+	 */
 	volunteerTypeFilterValues: any[] = [];
-	resourceTypeFilterValues: any[] = [];
+	categoryFilterValues: any[] = [];
 	specializationFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
-
+	/**
+	 * Tabs reference for vefifing which is open
+	 */
 	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
 
-
+	/**
+	 * flag for toast message
+	 */
 	messageSent = false;
+	/**
+	 * flag for when deleting
+	 */
 	loading = false;
+
+	propertyMap = {
+		'_id': 'id',
+		'parent_id': 'parent_id'
+	};
 
 	constructor(
 		private route: ActivatedRoute,
@@ -63,10 +91,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		public authService: AuthenticationService,
 		private organisationService: OrganisationService,
 		private modalService: NgbModal,
+		private filterService: FiltersService,
 		private location: Location,
 		private citiesandcounties: CitiesCountiesService,
 		private resourceService: ResourcesService
 	) {
+		/**
+		 * set a specific open tab if necessary
+		 */
 		const navigation = this.router.getCurrentNavigation();
 
 		if (navigation && navigation.extras && navigation.extras.state) {
@@ -75,25 +107,52 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	}
 
 	ngOnInit() {
-
+		/**
+		 * get filter values
+		 */
 		this.citiesandcounties.getCounties().subscribe((response: any) => {
 			const aux = response;
 			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
 			this.locationFilterValues = aux;
 		});
-
+		this.filterService.getCategoryFilters().subscribe((data) => {
+			this.categoryFilterValues = data.data.map((x: any) => {
+				const parent = data.data.find((y: any) => y._id === x.parent_id);
+				return {
+					id: x._id,
+					name: x.name,
+					parent_id: x.parent_id,
+					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					level: x.parent_id === '0' ? 0 : 1
+				};
+			});
+		});
+		this.filterService.getSpecializationFilters().subscribe((data) => {
+			this.specializationFilterValues = data.map((elem: any) => {
+				return {id: elem._id, name: elem.name};
+			});
+		});
+		/**
+		 * get current id, init pager, and get all data with the id
+		 */
 		this.ngoid = this.route.snapshot.paramMap.get('id');
+		this.volunteerPager = this.organisationService.getVolunteerPager();
+		this.resourcePager = this.organisationService.getResourcePager();
 		this.getData();
 		this.getResources();
 		this.getVolunteers();
 	}
-
+	/**
+		 * switch tab of necessary
+		 */
 	ngAfterContentChecked() {
 		if (this.tabRef.tabs) {
 			this.tabRef.select(this.selectedTab);
 		}
 	}
-
+	/**
+		 * get org data
+		 */
 	getData() {
 		this.organisationService.getorganisation(this.ngoid).subscribe(data => {
 			this.data = data;
@@ -107,12 +166,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			};
 		});
 	}
-
+/**
+		 * switch volunteers data
+		 */
 	getVolunteers() {
-		this.volunteerPager = this.organisationService.getVolunteerPager();
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			if (data.data[0]) {
-				this.volunteerPager = data.pager;
+				this.volunteerPager.total = data.pager.total;
 				this.hasVolunteers = true;
 				this.volunteersData = data.data;
 			} else {
@@ -120,14 +180,15 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			}
 		});
 	}
-
+/**
+		 * switch resources of necessary
+		 */
 	getResources() {
-		this.resourcePager = this.organisationService.getResourcePager();
 		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data => {
 			if (data.data[0]) {
 				this.hasResources = true;
 				this.resourceData = data.data;
-				this.resourcePager = data.pager;
+				this.resourcePager.total = data.pager.total;
 			} else {
 				this.hasResources = false;
 			}
@@ -139,7 +200,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.getResources();
 	}
 
-	volunteerFilterChanged(id: string) {
+	volunteerfilterChanged(id: string) {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected.map((elem: { name: any; }) => elem.name).join(',');
 		this.getVolunteers();
 	}

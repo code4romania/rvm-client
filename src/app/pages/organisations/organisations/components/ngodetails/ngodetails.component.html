@@ -106,7 +106,7 @@
 							</table>
 						</div>
 						<ngb-pagination [(page)]="volunteerPager.page" [pageSize]="volunteerPager.size"
-							(pageChange)="getResources()" [collectionSize]="volunteerPager.total">
+							(pageChange)="getVolunteers()" [collectionSize]="volunteerPager.total">
 						</ngb-pagination>
 					</div>
 					<ng-template #noVolunteers>
@@ -127,14 +127,13 @@
 							<span class="padding-rem">&nbsp;&nbsp;</span>
 							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
 							<ngx-multiselect class="category"
-								[(ngModel)]="resourceFiltersSelected[0]"
-								[options]="categoryFilterValues"
-								(showMaxLables) = "1"
-								(onItemClick)="resourcefilterChanged(0)"
-								(onSelectNone)="resourcefilterChanged(0)"
-								(onSelectAll)="resourcefilterChanged(0)"
-								[propertyMap]="propertyMap"
-								>
+							[(ngModel)]="resourceFiltersSelected[0]"
+							[options]="categoryFilterValues"
+							(showMaxLables) = "1"
+							(onItemClick)="resourcefilterChanged(0)"
+							(onSelectNone)="resourcefilterChanged(0)"
+							(onSelectAll)="resourcefilterChanged(0)"
+							[propertyMap]="propertyMap"	>
 								<ng-template let-option="option">
 									<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
 									{{option.name}} 
@@ -174,13 +173,13 @@
 											<button class="btn btn-info m-1"
 												(click)="editResource(res)">Editeaza</button>
 											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1"
-												[routerLink]="['/resources/id',res._id]">Vezi detalii</button>
+												[routerLink]="['/resources/id',res.slug]">Vezi detalii</button>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<ngb-pagination [(page)]="resourcePager.page" [pageSize]="resourcePager.size"
-								(pageChange)="getVolunteers()" [collectionSize]="resourcePager.total">
+								(pageChange)="getResources()" [collectionSize]="resourcePager.total">
 							</ngb-pagination>
 						</div>
 					</div>
