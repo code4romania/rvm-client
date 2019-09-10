@@ -212,7 +212,7 @@
 							<td style="padding-right:15px">
 								<div class="form-group">
 									<div class="input-group datepicker">
-										<input class="form-control" placeholder="yyyy-mm-dd" [ngModelOptions]="{ standalone: true }"
+										<input class="form-control" placeholder="dd.mm.yyyy" [ngModelOptions]="{ standalone: true }"
 										readonly style="background: white;"
 										(focus)="d.open()"
 										name="dp" [(ngModel)]="obtained" ngbDatepicker [maxDate]="now" #d="ngbDatepicker">
@@ -221,7 +221,7 @@
 										</div>
 									</div>
 								</div>
-								<span class="error-message" *ngIf="dateError">*Data trebuie sa fie anterioara</span>
+								<span class="error-message" *ngIf="dateError">*Data trebuie să fie anterioară</span>
 							</td>
 							<td>
 								<div class="form-group">

@@ -10,14 +10,14 @@ import {
 	filter,
 	switchMap,
 } from 'rxjs/operators';
-import { NgbTypeahead, NgbDate, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
-import { OrganisationService } from '../../../../organisations/organisations.service';
 import { AuthenticationService, FiltersService, UtilService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
 import { SsnValidation } from '@app/core/validators/ssn-validation';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -249,7 +249,7 @@ export class AddVolunteerComponent implements OnInit {
 					this.fb.group({
 						name: this.coursename.name,
 						course_name_id: this.coursename._id,
-						obtained: this.formatDate(this.obtained),
+						obtained: moment(this.obtained).format('DD.MM.YYYY'),
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
@@ -316,17 +316,6 @@ export class AddVolunteerComponent implements OnInit {
 	selectedorganisation(val: { item: any }) {
 		this.form.controls.organisation.markAsTouched();
 		this.form.patchValue({organisation: val.item});
-	}
-
-	/**
-	 * Send data from form to server. If success close page
-	 */
-	formatDate(date: Date) {
-		const day = date.getDate();
-		const monthIndex = date.getMonth() + 1;
-		const year = date.getFullYear();
-
-		return year + '-' + monthIndex + '-' + day;
 	}
 
 	onSubmit() {

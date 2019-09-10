@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from '@app/app.routing';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
@@ -13,6 +13,7 @@ import { SharedModule } from '@app/shared';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { CurrentProfileComponent } from './top-bar/components/current-profile/current-profile.component';
 import { NotFoundComponent } from './pages/404';
+import { DateParserFormatter } from './shared/date-parser-formatter';
 
 @NgModule({
 	declarations: [
@@ -34,6 +35,7 @@ import { NotFoundComponent } from './pages/404';
 		CoreModule,
 		SharedModule
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	providers: [{provide: NgbDateParserFormatter, useClass: DateParserFormatter}]
 })
 export class AppModule {}
