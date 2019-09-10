@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -14,7 +14,6 @@ const credentialsKey = 'credentials';
 @Injectable()
 export class AuthenticationService {
 	private _credentials: Authentication.Credentials | null;
-	public credentials$ = new EventEmitter<Authentication.Credentials>();
 
 	private roles = ['OFF', 'INS', 'NGO', 'DSU'];
 	private homes = ['', 'users', 'organisations/id/:id', 'organisations'];
@@ -165,7 +164,6 @@ export class AuthenticationService {
 				credentialsKey,
 				JSON.stringify(credentials)
 			);
-			this.credentials$.emit(this._credentials);
 		} else {
 			this.localStorageService.clearItem(credentialsKey);
 		}

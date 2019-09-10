@@ -14,8 +14,7 @@ import {
 } from '@app/core/authentication';
 import {
 	ApiPrefixInterceptor,
-	ErrorHandlerInterceptor,
-	HttpService
+	ErrorHandlerInterceptor
 } from '@app/core/http';
 import { LocalStorageService } from '@app/core/local-storage.service';
 import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
@@ -51,8 +50,9 @@ import {
 			multi: true
 		},
 		{
-			provide: HttpClient,
-			useClass: HttpService
+			provide: HTTP_INTERCEPTORS,
+			useClass: ErrorHandlerInterceptor,
+			multi: true
 		},
 		{
 			provide: RouteReuseStrategy,

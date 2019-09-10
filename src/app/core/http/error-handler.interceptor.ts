@@ -7,13 +7,11 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '@app/core/local-storage.service';
 import { ErrorMessageService } from '@app/core/service';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-const credentialsKey = 'credentials';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 /**
  * Adds a default error handler to all requests.
@@ -22,8 +20,8 @@ const credentialsKey = 'credentials';
 export class ErrorHandlerInterceptor implements HttpInterceptor {
 	constructor(
 		private router: Router,
-		private localStorageService: LocalStorageService,
-		private errorMessageService: ErrorMessageService
+		private errorMessageService: ErrorMessageService,
+		private authService: AuthenticationService
 	) {}
 
 	intercept(
@@ -40,7 +38,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 		response: HttpResponse<any>
 	): Observable<HttpEvent<any>> {
 		if (response.status === 401) {
-			this.localStorageService.clearItem(credentialsKey);
+			this.authService.setCredentials(null);
 			this.router.navigate(['/login'], {
 				replaceUrl: true
 			});
