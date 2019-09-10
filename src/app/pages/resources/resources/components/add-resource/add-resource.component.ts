@@ -100,10 +100,9 @@ export class AddResourceComponent implements OnInit {
 			this.resourcesService.getResource(resId).subscribe(data => {
 				this.res = data;
 				this.countyid = this.res.county._id;
-				// this.categoryid = this.res.category._id;
 				this.form = this.fb.group({
 					name: this.res.name,
-					subCategory: [this.res.categories[1]],
+					subCategory: '',
 					address: this.res.address,
 					resource_type: [this.res.resource_type, Validators.required],
 					category: [this.res.categories[0], Validators.required],
@@ -113,6 +112,9 @@ export class AddResourceComponent implements OnInit {
 					county: [this.res.county, [Validators.required, LocationValidation.locationValidation]],
 					comments: this.res.comments
 				});
+				if (this.res.categories[1]) {
+					this.form.patchValue({subCategory: this.res.categories[1]});
+				}
 			});
 		}
 	}

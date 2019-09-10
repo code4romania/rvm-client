@@ -112,6 +112,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.volunteerPager = this.organisationService.getVolunteerPager();
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			if (data.data[0]) {
+				this.volunteerPager = data.pager;
 				this.hasVolunteers = true;
 				this.volunteersData = data.data;
 			} else {
@@ -126,7 +127,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			if (data.data[0]) {
 				this.hasResources = true;
 				this.resourceData = data.data;
-				this.resourcePager.total = data.pager.total;
+				this.resourcePager = data.pager;
 			} else {
 				this.hasResources = false;
 			}
