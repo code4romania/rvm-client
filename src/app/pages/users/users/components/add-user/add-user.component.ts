@@ -117,6 +117,7 @@ export class AddUserComponent implements OnInit {
 				this.loading = false;
 				this.router.navigate(['users']);
 			}, () => {
+				this.setDuplicateEmailError();
 				this.loading = false;
 			});
 		} else {
@@ -125,8 +126,13 @@ export class AddUserComponent implements OnInit {
 				this.loading = false;
 				this.router.navigate(['users']);
 			}, () => {
+				this.setDuplicateEmailError();
 				this.loading = false;
 			});
 		}
+	}
+
+	setDuplicateEmailError() {
+		this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
 	}
 }
