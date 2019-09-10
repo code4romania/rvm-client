@@ -312,16 +312,16 @@ export class AddResourceComponent implements OnInit {
 			}, () => {
 				this.loading = false;
 			});
+		} else {
+			this.resourcesService
+				.addResource(resource)
+				.subscribe((element: any) => {
+					this.loading = false;
+					this.location.back();
+				}, () => {
+					this.loading = false;
+				});
 		}
-
-		this.resourcesService
-			.addResource(resource)
-			.subscribe((element: any) => {
-				this.loading = false;
-				this.location.back();
-			}, () => {
-				this.loading = false;
-			});
 	}
 
 }

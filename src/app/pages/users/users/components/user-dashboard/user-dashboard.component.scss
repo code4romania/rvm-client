@@ -1,5 +1,5 @@
 ::ng-deep .institutie{
-    .none-selected{
+    .none-selected::before{
         content: 'Institutie' !important;
     }
 }

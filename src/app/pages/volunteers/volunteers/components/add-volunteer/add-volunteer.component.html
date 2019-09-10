@@ -237,6 +237,7 @@
 										(click)="click4$.next($event.target.value)"
 										#instance="ngbTypeahead"/>
 								</div>
+								<span class="error-message" *ngIf="accreditedError">*Data trebuie să fie anterioară</span>
 							</td>
 							<td>
 								<button	placement="top" ngbTooltip="Adauga cursul"

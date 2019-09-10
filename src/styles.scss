@@ -407,7 +407,8 @@ body {
 }
 .mat-multiselect{
     .multiselect-wrapper{
-        width:100% !important;
+		width:100% !important;
+		max-width:300px !important;
         .listing-wrapper{
             max-width: 300px;
         }
@@ -420,6 +421,7 @@ body {
 					-webkit-text-fill-color: transparent !important;
 					position: relative !important;
 					color: transparent !important;
+					
 				}
 				.none-selected:before {
 					content: 'Locatie';
@@ -427,7 +429,8 @@ body {
 					display: block;
 					position: absolute;
 					left: 0;
-					top: 0;
+					font-size: 12px;
+					top: -2px;
 					-webkit-text-fill-color: #000;
 				}
                 .none-selected, .selected{
