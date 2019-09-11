@@ -2,13 +2,13 @@
 	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
 		<app-back-button></app-back-button>
 	</nav>
-	<p class="page-title" *ngIf="!edit">Adaugă o resursa:</p>
-	<p class="page-title" *ngIf="edit">Modifică resursa:</p>
+	<p class="page-title" *ngIf="!edit">Adaugă o resursă:</p>
+	<p class="page-title" *ngIf="edit">Modifică resursă:</p>
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label>Nume resursa *</label>
+					<label>Nume resursă *</label>
 					<input
 						formControlName="name"
 						[ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
@@ -76,7 +76,7 @@
 								<option>Neperisabil</option>
 							
 						</select>
-						<span class="error-message" *ngIf="form.controls.resource_type.invalid && form.controls.resource_type.touched">* Trebuie sa alegeti un tip.</span>
+						<span class="error-message" *ngIf="form.controls.resource_type.invalid && form.controls.resource_type.touched">* Trebuie sa alegeți un tip.</span>
 					</div>
 				</div>
             <div class="mt-4 col-md-4 col-sm-12">

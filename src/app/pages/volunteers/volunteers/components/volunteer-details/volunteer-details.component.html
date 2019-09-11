@@ -21,7 +21,7 @@
             <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
             <span class="col-md-12"><b>Profesie: </b> {{data?.job || 'Fara' }}</span>
             <div class="col-md-12">
-                <span><b>Data ultimului training efectuat: </b> {{ (data?.updated_at | date: 'dd.MM.yyyy')|| 'Nu exista' }}</span>
+                <span><b>Data ultimului training efectuat: </b> {{ (data?.updated_at | date: 'dd.MM.yyyy')|| 'Nu există' }}</span>
             </div>
     </div>
     <div class="resource-list">
@@ -57,21 +57,21 @@
                         </div>
                     </div>
                 <ng-template #noAccreditation>
-                    <span>Aceast voluntar nu are nicio acreditare adăugată în sistem. </span>
+                    <span>Aceast voluntar nu are nici o acreditare adăugată în sistem.</span>
                     <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button> -->
                 </ng-template>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="|" [disabled]="true"></ngb-tab>
             <ngb-tab>
-                <ng-template ngbTabTitle>Lista Alocari</ng-template>
+                <ng-template ngbTabTitle>Listă Alocări</ng-template>
                 <ng-template ngbTabContent>
                     <div *ngIf="hasAlocation; else noAlocation">
                         <div class="table-responsive-md">
                             <table class="table customTable table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Nume Ofiter</th>
+                                        <th>Nume Ofițer</th>
                                         <th>Data Alocării</th>
                                         <th>Localizare</th>
                                     </tr>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <ng-template #noAlocation>
-                    <span>Acest voluntar nu a fost niciodată alocat.</span>
+                    <span>Acest voluntar nu a fost alocat niciodată.</span>
                     </ng-template>
                 </ng-template>
             </ngb-tab>

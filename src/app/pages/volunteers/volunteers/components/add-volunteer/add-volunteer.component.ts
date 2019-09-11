@@ -340,9 +340,11 @@ export class AddVolunteerComponent implements OnInit {
 		} else {
 			this.volunteerService.addVolunteer(volunteer).subscribe(() => {
 				this.loading = false;
+				this.form.controls['email'].setErrors({});
 				this.location.back();
 			}, () => {
 				this.loading = false;
+				this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
 			});
 		}
 	}

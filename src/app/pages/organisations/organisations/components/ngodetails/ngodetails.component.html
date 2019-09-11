@@ -26,10 +26,10 @@
 			</div>
 		</div>
 	</nav>
-	<ngb-alert *ngIf="messageSent" type="success" (close)="close()">Notificarea a fost trimisa</ngb-alert>
+	<ngb-alert *ngIf="messageSent" type="success" (close)="close()">Notificarea a fost trimisă</ngb-alert>
 	<div class="ngo-details row">
 		<h3 class="col-md-12">Profil organizație: {{data?.name}}</h3>
-		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoana de contact: {{data?.contact_person}}
+		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoană de contact: {{data?.contact_person}}
 		</h5>
 		<span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
 		<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
@@ -46,14 +46,14 @@
 		<ngb-tabset type="pills" #tabRef>
 			<ngb-tab id="volunteers">
 				<ng-template ngbTabTitle>
-					<a (click)="selectedTab = 'volunteers'">Lista Voluntari</a>
+					<a (click)="selectedTab = 'volunteers'">Listă Voluntari</a>
 				</ng-template>
 				<ng-template ngbTabContent>
 					<div *ngIf="hasVolunteers; else noVolunteers">
 						<div class="filters my-3 mx-30px row">
 							<span class="padding-rem">Total: {{volunteerPager.total}}</span>
 							<span class="padding-rem">&nbsp;&nbsp;</span>
-							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
+							<span class="padding-rem">Filtrează după: &nbsp;</span>
 					<ngx-multiselect
 						class="location"
 						[(ngModel)]="volunteerFiltersSelected[0]"
@@ -110,7 +110,7 @@
 						</ngb-pagination>
 					</div>
 					<ng-template #noVolunteers>
-						<span>Aceasta organizatie nu are niciun voluntar adaugat in sistem </span><button
+						<span>Această organizație nu are niciun voluntar adaugăt în sistem </span><button
 							(click)="addvolunteer()" class="btn btn-info d-block"><span
 								class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Voluntar</button>
 					</ng-template>
@@ -119,13 +119,13 @@
 			<ngb-tab title="|" [disabled]="true"></ngb-tab>
 			<ngb-tab id="resources">
 				<ng-template ngbTabTitle>
-					<a (click)="selectedTab ='resources'">Lista Resurse</a></ng-template>
+					<a (click)="selectedTab ='resources'">Listă Resurse</a></ng-template>
 				<ng-template ngbTabContent>
 					<div *ngIf="hasResources; else noResources">
 						<div class="filters my-3 mx-30px row">
 							<span class="padding-rem">Total: {{resourcePager.total}}</span>
 							<span class="padding-rem">&nbsp;&nbsp;</span>
-							<span class="padding-rem">Filtreaza dupa: &nbsp;</span>
+							<span class="padding-rem">Filtrează după: &nbsp;</span>
 							<ngx-multiselect class="category"
 							[(ngModel)]="resourceFiltersSelected[0]"
 							[options]="categoryFilterValues"
@@ -157,7 +157,7 @@
 									<tr>
 										<!-- sortable="name" (sort)="onSort($event)" -->
 										<th scope="col" appTableSort [pager]="resourcePager" [value]="1"
-											(sortChanged)="sortChanged($event)">Tip Resursa</th>
+											(sortChanged)="sortChanged($event)">Tip Resursă</th>
 										<th scope="col" appTableSort [pager]="resourcePager" [value]="2"
 											(sortChanged)="sortChanged($event)">Cantitate</th>
 										<th scope="col" appTableSort [pager]="resourcePager" [value]="3"
@@ -171,7 +171,7 @@
 										<td>{{res.city.name}}, {{res.county.name}}</td>
 										<td class="text-right">
 											<button class="btn btn-info m-1"
-												(click)="editResource(res)">Editeaza</button>
+												(click)="editResource(res)">Editează</button>
 											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1"
 												[routerLink]="['/resources/id',res.slug]">Vezi detalii</button>
 										</td>
@@ -184,10 +184,10 @@
 						</div>
 					</div>
 					<ng-template #noResources>
-						<span>Aceasta organizatie nu are nici o resursa adaugata in sistem</span>
+						<span>Această organizație nu are nici o resursă adaugată în sistem</span>
 						<button class="btn btn-info d-block" (click)="addresource()">
 							<span class="fa fa-plus-circle"></span>
-							&nbsp;&nbsp;Adaugă Resurse
+							&nbsp;&nbsp;Adaugă Resursă
 						</button>
 					</ng-template>
 				</ng-template>

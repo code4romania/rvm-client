@@ -3,7 +3,7 @@
         <app-back-button></app-back-button>
     </nav>
     <div class="ngo-details row">
-        <h3 class="col-md-12">Denumire resursa: {{data?.name}}</h3>
+        <h3 class="col-md-12">Denumire resursă: {{data?.name}}</h3>
     </div>
     <div class="resource-list">
 
@@ -17,9 +17,9 @@
                         <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
                             Cantitate</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
-                            Adresa</th>
+                            Adresă</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
-                            Judet</th>
+                            Județ</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="5" (sortChanged)="sortChanged($event)">
                             Data ultimului update</th>
                     </tr>

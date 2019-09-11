@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 	 */
 	public changeErrorMessage() {
 		this._success.next(
-			'Nu s-a putut realiza autentificarea, va rugam verificati datele si reincercati'
+			'Nu s-a putut realiza autentificarea, vă rugăm verificați datele și reîncercați'
 		);
 	}
 	/**
