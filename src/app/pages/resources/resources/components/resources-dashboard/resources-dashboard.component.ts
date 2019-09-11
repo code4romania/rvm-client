@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '../../../resources.service';
 
 import { FiltersService, CitiesCountiesService } from '../../../../../core/service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
-import { IfStmt } from '@angular/compiler';
-import { element } from 'protractor';
-import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-resources-dashboard',
@@ -43,7 +40,7 @@ export class ResourcesdashboardComponent implements OnInit {
 
 		this.filterService.getCategoryFilters().subscribe((data) => {
 			this.categoryFilterValues = data.map((x: any) => {
-				const parent = data.data.find((y: any) => y._id === x.parent_id);
+				const parent = data.find((y: any) => y._id === x.parent_id);
 				return {
 					id: x._id,
 					name: x.name,

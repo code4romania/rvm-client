@@ -60,6 +60,8 @@ export class AddResourceComponent implements OnInit {
 	loading = false;
 	loadingCities = false;
 
+	subCategories: any[] = [];
+
 	constructor(private resourcesService: ResourcesService,
 		private route: ActivatedRoute,
 		private location: Location, private router: Router,
@@ -67,10 +69,12 @@ export class AddResourceComponent implements OnInit {
 		private fb: FormBuilder, private utilService: UtilService,
 		private filterService: FiltersService,
 		public authService: AuthenticationService) {
+
 			const navigation = this.router.getCurrentNavigation();
 			if (navigation && navigation.extras && navigation.extras.state) {
 				this.fixedOrg = navigation.extras.state.ngo;
 			}
+
 			this.filterService.getSubCategories('0', '').subscribe((elem: any) => {
 				this.categories = elem;
 			});
@@ -162,50 +166,6 @@ export class AddResourceComponent implements OnInit {
 			}));
 	}
 
-	// searchCategory = (text$: Observable<string>) => {
-	// 	const debouncedText$ = text$.pipe(
-	// 		debounceTime(200),
-	// 		distinctUntilChanged()
-	// 	);
-	// 	const clicksWithClosedPopup$ = this.click3$.pipe(
-	// 		filter(() => !this.instance3.isPopupOpen())
-	// 	);
-	// 	const inputFocus$ = this.focus3$;
-	// 	return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-	// 		switchMap((term: string) => {
-	// 			return this.catService.getSubCategories('0', term).pipe(
-	// 				map( (response: {data: any[]}) => response.data ),
-	// 				map(x => {
-	// 					console.log(x);
-	// 					if (x.length === 0) {
-	// 						return [{_id: '4620d41193cd85499cbfd1f67804ae52', name: 'Altele'}];
-	// 					} else { return x; }
-	// 				})
-	// 			);
-	// 	}));
-	// }
-
-	searchSubcat = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		);
-		const clicksWithClosedPopup$ = this.click4$.pipe(
-			filter(() => !this.instance4.isPopupOpen())
-		);
-		const inputFocus$ = this.focus4$;
-		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				return this.filterService.getSubCategories(this.categoryid, term);
-					// map(x => {
-
-					// 	if (x.length === 0) {
-					// 		return [{id: 9, name: 'Altele'}];
-					// 	} else { return x; }
-					// })
-		}));
-	}
-
 	searchOrganisation = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -250,15 +210,6 @@ export class AddResourceComponent implements OnInit {
 		}
 	}
 
-	// categorykey(event: any) {
-	// 	this.form.controls.category.markAsTouched();
-	// 	if (event.code !== 'Enter') {
-	// 		this.form.controls.subCategory.disable();
-	// 		this.form.controls.subCategory.reset('');
-	// 		this.resourcePlaceholder = 'Selectați mai întâi categoria';
-	// 	}
-	// }
-
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
@@ -273,11 +224,6 @@ export class AddResourceComponent implements OnInit {
 		}
 	}
 
-	selectedSubCategory(val: any) {
-		this.form.controls.subCategory.markAsTouched();
-		this.form.patchValue({subCategory: val.item});
-	}
-
 	selectedCategory() {
 		this.form.controls.category.markAsTouched();
 		if (this.form.value.category) {
@@ -286,14 +232,13 @@ export class AddResourceComponent implements OnInit {
 				if (resp.length > 0) {
 					this.form.controls.subCategory.enable();
 					this.resourcePlaceholder = 'Alegeți Categoria';
+					this.subCategories = resp;
 				} else {
 					this.form.controls.subCategory.disable();
 					this.form.controls.subCategory.reset('');
 					this.resourcePlaceholder = 'Selectați mai întâi categoria';
 				}
 			});
-		// } else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
-		// 	this.form.patchValue({category: '', subCategory: ''});
 		}
 	}
 
@@ -306,10 +251,12 @@ export class AddResourceComponent implements OnInit {
 		resource.organisation_id = this.form.value.organisation._id;
 		resource.county = resource.county._id;
 		resource.city = resource.city._id;
-		resource.categories = [resource.category._id];
+		resource.categories = [resource.category];
+
 		if (resource.subCategory) {
-			resource.categories.push(resource.subCategory._id);
+			resource.categories.push(resource.subCategory);
 		}
+
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {

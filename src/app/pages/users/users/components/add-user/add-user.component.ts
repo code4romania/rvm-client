@@ -6,14 +6,7 @@ import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { AuthenticationService, FiltersService } from '@app/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, merge, Subject } from 'rxjs';
-import {
-	debounceTime,
-	distinctUntilChanged,
-	map,
-	filter,
-	switchMap,
-} from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-add-user',
@@ -31,6 +24,7 @@ export class AddUserComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
+	institutions: any[] = [];
 
 	constructor(private fb: FormBuilder,
 		private router: Router,
@@ -55,6 +49,12 @@ export class AddUserComponent implements OnInit {
 			if (this.authService.is('INS')) {
 				this.form.controls['institution'].setValue(this.authService.user.institution._id);
 			}
+
+			if (this.role === '0' && this.authService.is('DSU')) {
+				this.filterService.getInstitutionFilters().subscribe(response => {
+					this.institutions = response;
+				});
+			}
 		}
 
 		if (this.route.snapshot.paramMap.get('id')) {
@@ -62,25 +62,6 @@ export class AddUserComponent implements OnInit {
 
 			this.getData();
 		}
-	}
-
-	formatter = (result: { name: string }) => result.name;
-	searchinstitut = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		);
-
-		const clicksWithClosedPopup$ = this.click$.pipe(
-			filter(() => !this.instance.isPopupOpen())
-		);
-
-		const inputFocus$ = this.focus$;
-		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			// return text$.pipe(debounceTime(200),distinctUntilChanged(),
-				switchMap((term: string) => {
-					return this.filterService.getInstitutionFilters(term);
-				}));
 	}
 
 	getData() {
@@ -113,7 +94,7 @@ export class AddUserComponent implements OnInit {
 			this.user.role = this.role;
 
 			if (this.role === '1' || this.role === '0') {
-				this.user.institution = this.form.value.institution._id;
+				this.user.institution = this.form.value.institution;
 			}
 		}
 
