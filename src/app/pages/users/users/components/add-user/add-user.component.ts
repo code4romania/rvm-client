@@ -51,8 +51,11 @@ export class AddUserComponent implements OnInit {
 
 		if (this.route.snapshot.paramMap.get('role')) {
 			this.role = this.route.snapshot.paramMap.get('role');
-		}
 
+			if (this.authService.is('INS')) {
+				this.form.controls['institution'].setValue(this.authService.user.institution._id);
+			}
+		}
 
 		if (this.route.snapshot.paramMap.get('id')) {
 			this.id = this.route.snapshot.paramMap.get('id');
@@ -87,10 +90,12 @@ export class AddUserComponent implements OnInit {
 			this.editForm();
 		});
 	}
+
 	selectedInstitut(val: { item: any }) {
 		this.form.controls.institution.markAsTouched();
 		this.form.patchValue({institution: val.item});
 	}
+
 	editForm() {
 		this.form.controls['name'].setValue(this.user.name);
 		this.form.controls['email'].setValue(this.user.email);
@@ -103,6 +108,7 @@ export class AddUserComponent implements OnInit {
 		this.user.name = this.form.value.name;
 		this.user.email = this.form.value.email;
 		this.user.phone = this.form.value.phone;
+
 		if (this.role) {
 			this.user.role = this.role;
 

@@ -78,7 +78,6 @@
 							<table class="table customTable table-sm">
 								<thead>
 									<tr>
-										<!-- sortable="name" (sort)="onSort($event)" -->
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="1"
 											(sortChanged)="sortChanged($event)">Nume</th>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="2"
@@ -92,14 +91,31 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let res of volunteersData">
-										<!-- <tr> -->
 										<td>{{res.name}}</td>
-										<td>{{res.job}}</td>
+										<td *ngIf="currentVolunteerId === res._id">
+											<p *ngFor="let course of res.courses">
+												{{ course?.course_name?.name }}
+											</p>
+										</td>
+										<td *ngIf="currentVolunteerId !== res._id">
+											{{ res.courses[0]?.course_name?.name }}
+										</td>
 										<td>{{res.city.name}}, {{res.county.name}}</td>
-										<td>{{res.updated_at | date: 'dd.MM.yyyy'}}</td>
-										<td class="text-right">
-											<button class="btn btn-info d-block"
-												[routerLink]="['/volunteers/id',res._id]">Vezi profil</button>
+										<td *ngIf="currentVolunteerId === res._id">
+											<p *ngFor="let course of res.courses">
+												{{ course.obtained | date: 'dd.MM.yyyy' }}
+											</p>
+										</td>
+										<td *ngIf="currentVolunteerId !== res._id">
+											{{ res.courses[0]?.obtained | date: 'dd.MM.yyyy'}}
+										</td>
+										<td>
+											<div class="d-block text-right">
+												<button class="btn btn-info ml-2 mr-2"
+													[routerLink]="['/volunteers/id',res._id]">Vezi profil</button>
+												<i class="fa fa-chevron-down clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, true)" *ngIf="currentVolunteerId !== res._id"></i>
+												<i class="fa fa-chevron-up clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, false)" *ngIf="currentVolunteerId === res._id && res.courses.length > 1"></i>
+											</div>
 										</td>
 									</tr>
 								</tbody>

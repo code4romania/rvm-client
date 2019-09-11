@@ -27,6 +27,7 @@ declare namespace Authentication {
 		createdAt: Date;
 		updatedAt: Date;
 		organisation?: any;
+		institution?: any;
 	}
 
 	export interface Credentials {

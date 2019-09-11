@@ -85,6 +85,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		'parent_id': 'parent_id'
 	};
 
+	currentVolunteerId = '';
+
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -174,6 +176,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			if (data.data[0]) {
 				this.volunteerPager.total = data.pager.total;
 				this.hasVolunteers = true;
+
+				if (!!data.data.courses) {
+					data.data.courses = data.data.courses.reverse();
+				}
+
 				this.volunteersData = data.data;
 			} else {
 				this.hasVolunteers = false;
@@ -293,5 +300,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 	close() {
 		this.messageSent = false;
+	}
+
+	openMenu(volunteerId: string, status: boolean) {
+		if (status) {
+			this.currentVolunteerId = volunteerId;
+		} else {
+			this.currentVolunteerId = null;
+		}
 	}
 }
