@@ -252,7 +252,6 @@ export class AddResourceComponent implements OnInit {
 		resource.county = resource.county._id;
 		resource.city = resource.city._id;
 		resource.categories = [resource.category];
-
 		if (resource.subCategory) {
 			resource.categories.push(resource.subCategory);
 		}

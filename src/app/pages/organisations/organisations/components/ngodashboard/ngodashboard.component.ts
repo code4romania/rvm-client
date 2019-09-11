@@ -14,9 +14,13 @@ export class NgodashboardComponent implements OnInit {
 	displayBlock = true;
 	selected = Array(4);
 	categoryFilterValues: any[];
-	typeFilterValues = [{id: 1, name: 'Nationala'}, {id: 2, name: 'Locala'}];
+	typeFilterValues = [{id: 'Națională', name: 'Națională'}, {id: 'Locală', name: 'Locală'}];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];
+	propertyMap = {
+		'_id': 'id',
+		'parent_id': 'parent_id'
+	};
 	constructor(
 		private organisationService: OrganisationService,
 		public breakpointObserver: BreakpointObserver,
@@ -24,6 +28,7 @@ export class NgodashboardComponent implements OnInit {
 		private citiesandcounties: CitiesCountiesService,
 		private router: Router
 	) {}
+
 	/**
 	 * subscribe to screen size in order to use list instead of grid for display
 	 */
@@ -41,8 +46,15 @@ export class NgodashboardComponent implements OnInit {
 			});
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
-			this.categoryFilterValues = data.map((elem: any) => {
-				return {id: elem._id, name: elem.name};
+			this.categoryFilterValues = data.map((x: any) => {
+				const parent = data.find((y: any) => y._id === x.parent_id);
+				return {
+					id: x._id,
+					name: x.name,
+					parent_id: x.parent_id,
+					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					level: x.parent_id === '0' ? 0 : 1
+				};
 			});
 		});
 		this.pager = this.organisationService.getPager();
@@ -78,8 +90,12 @@ export class NgodashboardComponent implements OnInit {
 		});
 	}
 
-	filterChanged = (id?: number) => {
+	filterChanged(id?: number) {
 		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
+		this.getData();
+	}
+	singleFilterChanged(id?: number) {
+		this.pager.filters[id] =  this.selected[id].id;
 		this.getData();
 	}
 
