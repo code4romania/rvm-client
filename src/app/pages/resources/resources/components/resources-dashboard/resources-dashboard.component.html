@@ -76,6 +76,7 @@
 			</div>
 		<div class="col-md-12  mx-30px">
 			<ngb-pagination
+                    [maxSize]="5"
 				[(page)]="pager.page"
 				[pageSize]="pager.size"
 				(pageChange)="getData()"
@@ -120,7 +121,8 @@
 				</tbody>
 			</table>
 		</div>
-		<ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
+		<ngb-pagination
+                    [maxSize]="5" [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
 			[collectionSize]="pager.total">
 		</ngb-pagination>
 	</ng-template>

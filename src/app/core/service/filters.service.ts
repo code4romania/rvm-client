@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 export class FiltersService {
 	constructor(private http: HttpClient) {}
 
-	getCategoryFilters(name?: String): Observable<any> {
-		let params = {};
-		if (name) { params = {...params, ...{name: name}}; }
-		return this.http.get('/resources/categories', {params: params} );
+	getCategoryFilters(): Observable<any> {
+		return this.http.get('/resources/categories' );
+	}
+	getSubCategories(id: string, term: string): Observable<any> {
+		return this.http.get(`/resources/categories?filters[2]=${id}&filters[1]=${term}`);
 	}
 	getorganisationbyName(name?: String): Observable<any> {
 		let params = {};

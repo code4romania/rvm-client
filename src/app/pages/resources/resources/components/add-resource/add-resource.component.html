@@ -20,19 +20,10 @@
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Categorie *</label>
-					<input
-						[ngClass]="{ 'error': form.controls.category.invalid && form.controls.category.touched }"
-						formControlName="category"
-						type="text"
-						(keyup)="categorykey($event)"
-						(selectItem)="selectedCategory($event)"
-						class="form-control"
-						[ngbTypeahead]="searchCategory"
-						[resultFormatter]="formatter"
-						[inputFormatter]="formatter"
-						(focus)="focus3$.next($event.target.value)"
-						(click)="click3$.next($event.target.value)"
-						#instance="ngbTypeahead"/>
+					<select class="form-control" (change)="selectedCategory()" formControlName="category">
+						<option *ngFor="let hero of categories; let i=index" [value]="hero._id">
+							{{hero.name}}</option>
+						</select>
 				</div>
 			</div>
 
@@ -74,7 +65,6 @@
 						class="form-control">
 								<option>Perisabil</option>
 								<option>Neperisabil</option>
-							
 						</select>
 						<span class="error-message" *ngIf="form.controls.resource_type.invalid && form.controls.resource_type.touched">* Trebuie sa alegeți un tip.</span>
 					</div>

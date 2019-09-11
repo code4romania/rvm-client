@@ -4,5 +4,4 @@ export * from './users.service';
 export * from './error-message.service';
 export * from './cities-counties.service';
 export * from './filters.service';
-export * from './categories.service';
 // end:ng42.barrel

@@ -118,7 +118,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			this.locationFilterValues = aux;
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
-			this.categoryFilterValues = data.data.map((x: any) => {
+			this.categoryFilterValues = data.map((x: any) => {
 				const parent = data.data.find((y: any) => y._id === x.parent_id);
 				return {
 					id: x._id,
@@ -202,13 +202,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		});
 	}
 
-	resourceFilterChanged(id: string) {
-		this.resourcePager.filters[id] =  this.resourceFiltersSelected.map((elem: { name: any; }) => elem.name).join(',');
+	resourcefilterChanged(id: number) {
+		this.resourcePager.filters[id] =  this.resourceFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getResources();
 	}
 
-	volunteerfilterChanged(id: string) {
-		this.volunteerPager.filters[id] = this.volunteerFiltersSelected.map((elem: { name: any; }) => elem.name).join(',');
+	volunteerfilterChanged(id: number) {
+		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
 	}
 
@@ -255,10 +255,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.router.navigateByUrl('/volunteers/add', this.navigationExtras);
 	}
 
-	// clear() {
-	// 	this.authService.setCredentials();
-	// }
-
 	sortChanged(pager: any) {
 		if (this.selectedTab === 'volunteers') {
 			this.volunteerPager = pager;
@@ -270,12 +266,6 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	}
 
 	searchChanged(pager: any) {
-		// if (this.selectedTab === 'volunteers') {
-		// 	this.volunteerPager = pager;
-		// } else {
-		// 	this.resourcePager = pager;
-		// }
-		// this.getData();
 		if (pager.search !== '') {
 			if (this.selectedTab === 'volunteers') {
 				this.volunteersData = this.volunteersData.filter((elem: any) => {

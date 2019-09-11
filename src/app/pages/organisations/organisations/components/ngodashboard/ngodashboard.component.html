@@ -40,21 +40,21 @@
 		</ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
         <ngx-multiselect class="specialization"
-            [(ngModel)]="selected[2]"
-            showMaxLables = "1"
-            [options]="specializationFilterValues"
-            (onItemClick)="filterChanged(2)"
-            (onSelectNone)="filterChanged(2)"
-            (onSelectAll)="filterChanged(2)">
-        </ngx-multiselect>
-        <span class="vertical-bar">&nbsp;</span>
-        <ngx-multiselect class="category"
             [(ngModel)]="selected[3]"
             showMaxLables = "1"
-            [options]="categoryFilterValues"
+            [options]="specializationFilterValues"
             (onItemClick)="filterChanged(3)"
             (onSelectNone)="filterChanged(3)"
             (onSelectAll)="filterChanged(3)">
+        </ngx-multiselect>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-multiselect class="category"
+            [(ngModel)]="selected[4]"
+            showMaxLables = "1"
+            [options]="categoryFilterValues"
+            (onItemClick)="filterChanged(4)"
+            (onSelectNone)="filterChanged(4)"
+            (onSelectAll)="filterChanged(4)">
         </ngx-multiselect>
     </div>
 
@@ -88,6 +88,7 @@
         </div>
         <div class="col-md-12 mx-30px">
                 <ngb-pagination
+                    [maxSize]="5"
                     [(page)]="pager.page"
                     [pageSize]="pager.size"
                     (pageChange)="getData()"
@@ -127,7 +128,8 @@
                 </tbody>
             </table>
 
-            <ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
+            <ngb-pagination
+                    [maxSize]="5" [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
                 [collectionSize]="pager.total">
             </ngb-pagination>
         </div>

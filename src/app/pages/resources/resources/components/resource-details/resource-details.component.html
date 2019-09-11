@@ -47,7 +47,8 @@
                     </tr>
                 </tbody>
             </table>
-            <ngb-pagination [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
+            <ngb-pagination
+                    [maxSize]="5" [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
                 [collectionSize]="pager.total">
             </ngb-pagination>
         </div>

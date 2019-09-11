@@ -20,7 +20,7 @@ import {
 import { merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { OrganisationService } from '@app/pages/organisations/organisations.service';
-import { AuthenticationService, CategoriesService, FiltersService, UtilService } from '@app/core';
+import { AuthenticationService, FiltersService, UtilService } from '@app/core';
 import { Location, isPlatformWorkerApp } from '@angular/common';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 import { LocationValidation } from '@app/core/validators/location-validation';
@@ -56,11 +56,12 @@ export class AddResourceComponent implements OnInit {
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
 	cities: any[] = [];
+	categories: any[] = [];
 	loading = false;
 	loadingCities = false;
 
 	constructor(private resourcesService: ResourcesService,
-		private route: ActivatedRoute, private catService: CategoriesService,
+		private route: ActivatedRoute,
 		private location: Location, private router: Router,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder, private utilService: UtilService,
@@ -70,6 +71,10 @@ export class AddResourceComponent implements OnInit {
 			if (navigation && navigation.extras && navigation.extras.state) {
 				this.fixedOrg = navigation.extras.state.ngo;
 			}
+			this.filterService.getSubCategories('0', '').subscribe((elem: any) => {
+				this.categories = elem;
+			});
+
 	}
 
 	ngOnInit() {
@@ -157,28 +162,28 @@ export class AddResourceComponent implements OnInit {
 			}));
 	}
 
-	searchCategory = (text$: Observable<string>) => {
-		const debouncedText$ = text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged()
-		);
-		const clicksWithClosedPopup$ = this.click3$.pipe(
-			filter(() => !this.instance3.isPopupOpen())
-		);
-		const inputFocus$ = this.focus3$;
-		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-			switchMap((term: string) => {
-				return this.catService.getSubCategories('0', term).pipe(
-					map( (response: {data: any[]}) => response.data ),
-					map(x => {
-						console.log(x);
-						if (x.length === 0) {
-							return [{_id: '4620d41193cd85499cbfd1f67804ae52', name: 'Altele'}];
-						} else { return x; }
-					})
-				);
-		}));
-	}
+	// searchCategory = (text$: Observable<string>) => {
+	// 	const debouncedText$ = text$.pipe(
+	// 		debounceTime(200),
+	// 		distinctUntilChanged()
+	// 	);
+	// 	const clicksWithClosedPopup$ = this.click3$.pipe(
+	// 		filter(() => !this.instance3.isPopupOpen())
+	// 	);
+	// 	const inputFocus$ = this.focus3$;
+	// 	return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+	// 		switchMap((term: string) => {
+	// 			return this.catService.getSubCategories('0', term).pipe(
+	// 				map( (response: {data: any[]}) => response.data ),
+	// 				map(x => {
+	// 					console.log(x);
+	// 					if (x.length === 0) {
+	// 						return [{_id: '4620d41193cd85499cbfd1f67804ae52', name: 'Altele'}];
+	// 					} else { return x; }
+	// 				})
+	// 			);
+	// 	}));
+	// }
 
 	searchSubcat = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
@@ -191,15 +196,13 @@ export class AddResourceComponent implements OnInit {
 		const inputFocus$ = this.focus4$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				return this.catService.getSubCategories(this.categoryid, term).pipe(
-					map( (response: {data: any[]}) => response.data ),
+				return this.filterService.getSubCategories(this.categoryid, term);
 					// map(x => {
 
 					// 	if (x.length === 0) {
 					// 		return [{id: 9, name: 'Altele'}];
 					// 	} else { return x; }
 					// })
-				);
 		}));
 	}
 
@@ -247,14 +250,14 @@ export class AddResourceComponent implements OnInit {
 		}
 	}
 
-	categorykey(event: any) {
-		this.form.controls.category.markAsTouched();
-		if (event.code !== 'Enter') {
-			this.form.controls.subCategory.disable();
-			this.form.controls.subCategory.reset('');
-			this.resourcePlaceholder = 'Selectați mai întâi categoria';
-		}
-	}
+	// categorykey(event: any) {
+	// 	this.form.controls.category.markAsTouched();
+	// 	if (event.code !== 'Enter') {
+	// 		this.form.controls.subCategory.disable();
+	// 		this.form.controls.subCategory.reset('');
+	// 		this.resourcePlaceholder = 'Selectați mai întâi categoria';
+	// 	}
+	// }
 
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
@@ -275,19 +278,22 @@ export class AddResourceComponent implements OnInit {
 		this.form.patchValue({subCategory: val.item});
 	}
 
-	selectedCategory(val: { item: any }) {
+	selectedCategory() {
 		this.form.controls.category.markAsTouched();
-		if (val.item && val.item._id) {// &&if ceva
-			this.categoryid = val.item._id;
-			this.form.patchValue({category: val.item});
-			this.catService.getSubCategories(val.item._id, '').subscribe(resp => {
-				if (resp.data.length > 0) {
+		if (this.form.value.category) {
+			this.categoryid = this.form.value.category;
+			this.filterService.getSubCategories(this.categoryid, '').subscribe(resp => {
+				if (resp.length > 0) {
 					this.form.controls.subCategory.enable();
 					this.resourcePlaceholder = 'Alegeți Categoria';
+				} else {
+					this.form.controls.subCategory.disable();
+					this.form.controls.subCategory.reset('');
+					this.resourcePlaceholder = 'Selectați mai întâi categoria';
 				}
 			});
-		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
-			this.form.patchValue({category: '', subCategory: ''});
+		// } else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
+		// 	this.form.patchValue({category: '', subCategory: ''});
 		}
 	}
 

@@ -68,6 +68,7 @@
         </div>
         <div class="col-md-12  mx-30px">
 			<ngb-pagination
+                    [maxSize]="5"
 				[(page)]="pager.page"
 				[pageSize]="pager.size"
 				(pageChange)="getData()"
@@ -84,7 +85,7 @@
 						<!-- sortable="name" (sort)="onSort($event)" -->
 						<th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume</th>
 						<th scope="col" >Tip</th>
-						<th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Email</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Instituție</th>
 						<!-- <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)"></!-->
 					</tr>
 				</thead>
@@ -93,7 +94,7 @@
 						<!-- <tr> -->
 							<td>{{res.name}}</td>
 							<td>{{getRole(res.role)}}</td>
-							<td>{{res.email}}</td>
+							<td>{{res.organisation.name}}</td>
 							<!-- <td>1</td> -->
 							<!-- <td>{{res.updated_at}}</td> -->
 							<td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
@@ -103,6 +104,7 @@
 		</table>
      </div>
 		<ngb-pagination
+                    [maxSize]="5"
 			[(page)]="pager.page"
 			[pageSize]="pager.size"
 			(pageChange)="getData()"

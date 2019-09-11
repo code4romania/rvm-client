@@ -13,7 +13,7 @@ export class UsersService {
 		sort: 1,
 		method: 'ASC',
 		page: 1,
-		size: 15,
+		size: 3,
 		total: 0,
 		filters: {}
 	};

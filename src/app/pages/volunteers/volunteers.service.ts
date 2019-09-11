@@ -65,6 +65,8 @@ export class VolunteerService {
 	// }
 
 	importCsv(file: any) {
-		return this.httpClient.post('/volunteers/import', file);
+		const formdata: FormData = new FormData();
+		formdata.append('file', file);
+		return this.httpClient.post('/volunteers/import', formdata);
 	}
 }

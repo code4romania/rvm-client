@@ -65,26 +65,35 @@ export class MapComponent implements OnInit {
 	// }
 
 	@HostListener('click', ['$event']) onClick(event: any) {
+		console.log(this.ids);
 		if (this.hasclicked) {
 			if (event.target.nodeName === 'path') {
-				this.testOut(this.previous.id, this.previous.event);
+				if (this.previous && this.previous.id) {
+					this.testOut(this.previous.id, this.previous.event);
+				}
 				this.test(event.target.getAttribute('id'), event);
 			} else {
-				this.testOut(this.previous.id, this.previous.event);
+				if (this.previous && this.previous.id) {
+					this.testOut(this.previous.id, this.previous.event);
+				}
 				this.hasclicked = false;
 				// this.testOut(this.previous.id, this.previous.id);
 			}
 		} else {
-			this.hasclicked = true;
 			if (event.target.nodeName === 'path') {
+				this.hasclicked = true;
 				this.test(event.target.getAttribute('id'), event);
 			}
 		}
 	}
 
 	constructor(private mapservice: MapService) {
+	}
+
+	ngOnInit() {
 		this.mapservice.getMapFilters().subscribe((res: any) => {
-			this.ids = res.map((elem: any) => {
+			res.map((elem: any) => {
+
 				elem.id = elem._id;
 				elem.icons = [];
 				if (elem.nrResurse !== 0) {
@@ -92,13 +101,11 @@ export class MapComponent implements OnInit {
 				}
 				return elem;
 			});
+			this.ids = res;
 			setTimeout(() => {
 				this.setIcons();
 			}, 0);
 		});
-	}
-
-	ngOnInit() {
 	}
 
 	setIcons() {
@@ -126,7 +133,6 @@ export class MapComponent implements OnInit {
 			const p = e.target.getBBox();
 			const cx = p.x + p.width / 2;
 			const cy = p.y + p.height / 2;
-			// this.tooltip(cx, cy, this.ids.find(x => x.id === id).name);
 			this.tooltip(cx, cy,
 				this.ids.find(x => x.id === id).name +
 				'<br/> Resurse: ' + this.ids.find(x => x.id === id).nrResurse +

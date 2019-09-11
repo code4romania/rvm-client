@@ -42,7 +42,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.getData();
 
 		this.filterService.getCategoryFilters().subscribe((data) => {
-			this.categoryFilterValues = data.data.map((x: any) => {
+			this.categoryFilterValues = data.map((x: any) => {
 				const parent = data.data.find((y: any) => y._id === x.parent_id);
 				return {
 					id: x._id,

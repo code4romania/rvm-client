@@ -32,6 +32,7 @@ export class ImportVolunteersComponent implements OnInit {
 		} else {
 			alert('Vă rog introduceți un fișier CSV valid.');
 			this.fileReset();
+			this.loading = false;
 		}
 	}
 
