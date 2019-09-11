@@ -1,0 +1,28 @@
+
+.card {
+    background-color: transparent;
+    margin: 10px;
+}
+
+.card-body {
+    padding: 0.25rem;
+    background-color:white;
+}
+
+@media (max-width: 425px) {
+    .container {
+      width: 100%;
+      max-width: none;
+    }
+}
+
+@media (max-width: 1199px) {
+    .btn-adjusting {
+        width: min-content;       
+    }
+}
+::ng-deep .category{
+    .none-selected:before {
+        content: 'Categorie' !important;
+    }
+}

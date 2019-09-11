@@ -1,35 +1,42 @@
-<section id="wrapper" class="login-register login-sidebar row">
-  <!-- <div class="col-md-2 col-sm-1">&nbsp;</div> -->
-  <div class="logo-container col-md-12 col-sm-12 col-xs-12">
-    <img src="../../../assets/images/dsu.jpg"/>
-  </div>
-  <!-- <div class="col-md-2 col-sm-1">&nbsp;</div> -->
-  <div class="login-box col-md-12">
-    <div class="card-body">
-      <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material" id="loginform" novalidate>
-        <div class="form-group mt-4">
-          <div class="col-xs-12">
-            <app-form-error-wrapper [control]="loginForm.controls['email']" [controlName]="'email'">
-              <input autocomplete="new-password" class="form-control" type="text" formControlName="email" placeholder="Nume Utilizator">
-            </app-form-error-wrapper>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-            <app-form-error-wrapper [control]="loginForm.controls['password']" [controlName]="'Password'">
-              <input autocomplete="new-password" class="form-control" type="password" formControlName="password" placeholder="Parola">
-            </app-form-error-wrapper>
-          </div>
-        </div>
-        <div class="form-group text-center mt-4">
-          <div class="col-xs-12">
-            <button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light" (click)="login()" [disabled]="loginForm.invalid || isLoading">
-              <app-button-loader [isLoading]="isLoading" [label]="'Login'"></app-button-loader>
-            </button>
-          </div>
-        </div>
-        
-      </form>
-    </div>
-  </div>
+<section id="wrapper" class="login-register login-sidebar">
+	<!-- <div class="col-md-2 col-sm-1">&nbsp;</div> -->
+	<div class="logo-container col-md-12 col-sm-12 col-xs-12">
+		<img src="./../../../../assets/images/DSU_logo.PNG" />
+	</div>
+	<!-- <div class="col-md-2 col-sm-1">&nbsp;</div> -->
+	<div class="login-box col-md-12 col-sm-12 col-xs-12">
+		<div class="card-body">
+			<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material"
+				id="loginform" novalidate>
+				<div class="form-group mt-4">
+					<div class="col-xs-12">
+						<input formControlName="email" autocomplete="new-password" class="form-control" type="text"
+							placeholder="Nume Utilizator" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<input autocomplete="new-password" formControlName="password" class="form-control"
+							type="password" placeholder="Parola" />
+					</div>
+				</div>
+				<ngb-alert *ngIf="errorMessage" class="error-message" type="success" (close)="successMessage = null">
+					{{ errorMessage }}</ngb-alert>
+				<div class="form-group text-center mt-4">
+					<div class="col-xs-12">
+						<button class="btn button-login btn-lg btn-block text-uppercase waves-effect waves-light"
+							type="submit" [disabled]="loginForm.invalid || isLoading">
+							<app-button-loader [isLoading]="isLoading" [label]="'Login'"></app-button-loader>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="d-flex my-5">
+		<a [routerLink]="['/recover']" class="navigation">
+			Am uitat parola
+		</a>
+	</div>
 </section>

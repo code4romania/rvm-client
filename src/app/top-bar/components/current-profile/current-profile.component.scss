@@ -17,9 +17,17 @@
         }
     }
     .name{
-        span{
+        span {
             display: block;
+            line-height: 20px;
+            margin-bottom: 0;
+            max-height: 40px;
+            max-width: 200px;
+            overflow: hidden;
+            white-space: pre-wrap;
             width: 100%;
+            word-break: break-word;        
+            word-wrap: break-word;
         }
     }
     

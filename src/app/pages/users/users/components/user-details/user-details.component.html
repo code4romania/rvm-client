@@ -1,0 +1,30 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <app-back-button></app-back-button>
+    </nav>
+    <div class="ngo-details row">
+            <h3 class="col-md-12">Profil Utilizator: {{data?.name}}</h3>
+            
+            <span class="col-md-12 mt-1"><span class="fa fa-envelope"></span>  {{data?.email}}</span>
+            <span class="col-md-12 mt-1"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
+            
+            <div class="col-md-12 mt-1">
+                <span><b>Tipul utilizatorului: </b> {{ userTypes[data?.role] }}</span>
+            </div>
+            <div class="col-md-12 mt-1">
+                    <span><b>Data adăugării: </b> {{ data?.created_at | date: 'dd.MM.yyyy' }}</span>
+            </div>
+    </div>
+
+    <button class="btn btn-info rounded mt-3" (click)="edit()" [disabled]="!data">
+        <span class="fa fa-edit"></span>
+        Editează utilizatorul
+    </button>
+    <button class="btn btn-danger rounded mt-3 ml-3" (click)="delete()" [disabled]="!data" *ngIf="!loading">
+        <span class="fa fa-trash-o"></span>
+        Șterge utilizatorul
+    </button>
+    <div class="spinner-border text-danger" role="status" *ngIf="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

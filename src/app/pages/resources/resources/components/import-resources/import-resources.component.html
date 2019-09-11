@@ -1,0 +1,26 @@
+<div class="container mt-5">
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<app-back-button></app-back-button>
+	</nav>
+	<p class="page-title">Adaugă resurse:</p>
+
+	<div class="note col-md-7">
+		<span>
+			Vrei să adaugi resurse individual?
+			<a [routerLink]="['../add']">Adaugă o resursa</a>.
+		</span>
+	</div>
+
+	<p class="m-2" *ngIf="!!file">{{ file.name }}</p>
+
+	<div class="import-box" *ngIf="!loading">
+		<button class="btn btn-info mt-4 btn-import">
+			Importați un fișier CSV
+		</button>
+		<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
+			accept=".csv" class="import-csv" />
+	</div>
+	<div class="spinner-border text-green" role="status" *ngIf="loading">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

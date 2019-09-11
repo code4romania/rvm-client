@@ -5,6 +5,14 @@ header {
 .logo {
   display: inline-block;
   height: 60px;
+  width:60px;
+  margin: auto;
+  img{
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .nav {
@@ -28,7 +36,8 @@ header {
   background-color: #264998;
   color: #fff;
 }
-.yellow{
+
+.yellow {
   background-color:rgb(243,	217,	115	);
 }
 /* Layout */
@@ -53,30 +62,26 @@ header {
  height: 100%;
 }
 
-/* Paddings */
-.padding-medium {
-  padding: 24px;
+.hidden-button {
+  display: none;
 }
 
-.padding-left-medium {
-  padding-left: 24px;
+@media (max-width: 1199px) {
+  .hidden-button {
+    display: block;
+  }
 }
 
-.padding-right-medium {
-  padding-right: 24px;
+.dropdown-item:active {
+  background-color: gray;
 }
 
-.padding-left-xmedium {
-  padding-left: 30px;
+.dropdown-item:focus {
+  outline:none;
+  border:none;
 }
 
-.padding-right-xmedium {
-  padding-right: 30px;
+.active-link {
+  background-color: #264998;
+  color: #fff!important;
 }
-
-.padding-top-xlarge {
-  padding-top: 54px;
-}
-
-/* Margins */
-

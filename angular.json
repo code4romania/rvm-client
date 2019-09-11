@@ -24,6 +24,7 @@
               "src/manifest.json"
             ],
             "styles": [
+              "node_modules/custom-select-dropdown/dist/assets/style.css",
               "src/styles.scss",
               "src/assets/scss/style.scss"
             ],
@@ -70,6 +71,7 @@
           },
           "configurations": {
             "local": {
+              "port": 4300,
               "browserTarget": "rvm-client:build:local"
             },
             "development": {

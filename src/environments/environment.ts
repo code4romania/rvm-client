@@ -5,8 +5,8 @@
 export const environment = {
 	env: 'DEFAULT',
 	production: false,
-	serverBaseUrl: 'http://192.168.0.107',
-	serverUrl: 'http://192.168.0.107/api'
+	serverBaseUrl: '',
+	serverUrl: ''
 };
 
 /*

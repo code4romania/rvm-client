@@ -1,0 +1,18 @@
+.import-csv {
+	position: absolute;
+	opacity: 0;
+	z-index: 100;
+	left: 0;
+	top: 30px;
+}
+
+.btn-import {
+	z-index: 99;
+	position: absolute;
+	left: 0;
+	top: 2px;
+}
+
+.import-box {
+	position: relative;
+}

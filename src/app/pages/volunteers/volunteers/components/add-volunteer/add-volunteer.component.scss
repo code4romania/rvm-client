@@ -1,0 +1,30 @@
+.form-group {
+	margin: 0;
+}
+
+.page-title {
+	margin-bottom: 1.5rem;
+}
+
+.mx--15 {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.margin-auto-center {
+	margin: 0 auto;
+	display: block;
+}
+
+.border-spacing {
+	border-collapse: separate;
+	border-spacing: 10px;
+	border-collapse: expression('separate', cellSpacing = '10px');
+}
+::ng-deep .form-group .datepicker .dropdown-menu.show{
+	max-height: initial;
+}

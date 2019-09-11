@@ -1,0 +1,51 @@
+.card{
+    background-color: transparent;
+    margin: 10px;
+}
+
+.card-body{
+    padding: 0.25rem;
+    background-color:white;
+}
+
+@media (max-width: 425px) {
+    .container {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+@media (max-width: 1199px){
+    .btn-adjusting{
+        width: min-content;       
+    }
+}
+
+
+.filters {
+    .padding-rem {
+        padding: 0.375rem 0.75rem
+    }
+
+    .vertical-bar {
+        background-color: #67757c;
+        width: 2px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+::ng-deep .specialization{
+    .none-selected:before{
+        content:'Specializări' !important;
+    }
+}
+::ng-deep .category{
+    .none-selected:before {
+        content: 'Categorie' !important;
+    }
+}
+::ng-deep .type{
+    .none-selected:before {
+        content: 'Acoperire' !important;
+    }
+}

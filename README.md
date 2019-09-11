@@ -31,7 +31,7 @@ Angular
 
 ### Package managers
 
-Yarn
+NPM
 
 ### Database technology & provider
 
