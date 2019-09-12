@@ -11,12 +11,25 @@ import { Router, NavigationExtras } from '@angular/router';
 export class NgodashboardComponent implements OnInit {
 	ngosData: any = [];
 	pager: any = {};
+	/**
+	* flag to indicate use of list or grid display
+	*/
 	displayBlock = true;
+	/**
+	* selected values in the filters. Array of array of {id, name} objects
+	*/
 	selected = Array(4);
+
+	/**
+	* values to be displayed in filter menus
+	*/
 	categoryFilterValues: any[];
 	typeFilterValues = [{id: 'Națională', name: 'Națională'}, {id: 'Locală', name: 'Locală'}];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];
+	/**
+	* mapping of object keys to filter recognizable keys
+	*/
 	propertyMap = {
 		'_id': 'id',
 		'parent_id': 'parent_id'
@@ -29,11 +42,11 @@ export class NgodashboardComponent implements OnInit {
 		private router: Router
 	) {}
 
-	/**
-	 * subscribe to screen size in order to use list instead of grid for display
-	 */
 
 	ngOnInit() {
+		/**
+		* get and store filter values
+		*/
 		this.citiesandcounties.getCounties('').subscribe((response: any) => {
 			const aux = response;
 			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
@@ -61,6 +74,9 @@ export class NgodashboardComponent implements OnInit {
 
 		this.getData();
 
+		/**
+		* subscribe to screen size in order to use list instead of grid for display
+		*/
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
 			.subscribe(result => {
@@ -69,16 +85,25 @@ export class NgodashboardComponent implements OnInit {
 				}
 			});
 	}
-
+	/**
+	* sort callback
+	* @param {any} Pager pager is modified by external componet and passed as param
+	*/
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
+	/**
+	* search callback
+	* @param {any} Pager pager is modified by external componet and passed as param
+	*/
 	searchChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-
+	/**
+	* get ngo list with filters in pager
+	*/
 	getData() {
 		this.organisationService.getorganisations(this.pager).subscribe(element => {
 			this.ngosData = element.data.map((elem: any) => {
@@ -89,13 +114,26 @@ export class NgodashboardComponent implements OnInit {
 			this.pager.total = element.pager.total;
 		});
 	}
-
+	/**
+	* muliselect filter callback
+	* @param {number} id the index in the pager filters and filters selected array
+	*/
 	filterChanged(id?: number) {
 		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
+		/**
+	* single select filter callback
+	* @param {number} id the index in the pager filters and filters selected array
+	*/
 	singleFilterChanged(id?: number) {
-		this.pager.filters[id] =  this.selected[id].id;
+
+		if (this.selected[id]) {
+			this.pager.filters[id] =  this.selected[id].id;
+		} else {
+			this.pager.filters[id] = null;
+		}
+		console.log(this.pager.filters[id]);
 		this.getData();
 	}
 
@@ -112,7 +150,12 @@ export class NgodashboardComponent implements OnInit {
 	switchtoblock() {
 		this.displayBlock = true;
 	}
-
+	/**
+	* navigate to NGO details page with specific tab open
+	* @param {string} id the id of the organization to be show
+	* @param {string} property the tab that needs to be open on page load
+	* @param {number} e suppresed default event
+	*/
 	showOrganisationDetails(id: string, property: string, e: any) {
 		e.preventDefault();
 		const navigationExtras: NavigationExtras = {
