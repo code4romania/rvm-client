@@ -118,7 +118,7 @@ export class AddVolunteerComponent implements OnInit {
 						course_name: element.course_name.name,
 						course_name_id: element.course_name._id,
 						obtained: moment(element.obtained).format('DD.MM.YYYY'),
-						accredited: element.accredited.name
+						accredited_by: element.accredited.name
 					});
 				});
 				this.countyid = this.volunteer.county._id;
@@ -256,7 +256,7 @@ export class AddVolunteerComponent implements OnInit {
 						course_name: this.coursename.name,
 						course_name_id: this.coursename._id,
 						obtained: moment(this.obtained).format('DD.MM.YYYY'),
-						accredited: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
+						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
 				this.accreditedError = false;
