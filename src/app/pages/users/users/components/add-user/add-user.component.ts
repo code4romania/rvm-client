@@ -50,7 +50,7 @@ export class AddUserComponent implements OnInit {
 				this.form.controls['institution'].setValue(this.authService.user.institution._id);
 			}
 
-			if (this.role === '0' && this.authService.is('DSU')) {
+			if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
 				this.filterService.getInstitutionFilters().subscribe(response => {
 					this.institutions = response;
 				});
