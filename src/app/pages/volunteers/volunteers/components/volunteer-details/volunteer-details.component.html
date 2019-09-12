@@ -42,8 +42,8 @@
                                 <tbody>
                                     <tr *ngFor="let res of data?.courses">
                                         <td>{{res.course_name.name}}</td>
-                                        <td>{{res.obtained}}</td>
-                                        <td>{{res.accredited_by}}</td>
+                                        <td>{{res.obtained | date: 'dd.MM.yyyy' }}</td>
+                                        <td>{{res.accredited?.name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -59,7 +59,6 @@
                     </div>
                 <ng-template #noAccreditation>
                     <span>Aceast voluntar nu are nici o acreditare adăugată în sistem.</span>
-                    <!-- <button class="btn btn-info"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Acreditare</button> -->
                 </ng-template>
                 </ng-template>
             </ngb-tab>
@@ -78,9 +77,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let res of Alocari">
-                                        <td>{{res.name}}</td>
-                                        <td>{{res.date}}</td>
+                                    <tr *ngFor="let res of allocations">
+                                        <td>{{res.rescue_officer.name}}</td>
+                                        <td>{{res.created_at | date: 'dd.MM.yyyy' }}</td>
                                         <td>{{res.city.name}}, {{res.county.name}}</td>
                                     </tr>
                             </tbody>

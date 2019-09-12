@@ -19,10 +19,8 @@ import {
 } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
-import { OrganisationService } from '@app/pages/organisations/organisations.service';
 import { AuthenticationService, FiltersService, UtilService } from '@app/core';
-import { Location, isPlatformWorkerApp } from '@angular/common';
-import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
+import { Location } from '@angular/common';
 import { LocationValidation } from '@app/core/validators/location-validation';
 
 @Component({
@@ -31,15 +29,36 @@ import { LocationValidation } from '@app/core/validators/location-validation';
 	styleUrls: ['./add-resource.component.scss']
 })
 export class AddResourceComponent implements OnInit {
+	/**
+	* form that holds data
+	*/
 	form: FormGroup;
+	/**
+	* flag -> if user is editing then method is PUT, else POST
+	*/
 	edit = false;
 	res: any;
-	countyid: string;
-	categoryid: string;
+	/**
+	*  list of items to select from.
+	*/
+	cities: any[] = [];
+	categories: any[] = [];
+	subCategories: any[] = [];
+	/**
+	* flag -> if information is beeing loaded show loader elements in frontend
+	*/
+	loading = false;
+	loadingCities = false;
+
+	/**
+	* placeholders for HTML
+	*/
 	cityPlaceholder = 'Selectați mai întâi județul';
 	resourcePlaceholder = 'Selectați mai întâi categoria';
-	fixedOrg: any = undefined;
 
+	/**
+	* references to NGBTypeahead for opening on focus or click
+	*/
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
@@ -55,12 +74,6 @@ export class AddResourceComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
-	cities: any[] = [];
-	categories: any[] = [];
-	loading = false;
-	loadingCities = false;
-
-	subCategories: any[] = [];
 
 	constructor(private resourcesService: ResourcesService,
 		private route: ActivatedRoute,
@@ -68,21 +81,18 @@ export class AddResourceComponent implements OnInit {
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder, private utilService: UtilService,
 		private filterService: FiltersService,
-		public authService: AuthenticationService) {
-
-			const navigation = this.router.getCurrentNavigation();
-			if (navigation && navigation.extras && navigation.extras.state) {
-				this.fixedOrg = navigation.extras.state.ngo;
-			}
-
-			this.filterService.getSubCategories('0', '').subscribe((elem: any) => {
-				this.categories = elem;
-			});
-
-	}
+		public authService: AuthenticationService) {}
 
 	ngOnInit() {
 		this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
+		const navigation = this.router.getCurrentNavigation();
+		let fixedOrg: any = null;
+		this.filterService.getSubCategories('0', '').subscribe((elem: any) => {
+			this.categories = elem;
+		});
+		if (navigation && navigation.extras && navigation.extras.state) {
+			fixedOrg = navigation.extras.state.ngo;
+		}
 		this.form = this.fb.group({
 			subCategory: [{value: '', disabled: true}],
 			name: ['', Validators.required],
@@ -92,8 +102,8 @@ export class AddResourceComponent implements OnInit {
 			organisation: this.authService.is('NGO') ?
 								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
 									disabled: true }, Validators.required]
-								:	this.fixedOrg ?
-									[{value: {name: this.fixedOrg.name, _id: this.fixedOrg._id},
+								:	fixedOrg ?
+									[{value: {name: fixedOrg.name, _id: fixedOrg._id},
 										disabled: false }, Validators.required]
 										:	[{value: '' , disabled: false }, Validators.required],
 			quantity: ['', [Validators.required, Validators.min(1)]],
@@ -102,33 +112,48 @@ export class AddResourceComponent implements OnInit {
 			comments: ''
 		});
 	}
-
+	/**
+	 * get the details of the resource when edititing
+	 * @param {string} id of the edited NGO
+	 */
 	getResourceDetails(resId: string) {
 		if (resId) {
 			this.edit = true;
 			this.resourcesService.getResource(resId).subscribe(data => {
 				this.res = data;
-				this.countyid = this.res.county._id;
 				this.form = this.fb.group({
 					name: this.res.name,
 					subCategory: '',
 					address: this.res.address,
 					resource_type: [this.res.resource_type, Validators.required],
-					category: [this.res.categories[0], Validators.required],
+					category: ['', Validators.required],
 					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
 					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
-					city: [this.res.city, [Validators.required, LocationValidation.locationValidation]],
-					county: [this.res.county, [Validators.required, LocationValidation.locationValidation]],
+					city: ['', [Validators.required, LocationValidation.locationValidation]],
+					county: ['', [Validators.required, LocationValidation.locationValidation]],
 					comments: this.res.comments
 				});
-				if (this.res.categories[1]) {
-					this.form.patchValue({subCategory: this.res.categories[1]});
+				if (this.res.categories && this.res.categories[0] && this.res.categories[0]._id) {
+					this.form.patchValue({category: this.res.categories[0]._id});
+					if (this.res.categories[1]) {
+						this.filterService.getSubCategories(this.res.categories[0]._id, '').subscribe(resp => {
+							this.form.controls.subCategory.enable();
+							this.subCategories = resp;
+							this.form.patchValue({subCategory: this.res.categories[1]._id});
+						});
+					}
 				}
+				this.selectedCounty({item: this.res.county});
+				this.selectedCity({item: this.res.city});
 			});
 		}
 	}
 
 	formatter = (result: { name: string }) => result.name;
+	/**
+	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
+	 * @param {Observable} text observable event with the filter text
+	 */
 	searchcounty = (text$: Observable<string>) => {
 
 		const debouncedText$ = text$.pipe(
@@ -143,7 +168,10 @@ export class AddResourceComponent implements OnInit {
 			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
-
+/**
+	 * trigger for city typeahead. registers typing, focus, and click and searches the stored list of cities
+	 * @param {Observable} text observable event with the filter text
+	 */
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -165,7 +193,10 @@ export class AddResourceComponent implements OnInit {
 				}
 			}));
 	}
-
+	/**
+	 * trigger for city typeahead. registers typing, focus, and click and searches the backend
+	 * @param {Observable} text observable event with the filter text
+	 */
 	searchOrganisation = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -182,14 +213,16 @@ export class AddResourceComponent implements OnInit {
 				return this.filterService.getorganisationbyName(term);
 		}));
 	}
-
+/**
+	 * trigger for select county from county typeahead. will unlock the city field
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
-			this.countyid = val.item._id;
 			this.form.patchValue({county: val.item});
 			this.loadingCities = true;
-			this.citiesandCounties.getCitiesbyCounty(this.countyid, '').subscribe((res: any) => {
+			this.citiesandCounties.getCitiesbyCounty(val.item._id, '').subscribe((res: any) => {
 				this.cities = res;
 				this.loadingCities = false;
 				this.form.controls.city.enable();
@@ -199,7 +232,10 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
-
+/**
+	 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
+	 * @param {any} event to be verified for which key has been pressed
+	*/
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -209,12 +245,18 @@ export class AddResourceComponent implements OnInit {
 			this.cityPlaceholder = 'Selectați mai întâi județul';
 		}
 	}
-
+/**
+	 * trigger for select city from city typeahead
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
 	}
-
+	/**
+	 * trigger for select organisation from organisation typeahead.
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedOrganisation(val: any) {
 		this.form.controls.organisation.markAsTouched();
 		if (val.item && val.item._id) {
@@ -223,12 +265,13 @@ export class AddResourceComponent implements OnInit {
 			this.form.patchValue({organisation: ''});
 		}
 	}
-
+	/**
+	 * trigger for select category from category typeahead. will unlock the subcategory field
+	 */
 	selectedCategory() {
 		this.form.controls.category.markAsTouched();
 		if (this.form.value.category) {
-			this.categoryid = this.form.value.category;
-			this.filterService.getSubCategories(this.categoryid, '').subscribe(resp => {
+			this.filterService.getSubCategories(this.form.value.category, '').subscribe(resp => {
 				if (resp.length > 0) {
 					this.form.controls.subCategory.enable();
 					this.resourcePlaceholder = 'Alegeți Categoria';
@@ -242,8 +285,9 @@ export class AddResourceComponent implements OnInit {
 		}
 	}
 
+
 	/**
-	 * Send data from form to server. If success close page
+	 * Process form values and send data to server. If success close page
 	 */
 	onSubmit() {
 		this.loading = true;
@@ -255,7 +299,7 @@ export class AddResourceComponent implements OnInit {
 		if (resource.subCategory) {
 			resource.categories.push(resource.subCategory);
 		}
-
+		console.log(resource);
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {

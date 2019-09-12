@@ -44,7 +44,7 @@
 				</div>
 			</div>
 
-			<div class="mt-4 col-md-4" [ngStyle]="{'display': authService.is('DSU') ? 'initial' : 'none'}" >
+			<div class="mt-4 col-md-4" [ngStyle]="{'display': displayInstitution ? 'initial' : 'none'}" >
 					<div class="form-group">
 						<label>Insituție *</label>
 						<select class="form-control" formControlName="institution">
@@ -54,6 +54,17 @@
 						</select>
 					</div>
 				</div>
+
+			<div class="mt-4 col-md-4" [ngStyle]="{'display': displayOrganisation ? 'initial' : 'none'}" >
+				<div class="form-group">
+					<label>Organizație *</label>
+					<select class="form-control" formControlName="organisation">
+						<option *ngFor="let organisation of organisations; let i=index" [value]="organisation._id">
+							{{organisation.name}}
+						</option>
+					</select>
+				</div>
+			</div>
 
 		</div>
 		<button

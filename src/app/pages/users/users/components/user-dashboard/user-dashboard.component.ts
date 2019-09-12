@@ -94,13 +94,10 @@ export class UserDashboardComponent implements OnInit {
 	}
 
 	continue() {
-		if (this.form.value.role === '2') {
-			this.router.navigate(['/organisations/add']);
-		} else {
-			this.router.navigateByUrl('/users/add/' + this.form.value.role);
-		}
+		this.router.navigateByUrl('/users/add/' + this.form.value.role);
 		this.modalService.dismissAll();
 	}
+
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
@@ -129,7 +126,6 @@ export class UserDashboardComponent implements OnInit {
 	}
 
 	goToOrganisation(id: string, e: any) {
-		console.log(id);
 		e.preventDefault();
 		this.router.navigate(['../organisations/id/' + id]);
 	}

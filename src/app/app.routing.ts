@@ -44,7 +44,7 @@ const AppRoutes: Routes = [
 				path: 'users',
 				loadChildren: './pages/users/users.module#UsersModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'INS']}
+				data: {roles: ['DSU', 'NGO', 'INS']}
 			}
 		]
 	},

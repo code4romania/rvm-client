@@ -1,52 +1,53 @@
 <header *ngIf="authService.isAuthenticated()">
-	<nav class="flex-container flex-row container-full-height mx-0 yellow">
-		<div class="px-3 bg-white">
-			<a (click)="goToDashboard()" class=" navbar-brand logo" href="javascript:void(0);">
-				<img src="../../assets/images/DSU_logo.PNG">
-			</a>
-		</div>
-		<div class="row" style="width: 100%; margin: 0">
-			<div class="flex-column pr-3 d-none d-xl-block col-xl-10 pl-0">
-				<ul class="nav">
-					<li>
-						<a routerLink="/volunteers" class="nav__link" routerLinkActive="active-link">Voluntari</a>
-					</li>
-					<li *ngIf="authService.is('DSU', 'NGO')">
-						<a routerLink='/resources' class="nav__link" routerLinkActive="active-link">Resurse</a>
-					</li>
-					<li *ngIf="authService.is('DSU')">
-						<a routerLink='/organisations' class="nav__link" routerLinkActive="active-link">Organizații</a>
-					</li>
-					<li *ngIf="authService.is('DSU', 'INS')">
-						<a routerLink='/users' class="nav__link" routerLinkActive="active-link">Utilizatori</a>
-					</li>
-					<li *ngIf="authService.is('DSU')">
-						<a routerLink='/map' class="nav__link" routerLinkActive="active-link">Hartă</a>
-					</li>
-					<li>
-						<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Info</a>
-					</li>
-				</ul>
+	<nav class=" yellow  container-full-height">
+		<div class="flex-container container flex-row">
+			<div class="px-3 bg-white">
+				<a (click)="goToDashboard()" class=" navbar-brand logo" href="javascript:void(0);">
+					<img src="../../assets/images/DSU_logo.PNG">
+				</a>
 			</div>
-			<div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pr-4 pl-0">
-					<div ngbDropdown class="d-inline-block">
-							<div class="userarea" id="dropdown1" ngbDropdownToggle>
-									<app-current-profile></app-current-profile>
+			<div class="row" style="width: 100%; margin: 0">
+				<div class="flex-column pr-3 d-none d-xl-block col-xl-10 pl-0">
+					<ul class="nav">
+						<li>
+							<a routerLink="/volunteers" class="nav__link" routerLinkActive="active-link">Voluntari</a>
+						</li>
+						<li *ngIf="authService.is('DSU', 'NGO')">
+							<a routerLink='/resources' class="nav__link" routerLinkActive="active-link">Resurse</a>
+						</li>
+						<li *ngIf="authService.is('DSU')">
+							<a routerLink='/organisations' class="nav__link" routerLinkActive="active-link">Organizații</a>
+						</li>
+						<li *ngIf="authService.is('DSU', 'INS')">
+							<a routerLink='/users' class="nav__link" routerLinkActive="active-link">Utilizatori</a>
+						</li>
+						<li *ngIf="authService.is('DSU')">
+							<a routerLink='/map' class="nav__link" routerLinkActive="active-link">Hartă</a>
+						</li>
+						<li>
+							<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Info</a>
+						</li>
+					</ul>
+				</div>
+				<div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pr-4 pl-0">
+						<div ngbDropdown class="d-inline-block">
+								<div class="userarea" id="dropdown1" ngbDropdownToggle>
+										<app-current-profile></app-current-profile>
+									</div>
+								<div ngbDropdownMenu aria-labelledby="dropdown1">
+									<button ngbDropdownItem [routerLink]="['users', 'id', authService.user._id]">Profil</button>
+									<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
+									<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
+									<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizații</button>
+									<button *ngIf="authService.is('DSU', 'INS')" ngbDropdownItem routerLink='/users' class="hidden-button">Utilizatori</button>
+									<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/map' class="hidden-button">Hartă</button>
+									<button ngbDropdownItem routerLink='/info' class="hidden-button">Info</button>
+									<div class="dropdown-divider"></div>
+									<button ngbDropdownItem (click)="logout()">Delogare</button>
 								</div>
-							<div ngbDropdownMenu aria-labelledby="dropdown1">
-								<button ngbDropdownItem [routerLink]="['users', 'id', authService.user._id]" *ngIf="!authService.is('NGO')">Profil</button>
-								<button ngbDropdownItem [routerLink]="['organisations', 'id', authService.user?.organisation?._id]" *ngIf="authService.is('NGO')">Profil</button>
-								<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
-								<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
-								<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizații</button>
-								<button *ngIf="authService.is('DSU', 'INS')" ngbDropdownItem routerLink='/users' class="hidden-button">Utilizatori</button>
-								<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/map' class="hidden-button">Hartă</button>
-								<button ngbDropdownItem routerLink='/info' class="hidden-button">Info</button>
-								<div class="dropdown-divider"></div>
-								<button ngbDropdownItem (click)="logout()">Delogare</button>
 							</div>
-						</div>
+				</div>
 			</div>
 		</div>
-		</nav>
+	</nav>
 </header>

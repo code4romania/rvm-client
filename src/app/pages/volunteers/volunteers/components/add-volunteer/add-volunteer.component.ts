@@ -27,18 +27,27 @@ import * as moment from 'moment';
 })
 
 export class AddVolunteerComponent implements OnInit {
+	/**
+	* form that holds data
+	*/
 	form: FormGroup;
+	/**
+	* courses values and errors
+	*/
 	coursename: any;
 	coursenameError = false;
 	acreditedby: any;
+	accreditedError = false;
 	obtained: Date;
 	dateError = false;
-	accreditedError = false;
-	countyid: string;
-	volunteer: any;
-	fixedOrg: any = undefined;
-	cityPlaceholder = 'Selectați mai întâi județul';
 
+/**
+	* placeholder for disabled city field
+	*/
+	cityPlaceholder = 'Selectați mai întâi județul';
+/**
+	* references to NGBTypeahead for opening on focus or click
+	*/
 	@ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
@@ -58,12 +67,23 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
-	edit = false;
 
+	/**
+	* flag -> if user is editing then method is PUT, else POST
+	*/
+	edit = false;
+	/**
+	* flag -> if information is beeing loaded show loader elements in frontend
+	*/
 	loading = false;
 	loadingCities = false;
+	/**
+	* list of cities to pe parsed. edited when the user selects a county or edits this NGO
+	*/
 	cities: any[] = [];
-
+	/**
+	* date object to force course acreditation date in the past
+	*/
 	now: any;
 	constructor(
 		public volunteerService: VolunteerService,
@@ -78,15 +98,14 @@ export class AddVolunteerComponent implements OnInit {
 			const day = dateObj.getUTCDate();
 			const year = dateObj.getUTCFullYear();
 			this.now = {day: day, month: month, year: year};
-			const navigation = this.router.getCurrentNavigation();
-			if (navigation && navigation.extras && navigation.extras.state) {
-				this.fixedOrg = navigation.extras.state.ngo;
-				console.log(this.fixedOrg);
-			}
 		}
 
 	ngOnInit() {
-		this.getVolunteerDetails(this.route.snapshot.paramMap.get('id'));
+		const navigation = this.router.getCurrentNavigation();
+		let fixedOrg: any;
+		if (navigation && navigation.extras && navigation.extras.state) {
+			fixedOrg = navigation.extras.state.ngo;
+		}
 		this.form = this.fb.group({
 			name: ['', Validators.required],
 			ssn: ['', [Validators.required, SsnValidation.ssnValidation]],
@@ -99,8 +118,8 @@ export class AddVolunteerComponent implements OnInit {
 			organisation: this.authService.is('NGO') ?
 								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
 									disabled: true }, Validators.required]
-								:	this.fixedOrg ?
-									[{value: {name: this.fixedOrg.name, _id: this.fixedOrg._id},
+								:	fixedOrg ?
+									[{value: {name: fixedOrg.name, _id: fixedOrg._id},
 										disabled: false }, Validators.required]
 										:	[{value: '' , disabled: false }, Validators.required],
 			courses: this.fb.array([]),
@@ -112,29 +131,29 @@ export class AddVolunteerComponent implements OnInit {
 		if (volId) {
 			this.edit = true;
 			this.volunteerService.getVolunteer(volId).subscribe(data => {
-				this.volunteer = data;
 				const aux = data.courses.map((element: any) => {
 					return this.fb.group({
-						course_name: element.course_name,
-						course_name_id: element.course_name_id,
-						obtained: element.obtained,
-						accredited_by: element.accredited_by
+						course_name: element.course_name.name,
+						course_name_id: element.course_name._id,
+						obtained: moment(element.obtained).format('DD.MM.YYYY'),
+						accredited_by: element.accredited.name
 					});
 				});
-				this.countyid = this.volunteer.county._id;
 				this.form = this.fb.group({
-					name: [this.volunteer.name, Validators.required],
-					ssn: [this.volunteer.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-					email: [this.volunteer.email, [Validators.required, EmailValidation.emailValidation]],
-					phone: [this.volunteer.phone, [Validators.required, PhoneValidation.phoneValidation]],
-					address: this.volunteer.address,
-					job: this.volunteer.job,
+					name: [data.name, Validators.required],
+					ssn: [data.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+					email: [data.email, [Validators.required, EmailValidation.emailValidation]],
+					phone: [data.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					address: data.address,
+					job: data.job,
 					courses:  this.fb.array(aux),
-					county: [this.volunteer.county, Validators.required],
-					city: [this.volunteer.city, Validators.required],
-					organisation: [{value: this.volunteer.organisation, disabled: this.authService.is('NGO') }, Validators.required],
-					comments: this.volunteer.comments
+					county: ['', Validators.required],
+					city: ['', Validators.required],
+					organisation: [{value: data.organisation, disabled: this.authService.is('NGO') }, Validators.required],
+					comments: data.comments
 				});
+				this.selectedCounty({item: data.county});
+				this.selectedCity({item: data.city});
 			});
 		}
 	}
@@ -272,18 +291,15 @@ export class AddVolunteerComponent implements OnInit {
 
 	removeCourse(index: number) {
 		const control = <FormArray>this.form.controls.courses;
-
-		// const objIndex = this.data.findIndex(((obj: any) => obj.key === 'courses'));
-		// this.data[objIndex].value.splice(index, 1);
 		control.removeAt(index);
 	}
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
-			this.countyid = val.item._id;
+
 			this.form.patchValue({county: val.item});
 			this.loadingCities = true;
-			this.citiesandCounties.getCitiesbyCounty(this.countyid, '').subscribe((res: any) => {
+			this.citiesandCounties.getCitiesbyCounty(val.item._id, '').subscribe((res: any) => {
 				this.cities = res;
 				this.loadingCities = false;
 				this.form.controls.city.enable();
@@ -293,17 +309,6 @@ export class AddVolunteerComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
-
-
-	// selectedcourse(val: { item: any }) {
-	// 	this.form.controls.city.markAsTouched();
-	// 	this.form.patchValue({city: val.item});
-	// }
-
-	// selectedacreditedby(val: { item: any }) {
-	// 	this.form.controls.city.markAsTouched();
-	// 	this.form.patchValue({city: val.item});
-	// }
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -325,13 +330,12 @@ export class AddVolunteerComponent implements OnInit {
 	onSubmit() {
 		this.loading = true;
 		const volunteer = {...this.form.value};
-
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
 		volunteer.organisation_id = volunteer.organisation._id;
 		if (this.edit) {
-			this.volunteerService.editVolunteer(this.volunteer._id, volunteer).subscribe(() => {
+			this.volunteerService.editVolunteer(this.route.snapshot.paramMap.get('id'), volunteer).subscribe(() => {
 				this.loading = false;
 				this.location.back();
 			}, () => {

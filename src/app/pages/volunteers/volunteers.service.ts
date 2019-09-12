@@ -69,4 +69,8 @@ export class VolunteerService {
 		formdata.append('file', file);
 		return this.httpClient.post('/volunteers/import', formdata);
 	}
+
+	getAllocations(volunteerId: string) {
+		return this.httpClient.get(`/volunteers/${volunteerId}/allocations`);
+	}
 }

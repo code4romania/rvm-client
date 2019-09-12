@@ -44,6 +44,8 @@
             showMaxLables = "1"
             [options]="specializationFilterValues"
             [multiple]="false"
+            [showHelperElements]="false"
+            (onClear)="singleFilterChanged(3)"
             (onItemClick)="singleFilterChanged(3)"
             (onSelectNone)="singleFilterChanged(3)"
             (onSelectAll)="singleFilterChanged(3)">
@@ -54,7 +56,9 @@
             showMaxLables = "1"
             [options]="categoryFilterValues"
             [multiple]="false"
+            [showHelperElements]="false"
             [propertyMap]="propertyMap"
+            (onClear)="singleFilterChanged(4)"
             (onItemClick)="singleFilterChanged(4)"
             (onSelectNone)="singleFilterChanged(4)"
             (onSelectAll)="singleFilterChanged(4)">

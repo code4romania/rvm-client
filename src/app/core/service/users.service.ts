@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-
 @Injectable({
 	providedIn: 'root'
 })
-
+/**
+	 * User service class
+	 */
 export class UsersService {
-
+/**
+	 * class constructor
+	 */
 	constructor(private httpClient: HttpClient) {}
+	/**
+	 *init pager
+	 */
 	pager: any = {
 		sort: 1,
 		method: 'ASC',
@@ -17,7 +23,9 @@ export class UsersService {
 		total: 0,
 		filters: {}
 	};
-
+/**
+	 * return pager
+	 */
 	getPager() {
 		return {...this.pager};
 	}
