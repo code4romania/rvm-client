@@ -15,6 +15,7 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAccreditation = false;
 	canEdit = true;
 	loading = false;
+	allocations: any[] = [];
 
 	constructor(private volunteerService: VolunteerService,
 		private route: ActivatedRoute,
@@ -23,12 +24,8 @@ export class VolunteerDetailsComponent implements OnInit {
 		private location: Location) { }
 
 	ngOnInit() {
-		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
-			this.data = data;
-			if (data.courses && data.courses.length > 0) {this.hasAccreditation = true; }
-			this.canEdit = this.authService.is('DSU') ||
-			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
-		});
+		this.getAccreditations();
+		this.getAllocations();
 	}
 
 	edit() {
@@ -45,6 +42,28 @@ export class VolunteerDetailsComponent implements OnInit {
 				this.loading = false;
 			});
 		}
+	}
+
+	getAllocations() {
+		this.volunteerService.getAllocations(this.route.snapshot.paramMap.get('id')).subscribe((data: any[]) => {
+			this.allocations = data;
+
+			if (this.allocations.length > 0) {
+				this.hasAlocation = true;
+			}
+		});
+	}
+
+	getAccreditations() {
+		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
+			this.data = data;
+			if (data.courses && data.courses.length > 0) {
+				this.hasAccreditation = true;
+			}
+
+			this.canEdit = this.authService.is('DSU') ||
+			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
+		});
 	}
 
 }
