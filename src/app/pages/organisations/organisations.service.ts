@@ -93,6 +93,9 @@ export class OrganisationService {
 	sendUpdateDataEmail(id: String): Observable<any> {
 		return this.httpClient.get(`/organisations/${id}/email`);
 	}
+	updated(id: String): Observable<any> {
+		return this.httpClient.get(`/organisations/${id}/update`);
+	}
 	/**
 	 * delete organisation by id
 	 */

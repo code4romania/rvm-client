@@ -40,6 +40,12 @@ const routes: Routes = [
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']},
 			},
+			{
+				path: 'id/:id/validate',
+				component: NgodetailsComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']},
+			},
 		]
 	}
 ];

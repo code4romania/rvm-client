@@ -34,6 +34,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	/**
 	 * var that holds data about NGO, resources and volunteers
 	 */
+	needupdate = false;
 	data: any;
 	resourceData: any[] = [];
 	volunteersData: any[] = [];
@@ -75,11 +76,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 * flag for toast message
 	 */
 	messageSent = false;
+	updateSent = false;
 	/**
 	 * flag for when deleting
 	 */
 	loading = false;
-
+	/**
+	* mapping of object keys to filter recognizable keys
+	*/
 	propertyMap = {
 		'_id': 'id',
 		'parent_id': 'parent_id'
@@ -92,12 +96,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		private router: Router,
 		public authService: AuthenticationService,
 		private organisationService: OrganisationService,
-		private modalService: NgbModal,
 		private filterService: FiltersService,
 		private location: Location,
 		private citiesandcounties: CitiesCountiesService,
-		private resourceService: ResourcesService
 	) {
+		if (this.router.url.indexOf('validate') > -1) {
+			this.needupdate = true;
+		}
 		/**
 		 * set a specific open tab if necessary
 		 */
@@ -110,7 +115,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
 	ngOnInit() {
 		/**
-		 * get filter values
+		 * get values that can be queried for the filters
 		 */
 		this.citiesandcounties.getCounties().subscribe((response: any) => {
 			const aux = response;
@@ -168,8 +173,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			};
 		});
 	}
-/**
-		 * switch volunteers data
+		/**
+		 * get volunteers data
 		 */
 	getVolunteers() {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
@@ -187,8 +192,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			}
 		});
 	}
-/**
-		 * switch resources of necessary
+	/**
+		 * get resourcesData
 		 */
 	getResources() {
 		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data => {
@@ -201,26 +206,25 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			}
 		});
 	}
-
+	/**
+		 * resource filter callback. Filters added to pager and then a request is made
+		 * @param {number} id the index in the pager filters and filters Selected array
+		 */
 	resourcefilterChanged(id: number) {
 		this.resourcePager.filters[id] =  this.resourceFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getResources();
 	}
-
+/**
+	 * volunteer filter callback. Filters added to pager and then a request is made
+	 * @param {number} id the index in the pager filters and filters Selected array
+	 */
 	volunteerfilterChanged(id: number) {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
 	}
 
 	/**
-	 * open add resource modal
-	 */
-	editResource(resource: any) {
-		this.router.navigateByUrl(`/resources/edit/${resource._id}`);
-	}
-
-	/**
-	 * submit form and close modal
+	 * delete NGO
 	 */
 	deleteSelf() {
 		if (this.authService.user._id === this.data._id) {
@@ -246,25 +250,35 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			}
 		}
 	}
-
+	/**
+	 *  navigate to add resource with ngo data
+	 */
 	addresource() {
 		this.router.navigateByUrl('/resources/add', this.navigationExtras);
 	}
-
+	/**
+	 *  navigate to add volunteer with ngo data
+	 */
 	addvolunteer() {
 		this.router.navigateByUrl('/volunteers/add', this.navigationExtras);
 	}
-
-	sortChanged(pager: any) {
-		if (this.selectedTab === 'volunteers') {
-			this.volunteerPager = pager;
-			this.getVolunteers();
-		} else {
-			this.resourcePager = pager;
-			this.getResources();
-		}
+	/**
+	* sort callback for volunteers table
+	*/
+	volunteerSortChanged(pager: any) {
+		this.volunteerPager = pager;
+		this.getVolunteers();
 	}
-
+	/**
+	* sort callback for resource table
+	*/
+	resourceSortChanged(pager: any) {
+		this.resourcePager = pager;
+			this.getResources();
+	}
+/**
+	* search callback for both tabels
+	*/
 	searchChanged(pager: any) {
 		if (pager.search !== '') {
 			if (this.selectedTab === 'volunteers') {
@@ -276,18 +290,32 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			}
 		}
 	}
-
+	/**
+	* send manual notification and trigger popup
+	*/
 	sendNotification() {
 		this.organisationService.sendUpdateDataEmail(this.ngoid).subscribe(() => {
 			this.messageSent = true;
 			setTimeout(() => this.close(), 5000);
 		});
 	}
-
+	validateinfo() {
+		this.organisationService.updated(this.ngoid).subscribe(() => {
+			this.messageSent = true;
+			setTimeout(() => this.close(), 5000);
+		});
+	}
+	/**
+	* manual close for message send popup
+	*/
 	close() {
 		this.messageSent = false;
 	}
-
+	/**
+	* expand volunteer specialization row for a specific volunteer
+	* @param {string} volunteerId  of the current voluneer that is referenced
+	* @param {boolean} status is open or is cloed
+	*/
 	openMenu(volunteerId: string, status: boolean) {
 		if (status) {
 			this.currentVolunteerId = volunteerId;

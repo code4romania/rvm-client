@@ -11,7 +11,7 @@ import { AuthenticationService } from '@app/core';
 })
 export class ResourcedetailsComponent implements OnInit {
 	data: any;
-	organisations: any[] = null;
+	resources: any[] = null;
 	resid: string;
 	pager: any = {};
 	loading = false;
@@ -48,7 +48,7 @@ export class ResourcedetailsComponent implements OnInit {
 	getData() {
 		this.resourceService.getResourceBySlug(this.resid, this.pager).subscribe((response: any) => {
 			this.data = response.data[0];
-			this.organisations = response.data;
+			this.resources = response.data;
 			this.pager.total = response.pager.total;
 		});
 	}

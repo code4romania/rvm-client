@@ -29,8 +29,8 @@
 				<div class="form-group">
 					<label>Subcategorie</label>
 					<select class="form-control" formControlName="subCategory">
-						<option *ngFor="let subCategory of subCategories; let i=index" [value]="subCategory._id">
-							{{subCategory.name}}
+						<option *ngFor="let subCat of subCategories; let i=index" [value]="subCat._id">
+							{{subCat.name}}
 						</option>
 					</select>
 				</div>
