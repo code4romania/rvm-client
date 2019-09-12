@@ -27,9 +27,6 @@ export class VolunteerDashboardComponent implements OnInit {
 	ngOnInit() {
 
 		this.pager = this.volunteerService.getPager();
-		if (this.authService.is('NGO')) {
-			this.pager.filters[3] = this.authService.user.organisation._id;
-		}
 
 		this.getData();
 		this.citiesandcounties.getCounties('').subscribe((response:  any) => {
