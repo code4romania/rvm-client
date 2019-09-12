@@ -7,6 +7,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { AuthenticationService, FiltersService } from '@app/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { OrganisationService } from '@app/pages/organisations/organisations.service';
 
 @Component({
 	selector: 'app-add-user',
@@ -25,12 +26,16 @@ export class AddUserComponent implements OnInit {
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
 	institutions: any[] = [];
+	organisations: any[] = [];
+	displayInstitution = false;
+	displayOrganisation = false;
 
 	constructor(private fb: FormBuilder,
 		private router: Router,
 		private filterService: FiltersService,
 		public route: ActivatedRoute,
 		public authService: AuthenticationService,
+		private organisationService: OrganisationService,
 		private usersService: UsersService) { }
 
 	ngOnInit() {
@@ -38,23 +43,15 @@ export class AddUserComponent implements OnInit {
 			name: ['', Validators.required],
 			email: ['', [ Validators.required, EmailValidation.emailValidation ]],
 			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
-			institution: ['',  Validators.required]
+			institution: [''],
+			organisation: ['']
 		});
 
 		this.currentUserRole = this.authService.accessLevel;
 
 		if (this.route.snapshot.paramMap.get('role')) {
 			this.role = this.route.snapshot.paramMap.get('role');
-
-			if (this.authService.is('INS')) {
-				this.form.controls['institution'].setValue(this.authService.user.institution._id);
-			}
-
-			if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
-				this.filterService.getInstitutionFilters().subscribe(response => {
-					this.institutions = response;
-				});
-			}
+			this.setPageByRoles();
 		}
 
 		if (this.route.snapshot.paramMap.get('id')) {
@@ -64,10 +61,51 @@ export class AddUserComponent implements OnInit {
 		}
 	}
 
+	setPageByRoles() {
+		// edit
+		if (this.user.role === '1') {
+			this.form.controls['institution'].setValue(this.authService.user.institution._id);
+			this.setInstitutions();
+		}
+
+		if (this.user.role === '2') {
+			this.form.controls['organisation'].setValue(this.user.organisation._id);
+			this.setOrganisations();
+		}
+
+		// add
+		if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
+			this.setInstitutions();
+		}
+
+		if (this.role === '2' && this.authService.is('DSU')) {
+			this.setOrganisations();
+		}
+	}
+
+	setOrganisations() {
+		this.organisationService.getorganisations().subscribe(response => {
+			this.organisations = response.data;
+		});
+
+		this.displayOrganisation = true;
+		this.form.controls['organisation'].setValidators(Validators.required);
+	}
+
+	setInstitutions() {
+		this.filterService.getInstitutionFilters().subscribe(response => {
+			this.institutions = response;
+		});
+
+		this.displayInstitution = true;
+		this.form.controls['organisation'].setValidators(Validators.required);
+	}
+
 	getData() {
 		this.usersService.getUser(this.id).subscribe(response => {
 			this.user = response;
 			this.role = this.user.role;
+			this.setPageByRoles();
 			this.editForm();
 		});
 	}
@@ -95,6 +133,10 @@ export class AddUserComponent implements OnInit {
 
 			if (this.role === '1' || this.role === '0') {
 				this.user.institution = this.form.value.institution;
+			}
+
+			if (this.role === '2') {
+				this.user.organisation = this.form.value.organisation;
 			}
 		}
 

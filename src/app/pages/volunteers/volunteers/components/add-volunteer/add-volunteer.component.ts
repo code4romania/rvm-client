@@ -115,10 +115,10 @@ export class AddVolunteerComponent implements OnInit {
 				this.volunteer = data;
 				const aux = data.courses.map((element: any) => {
 					return this.fb.group({
-						course_name: element.course_name,
-						course_name_id: element.course_name_id,
+						course_name: element.course_name.name,
+						course_name_id: element.course_name._id,
 						obtained: element.obtained,
-						accredited_by: element.accredited_by
+						accredited_by: element.accredited._id
 					});
 				});
 				this.countyid = this.volunteer.county._id;

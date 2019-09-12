@@ -4,6 +4,7 @@ import { UsersComponent } from './users/users.component';
 import { UserDashboardComponent } from './users/components/user-dashboard/user-dashboard.component';
 import { AddUserComponent } from './users/components/add-user/add-user.component';
 import { UserDetailsComponent } from './users/components/user-details/user-details.component';
+import { RoleGuard } from '@app/core/authentication/role.guard';
 
 
 const routes: Routes = [
@@ -13,19 +14,27 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: UserDashboardComponent
+				component: UserDashboardComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'INS']}
 			},
 			{
 				path: 'add/:role',
-				component: AddUserComponent
+				component: AddUserComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'INS']}
 			},
 			{
 				path: 'edit/:id',
-				component: AddUserComponent
+				component: AddUserComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO', 'INS']}
 			},
 			{
 				path: 'id/:id',
-				component: UserDetailsComponent
+				component: UserDetailsComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO', 'INS']}
 			},
 		]
 	}

@@ -27,11 +27,7 @@ export class UserDetailsComponent implements OnInit {
 	}
 
 	edit() {
-		if (this.data.role === '2') {
-			this.router.navigate(['/organisations/edit/' + this.data.organisation._id]);
-		} else {
-			this.router.navigate(['/users/edit/' + this.data._id]);
-		}
+		this.router.navigate(['/users/edit/' + this.data._id]);
 	}
 
 	delete() {

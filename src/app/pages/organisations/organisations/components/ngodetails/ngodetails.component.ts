@@ -295,4 +295,12 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			this.currentVolunteerId = null;
 		}
 	}
+
+	canEdit() {
+		if (this.data) {
+			return this.authService.is('DSU') || (this.authService.is('NGO') && this.data._id === this.authService.user.organisation._id);
+		} else {
+			return false;
+		}
+	}
 }
