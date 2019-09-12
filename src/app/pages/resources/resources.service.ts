@@ -80,7 +80,18 @@ export class ResourcesService {
 		formdata.append('file', file);
 		return this.httpClient.post('/resources/import', formdata);
 	}
-	getResourceBySlug(slug: string, payload: any) {
-		return this.httpClient.get(`/resources/by_slug/${slug}`);
+	getResourceBySlug(slug: string, pager: any) {
+		let params: any = {};
+
+		params = {...params, ...pager};
+		if (params.filters) {
+			Object.keys(params.filters).forEach((key) => {
+				if (params.filters[key]) {
+					params['filters[' + key + ']'] = params.filters[key];
+				}
+			});
+			delete params.filters;
+		}
+		return this.httpClient.get(`/resources/by_slug/${slug}`, {params: params});
 	}
 }

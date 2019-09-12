@@ -23,7 +23,7 @@
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
         <ngx-multiselect class="type"
 			[(ngModel)]="selected[0]"
-			showMaxLables = "1"
+            showMaxLables = "1"
 			[options]="typeFilterValues"
 			(onItemClick)="filterChanged(0)"
 			(onSelectNone)="filterChanged(0)"
@@ -43,18 +43,26 @@
             [(ngModel)]="selected[3]"
             showMaxLables = "1"
             [options]="specializationFilterValues"
-            (onItemClick)="filterChanged(3)"
-            (onSelectNone)="filterChanged(3)"
-            (onSelectAll)="filterChanged(3)">
+            [multiple]="false"
+            (onItemClick)="singleFilterChanged(3)"
+            (onSelectNone)="singleFilterChanged(3)"
+            (onSelectAll)="singleFilterChanged(3)">
         </ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
         <ngx-multiselect class="category"
             [(ngModel)]="selected[4]"
             showMaxLables = "1"
             [options]="categoryFilterValues"
-            (onItemClick)="filterChanged(4)"
-            (onSelectNone)="filterChanged(4)"
-            (onSelectAll)="filterChanged(4)">
+            [multiple]="false"
+            [propertyMap]="propertyMap"
+            (onItemClick)="singleFilterChanged(4)"
+            (onSelectNone)="singleFilterChanged(4)"
+            (onSelectAll)="singleFilterChanged(4)">
+            <ng-template let-option="option">
+                    <span [ngClass]="{'pl-3': option.parent_id!=='0'}">
+                       {{option.name}} 
+                    </span>
+                 </ng-template>
         </ngx-multiselect>
     </div>
 
@@ -107,9 +115,9 @@
                             Nume</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
                             Locație</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
+                        <th scope="col">
                             Nr. Voluntari</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
+                        <th scope="col">
                             Nr. Resurse</th>
                     </tr>
                 </thead>

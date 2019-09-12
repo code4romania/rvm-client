@@ -105,7 +105,7 @@
                         <th *ngIf="!authService.is('INS')" scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
                             Organizație</th>
                         <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
-                            Profesie</th>
+                            Specializări</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +114,9 @@
                         <td>{{res.name}}</td>
                         <td>{{res.city?.name}}, {{res.county?.name}}</td>
                         <td *ngIf="!authService.is('INS')">{{res.organisation?.name || 'Neafiliat'}}</td>
-                        <td>{{res.job}}</td>
+                        <td><div *ngFor="let elem of res?.courses">
+                                {{elem.course_name.name}}
+                            </div></td>
                         <!-- <td>{{res.updated_at}}</td> -->
                         <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi
                                 detalii</button></td>

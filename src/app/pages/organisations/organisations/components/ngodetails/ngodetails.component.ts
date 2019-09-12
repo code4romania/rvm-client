@@ -119,7 +119,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
 			this.categoryFilterValues = data.map((x: any) => {
-				const parent = data.data.find((y: any) => y._id === x.parent_id);
+				const parent = data.find((y: any) => y._id === x.parent_id);
 				return {
 					id: x._id,
 					name: x.name,
@@ -268,16 +268,12 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	searchChanged(pager: any) {
 		if (pager.search !== '') {
 			if (this.selectedTab === 'volunteers') {
-				this.volunteersData = this.volunteersData.filter((elem: any) => {
-					return elem.name.toLowerCase().indexOf(pager.search) > -1;
-				});
+				this.volunteerPager = pager;
+				this.getVolunteers();
 			} else {
-				this.resourceData = this.resourceData.filter((elem: any) => {
-					return elem.name.toLowerCase().indexOf(pager.search) > -1;
-				});
+				this.resourcePager = pager;
+				this.getResources();
 			}
-		} else {
-			this.getData();
 		}
 	}
 
