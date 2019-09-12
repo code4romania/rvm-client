@@ -117,8 +117,8 @@ export class AddVolunteerComponent implements OnInit {
 					return this.fb.group({
 						course_name: element.course_name.name,
 						course_name_id: element.course_name._id,
-						obtained: element.obtained,
-						accredited_by: element.accredited._id
+						obtained: moment(element.obtained).format('DD.MM.YYYY'),
+						accredited: element.accredited.name
 					});
 				});
 				this.countyid = this.volunteer.county._id;
@@ -256,7 +256,7 @@ export class AddVolunteerComponent implements OnInit {
 						course_name: this.coursename.name,
 						course_name_id: this.coursename._id,
 						obtained: moment(this.obtained).format('DD.MM.YYYY'),
-						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
+						accredited: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
 				this.accreditedError = false;

@@ -7,7 +7,6 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { AuthenticationService, FiltersService } from '@app/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { OrganisationService } from '@app/pages/organisations/organisations.service';
 
 @Component({
 	selector: 'app-add-user',
@@ -35,7 +34,6 @@ export class AddUserComponent implements OnInit {
 		private filterService: FiltersService,
 		public route: ActivatedRoute,
 		public authService: AuthenticationService,
-		private organisationService: OrganisationService,
 		private usersService: UsersService) { }
 
 	ngOnInit() {
@@ -84,8 +82,8 @@ export class AddUserComponent implements OnInit {
 	}
 
 	setOrganisations() {
-		this.organisationService.getorganisations().subscribe(response => {
-			this.organisations = response.data;
+		this.filterService.getorganisationbyName().subscribe(response => {
+			this.organisations = response;
 		});
 
 		this.displayOrganisation = true;
