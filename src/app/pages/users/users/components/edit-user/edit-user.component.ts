@@ -70,15 +70,22 @@ export class EditUserComponent implements OnInit {
 
 	setPageByRoles() {
 		if (this.user.role === '1' || this.user.role === '0') {
-			console.log(this.user);
 			this.form.controls['institution'].setValue(this.user.institution._id);
+
+			if (this.authService.is('INS')) {
+				this.form.controls['institution'].disable();
+			}
+
 			this.setInstitutions();
 		}
 
 		if (this.user.role === '2') {
-			console.log(this.user);
 			this.form.controls['organisation'].setValue(this.user.organisation._id);
-			this.form.controls['organisation'].disable();
+
+			if (this.authService.is('NGO')) {
+				this.form.controls['organisation'].disable();
+			}
+
 			this.setOrganisations();
 		}
 	}
@@ -126,7 +133,6 @@ export class EditUserComponent implements OnInit {
 		this.form.controls['name'].setValue(this.user.name);
 		this.form.controls['email'].setValue(this.user.email);
 		this.form.controls['phone'].setValue(this.user.phone);
-		this.form.controls['institution'].setValue(this.user.institution);
 	}
 
 	/**
