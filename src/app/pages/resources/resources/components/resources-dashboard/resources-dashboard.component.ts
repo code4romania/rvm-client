@@ -111,7 +111,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		if (this.authService.is('DSU')) {
 			this.router.navigateByUrl(`/resources/name/${res.slug}`);
 		} else {
-			this.router.navigateByUrl(`/resources/id/${res.resource[0]._id}`);
+			this.router.navigateByUrl(`/resources/id/${res.resources[0]._id}`);
 		}
 	}
 	// deleteres(res:any){
