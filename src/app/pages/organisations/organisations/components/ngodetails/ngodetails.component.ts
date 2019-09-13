@@ -178,8 +178,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		 */
 	getVolunteers() {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
+			this.volunteerPager.total = data.pager.total;
 			if (data.data[0]) {
-				this.volunteerPager.total = data.pager.total;
 				this.hasVolunteers = true;
 
 				if (!!data.data.courses) {

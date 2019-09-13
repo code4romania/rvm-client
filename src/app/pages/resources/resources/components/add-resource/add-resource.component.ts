@@ -292,14 +292,14 @@ export class AddResourceComponent implements OnInit {
 	onSubmit() {
 		this.loading = true;
 		const resource = this.form.value;
-		resource.organisation_id = this.form.value.organisation._id;
+		resource.organisation_id = this.form.controls['organisation'].value._id;
 		resource.county = resource.county._id;
 		resource.city = resource.city._id;
 		resource.categories = [resource.category];
 		if (resource.subCategory) {
 			resource.categories.push(resource.subCategory);
 		}
-		console.log(resource);
+
 		if (this.edit) {
 			this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {

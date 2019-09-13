@@ -7,6 +7,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { AuthenticationService, FiltersService } from '@app/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-add-user',
@@ -50,7 +51,8 @@ export class AddUserComponent implements OnInit {
 		private filterService: FiltersService,
 		public route: ActivatedRoute,
 		public authService: AuthenticationService,
-		private usersService: UsersService) { }
+		private usersService: UsersService,
+		private location: Location) { }
 
 	ngOnInit() {
 		this.form = this.fb.group({
@@ -79,6 +81,7 @@ export class AddUserComponent implements OnInit {
 
 		if (this.user.role === '2') {
 			this.form.controls['organisation'].setValue(this.user.organisation._id);
+			this.form.controls['organisation'].disable();
 			this.setOrganisations();
 		}
 
@@ -107,7 +110,7 @@ export class AddUserComponent implements OnInit {
 		});
 
 		this.displayInstitution = true;
-		this.form.controls['organisation'].setValidators(Validators.required);
+		this.form.controls['institution'].setValidators(Validators.required);
 	}
 
 	getData(id: string) {
@@ -161,7 +164,7 @@ export class AddUserComponent implements OnInit {
 			// edit
 			this.usersService.updateUser(this.user).subscribe((response) => {
 				this.loading = false;
-				this.router.navigate(['users']);
+				this.location.back();
 			}, () => {
 				this.setDuplicateEmailError();
 				this.loading = false;
@@ -170,7 +173,7 @@ export class AddUserComponent implements OnInit {
 			// add
 			this.usersService.addUser(this.user).subscribe((response) => {
 				this.loading = false;
-				this.router.navigate(['users']);
+				this.location.back();
 			}, () => {
 				this.setDuplicateEmailError();
 				this.loading = false;

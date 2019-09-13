@@ -6,7 +6,7 @@
 			<ng-template #resource>
 			<app-table-search [pager]="resourcePager" id=2 (searchChanged)="searchChanged($event)"></app-table-search>
 			</ng-template>
-			<button *ngIf="canEdit() && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0">
+			<button *ngIf="authService.is('DSU') && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0">
 				<span class="fa fa-trash-o"></span>
 				<span class="d-none d-lg-inline">&nbsp;&nbsp;Șterge Organizația</span>
 			</button>
@@ -93,10 +93,10 @@
 									<tr>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="1"
 											(sortChanged)="volunteerSortChanged($event)">Nume</th>
-										<th scope="col" appTableSort [pager]="volunteerPager" [value]="2"
-											(sortChanged)="volunteerSortChanged($event)">Specializare</th>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="3"
 											(sortChanged)="volunteerSortChanged($event)">Localizare</th>
+										<th scope="col" appTableSort [pager]="volunteerPager" [value]="2"
+											(sortChanged)="volunteerSortChanged($event)">Specializare</th>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="4"
 											(sortChanged)="volunteerSortChanged($event)">Data ultimului update</th>
 										<th></th>
@@ -105,6 +105,12 @@
 								<tbody>
 									<tr *ngFor="let res of volunteersData">
 										<td>{{res.name}}</td>
+										<td>{{res.city.name}}, {{res.county.name}}</td>
+										<td *ngIf="currentVolunteerId === res._id">
+											<p *ngFor="let course of res.courses">
+												{{ course.obtained | date: 'dd.MM.yyyy' }}
+											</p>
+										</td>
 										<td *ngIf="currentVolunteerId === res._id">
 											<p *ngFor="let course of res.courses">
 												{{ course?.course_name?.name }}
@@ -112,12 +118,6 @@
 										</td>
 										<td *ngIf="currentVolunteerId !== res._id">
 											{{ res.courses[0]?.course_name?.name }}
-										</td>
-										<td>{{res.city.name}}, {{res.county.name}}</td>
-										<td *ngIf="currentVolunteerId === res._id">
-											<p *ngFor="let course of res.courses">
-												{{ course.obtained | date: 'dd.MM.yyyy' }}
-											</p>
 										</td>
 										<td *ngIf="currentVolunteerId !== res._id">
 											{{ res.courses[0]?.obtained | date: 'dd.MM.yyyy'}}
