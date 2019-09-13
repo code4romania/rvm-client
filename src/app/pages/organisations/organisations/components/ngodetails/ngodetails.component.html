@@ -56,7 +56,7 @@
 				</ng-template>
 				<ng-template ngbTabContent>
 					<div class="row">
-						<div class="filters col-md-9">
+						<div class="filters col-md-9 col-sm-9 col-xs-9">
 							<span class="padding-rem">Total: {{volunteerPager.total}}</span>
 							<span class="padding-rem">&nbsp;&nbsp;</span>
 							<span class="padding-rem">Filtrează după: &nbsp;</span>
@@ -80,10 +80,11 @@
 								(onSelectAll)="volunteerfilterChanged(1)">
 							</ngx-multiselect>
 						</div>
-						<div class="col-md-3">
-								<button class=" pull-right btn btn-info" (click)="validateinfo()"><span
-									class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>
-							
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+								class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
+							<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+								class="fa fa-check-square"></span></button>		
 						</div>
 					</div>
 					<div *ngIf="hasVolunteers; else noVolunteers">
@@ -135,15 +136,17 @@
 							</table>
 						</div>
 						<div class = "row">
-							<div class="col-md-9">
+							<div class="col-md-9 col-sm-9 col-xs-9">
 								<ngb-pagination
 							[maxSize]="5" [(page)]="volunteerPager.page" [pageSize]="volunteerPager.size"
 									(pageChange)="getVolunteers()" [collectionSize]="volunteerPager.total">
 								</ngb-pagination>
 							</div>
-							<div class="col-md-3">
-									<button class="d-sm- pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>		
+							<div class="col-md-3 col-sm-3 col-xs-3">
+									<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
+									<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span></button>		
 							</div>
 								
 						</div>
@@ -161,7 +164,7 @@
 					<a (click)="selectedTab ='resources'">Listă Resurse</a></ng-template>
 				<ng-template ngbTabContent>
 						<div class="row">
-							<div class="filters col-md-9">
+							<div class="filters col-md-9 col-xs-9 col-sm-9">
 								<span class="padding-rem">Total: {{resourcePager.total}}</span>
 								<span class="padding-rem">&nbsp;&nbsp;</span>
 								<span class="padding-rem">Filtrează după: &nbsp;</span>
@@ -190,9 +193,11 @@
 									(onSelectAll)="resourcefilterChanged(1)">
 								</ngx-multiselect>
 							</div>
-							<div class=" col-md-3">
-								<button class="pull-right btn btn-info" (click)="validateinfo()"><span
+							<div class="col-md-3 col-sm-3 col-xs-3">
+								<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
 									class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
+								<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+									class="fa fa-check-square"></span></button>		
 							</div>	
 						</div>
 						<div *ngIf="hasResources; else noResources">
@@ -229,14 +234,16 @@
 								</tbody>
 							</table>
 							<div class="row">
-								<div class="col-md-9">
+								<div class="col-md-9 col-xs-9 col-sm-9">
 									<ngb-pagination [maxSize]="5" [(page)]="resourcePager.page" [pageSize]="resourcePager.size"
 												(pageChange)="getResources()" [collectionSize]="resourcePager.total">
 									</ngb-pagination>
 								</div>
-								<div class="col-md-3">
-									<button class=" pull-right btn btn-info" (click)="validateinfo()"><span
-									class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>		
+								<div class="col-md-3 col-sm-3 col-xs-3">
+									<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
+									<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span></button>		
 								</div>
 							</div>
 							

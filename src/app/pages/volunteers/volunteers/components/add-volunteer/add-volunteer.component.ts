@@ -102,6 +102,7 @@ export class AddVolunteerComponent implements OnInit {
 
 	ngOnInit() {
 		const navigation = this.router.getCurrentNavigation();
+
 		let fixedOrg: any;
 		if (navigation && navigation.extras && navigation.extras.state) {
 			fixedOrg = navigation.extras.state.ngo;
@@ -125,6 +126,9 @@ export class AddVolunteerComponent implements OnInit {
 			courses: this.fb.array([]),
 			comments: ['']
 		});
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getVolunteerDetails(this.route.snapshot.paramMap.get('id'));
+		}
 	}
 
 	getVolunteerDetails(volId: string) {
@@ -152,6 +156,7 @@ export class AddVolunteerComponent implements OnInit {
 					organisation: [{value: data.organisation, disabled: this.authService.is('NGO') }, Validators.required],
 					comments: data.comments
 				});
+				console.log(this.form);
 				this.selectedCounty({item: data.county});
 				this.selectedCity({item: data.city});
 			});
@@ -333,7 +338,7 @@ export class AddVolunteerComponent implements OnInit {
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
-		volunteer.organisation_id = volunteer.organisation._id;
+		volunteer.organisation_id = this.form.controls.organisation.value._id;
 		if (this.edit) {
 			this.volunteerService.editVolunteer(this.route.snapshot.paramMap.get('id'), volunteer).subscribe(() => {
 				this.loading = false;

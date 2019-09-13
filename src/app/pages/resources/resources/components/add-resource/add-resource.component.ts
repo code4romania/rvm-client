@@ -84,7 +84,7 @@ export class AddResourceComponent implements OnInit {
 		public authService: AuthenticationService) {}
 
 	ngOnInit() {
-		this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
+
 		const navigation = this.router.getCurrentNavigation();
 		let fixedOrg: any = null;
 		this.filterService.getSubCategories('0', '').subscribe((elem: any) => {
@@ -93,6 +93,7 @@ export class AddResourceComponent implements OnInit {
 		if (navigation && navigation.extras && navigation.extras.state) {
 			fixedOrg = navigation.extras.state.ngo;
 		}
+
 		this.form = this.fb.group({
 			subCategory: [{value: '', disabled: true}],
 			name: ['', Validators.required],
@@ -111,6 +112,9 @@ export class AddResourceComponent implements OnInit {
 			county: ['', Validators.required],
 			comments: ''
 		});
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
+		}
 	}
 	/**
 	 * get the details of the resource when edititing

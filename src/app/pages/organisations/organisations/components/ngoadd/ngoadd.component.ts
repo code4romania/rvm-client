@@ -76,8 +76,6 @@ export class NgoaddComponent implements OnInit {
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
-
 
 		this.form = this.fb.group({
 			name: ['', [Validators.required]],
@@ -91,6 +89,9 @@ export class NgoaddComponent implements OnInit {
 			city: [{value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
+		}
 	}
 
 	formatter = (result: { name: string }) => result.name;
