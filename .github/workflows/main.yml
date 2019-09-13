@@ -22,4 +22,4 @@ jobs:
         RVM_MACHINE: ${{ secrets.RVM_MACHINE }}
         RVM_USERNAME: ${{ secrets.RVM_USERNAME }}
       with:
-        args: -arv --omit-dir-times --files-from=dist/a/ $RVM_USERNAME@$RVM_MACHINE:/var/www/html/
+        args: -arv --omit-dir-times --include="dist/a/*" $RVM_USERNAME@$RVM_MACHINE:/var/www/html/
