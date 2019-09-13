@@ -48,7 +48,7 @@
 	</div>
 	<div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
 			<div *ngFor="let elem of resourcesData" class="d-flex col-md-6 col-sm-12 col-lg-4">
-				<div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem.slug]">
+				<div class="card mb-2" style="flex-grow: 1" (click)="viewdetails(elem)">
 					<div class="card-body">
 						<a class="btn btn-fix text-left">
 							<h4 class="card-title">{{elem.name}}</h4>
@@ -116,8 +116,8 @@
 						<!-- <td>{{res.updated_at}}</td> -->
 						<td *ngIf="authService.is('DSU')" class="text-right"><button class="btn btn-info"
 								[routerLink]="['name',res.slug]">Vezi detalii</button></td>
-						<!-- <td *ngIf="authService.is('NGO')" class="text-right"><button class="btn btn-info"
-								[routerLink]="['id',res.resources[0]._id]">Vezi detalii</button></td> -->
+						<td *ngIf="authService.is('NGO')" class="text-right"><button class="btn btn-info"
+								[routerLink]="['id',res.resources[0]._id]">Vezi detalii</button></td>
 						<!-- <td *ngIf="authService.is('NGO')" class="text-right"><button class="btn btn-danger"
 							(click)="deleteres(res)">Șterge</button></td> -->
 					</tr>

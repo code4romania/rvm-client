@@ -107,6 +107,13 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
+	viewdetails(res: any) {
+		if (this.authService.is('DSU')) {
+			this.router.navigateByUrl(`/resources/name/${res.slug}`);
+		} else {
+			this.router.navigateByUrl(`/resources/id/${res.resource[0]._id}`);
+		}
+	}
 	// deleteres(res:any){
 	// 	console.log(res);
 	// 	this.resourceService.deleteResource(res.resources[0]._id).subscribe(resp =>{
