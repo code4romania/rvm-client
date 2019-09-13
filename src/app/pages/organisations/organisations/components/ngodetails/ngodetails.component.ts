@@ -301,7 +301,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	}
 	validateinfo() {
 		this.organisationService.updated(this.ngoid).subscribe(() => {
-			this.messageSent = true;
+			this.updateSent = true;
 			setTimeout(() => this.close(), 5000);
 		});
 	}
@@ -310,6 +310,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	*/
 	close() {
 		this.messageSent = false;
+		this.updateSent = false;
 	}
 	/**
 	* expand volunteer specialization row for a specific volunteer
