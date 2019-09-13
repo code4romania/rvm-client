@@ -26,3 +26,14 @@
         content: 'Categorie' !important;
     }
 }
+.card-text {
+	
+	span {
+		line-height: 1;
+		height: auto;
+		display: block;
+		overflow: initial;
+		overflow-wrap: initial;
+		word-break:initial;
+    }
+}

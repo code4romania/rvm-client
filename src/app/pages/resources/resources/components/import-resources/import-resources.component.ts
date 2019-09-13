@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
+import { FiltersService, AuthenticationService } from '@app/core';
 
 @Component({
 	selector: 'app-import-resources',
@@ -11,10 +12,17 @@ export class ImportResourcesComponent implements OnInit {
 	public records: any[] = [];
 	file: any = null;
 	loading = false;
+	organisation_id: any;
+	NGOValues: any[] = [];
+	constructor(private resourceService: ResourcesService,
+		private filterService: FiltersService,
+		public authService: AuthenticationService) {}
 
-	constructor(private resourceService: ResourcesService) {}
-
-	ngOnInit() {}
+	ngOnInit() {
+		this.filterService.getorganisationbyName('').subscribe((data) => {
+			this.NGOValues = data;
+		});
+	}
 
 	uploadListener($event: any): void {
 		const files = $event.srcElement.files;
@@ -23,7 +31,8 @@ export class ImportResourcesComponent implements OnInit {
 		if (this.isValidCSVFile(files[0])) {
 			const input = $event.target;
 			this.file = input.files[0];
-			this.resourceService.importCsv(this.file).subscribe((response: any) => {
+			console.log('ghghghg', this.organisation_id);
+			this.resourceService.importCsv(this.file, this.organisation_id).subscribe((response: any) => {
 				console.log(response);
 				this.loading = false;
 			}, error => {

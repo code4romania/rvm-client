@@ -64,9 +64,11 @@ export class VolunteerService {
 		// return this.httpClient.get(`/organisations/${id}` );
 	// }
 
-	importCsv(file: any) {
+	importCsv(file: any, id: any) {
 		const formdata: FormData = new FormData();
+		console.log(id);
 		formdata.append('file', file);
+		formdata.append('organisation_id', id);
 		return this.httpClient.post('/volunteers/import', formdata);
 	}
 

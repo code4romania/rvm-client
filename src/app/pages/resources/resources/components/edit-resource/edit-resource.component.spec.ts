@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgoaddComponent } from './ngoadd.component';
+import { EditResourceComponent } from './edit-resource.component';
 
-describe('NgoaddComponent', () => {
-	let component: NgoaddComponent;
-	let fixture: ComponentFixture<NgoaddComponent>;
+describe('EditResourceComponent', () => {
+	let component: EditResourceComponent;
+	let fixture: ComponentFixture<EditResourceComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ NgoaddComponent ]
+			declarations: [ EditResourceComponent ]
 		})
 		.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(NgoaddComponent);
+		fixture = TestBed.createComponent(EditResourceComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

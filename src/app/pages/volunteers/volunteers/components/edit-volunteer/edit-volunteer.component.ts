@@ -10,7 +10,7 @@ import {
 	filter,
 	switchMap,
 } from 'rxjs/operators';
-import { NgbTypeahead, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { AuthenticationService, FiltersService, UtilService } from '@app/core';
 import { EmailValidation } from '@app/core/validators/email-validation';
@@ -19,14 +19,13 @@ import { Location } from '@angular/common';
 import { SsnValidation } from '@app/core/validators/ssn-validation';
 import * as moment from 'moment';
 
-@Component({
-	selector: 'app-add-volunteer',
-	templateUrl: './add-volunteer.component.html',
-	styleUrls: ['./add-volunteer.component.scss'],
-	providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
-})
 
-export class AddVolunteerComponent implements OnInit {
+@Component({
+	selector: 'app-edit-volunteer',
+	templateUrl: './edit-volunteer.component.html',
+	styleUrls: ['./edit-volunteer.component.scss']
+})
+export class EditVolunteerComponent implements OnInit {
 	/**
 	* form that holds data
 	*/
@@ -81,7 +80,6 @@ export class AddVolunteerComponent implements OnInit {
 	* date object to force course acreditation date in the past
 	*/
 	now: any;
-
 	constructor(
 		public volunteerService: VolunteerService,
 		private filterService: FiltersService,
@@ -123,6 +121,40 @@ export class AddVolunteerComponent implements OnInit {
 			courses: this.fb.array([]),
 			comments: ['']
 		});
+
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getVolunteerDetails(this.route.snapshot.paramMap.get('id'));
+		}
+	}
+
+	getVolunteerDetails(volId: string) {
+		if (volId) {
+			this.volunteerService.getVolunteer(volId).subscribe(data => {
+				const aux = data.courses.map((element: any) => {
+					return this.fb.group({
+						course_name: element.course_name.name,
+						course_name_id: element.course_name._id,
+						obtained: moment(element.obtained).format('DD.MM.YYYY'),
+						accredited_by: element.accredited.name
+					});
+				});
+				this.form = this.fb.group({
+					name: [data.name, Validators.required],
+					ssn: [data.ssn, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+					email: [data.email, [Validators.required, EmailValidation.emailValidation]],
+					phone: [data.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					address: data.address,
+					job: data.job,
+					courses:  this.fb.array(aux),
+					county: ['', Validators.required],
+					city: ['', Validators.required],
+					organisation: [{value: data.organisation, disabled: this.authService.is('NGO') }, Validators.required],
+					comments: data.comments
+				});
+				this.selectedCounty({item: data.county});
+				this.selectedCity({item: data.city});
+			});
+		}
 	}
 
 	get f() {
@@ -305,14 +337,13 @@ export class AddVolunteerComponent implements OnInit {
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
+		volunteer.organisation_id = this.form.controls.organisation.value._id;
 
-		this.volunteerService.addVolunteer(volunteer).subscribe(() => {
+		this.volunteerService.editVolunteer(this.route.snapshot.paramMap.get('id'), volunteer).subscribe(() => {
 			this.loading = false;
-			this.form.controls['email'].setErrors({});
 			this.location.back();
 		}, () => {
 			this.loading = false;
-			this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
 		});
 	}
 }

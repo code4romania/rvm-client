@@ -19,7 +19,7 @@ export class UsersService {
 		sort: 1,
 		method: 'ASC',
 		page: 1,
-		size: 10,
+		size: 15,
 		total: 0,
 		filters: {}
 	};

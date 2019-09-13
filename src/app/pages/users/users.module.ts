@@ -10,13 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
 import { SelectDropDownModule } from 'custom-select-dropdown';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
+import { EditUserComponent } from './users/components/edit-user/edit-user.component';
 
 @NgModule({
 	declarations: [
 		AddUserComponent,
 		UserDashboardComponent,
 		UsersComponent,
-		UserDetailsComponent
+		UserDetailsComponent,
+		EditUserComponent
 	],
 	imports: [
 		NgxMultiselectModule,

@@ -4,8 +4,7 @@
 		<app-back-button></app-back-button>
 	</nav>
 
-	<p class="page-title" *ngIf="!edit">Adaugă o organizație:</p>
-	<p class="page-title" *ngIf="edit">Modifică organizația:</p>
+	<p class="page-title">Adaugă o organizație:</p>
 
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">

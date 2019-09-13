@@ -13,12 +13,21 @@
 
 	<p class="m-2" *ngIf="!!file">{{ file.name }}</p>
 
-	<div class="import-box" *ngIf="!loading">
-		<button class="btn btn-info mt-4 btn-import">
-			Importați un fișier CSV
-		</button>
-		<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
-			accept=".csv" class="import-csv" />
+	<div *ngIf="!loading">
+
+		
+		<select class="form-control mt-2" *ngIf="authService.is('DSU')" [(ngModel)]="organisation_id">
+			<option value="" selected disabled>Vă rugăm să selectați o organizație la care să adaugați</option>
+			<option *ngFor="let org of NGOValues; let i=index" [value]="org._id">
+				{{org.name}}</option>
+		</select>
+		<div class="import-box" >
+			<button class="btn btn-info mt-4 btn-import">
+				Importați un fișier CSV
+			</button>
+			<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
+				accept=".csv" class="import-csv" />
+		</div>
 	</div>
 	<div class="spinner-border text-green" role="status" *ngIf="loading">
 		<span class="sr-only">Loading...</span>

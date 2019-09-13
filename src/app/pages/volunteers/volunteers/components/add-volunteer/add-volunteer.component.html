@@ -2,8 +2,8 @@
 	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
 		<app-back-button></app-back-button>
 	</nav>
-	<div *ngIf="!edit">
-		<p class="page-title" *ngIf="!edit">Adaugă un voluntar:</p>
+	<div>
+		<p class="page-title">Adaugă un voluntar:</p>
 		<div class="note col-md-8">
 			<span>
 				Vrei să adaugi mai mulți voluntari simultan?
@@ -11,7 +11,6 @@
 			</span>
 		</div>
 	</div>
-	<p class="page-title" *ngIf="edit">Modifică voluntarul:</p>
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<div class="row">
 			<div class="mt-4 col-md-4 col-sm-12">
@@ -150,7 +149,6 @@
 							class="mb-3">
 							<td style="padding-right:15px">
 								<div class="form-group">
-										<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
 									<input
 									readonly
 										formControlName="course_name"
@@ -270,10 +268,7 @@
 			*ngIf="!loading"
 			class=" btn btn-info btn-rounded waves-effect waves-light mt-5 float-right mb-5"
 			type="submit">
-			<span *ngIf="edit; else new">Salvează</span>
-			<ng-template #new>
-				<span>Adaugă</span>
-			</ng-template>
+			Salvează
 		</button>
 		<div class="spinner-border text-green float-right mt-5" role="status" *ngIf="loading">
 			<span class="sr-only">Loading...</span>

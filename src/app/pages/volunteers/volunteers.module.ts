@@ -11,6 +11,7 @@ import { VolunteerDetailsComponent } from './volunteers/components/volunteer-det
 import { SelectDropDownModule } from 'custom-select-dropdown';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
+import { EditVolunteerComponent } from './volunteers/components/edit-volunteer/edit-volunteer.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 		VolunteerDashboardComponent,
 		AddVolunteerComponent,
 		VolunteerDetailsComponent,
-		ImportVolunteersComponent
+		ImportVolunteersComponent,
+		EditVolunteerComponent
 	],
 	imports: [
 		NgxMultiselectModule,

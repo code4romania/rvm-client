@@ -24,7 +24,7 @@ export class VolunteerDetailsComponent implements OnInit {
 		private location: Location) { }
 
 	ngOnInit() {
-		this.getAccreditations();
+		this.getData();
 		this.getAllocations();
 	}
 
@@ -54,9 +54,10 @@ export class VolunteerDetailsComponent implements OnInit {
 		});
 	}
 
-	getAccreditations() {
+	getData() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
+
 			if (data.courses && data.courses.length > 0) {
 				this.hasAccreditation = true;
 			}

@@ -4,11 +4,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { FiltersService, CitiesCountiesService } from '@app/core';
 import { Router, NavigationExtras } from '@angular/router';
 @Component({
-	selector: 'app-ngodashboard',
-	templateUrl: './ngodashboard.component.html',
-	styleUrls: ['./ngodashboard.component.scss']
+	selector: 'app-organisations-dashboard',
+	templateUrl: './organisations-dashboard.component.html',
+	styleUrls: ['./organisations-dashboard.component.scss']
 })
-export class NgodashboardComponent implements OnInit {
+export class OrganisationsDashboardComponent implements OnInit {
 	ngosData: any = [];
 	pager: any = {};
 	/**

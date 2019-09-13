@@ -94,7 +94,7 @@ export class OrganisationService {
 		return this.httpClient.get(`/organisations/${id}/email`);
 	}
 	updated(id: String): Observable<any> {
-		return this.httpClient.get(`/organisations/${id}/update`);
+		return this.httpClient.get(`/organisations/${id}/validate`);
 	}
 	/**
 	 * delete organisation by id

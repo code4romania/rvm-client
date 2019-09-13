@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -10,46 +11,42 @@ import { AuthenticationService } from '@app/core';
 	styleUrls: ['./resource-details.component.scss']
 })
 export class ResourcedetailsComponent implements OnInit {
-	data: any;
-	resources: any[] = null;
-	resid: string;
-	pager: any = {};
+	public data: any;
+	canEdit = true;
 	loading = false;
-
 	constructor(private resourceService: ResourcesService,
-				private route: ActivatedRoute,
-				public authService: AuthenticationService,
-				private router: Router) {
-					this.resid = this.route.snapshot.paramMap.get('id');
-				}
+		private route: ActivatedRoute,
+		public authService: AuthenticationService,
+		private router: Router,
+		private location: Location) { }
 
 	ngOnInit() {
-		this.pager = this.resourceService.getPager();
 		this.getData();
 	}
 
-	deleteSelf(resId: string) {
+	edit() {
+		this.router.navigateByUrl(`/resources/edit/${this.data._id}`);
+	}
+
+	deleteSelf() {
 		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
 			this.loading = true;
-			this.resourceService.deleteResource(resId).subscribe((data) => {
+			this.resourceService.deleteResource(this.data._id).subscribe(() => {
 				this.loading = false;
-				this.router.navigateByUrl('/resources');
+				this.location.back();
 			}, () => {
 				this.loading = false;
 			});
 		}
 	}
 
-	sortChanged(pager: any) {
-		this.pager = pager;
-		this.getData();
-	}
 
 	getData() {
-		this.resourceService.getResourceBySlug(this.resid, this.pager).subscribe((response: any) => {
-			this.data = response.data[0];
-			this.resources = response.data;
-			this.pager.total = response.pager.total;
+		this.resourceService.getResource(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
+			this.data = data;
+
+			this.canEdit = this.authService.is('DSU') ||
+			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
 		});
 	}
 
