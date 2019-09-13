@@ -7,7 +7,9 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@master
-      run: Checkout `staging` branch
+    - name: Install dependencies
+      uses: actions/npm@master
+      args: "install"
     - name: Build the solution
       uses: actions/npm@master
       args: "run-script build:prod"
