@@ -104,8 +104,7 @@
                             Locație</th>
                         <th *ngIf="!authService.is('INS')" scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
                             Organizație</th>
-                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
-                            Specializări</th>
+                        <th scope="col">Specializări</th>
                     </tr>
                 </thead>
                 <tbody>

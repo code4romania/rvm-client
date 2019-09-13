@@ -25,9 +25,9 @@ interface Alert {
 }
 
 @Component({
-	selector: 'app-ngodetails',
-	templateUrl: './ngodetails.component.html',
-	styleUrls: ['./ngodetails.component.scss']
+	selector: 'app-organisation-details',
+	templateUrl: './organisation-details.component.html',
+	styleUrls: ['./organisation-details.component.scss']
 })
 export class NgodetailsComponent implements OnInit, AfterContentChecked {
 
@@ -94,6 +94,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
+		private resourceService: ResourcesService,
 		public authService: AuthenticationService,
 		private organisationService: OrganisationService,
 		private filterService: FiltersService,
@@ -222,7 +223,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
 	}
-
+	deleteRes(id: string) {
+		this.resourceService.deleteResource(id).subscribe(resp => {
+			this.getResources();
+		});
+	}
 	/**
 	 * delete NGO
 	 */

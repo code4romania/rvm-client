@@ -484,3 +484,23 @@ body {
 .clickable {
 	cursor: pointer;
 }
+
+.import-csv {
+	cursor: pointer;
+	position: absolute;
+	opacity: 0;
+	z-index: 100;
+	left: 0;
+	top: 50px;;
+}
+
+.btn-import {
+	z-index: 99;
+	position: absolute;
+	left: 0;
+	top: 20px;
+}
+
+.import-box {
+	position: relative;
+}

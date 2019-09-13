@@ -12,6 +12,8 @@ import { SelectDropDownModule } from 'custom-select-dropdown';
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { ImportResourcesComponent } from './resources/components/import-resources/import-resources.component';
+import { ResourceListComponent } from './resources/components/resource-list/resource-list.component';
+import { EditResourceComponent } from './resources/components/edit-resource/edit-resource.component';
 @NgModule({
 		declarations: [
 			ResourcesComponent,
@@ -19,6 +21,8 @@ import { ImportResourcesComponent } from './resources/components/import-resource
 			ResourcesdashboardComponent,
 			ResourcedetailsComponent,
 			AddResourceComponent,
+			ResourceListComponent,
+			EditResourceComponent,
 		],
 		imports: [
 			NgxMultiselectModule,

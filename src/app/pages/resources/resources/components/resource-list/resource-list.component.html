@@ -1,0 +1,55 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <app-back-button></app-back-button>
+    </nav>
+    <div class="ngo-details row">
+        <h3 class="col-md-12">Denumire resursă: {{data?.name}}</h3>
+    </div>
+    <div class="resource-list">
+
+        <div class="table-responsive-md">
+            <table class="table customTable table-sm">
+                <thead>
+                    <tr>
+                        <!-- sortable="name" (sort)="onSort($event)" -->
+                        <th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">
+                            Organizație</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
+                            Cantitate</th>
+                        <th scope="col">
+                            Adresă</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)">
+                            Județ</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="5" (sortChanged)="sortChanged($event)">
+                            Data ultimului update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of resources">
+                        <td>{{res.organisation?.name ? res.organisation?.name : ''}}</td>
+                        <td>{{res.quantity}}</td>
+                        <td>{{res.address}}</td>
+                        <td>{{res.city?.name}}, {{res.county?.name}}</td>
+                        <td>{{res.updated_at | date: 'dd.MM.yyyy'}}</td>
+                        <td class="text-right">
+                            <div>
+                                <button *ngIf="res.organisation && res.organisation._id" class="btn btn-info mb-1" [routerLink]="['/organisations/id',res.organisation._id]">Detalii</button>
+                                <button *ngIf="authService.is('DSU','NGO') && !loading" (click)="deleteSelf(res._id)"
+                                    class="btn btn-danger mb-1 ml-1">
+                                    <span class="fa fa-trash-o"></span>&nbsp;Șterge
+                                </button>
+                                <div class="spinner-border text-danger m-1" role="status"
+                                    *ngIf="authService.is('DSU','NGO') && loading">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ngb-pagination
+                    [maxSize]="5" [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
+                [collectionSize]="pager.total">
+            </ngb-pagination>
+        </div>
+    </div>

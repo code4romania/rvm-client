@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrganisationsComponent } from './organisations/organisations.component';
-import { NgodashboardComponent } from './organisations/components/ngodashboard/ngodashboard.component';
-import { NgoaddComponent } from './organisations/components/ngoadd/ngoadd.component';
-import { NgodetailsComponent } from './organisations/components/ngodetails/ngodetails.component';
+import { OrganisationaddComponent } from './organisations/components/organisation-add/organisation-add.component';
+import { NgodetailsComponent } from './organisations/components/organisation-details/organisation-details.component';
 import { RoleGuard } from '@app/core';
+import { OrganisationEditComponent } from './organisations/components/organisation-edit/organisation-edit.component';
+import { OrganisationsDashboardComponent } from './organisations/components/organisations-dashboard/organisations-dashboard.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -12,19 +13,19 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: NgodashboardComponent,
+				component: OrganisationsDashboardComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU']}
 			},
 			{
 				path: 'add',
-				component: NgoaddComponent,
+				component: OrganisationaddComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU']}
 			},
 			{
 				path: 'edit/:id',
-				component: NgoaddComponent,
+				component: OrganisationEditComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']}
 			},

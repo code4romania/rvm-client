@@ -1,34 +1,20 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import {
-	FormGroup,
-	FormControl,
-	Validators,
-	FormBuilder
-} from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
-import { Subject } from 'rxjs/internal/Subject';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/internal/Observable';
-import {
-	debounceTime,
-	distinctUntilChanged,
-	filter,
-	map,
-	switchMap
-} from 'rxjs/operators';
-import { merge } from 'rxjs';
+import { Subject, Observable, merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
-import { AuthenticationService, FiltersService, UtilService } from '@app/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CitiesCountiesService, UtilService, FiltersService, AuthenticationService } from '@app/core';
 import { LocationValidation } from '@app/core/validators/location-validation';
+import { debounceTime, distinctUntilChanged, filter, switchMap, map } from 'rxjs/operators';
 
 @Component({
-	selector: 'app-add-resource',
-	templateUrl: './add-resource.component.html',
-	styleUrls: ['./add-resource.component.scss']
+	selector: 'app-edit-resource',
+	templateUrl: './edit-resource.component.html',
+	styleUrls: ['./edit-resource.component.scss']
 })
-export class AddResourceComponent implements OnInit {
+export class EditResourceComponent implements OnInit {
 	/**
 	* form that holds data
 	*/
@@ -36,7 +22,6 @@ export class AddResourceComponent implements OnInit {
 	/**
 	* flag -> if user is editing then method is PUT, else POST
 	*/
-	edit = false;
 	res: any;
 	/**
 	*  list of items to select from.
@@ -112,6 +97,44 @@ export class AddResourceComponent implements OnInit {
 			county: ['', Validators.required],
 			comments: ''
 		});
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getResourceDetails(this.route.snapshot.paramMap.get('id'));
+		}
+	}
+	/**
+	 * get the details of the resource when edititing
+	 * @param {string} id of the edited NGO
+	 */
+	getResourceDetails(resId: string) {
+		if (resId) {
+			this.resourcesService.getResource(resId).subscribe(data => {
+				this.res = data;
+				this.form = this.fb.group({
+					name: this.res.name,
+					subCategory: '',
+					address: this.res.address,
+					resource_type: [this.res.resource_type, Validators.required],
+					category: ['', Validators.required],
+					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
+					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
+					city: ['', [Validators.required, LocationValidation.locationValidation]],
+					county: ['', [Validators.required, LocationValidation.locationValidation]],
+					comments: this.res.comments
+				});
+				if (this.res.categories && this.res.categories[0] && this.res.categories[0]._id) {
+					this.form.patchValue({category: this.res.categories[0]._id});
+					if (this.res.categories[1]) {
+						this.filterService.getSubCategories(this.res.categories[0]._id, '').subscribe(resp => {
+							this.form.controls.subCategory.enable();
+							this.subCategories = resp;
+							this.form.patchValue({subCategory: this.res.categories[1]._id});
+						});
+					}
+				}
+				this.selectedCounty({item: this.res.county});
+				this.selectedCity({item: this.res.city});
+			});
+		}
 	}
 
 	formatter = (result: { name: string }) => result.name;
@@ -264,8 +287,7 @@ export class AddResourceComponent implements OnInit {
 		if (resource.subCategory) {
 			resource.categories.push(resource.subCategory);
 		}
-		this.resourcesService
-			.addResource(resource)
+		this.resourcesService.editResource(this.res._id, resource)
 			.subscribe((element: any) => {
 				this.loading = false;
 				this.location.back();

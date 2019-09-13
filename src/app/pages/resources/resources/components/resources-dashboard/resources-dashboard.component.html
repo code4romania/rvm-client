@@ -115,7 +115,11 @@
 						<td>{{res.organisations_total}}</td>
 						<!-- <td>{{res.updated_at}}</td> -->
 						<td *ngIf="authService.is('DSU')" class="text-right"><button class="btn btn-info"
-								[routerLink]="['id',res.slug]">Vezi detalii</button></td>
+								[routerLink]="['name',res.slug]">Vezi detalii</button></td>
+						<!-- <td *ngIf="authService.is('NGO')" class="text-right"><button class="btn btn-info"
+								[routerLink]="['id',res.resources[0]._id]">Vezi detalii</button></td> -->
+						<!-- <td *ngIf="authService.is('NGO')" class="text-right"><button class="btn btn-danger"
+							(click)="deleteres(res)">Șterge</button></td> -->
 					</tr>
 
 				</tbody>

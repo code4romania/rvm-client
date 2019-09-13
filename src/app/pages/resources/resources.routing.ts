@@ -6,6 +6,8 @@ import { ResourcedetailsComponent } from './resources/components/resource-detail
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
 import { RoleGuard } from '@app/core';
 import { ImportResourcesComponent } from './resources/components/import-resources/import-resources.component';
+import { ResourceListComponent } from './resources/components/resource-list/resource-list.component';
+import { EditResourceComponent } from './resources/components/edit-resource/edit-resource.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -19,13 +21,19 @@ const routes: Routes = [
 			},
 			{
 				path: 'edit/:id',
-				component: AddResourceComponent,
+				component: EditResourceComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'id/:id',
 				component: ResourcedetailsComponent,
+				canActivate: [RoleGuard],
+				data: {roles: ['DSU', 'NGO']}
+			},
+			{
+				path: 'name/:id',
+				component: ResourceListComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU']}
 			},

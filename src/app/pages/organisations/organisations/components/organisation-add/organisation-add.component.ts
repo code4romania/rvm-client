@@ -26,12 +26,12 @@ import { LocationValidation } from '@app/core/validators/location-validation';
 import { UtilService } from '@app/core';
 
 @Component({
-	selector: 'app-ngoadd',
-	templateUrl: './ngoadd.component.html',
-	styleUrls: ['./ngoadd.component.scss']
+	selector: 'app-organisation-add',
+	templateUrl: './organisation-add.component.html',
+	styleUrls: ['./organisation-add.component.scss']
 })
 
-export class NgoaddComponent implements OnInit {
+export class OrganisationaddComponent implements OnInit {
 	/**
 	* form that holds data
 	*/
@@ -52,11 +52,6 @@ export class NgoaddComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance2: NgbTypeahead;
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
-
-	/**
-	* flag -> if user is editing then method is PUT, else POST
-	*/
-	edit = false;
 	/**
 	* flag -> if information is beeing loaded show loader elements in frontend
 	*/
@@ -89,37 +84,9 @@ export class NgoaddComponent implements OnInit {
 			city: [{value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
-		if (this.route.snapshot.paramMap.get('id')) {
-			this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
-		}
 	}
 
 	formatter = (result: { name: string }) => result.name;
-	/**
-	 * get the details of the organisation when edititing
-	 * @param {string} id of the edited NGO
-	 */
-	getOrganisationDetails(ngoId: string) {
-		if (ngoId) {
-			this.edit = true;
-			this.organisationService.getorganisation(ngoId).subscribe(data => {
-				this.form = this.fb.group({
-					name: [data.name ],
-					cover: [data.cover],
-					website: [data.website, [Validators.required, WebsiteValidation.websiteValidation]],
-					contact_person: [data.contact_person, Validators.required],
-					phone: [data.phone, [Validators.required, PhoneValidation.phoneValidation]],
-					address: [data.address],
-					email: [data.email, [Validators.required, EmailValidation.emailValidation]],
-					county: ['', [Validators.required, LocationValidation.locationValidation]],
-					city: ['', [Validators.required]],
-					comments: [data.comments]
-				});
-				this.selectedCounty({item: data.county});
-				this.selectedCity({item: data.city});
-			});
-		}
-	}
 	/**
 	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
 	 * @param {Observable} text observable event with the filter text
@@ -208,27 +175,17 @@ export class NgoaddComponent implements OnInit {
 	 * Process form values and send data to server. If success close page
 	 */
 	onSubmit() {
-		const ngoid = this.route.snapshot.paramMap.get('id');
 		this.loading = true;
 		const ngo = this.form.value;
 		ngo.city = ngo.city._id;
 		ngo.county = ngo.county._id;
-		if (this.edit) {
-			this.organisationService.editOrganisation(ngoid, this.form.value).subscribe(() => {
-				this.loading = false;
-				this.location.back();
-			}, () => {
-				this.loading = false;
-			});
-		} else {
-			this.organisationService
-			.addorganisation(ngo)
-			.subscribe(() => {
-				this.loading = false;
-				this.location.back();
-			}, () => {
-				this.loading = false;
-			});
-		}
+		this.organisationService
+		.addorganisation(ngo)
+		.subscribe(() => {
+			this.loading = false;
+			this.location.back();
+		}, () => {
+			this.loading = false;
+		});
 	}
 }

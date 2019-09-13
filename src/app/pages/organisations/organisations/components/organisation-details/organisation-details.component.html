@@ -125,8 +125,11 @@
 										</td>
 										<td>
 											<div class="d-block text-right">
-												<button class="btn btn-info ml-2 mr-2"
-													[routerLink]="['/volunteers/id',res._id]">Vezi profil</button>
+												<button class="btn btn-info m-1 d-md-none"
+													[routerLink]="['/volunteers/id',res._id]">
+													<span class="fa fa-eye"></span></button>
+												<button class="btn btn-info m-1  d-none d-md-block"
+													[routerLink]="['/resources/id',res.slug]">Vezi detalii</button>
 												<i class="fa fa-chevron-down clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, true)" *ngIf="currentVolunteerId !== res._id"></i>
 												<i class="fa fa-chevron-up clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, false)" *ngIf="currentVolunteerId === res._id && res.courses.length > 1"></i>
 											</div>
@@ -225,10 +228,21 @@
 										<td>{{res.quantity}}</td>
 										<td>{{res.city.name}}, {{res.county.name}}</td>
 										<td class="text-right">
-											<button class="btn btn-info m-1"
-											[routerLink]="['/resources/edit/', res._id]">Editează</button>
-											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1"
-												[routerLink]="['/resources/id',res.slug]">Vezi detalii</button>
+											<button class="btn btn-info m-1 d-none d-md-block"
+												[routerLink]="['/resources/edit/', res._id]">
+												<span class="fa fa-edit"></span>&nbsp;Editează</button>
+											<button class="d-md-none pull-right btn btn-info"
+												[routerLink]="['/resources/edit/', res._id]">
+												<span class="fa fa-edit"></span></button>	
+											<button class="btn btn-danger m-1 d-none d-md-block" (click)="deleteRes(res._id)">
+												<span class="fa fa-trash-o"></span>&nbsp;Șterge</button>
+											<button class="d-md-none pull-right btn btn-danger" (click)="deleteRes(res._id)"><span
+												class="fa fa-trash-o"></span></button>	
+											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-md-none"
+												[routerLink]="['/resources/name',res.slug]">
+												<span class="fa fa-eye"></span></button>
+											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-none d-md-block"
+												[routerLink]="['/resources/name',res.slug]">Vezi detalii</button>
 										</td>
 									</tr>
 								</tbody>

@@ -75,9 +75,10 @@ export class ResourcesService {
 	editResource(id: string, payload: any) {
 		return this.httpClient.put(`/resources/${id}`, payload );
 	}
-	importCsv(file: any) {
+	importCsv(file: any, id: any) {
 		const formdata: FormData = new FormData();
 		formdata.append('file', file);
+		formdata.append('organisation_id', id);
 		return this.httpClient.post('/resources/import', formdata);
 	}
 	getResourceBySlug(slug: string, pager: any) {

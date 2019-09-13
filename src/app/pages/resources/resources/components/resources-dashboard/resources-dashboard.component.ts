@@ -107,7 +107,12 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
-
+	// deleteres(res:any){
+	// 	console.log(res);
+	// 	this.resourceService.deleteResource(res.resources[0]._id).subscribe(resp =>{
+	// 		this.getData();
+	// 	})
+	// }
 	switchtolist() {
 		this.displayBlock = false;
 	}
