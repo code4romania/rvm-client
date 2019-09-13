@@ -10,12 +10,12 @@ import { Subject } from 'rxjs';
 import { Location } from '@angular/common';
 
 @Component({
-	selector: 'app-add-user',
-	templateUrl: './add-user.component.html',
-	styleUrls: ['./add-user.component.scss']
+	selector: 'app-edit-user',
+	templateUrl: './edit-user.component.html',
+	styleUrls: ['./edit-user.component.scss']
 })
+export class EditUserComponent implements OnInit {
 
-export class AddUserComponent implements OnInit {
 	/**
 	* form that holds data
 	*/
@@ -63,18 +63,22 @@ export class AddUserComponent implements OnInit {
 			organisation: ['']
 		});
 
-		if (this.route.snapshot.paramMap.get('role')) {
-			this.role = this.route.snapshot.paramMap.get('role');
-			this.setPageByRoles();
+		if (this.route.snapshot.paramMap.get('id')) {
+			this.getData(this.route.snapshot.paramMap.get('id'));
 		}
 	}
 
 	setPageByRoles() {
-		if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
+		if (this.user.role === '1' || this.user.role === '0') {
+			console.log(this.user);
+			this.form.controls['institution'].setValue(this.user.institution._id);
 			this.setInstitutions();
 		}
 
-		if (this.role === '2' && this.authService.is('DSU')) {
+		if (this.user.role === '2') {
+			console.log(this.user);
+			this.form.controls['organisation'].setValue(this.user.organisation._id);
+			this.form.controls['organisation'].disable();
 			this.setOrganisations();
 		}
 	}
@@ -97,6 +101,15 @@ export class AddUserComponent implements OnInit {
 		this.form.controls['institution'].setValidators(Validators.required);
 	}
 
+	getData(id: string) {
+		this.usersService.getUser(id).subscribe(response => {
+			this.user = response;
+			this.role = this.user.role;
+			this.setPageByRoles();
+			this.editForm();
+		});
+	}
+
 	/**
 	 * trigger for select county from county typeahead. will unlock the city field
 	 * @param {any} val result object from typeahead that needs to be stored
@@ -104,6 +117,16 @@ export class AddUserComponent implements OnInit {
 	selectedInstitut(val: { item: any }) {
 		this.form.controls.institution.markAsTouched();
 		this.form.patchValue({institution: val.item});
+	}
+
+	/**
+	 * add existing volunteer data in form for displaying
+	 */
+	editForm() {
+		this.form.controls['name'].setValue(this.user.name);
+		this.form.controls['email'].setValue(this.user.email);
+		this.form.controls['phone'].setValue(this.user.phone);
+		this.form.controls['institution'].setValue(this.user.institution);
 	}
 
 	/**
@@ -127,7 +150,7 @@ export class AddUserComponent implements OnInit {
 			}
 		}
 
-		this.usersService.addUser(this.user).subscribe((response) => {
+		this.usersService.updateUser(this.user).subscribe((response) => {
 			this.loading = false;
 			this.location.back();
 		}, () => {

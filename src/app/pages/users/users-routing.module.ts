@@ -5,6 +5,7 @@ import { UserDashboardComponent } from './users/components/user-dashboard/user-d
 import { AddUserComponent } from './users/components/add-user/add-user.component';
 import { UserDetailsComponent } from './users/components/user-details/user-details.component';
 import { RoleGuard } from '@app/core/authentication/role.guard';
+import { EditUserComponent } from './users/components/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'edit/:id',
-				component: AddUserComponent,
+				component: EditUserComponent,
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO', 'INS']}
 			},
