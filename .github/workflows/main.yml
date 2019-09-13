@@ -9,7 +9,9 @@ jobs:
       uses: actions/checkout@master
     - name: Install dependencies
       uses: actions/npm@master
-      args: "install"
+      with:
+        args: install
     - name: Build the solution
       uses: actions/npm@master
-      args: "run-script build:prod"
+      with:
+        args: "run-script build:prod"
