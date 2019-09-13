@@ -1,12 +1,13 @@
 on: push
-  
+
+name: Build and deploy
 jobs:
-  build:
+  buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
-    - uses: actions/checkout@master
+      uses: actions/checkout@master
       run: Checkout `staging` branch
     - name: Build the solution
-    - uses: actions/npm@master
+      uses: actions/npm@master
       args: "run-script build:prod"
