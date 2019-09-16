@@ -77,9 +77,9 @@ export class AddVolunteerComponent implements OnInit {
 	* list of cities to pe parsed. edited when the user selects a county or edits this NGO
 	*/
 	cities: any[] = [];
-	/**
-	* date object to force course acreditation date in the past
-	*/
+	// /**
+	// * date object to force course acreditation date in the past
+	// */
 	now: any;
 
 	constructor(
@@ -237,7 +237,7 @@ export class AddVolunteerComponent implements OnInit {
 		if (!this.obtained) {
 			this.dateError = true;
 		}
-		if (this.obtained < now) {
+		// if (this.obtained > now) {
 			if (!this.coursenameError && this.coursename && this.acreditedby) {
 				this.c.push(
 					this.fb.group({
@@ -253,9 +253,9 @@ export class AddVolunteerComponent implements OnInit {
 				this.obtained = null;
 				this.dateError = false;
 			}
-		} else {
-			this.dateError = true;
-		}
+		// } else {
+		// 	this.dateError = true;
+		// }
 	}
 
 	removeCourse(index: number) {
@@ -305,7 +305,7 @@ export class AddVolunteerComponent implements OnInit {
 		volunteer.ssn = volunteer.ssn.toString();
 		volunteer.county = volunteer.county._id;
 		volunteer.city = volunteer.city._id;
-
+		volunteer.organisation_id = this.form.controls.organisation.value._id;
 		this.volunteerService.addVolunteer(volunteer).subscribe(() => {
 			this.loading = false;
 			this.form.controls['email'].setErrors({});
