@@ -129,7 +129,7 @@
 													[routerLink]="['/volunteers/id',res._id]">
 													<span class="fa fa-eye"></span></button>
 												<button class="btn btn-info m-1  d-none d-md-block"
-													[routerLink]="['/resources/id',res.slug]">Vezi detalii</button>
+													[routerLink]="['/volunteers/id',res._id]">Vezi detalii</button>
 												<i class="fa fa-chevron-down clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, true)" *ngIf="currentVolunteerId !== res._id"></i>
 												<i class="fa fa-chevron-up clickable" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, false)" *ngIf="currentVolunteerId === res._id && res.courses.length > 1"></i>
 											</div>
