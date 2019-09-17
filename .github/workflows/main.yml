@@ -27,7 +27,7 @@ jobs:
     - name: Build the solution
       uses: actions/npm@master
       with:
-        args: "run-script build:prod"
+        args: "run-script build:stage"
     - name: Deploy the solution
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
