@@ -80,6 +80,7 @@ export class EditVolunteerComponent implements OnInit {
 	* date object to force course acreditation date in the past
 	*/
 	now: any;
+
 	constructor(
 		public volunteerService: VolunteerService,
 		private filterService: FiltersService,
@@ -262,14 +263,13 @@ export class EditVolunteerComponent implements OnInit {
 	}
 
 	addCourse() {
-		const now = new Date();
 		if (!this.acreditedby) {
 			this.accreditedError = true;
 		}
 		if (!this.obtained) {
 			this.dateError = true;
 		}
-		if (this.obtained < now) {
+		// if (this.obtained < now) {
 			if (!this.coursenameError && this.coursename && this.acreditedby) {
 				this.c.push(
 					this.fb.group({
@@ -285,9 +285,9 @@ export class EditVolunteerComponent implements OnInit {
 				this.obtained = null;
 				this.dateError = false;
 			}
-		} else {
-			this.dateError = true;
-		}
+		// } else {
+		// 	this.dateError = true;
+		// }
 	}
 
 	removeCourse(index: number) {

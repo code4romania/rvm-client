@@ -8,50 +8,94 @@ import { MapService } from '../map.service';
 })
 export class MapComponent implements OnInit {
 	ids: any[];
-	/*[{id: 'ROU122', name: 'Dolj', icons: []},
-	{ id: 'ROU123', name: 'Gorj', icons: []},
-	{ id: 'ROU124', name: 'Mehedinți', icons: []},
-	{ id: 'ROU126', name: 'Olt', icons: []},
-	{ id: 'ROU127', name: 'Teleorman', icons: []},
-	{ id: 'ROU128', name: 'București', icons: []},
-	{ id: 'ROU129', name: 'Călărași', icons: []},
-	{ id: 'ROU130', name: 'Dâmbovița', icons: []},
-	{ id: 'ROU131', name: 'Giurgiu', icons: []},
-	{ id: 'ROU132', name: 'Ialomița', icons: []},
-	{ id: 'ROU133', name: 'Constanța', icons: []},
-	{ id: 'ROU276', name: 'Arad', icons: []},
-	{ id: 'ROU277', name: 'Bihor', icons: []},
-	{ id: 'ROU278', name: 'Caraș-Severin', icons: []},
-	{ id: 'ROU280', name: 'Timiș', icons: []},
-	{ id: 'ROU287', name: 'Botoșani', icons: []},
-	{ id: 'ROU294', name: 'Alba', icons: []},
-	{ id: 'ROU295', name: 'Bistrița-Năsăud', icons: []},
-	{ id: 'ROU296', name: 'Cluj', icons: []},
-	{ id: 'ROU297', name: 'Hunedoara', icons: []},
-	{ id: 'ROU298', name: 'Maramureș', icons: []},
-	{ id: 'ROU299', name: 'Mureș', icons: []},
-	{ id: 'ROU300', name: 'Sălaj', icons: []},
-	{ id: 'ROU301', name: 'Satu Mare', icons: []},
-	{ id: 'ROU302', name: 'Argeș', icons: []},
-	{ id: 'ROU303', name: 'Sibiu', icons: []},
-	{ id: 'ROU304', name: 'Vâlcea', icons: []},
-	{ id: 'ROU305', name: 'Brașov', icons: []},
-	{ id: 'ROU306', name: 'Covasna', icons: []},
-	{ id: 'ROU307', name: 'Harghita', icons: []},
-	{ id: 'ROU308', name: 'Iași', icons: []},
-	{ id: 'ROU309', name: 'Neamț', icons: []},
-	{ id: 'ROU310', name: 'Prahova', icons: []},
-	{ id: 'ROU311', name: 'Suceava', icons: []},
-	{ id: 'ROU312', name: 'Bacău', icons: []},
-	{ id: 'ROU313', name: 'Brăila', icons: ['res']},
-	{ id: 'ROU314', name: 'Buzău', icons: []},
-	{ id: 'ROU315', name: 'Galați', icons: []},
-	{ id: 'ROU316', name: 'Vaslui', icons: []},
-	{ id: 'ROU317', name: 'Vrancea', icons: []},
-	{ id: 'ROU4844', name: 'Ilfov', icons: []},
-	{ id: 'ROU4847', name: 'Tulcea', icons: []}] as any[];*/
-		hasclicked = false;
-		previous: any;
+	adjustments: any =	{
+			'Dambovita': {
+				vol_x: -15,
+				vol_y: 20,
+				res_x: -5,
+				res_y: -10
+			},
+			'Tulcea': {
+				vol_x: -35,
+				vol_y: 0,
+				res_x: -35,
+				res_y: 0
+			},
+			'Ialomita': {
+				vol_x: 0,
+				vol_y: -5,
+				res_x: 0,
+				res_y: -5
+			},
+			'Constanta': {
+				vol_x: 15,
+				vol_y: 0,
+				res_x: 15,
+				res_y: 0
+			},
+			'Alba': {
+				vol_x: 10,
+				vol_y: -20,
+				res_x: 10,
+				res_y: -20,
+			},
+			'Timis': {
+				vol_x: 0,
+				vol_y: -10,
+				res_x: 0,
+				res_y: -10,
+			},
+			'Cluj': {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 0,
+				res_y: 20,
+			},
+			'Neamt': {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0,
+			},
+			'Brasov': {
+				vol_x: -20,
+				vol_y: 0,
+				res_x: -20,
+				res_y: 0,
+			},
+			'Ilfov': {
+				vol_x: -15,
+				vol_y: 10,
+				res_x: 10,
+				res_y: -15
+			},
+			'Harghita': {
+				vol_x: 0,
+				vol_y: 15,
+				res_x: 0,
+				res_y: 15
+			},
+			'Mehedinti': {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 10,
+				res_y: -25
+			},
+			'Salaj': {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0
+			},
+			'Olt': {
+				vol_x: 10,
+				vol_y: 0,
+				res_x: 10,
+				res_y: 0
+			},
+		};
+	hasclicked = false;
+	previous: any;
 	// @HostListener('mouseover', ['$event']) onMouseOver(event: any) {
 	// 	if (event.target.nodeName === 'path') {
 	// 		//
@@ -60,7 +104,7 @@ export class MapComponent implements OnInit {
 
 	// @HostListener('mouseout', ['$event']) onMouseOut(event: any) {
 	// 	if (event.target.nodeName === 'path') {
-	// 		this.testOut(event.target.getAttribute('id'), event);
+	// 		this.deselectCountybyId(event.target.getAttribute('id'), event);
 	// 	}
 	// }
 
@@ -69,20 +113,20 @@ export class MapComponent implements OnInit {
 		if (this.hasclicked) {
 			if (event.target.nodeName === 'path') {
 				if (this.previous && this.previous.id) {
-					this.testOut(this.previous.id, this.previous.event);
+					this.deselectCountybyId(this.previous.id, this.previous.event);
 				}
-				this.test(event.target.getAttribute('id'), event);
+				this.selectCountybyId(event.target.getAttribute('id'), event);
 			} else {
 				if (this.previous && this.previous.id) {
-					this.testOut(this.previous.id, this.previous.event);
+					this.deselectCountybyId(this.previous.id, this.previous.event);
 				}
 				this.hasclicked = false;
-				// this.testOut(this.previous.id, this.previous.id);
+				// this.deselectCountybyId(this.previous.id, this.previous.id);
 			}
 		} else {
 			if (event.target.nodeName === 'path') {
 				this.hasclicked = true;
-				this.test(event.target.getAttribute('id'), event);
+				this.selectCountybyId(event.target.getAttribute('id'), event);
 			}
 		}
 	}
@@ -99,6 +143,9 @@ export class MapComponent implements OnInit {
 				if (elem.nrResurse !== 0) {
 					elem.icons.push('res');
 				}
+				if (elem.nrVoluntari !== 0) {
+					elem.icons.push('vol');
+				}
 				return elem;
 			});
 			this.ids = res;
@@ -110,24 +157,34 @@ export class MapComponent implements OnInit {
 
 	setIcons() {
 		for (let i = 0; i < this.ids.length; i++) {
-			if (this.ids[i].icons.length > 0) {
-				this.setIcon(this.ids[i].id);
+			if (this.ids[i].name !== 'București' && this.ids[i].name !== 'Ilfov') {
+				this.setIcon(i);
 			}
 		}
 	}
 
 	setIcon(i: any) {
-		const p = (document.getElementById(i) as any).getBBox();
+		const p = (document.getElementById(this.ids[i].id) as any).getBBox();
 		const cx = p.x + p.width / 2;
 		const cy = p.y + p.height / 2;
-		const rect = document.getElementById('icon_' + i);
-		rect.setAttribute('x',  String(cx - 10));
-		rect.setAttribute('y',  String(cy - 10));
-		rect.setAttribute('width', '20');
-		rect.setAttribute('height', '20');
+		const adjust = this.adjustments[this.ids[i].slug];
+		if (this.ids[i].icons.includes('res')) {
+			const res = document.getElementById('icon_res_' + this.ids[i].id);
+			res.setAttribute('x',  String(cx - 20 + (adjust ? adjust.res_x : 0)));
+			res.setAttribute('y',  String(cy - 10 + (adjust ? adjust.res_y : 0)));
+			res.setAttribute('width', '20');
+			res.setAttribute('height', '20');
+		}
+		if (this.ids[i].icons.includes('vol')) {
+			const vol = document.getElementById('icon_vol_' + this.ids[i].id);
+			vol.setAttribute('x',  String(cx + 5 + (adjust ? adjust.vol_x : 0)));
+			vol.setAttribute('y',  String(cy - 10 + (adjust ? adjust.vol_y : 0)));
+			vol.setAttribute('width', '20');
+			vol.setAttribute('height', '20');
+		}
 	}
 
-	test(id: any, e: any) {
+	selectCountybyId(id: any, e: any) {
 		if (e.target && e.target.nodeName === 'path') {
 			this.previous = {id: id, event: e};
 			const p = e.target.getBBox();
@@ -137,7 +194,7 @@ export class MapComponent implements OnInit {
 				this.ids.find(x => x.id === id).name +
 				'<br/> Resurse: ' + this.ids.find(x => x.id === id).nrResurse +
 				'<br/> Voluntari: ' + this.ids.find(x => x.id === id).nrVoluntari);
-			e.target.setAttribute('fill', '#00ff00');
+			e.target.setAttribute('fill', '#264998');
 		}
 	}
 
@@ -150,12 +207,13 @@ export class MapComponent implements OnInit {
 			text.setAttribute('height', p.height + 110);
 			text.setAttribute('x', String(x - p.width / 2 - p.x));
 			text.setAttribute('y',  String(y - p.height / 2 - p.y));
-
+			text.setAttribute('fill', '#000000');
 			const rect = document.getElementById('recttest');
 			rect.setAttribute('x',   String(x - (p.width / 2) - 5));
 			rect.setAttribute('y',   String(y - (p.height / 2) - 5));
 			rect.setAttribute('width', p.width + 10);
 			rect.setAttribute('height', p.height + 10);
+			rect.setAttribute('fill', '#ffffff');
 		}, 0);
 
 	}
@@ -173,7 +231,7 @@ export class MapComponent implements OnInit {
 		rect.setAttribute('height', '0');
 	}
 
-	testOut(id: any, e: any) {
+	deselectCountybyId(id: any, e: any) {
 		if (e.target && e.target.nodeName === 'path') {
 			const p = e.target.getBBox();
 			const cx = p.x + p.width / 2;
