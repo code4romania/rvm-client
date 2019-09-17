@@ -1,6 +1,6 @@
 export const environment = {
-	env: 'DEV',
+	env: 'STAGE',
 	production: false,
-	serverBaseUrl: 'http://52.50.54.63:8080',
-	serverUrl: 'http://52.50.54.63:8080/api'
+	serverBaseUrl: 'SERVER_BASE_URL',
+	serverUrl: 'SERVER_URL'
 };

@@ -20,9 +20,9 @@ jobs:
         RVM_BASE_URL: ${{ secrets.RVM_BASE_URL }}
         RVM_SERVER_URL: ${{ secrets.RVM_SERVER_URL }}
       run: |
-        ENVIRONMENTS_FILE="$GITHUB_WORKSPACE/src/environments/environment.prod.ts"
-        sed -i "s#https://rvm-api.lxhost.ro/api#${RVM_SERVER_URL}#g" $ENVIRONMENTS_FILE
-        sed -i "s#https://rvm-api.lxhost.ro#${RVM_BASE_URL}#g" $ENVIRONMENTS_FILE
+        ENVIRONMENTS_FILE="$GITHUB_WORKSPACE/src/environments/environment.stage.ts"
+        sed -i "s#SERVER_URL#${RVM_SERVER_URL}#g" $ENVIRONMENTS_FILE
+        sed -i "s#SERVER_BASE_URL#${RVM_BASE_URL}#g" $ENVIRONMENTS_FILE
         echo "$(cat $ENVIRONMENTS_FILE)"
     - name: Build the solution
       uses: actions/npm@master
