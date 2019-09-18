@@ -32,9 +32,13 @@
 	<div class="spinner-border text-green" role="status" *ngIf="loading">
 		<span class="sr-only">Loading...</span>
 	</div>
-	<!-- <div class="row">
-		<div class="col-md-12" *ngFor="let x of y">
+	<div class="row" *ngIf="resp.has_errror">
+			<span>Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}</span>
+			<span>Au apărut erori la unele rânduri:</span>
+			<div class="col-md-12" *ngFor="let err of resp.errors">
+				<span>Rândul {{err.line}}: </span>
+				<span>err.error</span>
+			</div>
 			
 		</div>
-	</div> -->
 </div>
