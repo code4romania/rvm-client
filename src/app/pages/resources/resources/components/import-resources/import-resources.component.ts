@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { FiltersService, AuthenticationService } from '@app/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-import-resources',
@@ -14,9 +16,15 @@ export class ImportResourcesComponent implements OnInit {
 	loading = false;
 	organisation_id: any;
 	NGOValues: any[] = [];
+	resp: any;
 	constructor(private resourceService: ResourcesService,
 		private filterService: FiltersService,
-		public authService: AuthenticationService) {}
+		private router: Router,
+		public authService: AuthenticationService) {
+			if (authService.is('NGO')) {
+				this.organisation_id = this.authService.user.organisation._id;
+			}
+		}
 
 	ngOnInit() {
 		this.filterService.getorganisationbyName('').subscribe((data) => {
@@ -31,10 +39,14 @@ export class ImportResourcesComponent implements OnInit {
 		if (this.isValidCSVFile(files[0])) {
 			const input = $event.target;
 			this.file = input.files[0];
-			console.log('ghghghg', this.organisation_id);
 			this.resourceService.importCsv(this.file, this.organisation_id).subscribe((response: any) => {
-				console.log(response);
-				this.loading = false;
+				this.resp = response;
+				if (!this.resp.has_errors) {
+					this.loading = false;
+					this.router.navigateByUrl('/resources');
+				} else {
+					this.loading = false;
+				}
 			}, error => {
 				this.loading = false;
 			});

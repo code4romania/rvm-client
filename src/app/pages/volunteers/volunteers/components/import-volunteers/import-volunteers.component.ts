@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VolunteerService } from '@app/pages/volunteers/volunteers.service';
 import { FiltersService, AuthenticationService } from '@app/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-import-volunteers',
@@ -14,9 +16,15 @@ export class ImportVolunteersComponent implements OnInit {
 	loading = false;
 	organisation_id: any = '';
 	NGOValues: any[] = [];
+	resp: any;
 	constructor(private volunteerService: VolunteerService,
 		private filterService: FiltersService,
-		public authService: AuthenticationService) {}
+		private router: Router,
+		public authService: AuthenticationService) {
+			if (authService.is('NGO')) {
+				this.organisation_id = this.authService.user.organisation._id;
+			}
+		}
 
 	ngOnInit() {
 		this.filterService.getorganisationbyName('').subscribe((data) => {
@@ -31,8 +39,13 @@ export class ImportVolunteersComponent implements OnInit {
 			const input = $event.target;
 			this.file = input.files[0];
 			this.volunteerService.importCsv(this.file, this.organisation_id).subscribe((response: any) => {
-				console.log(response);
-				this.loading = false;
+				this.resp = response;
+				if (!this.resp.has_errors) {
+					this.loading = false;
+					this.router.navigateByUrl('/volunteers');
+				} else {
+					this.loading = false;
+				}
 			}, error => {
 				this.loading = false;
 			});
