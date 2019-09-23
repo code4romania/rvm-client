@@ -19,6 +19,16 @@ export class VolunteerService {
 	getPager() {
 		return {...this.pager};
 	}
+	setPager() {
+		this.pager = {
+			sort: 1,
+			method: 'ASC',
+			page: 1,
+			size: 15,
+			total: 0,
+			filters: {}
+		};
+	}
 	constructor(private httpClient: HttpClient) {}
 
 	/**

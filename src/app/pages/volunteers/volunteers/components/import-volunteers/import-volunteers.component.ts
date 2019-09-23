@@ -16,11 +16,12 @@ export class ImportVolunteersComponent implements OnInit {
 	loading = false;
 	organisation_id: any = '';
 	NGOValues: any[] = [];
-	resp: any;
+	public resp: any = {};
 	constructor(private volunteerService: VolunteerService,
 		private filterService: FiltersService,
 		private router: Router,
 		public authService: AuthenticationService) {
+			this.resp.has_errors = false;
 			if (authService.is('NGO')) {
 				this.organisation_id = this.authService.user.organisation._id;
 			}

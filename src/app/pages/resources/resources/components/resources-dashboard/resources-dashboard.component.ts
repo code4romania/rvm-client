@@ -34,6 +34,7 @@ export class ResourcesdashboardComponent implements OnInit {
 		private router: Router) { }
 
 	ngOnInit() {
+		this.resourceService.setPager();
 		this.pager = this.resourceService.getPager();
 
 		this.getData();

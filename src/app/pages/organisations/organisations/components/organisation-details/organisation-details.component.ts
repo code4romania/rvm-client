@@ -50,6 +50,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 */
 	hasVolunteers = false;
 	hasResources = false;
+
+	nrvol = 0;
 	/**
 	 * flag used to get ID from link and pass it to get method
 	 */
@@ -180,16 +182,17 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	getVolunteers() {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			this.volunteerPager.total = data.pager.total;
-			if (data.data[0]) {
-				this.hasVolunteers = true;
-
-				if (!!data.data.courses) {
-					data.data.courses = data.data.courses.reverse();
+			this.volunteersData = data.data;
+			this.hasVolunteers = true;
+			if (!!data.data.courses) {
+				data.data.courses = data.data.courses.reverse();
+			}
+			if (Object.entries(this.volunteerPager.filters).length === 0 && this.volunteerPager.filters.constructor === Object) {
+				if (this.volunteersData.length === 0) {
+					this.hasVolunteers = true;
+				} else {
+					this.nrvol = data.pager.total;
 				}
-
-				this.volunteersData = data.data;
-			} else {
-				this.hasVolunteers = false;
 			}
 		});
 	}
@@ -198,11 +201,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		 */
 	getResources() {
 		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data => {
-			if (data.data[0]) {
-				this.hasResources = true;
-				this.resourceData = data.data;
-				this.resourcePager.total = data.pager.total;
-			} else {
+			this.resourcePager.total = data.pager.total;
+			this.hasResources = true;
+			this.resourceData = data.data;
+			if (Object.entries(this.volunteerPager.filters).length === 0 &&
+				this.volunteerPager.filters.constructor === Object &&
+				this.resourceData.length === 0) {
+
 				this.hasResources = false;
 			}
 		});

@@ -25,7 +25,7 @@ export class VolunteerDashboardComponent implements OnInit {
 			public authService: AuthenticationService, private router: Router) { }
 
 	ngOnInit() {
-
+		this.volunteerService.setPager();
 		this.pager = this.volunteerService.getPager();
 
 		this.getData();

@@ -182,6 +182,7 @@ export class AddVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus4$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
+				this.accreditedError = false;
 				return this.filterService.getAcreditedFilters(term);
 			}));
 	}

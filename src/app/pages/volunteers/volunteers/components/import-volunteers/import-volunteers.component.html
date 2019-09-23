@@ -7,7 +7,7 @@
 	<div class="note col-md-7">
 		<span>
 			Vrei să adaugi voluntari individual?
-			<a [routerLink]="['../add']">Adaugă un voluntar</a>.
+			<a href="javascript:void(0)" [routerLink]="['../add']">Adaugă un voluntar</a>.
 		</span>
 	</div>
 
@@ -32,7 +32,7 @@
 	<div class="spinner-border text-green" role="status" *ngIf="loading">
 		<span class="sr-only">Loading...</span>
 	</div>
-	<div class="row" *ngIf="resp.has_errror">
+	<div class="row" *ngIf="resp.has_errors">
 		<span>Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}</span>
 		<span>Au apărut erori la unele rânduri:</span>
 		<div class="col-md-12" *ngFor="let err of resp.errors">
