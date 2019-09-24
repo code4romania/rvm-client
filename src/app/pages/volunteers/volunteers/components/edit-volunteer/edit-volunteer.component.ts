@@ -198,6 +198,7 @@ export class EditVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus3$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
+				this.coursenameError = false;
 				return this.filterService.getSpecializationFilters(term);
 			}));
 	}
@@ -215,6 +216,7 @@ export class EditVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus4$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
+				this.accreditedError = true;
 				return this.filterService.getAcreditedFilters(term);
 			}));
 	}
@@ -266,6 +268,9 @@ export class EditVolunteerComponent implements OnInit {
 		if (!this.acreditedby) {
 			this.accreditedError = true;
 		}
+		if (!this.coursename) {
+			this.coursenameError = true;
+		}
 		if (!this.obtained) {
 			this.dateError = true;
 		}
@@ -279,11 +284,13 @@ export class EditVolunteerComponent implements OnInit {
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
-				this.accreditedError = false;
+
 				this.coursename = null;
 				this.acreditedby = null;
 				this.obtained = null;
 				this.dateError = false;
+				this.accreditedError = false;
+				this.coursenameError = false;
 			}
 		// } else {
 		// 	this.dateError = true;

@@ -22,12 +22,16 @@
         <span class='padding-rem'>&nbsp;&nbsp;</span>
         <span class='padding-rem'>Filtrează după: &nbsp;</span>
         <ngx-multiselect class="type"
-			[(ngModel)]="selected[0]"
-            showMaxLables = "1"
-			[options]="typeFilterValues"
-			(onItemClick)="filterChanged(0)"
-			(onSelectNone)="filterChanged(0)"
-			(onSelectAll)="filterChanged(0)">
+        [(ngModel)]="selected[0]"
+        showMaxLables = "1"
+        [options]="typeFilterValues"
+        [showSearchFilter]="false"
+        [multiple]="false"
+        [showHelperElements]="false"
+        (onClear)="singleFilterChanged(0)"
+        (onItemClick)="singleFilterChanged(0)"
+        (onSelectNone)="singleFilterChanged(0)"
+        (onSelectAll)="singleFilterChanged(0)">
 		</ngx-multiselect>
         <span class="vertical-bar">&nbsp;</span>
         <ngx-multiselect
