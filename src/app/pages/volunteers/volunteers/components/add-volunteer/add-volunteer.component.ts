@@ -18,6 +18,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { Location } from '@angular/common';
 import { SsnValidation } from '@app/core/validators/ssn-validation';
 import * as moment from 'moment';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
 	selector: 'app-add-volunteer',
@@ -67,7 +68,7 @@ export class AddVolunteerComponent implements OnInit {
 	@ViewChild('instance', { static: true }) instance4: NgbTypeahead;
 	focus4$ = new Subject<string>();
 	click4$ = new Subject<string>();
-
+	static_accreditor = false;
 	/**
 	* flag -> if information is beeing loaded show loader elements in frontend
 	*/
@@ -226,8 +227,24 @@ export class AddVolunteerComponent implements OnInit {
 			this.coursenameError = true;
 		}
 	}
+	specializationKey(event: any) {
+		if (event.code !== 'Enter') {
+			this.static_accreditor = false;
+		}
+	}
 
-	selectedcourse() {
+	selectedcourse(obj: any) {
+		if (obj.item.static_accreditor) {
+			this.acreditedby = {
+				name: obj.item.static_accreditor,
+				id: obj.item.static_accreditor
+			};
+			this.static_accreditor = true;
+		} else {
+			this.acreditedby = {
+			};
+			this.static_accreditor = false;
+		}
 		this.coursenameError = false;
 	}
 
@@ -252,7 +269,7 @@ export class AddVolunteerComponent implements OnInit {
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
-
+				this.static_accreditor = false;
 				this.coursename = null;
 				this.acreditedby = null;
 				this.obtained = null;
@@ -317,9 +334,15 @@ export class AddVolunteerComponent implements OnInit {
 			this.loading = false;
 			this.form.controls['email'].setErrors({});
 			this.location.back();
-		}, () => {
+		}, (obj: any) => {
 			this.loading = false;
-			this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
+			if (obj.error.errors) {
+				if (obj.error.errors[0].indexOf('CNP') !== -1) {
+					this.form.controls['ssn'].setErrors({'ssn': 'CNP-ul introdus există deja în sistem.'});
+				} else {
+					this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
+				}
+			}
 		});
 	}
 }
