@@ -14,7 +14,7 @@ export class ImportResourcesComponent implements OnInit {
 	public records: any[] = [];
 	file: any = null;
 	loading = false;
-	organisation_id: any;
+	organisation_id: any = '';
 	NGOValues: any[] = [];
 	public resp: any = {};
 	constructor(private resourceService: ResourcesService,
