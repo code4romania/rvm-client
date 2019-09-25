@@ -7,7 +7,13 @@ import { MapService } from '../map.service';
 	styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+	/*
+	* Array of counties and county data
+	*/
 	ids: any[];
+	/*
+	* Adjustments to align the icons so that they will fit within the county border
+	*/
 	adjustments: any =	{
 			'Dambovita': {
 				vol_x: -15,
@@ -94,36 +100,49 @@ export class MapComponent implements OnInit {
 				res_y: 0
 			},
 		};
+	/*
+	* Flag to check if a county is selected
+	*/
 	hasclicked = false;
+	/*
+	* Var with the previous selected county
+	*/
 	previous: any;
-	// @HostListener('mouseover', ['$event']) onMouseOver(event: any) {
-	// 	if (event.target.nodeName === 'path') {
-	// 		//
-	// 	}
-	// }
-
-	// @HostListener('mouseout', ['$event']) onMouseOut(event: any) {
-	// 	if (event.target.nodeName === 'path') {
-	// 		this.deselectCountybyId(event.target.getAttribute('id'), event);
-	// 	}
-	// }
-
+		/*
+	* Click listener to check if user has clicked on map or outside of it
+	*/
 	@HostListener('click', ['$event']) onClick(event: any) {
-		console.log(this.ids);
+		/*
+		* If a county is already selected
+		*/
 		if (this.hasclicked) {
+			/*
+			* if the user has clicked inside the rect of a county
+			*/
 			if (event.target.nodeName === 'path') {
+					/*
+				* if there is a previously selected county, it must be deselected
+				*/
 				if (this.previous && this.previous.id) {
 					this.deselectCountybyId(this.previous.id, this.previous.event);
 				}
+					/*
+				* Select the new county
+				*/
 				this.selectCountybyId(event.target.getAttribute('id'), event);
 			} else {
+				/*
+				* User has clicked ouside the map and there already is a selected county. must deslect the county
+				*/
 				if (this.previous && this.previous.id) {
 					this.deselectCountybyId(this.previous.id, this.previous.event);
 				}
 				this.hasclicked = false;
-				// this.deselectCountybyId(this.previous.id, this.previous.id);
 			}
 		} else {
+				/*
+			* First time click. If inside a county select the county
+			*/
 			if (event.target.nodeName === 'path') {
 				this.hasclicked = true;
 				this.selectCountybyId(event.target.getAttribute('id'), event);
@@ -135,6 +154,9 @@ export class MapComponent implements OnInit {
 	}
 
 	ngOnInit() {
+			/*
+			* Get nr of resources and nr of volunteers per county
+			*/
 		this.mapservice.getMapFilters().subscribe((res: any) => {
 			res.map((elem: any) => {
 
@@ -154,7 +176,9 @@ export class MapComponent implements OnInit {
 			}, 0);
 		});
 	}
-
+	/*
+			* If there are volunteers or resources in a county, render icons over said county
+			*/
 	setIcons() {
 		for (let i = 0; i < this.ids.length; i++) {
 			if (this.ids[i].name !== 'București' && this.ids[i].name !== 'Ilfov') {
@@ -162,7 +186,10 @@ export class MapComponent implements OnInit {
 			}
 		}
 	}
-
+/*
+			* Add icons over a specific county
+			* @param {any} i the id of the county
+			*/
 	setIcon(i: any) {
 		const p = (document.getElementById(this.ids[i].id) as any).getBBox();
 		const cx = p.x + p.width / 2;

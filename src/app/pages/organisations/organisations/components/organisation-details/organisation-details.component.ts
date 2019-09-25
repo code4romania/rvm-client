@@ -17,7 +17,7 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
-import { FiltersService } from '@app/core';
+import { FiltersService, UsersService } from '@app/core';
 
 interface Alert {
 	type: string;
@@ -101,6 +101,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		private organisationService: OrganisationService,
 		private filterService: FiltersService,
 		private location: Location,
+		private userService: UsersService,
 		private citiesandcounties: CitiesCountiesService,
 	) {
 		if (this.router.url.indexOf('validate') > -1) {
@@ -183,16 +184,18 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			this.volunteerPager.total = data.pager.total;
 			this.volunteersData = data.data;
-			this.hasVolunteers = true;
 			if (!!data.data.courses) {
 				data.data.courses = data.data.courses.reverse();
 			}
 			if (Object.entries(this.volunteerPager.filters).length === 0 && this.volunteerPager.filters.constructor === Object) {
 				if (this.volunteersData.length === 0) {
-					this.hasVolunteers = true;
+					this.hasVolunteers = false;
 				} else {
+					this.hasVolunteers = true;
 					this.nrvol = data.pager.total;
 				}
+			} else {
+				this.hasVolunteers = true;
 			}
 		});
 	}
@@ -202,13 +205,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	getResources() {
 		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data => {
 			this.resourcePager.total = data.pager.total;
-			this.hasResources = true;
 			this.resourceData = data.data;
 			if (Object.entries(this.volunteerPager.filters).length === 0 &&
 				this.volunteerPager.filters.constructor === Object &&
 				this.resourceData.length === 0) {
 
 				this.hasResources = false;
+			} else {
+				this.hasResources = true;
 			}
 		});
 	}
@@ -228,11 +232,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
 	}
-	deleteRes(id: string) {
-		this.resourceService.deleteResource(id).subscribe(resp => {
-			this.getResources();
-		});
-	}
+	// deleteRes(id: string) {
+	// 	this.resourceService.deleteResource(id).subscribe(resp => {
+	// 		this.getResources();
+	// 	});
+	// }
 	/**
 	 * delete NGO
 	 */
@@ -309,9 +313,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			setTimeout(() => this.close(), 5000);
 		});
 	}
+	/**
+	* send info updated and trigger popup
+	*/
 	validateinfo() {
 		this.organisationService.updated(this.ngoid).subscribe(() => {
 			this.updateSent = true;
+			this.needupdate = false;
 			setTimeout(() => this.close(), 5000);
 		});
 	}

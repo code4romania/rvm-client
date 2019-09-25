@@ -8,8 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from '../local-storage.service';
-import { AuthenticationService } from '../authentication/authentication.service'
+import { AuthenticationService } from '../authentication/authentication.service';
 /**
  * Prefixes all requests with `environment.serverUrl`.
  */

@@ -197,7 +197,7 @@
 										class="form-control"
 										[ngClass]="{ 'error': coursenameError }"
 										(selectItem)="selectedcourse($event)"
-										(keyup)="specializationKey($event)"
+										(keyup)="courseKey($event)"
 										[ngbTypeahead]="searchcourse"
 										[resultFormatter]="formatter"
 										[inputFormatter]="formatter"
@@ -227,7 +227,7 @@
 										[(ngModel)]="acreditedby"
 										[ngModelOptions]="{ standalone: true }"
 										type="text"
-										(keyup)="specializationKey($event)"
+										(keyup)="acreditorKey()"
 										[disabled]=static_accreditor
 										class="form-control"
 										[ngbTypeahead]="searchacreditedby"

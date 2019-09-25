@@ -23,7 +23,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
 import { Location } from '@angular/common';
 import { LocationValidation } from '@app/core/validators/location-validation';
-import { UtilService } from '@app/core';
+import { UtilService, UsersService } from '@app/core';
 
 @Component({
 	selector: 'app-organisation-edit',
@@ -66,6 +66,7 @@ export class OrganisationEditComponent implements OnInit {
 		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
 		private utilService: UtilService,
+		private userService: UsersService,
 		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
@@ -84,9 +85,7 @@ export class OrganisationEditComponent implements OnInit {
 			city: [{value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
-		if (this.route.snapshot.paramMap.get('id')) {
-			this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
-		}
+		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
 	}
 
 	formatter = (result: { name: string }) => result.name;
@@ -101,10 +100,10 @@ export class OrganisationEditComponent implements OnInit {
 					name: [data.name ],
 					cover: [data.cover],
 					website: [data.website, [Validators.required, WebsiteValidation.websiteValidation]],
-					contact_person: [data.contact_person, Validators.required],
-					phone: [data.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					contact_person: [data.contact_person.name, Validators.required],
+					phone: [data.contact_person.phone, [Validators.required, PhoneValidation.phoneValidation]],
 					address: [data.address],
-					email: [data.email, [Validators.required, EmailValidation.emailValidation]],
+					email: [data.contact_person.email, [Validators.required, EmailValidation.emailValidation]],
 					county: ['', [Validators.required, LocationValidation.locationValidation]],
 					city: ['', [Validators.required]],
 					comments: [data.comments]

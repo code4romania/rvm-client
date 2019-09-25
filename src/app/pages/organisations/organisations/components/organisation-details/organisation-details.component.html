@@ -6,27 +6,27 @@
 			<ng-template #resource>
 			<app-table-search [pager]="resourcePager" id=2 (searchChanged)="searchChanged($event)"></app-table-search>
 			</ng-template>
-			<button *ngIf="authService.is('DSU') && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0">
+			<button placement="bottom" ngbTooltip="Șterge organizația" *ngIf="authService.is('DSU') && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0">
 				<span class="fa fa-trash-o"></span>
-				<span class="d-none d-lg-inline">&nbsp;&nbsp;Șterge Organizația</span>
+				<span class="d-none d-xl-inline">&nbsp;&nbsp;Șterge Organizația</span>
 			</button>
 			<div class="spinner-border text-danger" role="status" *ngIf="authService.is('DSU') && loading">
 				<span class="sr-only">Loading...</span>
 			</div>
-			<button *ngIf="canEdit() && !loading" [routerLink]="['/organisations/edit/',data?._id]" class="btn btn-info mx-2 my-sm-0">
+			<button placement="bottom" ngbTooltip="Modifică organizația" *ngIf="canEdit() && !loading" [routerLink]="['/organisations/edit/',data?._id]" class="btn btn-info mx-2 my-sm-0">
 				<span class="fa fa-edit"></span>
-				<span class="d-none d-lg-inline"> &nbsp;&nbsp;Modifică Organizația</span>
+				<span class="d-none d-xl-inline"> &nbsp;&nbsp;Modifică Organizația</span>
 			</button>
 			<div *ngIf="hasResources && selectedTab === 'resources'">
-				<button (click)="addresource()" class="btn btn-info m-2 my-sm-0 d-block">
+				<button placement="bottom" ngbTooltip="Adaugă o resursă" (click)="addresource()" class="btn btn-info m-2 my-sm-0 d-block">
 					<span class="fa fa-plus-circle"></span>
-					<span class="d-none d-lg-inline">&nbsp;&nbsp;Adaugă Resursă</span>
+					<span class="d-none d-xl-inline">&nbsp;&nbsp;Adaugă Resursă</span>
 				</button>
 			</div>
 			<div *ngIf="hasVolunteers && selectedTab === 'volunteers'">
-				<button (click)="addvolunteer()" class="btn btn-info m-2 my-sm-0 d-block">
+				<button placement="bottom" ngbTooltip="Adaugă un voluntar" (click)="addvolunteer()" class="btn btn-info m-2 my-sm-0 d-block">
 					<span class="fa fa-plus-circle"></span>
-					<span class="d-none d-lg-inline">&nbsp;&nbsp;Adaugă Voluntar</span>
+					<span class="d-none d-xl-inline">&nbsp;&nbsp;Adaugă Voluntar</span>
 				</button>
 			</div>
 		</div>
@@ -35,10 +35,10 @@
 	<ngb-alert *ngIf="updateSent" type="success" (close)="close()">Vă mulțumim că v-ați actualizat înregistrările.</ngb-alert>
 	<div class="ngo-details row">
 		<h3 class="col-md-12">Profil organizație: {{data?.name}}</h3>
-		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoană de contact: {{data?.contact_person}}
+		<h5 class="col-md-12" style="margin-top:5px; font-weight: 500">Persoană de contact: {{data?.contact_person?.name}}
 		</h5>
-		<span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.email}}</span>
-		<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.phone}}</span>
+		<span class="col-md-12"><span class="fa fa-envelope"></span> {{data?.contact_person?.email}}</span>
+		<span class="col-md-12"><span class="fa fa-phone"></span> {{data?.contact_person?.phone}}</span>
 		<span class="col-md-12"><b>Status organizație:</b> {{data?.status || 'activ' }}</span>
 		<span class="col-md-12"><b>Total voluntari:</b> {{nrvol}}</span>
 		<span class="col-md-12"><b>Acoperire:</b> {{data?.cover || 'Națională' }}</span>

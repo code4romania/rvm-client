@@ -11,8 +11,17 @@ import { Subject } from 'rxjs/internal/Subject';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+	/**
+	 * Form that stores login data
+	 */
 	loginForm: FormGroup;
+	/**
+	 * Flag for html loader
+	 */
 	isLoading = false;
+	/**
+	 * Message to be displaied on error
+	 */
 	errorMessage: string;
 	constructor(
 		public router: Router,

@@ -225,20 +225,17 @@ export class AddVolunteerComponent implements OnInit {
 	courseKey(event: any) {
 		if (event.code !== 'Enter') {
 			this.coursenameError = true;
+			this.static_accreditor = false;
+			this.acreditedby = '';
 		}
 	}
-	specializationKey(event: any) {
-		if (event.code !== 'Enter') {
-			this.static_accreditor = false;
-		}
+	acreditorKey() {
+		this.accreditedError = false;
 	}
 
 	selectedcourse(obj: any) {
 		if (obj.item.static_accreditor) {
-			this.acreditedby = {
-				name: obj.item.static_accreditor,
-				id: obj.item.static_accreditor
-			};
+			this.acreditedby = obj.item.static_accreditor;
 			this.static_accreditor = true;
 		} else {
 			this.acreditedby = {

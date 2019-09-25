@@ -17,7 +17,9 @@ export class RedirectGuard implements CanActivate {
 		private router: Router) {
 		this.currentUser = this.authService.user;
 	}
-
+	/**
+	 * Redirect guard will redirect the user to its specific home page.
+	 */
 	canActivate(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot

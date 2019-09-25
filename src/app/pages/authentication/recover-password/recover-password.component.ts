@@ -10,8 +10,17 @@ import { EmailValidation } from '@app/core/validators/email-validation';
 	styleUrls: ['./recover-password.component.scss']
 })
 export class RecoverPasswordComponent implements OnInit {
+	/**
+	 * Form holds data to be completed
+	 */
 	resetPasswordForm: FormGroup;
+	/**
+	 * Flag for html loader
+	 */
 	loading = false;
+	/**
+	 * Message to be displaied on error
+	 */
 	errorMessage: string = null;
 
 	constructor(
@@ -24,7 +33,11 @@ export class RecoverPasswordComponent implements OnInit {
 			email: new FormControl('', [Validators.required, EmailValidation.emailValidation])
 		});
 	}
-
+	/**
+	 * Login with username and password obtained from form {@link resetPasswordForm}.
+	 *
+	 * On success redirects to dashboard
+	 */
 	resetPassword() {
 		this.loading = true;
 		this.authenticationService.recoverPassword(this.resetPasswordForm.value.email).subscribe(response => {
