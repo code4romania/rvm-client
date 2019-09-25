@@ -245,11 +245,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
 	}
-	// deleteRes(id: string) {
-	// 	this.resourceService.deleteResource(id).subscribe(resp => {
-	// 		this.getResources();
-	// 	});
-	// }
+	deleteRes(id: string) {
+		this.resourceService.deleteResource(id).subscribe(resp => {
+			this.getResources();
+		});
+	}
 	/**
 	 * delete NGO
 	 */
