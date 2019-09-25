@@ -96,8 +96,7 @@
 											(sortChanged)="volunteerSortChanged($event)">Nume</th>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="3"
 											(sortChanged)="volunteerSortChanged($event)">Localizare</th>
-										<th scope="col" appTableSort [pager]="volunteerPager" [value]="2"
-											(sortChanged)="volunteerSortChanged($event)">Specializare</th>
+										<th scope="col" class="non-clickable">Specializare</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -242,16 +241,16 @@
 												<span class="fa fa-edit"></span>&nbsp;Editează</button>
 											<button class="d-md-none pull-right btn btn-info"
 												[routerLink]="['/resources/edit/', res._id]">
-												<span class="fa fa-edit"></span></button>	
+												<span class="fa fa-edit"></span></button>		 -->
 											<button class="btn btn-danger m-1 d-none d-md-block" (click)="deleteRes(res._id)">
 												<span class="fa fa-trash-o"></span>&nbsp;Șterge</button>
 											<button class="d-md-none pull-right btn btn-danger" (click)="deleteRes(res._id)"><span
-												class="fa fa-trash-o"></span></button>	 -->
+												class="fa fa-trash-o"></span></button>
 											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-md-none"
 												[routerLink]="['/resources/name',res.slug]">
 												<span class="fa fa-eye"></span></button>
 											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-none d-md-block"
-												[routerLink]="['/resources/name',res.slug]">Vezi detalii</button>
+												[routerLink]="['/resources/name',res.slug]">Edit</button>
 										</td>
 									</tr>
 								</tbody>

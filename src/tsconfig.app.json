@@ -5,7 +5,10 @@
     "types": []
   },
   "exclude": [
-    "src/test.ts",
+    "test.ts",
+    "environments/*",
+    "assets/**/*",
+    "app/core/model/**/*",
     "**/*.spec.ts"
   ]
 }

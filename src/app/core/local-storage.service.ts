@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+/**
+* Create cookie for domain
+*/
 function createCookie(name: any, value: any, days: any) {
 	let date: any, expires;
 
@@ -13,6 +16,9 @@ function createCookie(name: any, value: any, days: any) {
 	document.cookie = name + '=' + value + expires + '; path=/';
 }
 
+/**
+* Read cookie for domain
+*/
 function readCookie(name: any) {
 	const nameEQ = name + '=',
 		ca = document.cookie.split(';');
@@ -30,6 +36,10 @@ function readCookie(name: any) {
 	}
 	return null;
 }
+
+/**
+* Set cookie data
+*/
 function setData(type: any, data: any) {
 	// Convert data into JSON and encode to accommodate for special characters.
 	data = encodeURIComponent(JSON.stringify(data));
@@ -41,6 +51,9 @@ function setData(type: any, data: any) {
 	}
 }
 
+/**
+* Clear all cookies
+*/
 function clearData(type: any) {
 	if (type === 'session') {
 		createCookie(getSessionName(), '', 365);
@@ -49,6 +62,9 @@ function clearData(type: any) {
 	}
 }
 
+/**
+* Get cookie data
+*/
 function getData(type: any) {
 	// Get cookie data.
 	const data =
@@ -59,6 +75,9 @@ function getData(type: any) {
 	return data ? JSON.parse(decodeURIComponent(data)) : {};
 }
 
+/**
+* Get session name
+*/
 function getSessionName() {
 	// If there is no name for this window, set one.
 	// To ensure it's unquie use the current timestamp.
@@ -68,10 +87,19 @@ function getSessionName() {
 	return 'sessionStorage' + window.name;
 }
 
+/**
+ * LocalStorage injectable service
+ */
 @Injectable()
 export class LocalStorageService {
+	/**
+	* Local storage internal variables
+	*/
 	localStorage: any;
 	sessionStorage: any;
+	/**
+	* Local storage wrapper
+	*/
 	constructor() {
 		try {
 			// Test webstorage existence.
@@ -136,15 +164,31 @@ export class LocalStorageService {
 			this.sessionStorage = sessionStorage;
 		}
 	}
+
+	/**
+	* Local storage set variable
+	*/
 	public setItem(key: string, value: any) {
 		return this.localStorage.setItem(key, value);
 	}
+
+	/**
+	* Local storage get variable
+	*/
 	public getItem(key: string) {
 		return this.localStorage.getItem(key);
 	}
+
+	/**
+	* Local storage remove variable
+	*/
 	public clearItem(key: string) {
 		return this.localStorage.removeItem(key);
 	}
+
+	/**
+	* Local storage remove all variables
+	*/
 	public clearAll() {
 		return this.localStorage.clear();
 	}

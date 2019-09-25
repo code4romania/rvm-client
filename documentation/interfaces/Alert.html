@@ -1,0 +1,584 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rvm-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rvm-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>Alert</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/organisations/organisations/components/organisation-details/organisation-details.component.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Alert message interface</p>
+
+            </p>
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#message">message</a>
+                                </li>
+                                <li>
+                                        <a href="#type">type</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="message"></a>
+                                        <span class="name"><b>message</b><a href="#message"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>message:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name"><b>type</b><a href="#type"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	OnInit,
+	ViewChild,
+	AfterContentChecked,
+} from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, Router, NavigationExtras, ParamMap } from &#x27;@angular/router&#x27;;
+import { OrganisationService } from &#x27;../../../organisations.service&#x27;;
+import { NgbModal, NgbTabset } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
+import {
+	FormGroup,
+	Validators,
+	FormBuilder
+} from &#x27;@angular/forms&#x27;;
+import { AuthenticationService } from &#x27;../../../../../core/authentication/authentication.service&#x27;;
+
+import { CitiesCountiesService } from &#x27;../../../../../core/service/cities-counties.service&#x27;;
+import { ResourcesService } from &#x27;@app/pages/resources/resources.service&#x27;;
+import { Location } from &#x27;@angular/common&#x27;;
+import { FiltersService, UsersService } from &#x27;@app/core&#x27;;
+
+/**
+	 * Alert message interface
+	 */
+interface Alert {
+	type: string;
+	message: string;
+}
+
+@Component({
+	selector: &#x27;app-organisation-details&#x27;,
+	templateUrl: &#x27;./organisation-details.component.html&#x27;,
+	styleUrls: [&#x27;./organisation-details.component.scss&#x27;]
+})
+export class NgodetailsComponent implements OnInit, AfterContentChecked {
+
+	/**
+	 * var that holds data about NGO, resources and volunteers
+	 */
+	needupdate &#x3D; false;
+	data: any;
+	resourceData: any[] &#x3D; [];
+	volunteersData: any[] &#x3D; [];
+	/**
+	 * var that holds pager and filters for resources and volunteers
+	 */
+	resourcePager: any &#x3D; {};
+	resourceFiltersSelected &#x3D; Array(2);
+	volunteerPager: any &#x3D; {};
+	volunteerFiltersSelected &#x3D; Array(2);
+	/**
+	 * flag for ngtemplate in HTML
+	 */
+	hasVolunteers &#x3D; false;
+	hasResources &#x3D; false;
+
+	nrvol &#x3D; 0;
+	/**
+	 * flag used to get ID from link and pass it to get method
+	 */
+	ngoid: string;
+	/**
+	 * var for data to send when adding new resource. Only for DSU
+	 */
+	navigationExtras: NavigationExtras;
+	/**
+	 * Fliterable values
+	 */
+	volunteerTypeFilterValues: any[] &#x3D; [];
+	categoryFilterValues: any[] &#x3D; [];
+	specializationFilterValues: any[] &#x3D; [];
+	locationFilterValues: any[] &#x3D; [];
+	/**
+	 * Tabs reference for vefifing which is open
+	 */
+	@ViewChild(&#x27;tabRef&#x27;, { static: true}) tabRef: NgbTabset;
+	tabsInitialized &#x3D; false;
+	selectedTab &#x3D; &#x27;volunteers&#x27;;
+
+	/**
+	 * flag for toast message
+	 */
+	messageSent &#x3D; false;
+	updateSent &#x3D; false;
+	/**
+	 * flag for HTML to display loading animation
+	 */
+	loading &#x3D; false;
+	/**
+	* mapping of object keys to filter recognizable keys
+	*/
+	propertyMap &#x3D; {
+		&#x27;_id&#x27;: &#x27;id&#x27;,
+		&#x27;parent_id&#x27;: &#x27;parent_id&#x27;
+	};
+	/**
+	* store the current voluneer that has courses open
+	*/
+	currentVolunteerId &#x3D; &#x27;&#x27;;
+
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private resourceService: ResourcesService,
+		public authService: AuthenticationService,
+		private organisationService: OrganisationService,
+		private filterService: FiltersService,
+		private location: Location,
+		private userService: UsersService,
+		private citiesandcounties: CitiesCountiesService,
+	) {
+		if (this.router.url.indexOf(&#x27;validate&#x27;) &gt; -1) {
+			this.needupdate &#x3D; true;
+		}
+		/**
+		 * set a specific open tab if necessary
+		 */
+		const navigation &#x3D; this.router.getCurrentNavigation();
+
+		if (navigation &amp;&amp; navigation.extras &amp;&amp; navigation.extras.state) {
+			this.selectedTab &#x3D; navigation.extras.state.tabName;
+		}
+	}
+
+	ngOnInit() {
+		/**
+		 * get values that can be queried for the filters
+		 */
+		this.citiesandcounties.getCounties().subscribe((response: any) &#x3D;&gt; {
+			const aux &#x3D; response;
+			aux.map((elem: { id: any; _id: any; }) &#x3D;&gt; elem.id &#x3D; elem._id);
+			this.locationFilterValues &#x3D; aux;
+		});
+		this.filterService.getCategoryFilters().subscribe((data) &#x3D;&gt; {
+			this.categoryFilterValues &#x3D; data.map((x: any) &#x3D;&gt; {
+				const parent &#x3D; data.find((y: any) &#x3D;&gt; y._id &#x3D;&#x3D;&#x3D; x.parent_id);
+				return {
+					id: x._id,
+					name: x.name,
+					parent_id: x.parent_id,
+					pp: x.parent_id &#x3D;&#x3D;&#x3D; &#x27;0&#x27; ? x.name : ( parent ? parent.name : null),
+					level: x.parent_id &#x3D;&#x3D;&#x3D; &#x27;0&#x27; ? 0 : 1
+				};
+			});
+		});
+		this.filterService.getSpecializationFilters().subscribe((data) &#x3D;&gt; {
+			this.specializationFilterValues &#x3D; data.map((elem: any) &#x3D;&gt; {
+				return {id: elem._id, name: elem.name};
+			});
+		});
+		/**
+		 * get current id, init pager, and get all data with the id
+		 */
+		this.ngoid &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;);
+		this.volunteerPager &#x3D; this.organisationService.getVolunteerPager();
+		this.resourcePager &#x3D; this.organisationService.getResourcePager();
+		this.getData();
+		this.getResources();
+		this.getVolunteers();
+	}
+	/**
+		 * switch tab of necessary
+		 */
+	ngAfterContentChecked() {
+		if (this.tabRef.tabs) {
+			this.tabRef.select(this.selectedTab);
+		}
+	}
+	/**
+		 * get org data
+		 */
+	getData() {
+		this.organisationService.getorganisation(this.ngoid).subscribe(data &#x3D;&gt; {
+			this.data &#x3D; data;
+			this.navigationExtras &#x3D; {
+				state: {
+					ngo: {
+						name: data.name,
+						_id: this.ngoid
+					}
+				}
+			};
+		});
+	}
+		/**
+		 * get volunteers data
+		 */
+	getVolunteers() {
+		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data &#x3D;&gt; {
+			this.volunteerPager.total &#x3D; data.pager.total;
+			this.volunteersData &#x3D; data.data;
+			if (!!data.data.courses) {
+				data.data.courses &#x3D; data.data.courses.reverse();
+			}
+			if (Object.entries(this.volunteerPager.filters).length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; this.volunteerPager.filters.constructor &#x3D;&#x3D;&#x3D; Object) {
+				if (this.volunteersData.length &#x3D;&#x3D;&#x3D; 0) {
+					this.hasVolunteers &#x3D; false;
+				} else {
+					this.hasVolunteers &#x3D; true;
+					this.nrvol &#x3D; data.pager.total;
+				}
+			} else {
+				this.hasVolunteers &#x3D; true;
+			}
+		});
+	}
+	/**
+		 * get resourcesData
+		 */
+	getResources() {
+		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data &#x3D;&gt; {
+			this.resourcePager.total &#x3D; data.pager.total;
+			this.resourceData &#x3D; data.data;
+			if (Object.entries(this.volunteerPager.filters).length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+				this.volunteerPager.filters.constructor &#x3D;&#x3D;&#x3D; Object &amp;&amp;
+				this.resourceData.length &#x3D;&#x3D;&#x3D; 0) {
+
+				this.hasResources &#x3D; false;
+			} else {
+				this.hasResources &#x3D; true;
+			}
+		});
+	}
+	/**
+		 * resource filter callback. Filters added to pager and then a request is made
+		 * @param {number} id the index in the pager filters and filters Selected array
+		 */
+	resourcefilterChanged(id: number) {
+		this.resourcePager.filters[id] &#x3D;  this.resourceFiltersSelected[id].map((elem: any) &#x3D;&gt; elem.id).join(&#x27;,&#x27;);
+		this.getResources();
+	}
+/**
+	 * volunteer filter callback. Filters added to pager and then a request is made
+	 * @param {number} id the index in the pager filters and filters Selected array
+	 */
+	volunteerfilterChanged(id: number) {
+		this.volunteerPager.filters[id] &#x3D; this.volunteerFiltersSelected[id].map((elem: any) &#x3D;&gt; elem.id).join(&#x27;,&#x27;);
+		this.getVolunteers();
+	}
+	// deleteRes(id: string) {
+	// 	this.resourceService.deleteResource(id).subscribe(resp &#x3D;&gt; {
+	// 		this.getResources();
+	// 	});
+	// }
+	/**
+	 * delete NGO
+	 */
+	deleteSelf() {
+		if (this.authService.user._id &#x3D;&#x3D;&#x3D; this.data._id) {
+			if (confirm(&#x27;Sunteți sigur că doriți să vă ștergeți contul?&#x27;)) {
+				this.loading &#x3D; true;
+				this.organisationService.deleteorganisation(this.ngoid).subscribe(data &#x3D;&gt; {
+					this.loading &#x3D; false;
+					this.authService.setCredentials();
+					this.router.navigateByUrl(&#x27;/login&#x27;);
+				}, () &#x3D;&gt; {
+					this.location.back();
+				});
+			}
+		} else {
+			if (confirm(&#x27;Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.&#x27;)) {
+				this.loading &#x3D; true;
+				this.organisationService.deleteorganisation(this.ngoid).subscribe(data &#x3D;&gt; {
+					this.loading &#x3D; false;
+					this.router.navigateByUrl(&#x27;/organisations&#x27;);
+				}, () &#x3D;&gt; {
+					this.loading &#x3D; false;
+				});
+			}
+		}
+	}
+	/**
+	 *  navigate to add resource with ngo data
+	 */
+	addresource() {
+		this.router.navigateByUrl(&#x27;/resources/add&#x27;, this.navigationExtras);
+	}
+	/**
+	 *  navigate to add volunteer with ngo data
+	 */
+	addvolunteer() {
+		this.router.navigateByUrl(&#x27;/volunteers/add&#x27;, this.navigationExtras);
+	}
+	/**
+	* sort callback for volunteers table
+	*/
+	volunteerSortChanged(pager: any) {
+		this.volunteerPager &#x3D; pager;
+		this.getVolunteers();
+	}
+	/**
+	* sort callback for resource table
+	*/
+	resourceSortChanged(pager: any) {
+		this.resourcePager &#x3D; pager;
+			this.getResources();
+	}
+/**
+	* search callback for both tabels
+	*/
+	searchChanged(pager: any) {
+		if (pager.search !&#x3D;&#x3D; &#x27;&#x27;) {
+			if (this.selectedTab &#x3D;&#x3D;&#x3D; &#x27;volunteers&#x27;) {
+				this.volunteerPager &#x3D; pager;
+				this.getVolunteers();
+			} else {
+				this.resourcePager &#x3D; pager;
+				this.getResources();
+			}
+		}
+	}
+	/**
+	* send manual notification and trigger popup
+	*/
+	sendNotification() {
+		this.organisationService.sendUpdateDataEmail(this.ngoid).subscribe(() &#x3D;&gt; {
+			this.messageSent &#x3D; true;
+			setTimeout(() &#x3D;&gt; this.close(), 5000);
+		});
+	}
+	/**
+	* send info updated and trigger popup
+	*/
+	validateinfo() {
+		this.organisationService.updated(this.ngoid).subscribe(() &#x3D;&gt; {
+			this.updateSent &#x3D; true;
+			this.needupdate &#x3D; false;
+			setTimeout(() &#x3D;&gt; this.close(), 5000);
+		});
+	}
+	/**
+	* manual close for message send popup
+	*/
+	close() {
+		this.messageSent &#x3D; false;
+		this.updateSent &#x3D; false;
+	}
+	/**
+	* expand volunteer specialization row for a specific volunteer
+	* @param {string} volunteerId  of the current voluneer that is referenced
+	* @param {boolean} status is open or is cloed
+	*/
+	openMenu(volunteerId: string, status: boolean) {
+		if (status) {
+			this.currentVolunteerId &#x3D; volunteerId;
+		} else {
+			this.currentVolunteerId &#x3D; null;
+		}
+	}
+
+	canEdit() {
+		if (this.data) {
+			return this.authService.is(&#x27;DSU&#x27;) || (this.authService.is(&#x27;NGO&#x27;) &amp;&amp; this.data._id &#x3D;&#x3D;&#x3D; this.authService.user.organisation._id);
+		} else {
+			return false;
+		}
+	}
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Alert.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

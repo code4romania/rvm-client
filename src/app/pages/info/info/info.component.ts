@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './info.component.html',
 	styleUrls: ['./info.component.scss']
 })
-/*
-* Component to show on info page. All data is static
-*/
-export class InfoComponent implements OnInit {
 
+export class InfoComponent implements OnInit {
+	/**
+	* Component to show on info page. All data is static
+	*/
 	constructor() { }
 
 	ngOnInit() {

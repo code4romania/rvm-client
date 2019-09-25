@@ -1,6 +1,9 @@
 import { AbstractControl } from '@angular/forms';
 
 export class PhoneValidation {
+	/**
+	* Phone validator for reactive forms
+	*/
 	static phoneValidation(abstractControl: AbstractControl): any {
 		const phone = abstractControl.value;
 		const reg = new RegExp('^[+]{0,1}[0-9]+$');

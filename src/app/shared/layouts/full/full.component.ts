@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+/**
+	 * @ignore
+	 */
 @Component({
 	selector: 'app-full-layout',
 	templateUrl: './full.component.html',

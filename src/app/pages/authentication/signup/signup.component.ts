@@ -5,18 +5,21 @@ import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
-/*
-*	@Ignore
-*/
+
 @Component({
 	selector: 'app-signup',
 	templateUrl: './signup.component.html',
 	styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+	/**
+	 * Signup internal variables
+	 */
 	signupForm: FormGroup;
 	isLoading = false;
-
+	/**
+	* Component to show signup page
+	*/
 	constructor(
 		public router: Router,
 		private formBuilder: FormBuilder,
@@ -25,8 +28,15 @@ export class SignupComponent implements OnInit {
 		this.createForm();
 	}
 
+	/**
+	 * Angular ng on init
+	 */
 	ngOnInit() {}
 
+
+	/**
+	 * Signup method called on form submit
+	 */
 	signup() {
 		this.isLoading = true;
 		this.authenticationService
@@ -48,6 +58,9 @@ export class SignupComponent implements OnInit {
 			);
 	}
 
+	/**
+	 * Sign up form definition for reactive forms
+	 */
 	private createForm() {
 		this.signupForm = this.formBuilder.group({
 			firstName: ['', [Validators.required]],

@@ -18,7 +18,7 @@
 		"e2e": "ng e2e",
 		"generate": "ng generate",
 		"compodoc:gen": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
-		"compodoc:serve": "./node_modules/.bin/compodoc -s src/tsconfig.app.json",
+		"compodoc:serve": "./node_modules/.bin/compodoc -s -p src/tsconfig.app.json -w",
 		"compodoc": "npm run compodoc:gen && npm run compodoc:serve",
 		"precommit": "lint-staged",
 		"lint": "tslint --fix --config tslint.json --project tsconfig.json",

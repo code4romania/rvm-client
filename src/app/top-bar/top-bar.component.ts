@@ -9,12 +9,16 @@ import { Router } from '@angular/router';
 })
 
 export class TopBarComponent implements OnInit {
-
+	/**
+	 * top bar to be shown over all the other components
+	 */
 	constructor(public authService: AuthenticationService,
 		private router: Router) {}
 
 	ngOnInit() { }
-
+/**
+	 * logout from account
+	 */
 	logout() {
 		this.authService.logout().subscribe(
 		(didlogout: Boolean) => {
@@ -26,7 +30,9 @@ export class TopBarComponent implements OnInit {
 			console.log('logout error: ', error);
 		});
 	}
-
+/**
+	 * go to home path on icon click
+	 */
 	goToDashboard() {
 		this.router.navigate(['/' + this.authService.homePath()], {
 			replaceUrl: true

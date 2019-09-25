@@ -19,6 +19,9 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
 import { FiltersService, UsersService } from '@app/core';
 
+/**
+	 * Alert message interface
+	 */
 interface Alert {
 	type: string;
 	message: string;

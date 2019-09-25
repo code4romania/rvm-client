@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 
 import { LocalStorageService } from '@app/core/local-storage.service';
 
+/**
+* Local storage variable name
+*/
 const credentialsKey = 'credentials';
 
 /**
@@ -18,6 +21,9 @@ export class AuthenticationService {
 	private roles = ['OFF', 'INS', 'NGO', 'DSU'];
 	private homes = ['', 'users', 'organisations/id/:id', 'organisations'];
 
+	/**
+	* Authentication service constructor.
+	*/
 	constructor(
 		private httpClient: HttpClient,
 		private localStorageService: LocalStorageService
@@ -109,6 +115,9 @@ export class AuthenticationService {
 		return this._credentials.token;
 	}
 
+	/**
+	* Get current user access level based on role
+	*/
 	get accessLevel(): any {
 		if (!this.isAuthenticated()) {
 			return;
@@ -116,6 +125,9 @@ export class AuthenticationService {
 		return this._credentials.user.role;
 	}
 
+	/**
+	* Get current user role
+	*/
 	get role() {
 		if (!this.isAuthenticated()) {
 			return;
@@ -123,6 +135,9 @@ export class AuthenticationService {
 		return this.roles[this.accessLevel] ? this.roles[this.accessLevel] : 'OFF';
 	}
 
+	/**
+	* Get current user
+	*/
 	get user(): any | null {
 		if (!this.isAuthenticated()) {
 			return;
@@ -131,6 +146,9 @@ export class AuthenticationService {
 		return this._credentials.user;
 	}
 
+	/**
+	* Check if current user has a specific role
+	*/
 	public is(...roles: string[]) {
 		if (!this.isAuthenticated()) {
 			return false;
@@ -139,7 +157,9 @@ export class AuthenticationService {
 		return roles.indexOf(this.role) > -1;
 	}
 
-
+	/**
+	* Get current user home path
+	*/
 	public homePath() {
 		if (!this.isAuthenticated()) {
 			return '';
@@ -169,10 +189,16 @@ export class AuthenticationService {
 		}
 	}
 
+	/**
+	* Recover user password service endpoint
+	*/
 	public recoverPassword(email: string) {
 		return this.httpClient.post('/recoverpassword', {email: email});
 	}
 
+	/**
+	* Reset user password service endpoint
+	*/
 	public resetPassword(password: string, token: string) {
 		return this.httpClient.post('/resetpassword', {password: password, password_confirmation: password, token: token});
 	}

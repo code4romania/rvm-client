@@ -125,17 +125,26 @@ export class AddVolunteerComponent implements OnInit {
 			comments: ['']
 		});
 	}
-
+	/**
+	 * wrapper for the form' controls
+	 */
 	get f() {
 		return this.form.controls;
 	}
-
+/**
+	 * wrapper for the form's controls courses array
+	 */
 	get c() {
 		return this.f.courses as FormArray;
 	}
-
+/**
+	 * formater to display only name from object
+	 */
 	formatter = (result: { name: string }) => result.name;
-
+	/**
+	* trigger for organistion typeahead. registers typing, focus, and click and searches the backend
+	* @param {Observable} text observable event with the filter text
+	*/
 	searchorganisation = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -152,7 +161,10 @@ export class AddVolunteerComponent implements OnInit {
 				return this.filterService.getorganisationbyName(term);
 			}));
 	}
-
+	/**
+	* trigger for course typeahead. registers typing, focus, and click and searches the backend
+	* @param {Observable} text observable event with the filter text
+	*/
 	searchcourse = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -170,7 +182,10 @@ export class AddVolunteerComponent implements OnInit {
 				return this.filterService.getSpecializationFilters(term);
 			}));
 	}
-
+	/**
+	* trigger for accredited by typeahead. registers typing, focus, and click and searches the backend
+	* @param {Observable} text observable event with the filter text
+	*/
 	searchacreditedby = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -188,7 +203,10 @@ export class AddVolunteerComponent implements OnInit {
 				return this.filterService.getAcreditedFilters(term);
 			}));
 	}
-
+/**
+	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
+	 * @param {Observable} text observable event with the filter text
+	 */
 	searchcounty = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -202,7 +220,10 @@ export class AddVolunteerComponent implements OnInit {
 			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
-
+/**
+	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
+	 * @param {Observable} text observable event with the filter text
+	 */
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
 		const clicksWithClosedPopup$ = this.click2$.pipe(
@@ -221,7 +242,10 @@ export class AddVolunteerComponent implements OnInit {
 				}
 			}));
 	}
-
+	/**
+	 * trigger for editing the county field. When activated, disable the static acreditor
+	 * @param {any} event to be verified for which key has been pressed
+	*/
 	courseKey(event: any) {
 		if (event.code !== 'Enter') {
 			this.coursenameError = true;
@@ -229,10 +253,16 @@ export class AddVolunteerComponent implements OnInit {
 			this.acreditedby = '';
 		}
 	}
+	/**
+	 * if error has appeared, when user changes input remove the error
+	 */
 	acreditorKey() {
 		this.accreditedError = false;
 	}
-
+/**
+	 * trigger for select course from course typeahead
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedcourse(obj: any) {
 		if (obj.item.static_accreditor) {
 			this.acreditedby = obj.item.static_accreditor;
@@ -244,7 +274,9 @@ export class AddVolunteerComponent implements OnInit {
 		}
 		this.coursenameError = false;
 	}
-
+/**
+	 * trigger for add course from course table footer. willbe added to form and displayed in table
+	 */
 	addCourse() {
 		const now = new Date();
 		if (!this.acreditedby) {
@@ -278,12 +310,18 @@ export class AddVolunteerComponent implements OnInit {
 		// 	this.dateError = true;
 		// }
 	}
-
+	/**
+	* remove one of the courses from the table by index
+	* @param {number} index result object from typeahead that needs to be stored
+	*/
 	removeCourse(index: number) {
 		const control = <FormArray>this.form.controls.courses;
 		control.removeAt(index);
 	}
-
+	/**
+	 * trigger for select county from county typeahead. will unlock the city field
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
@@ -300,7 +338,10 @@ export class AddVolunteerComponent implements OnInit {
 			this.form.patchValue({county: '', city: ''});
 		}
 	}
-
+/**
+	 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
+	 * @param {any} event to be verified for which key has been pressed
+	*/
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -309,17 +350,25 @@ export class AddVolunteerComponent implements OnInit {
 			this.cityPlaceholder = 'Selectați mai întâi județul';
 		}
 	}
-
+/**
+	 * trigger for select city from city typeahead
+	 * @param {any} val result object from typeahead that needs to be stored
+	 */
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
 		this.form.patchValue({city: val.item});
 	}
-
+	/**
+	* trigger for select organisation from organisation typeahead.
+	* @param {any} val result object from typeahead that needs to be stored
+	*/
 	selectedorganisation(val: { item: any }) {
 		this.form.controls.organisation.markAsTouched();
 		this.form.patchValue({organisation: val.item});
 	}
-
+/**
+	 * Process form values and send data to server. If success close page
+	 */
 	onSubmit() {
 		this.loading = true;
 		const volunteer = {...this.form.value};

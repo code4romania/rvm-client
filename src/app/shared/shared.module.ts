@@ -11,7 +11,9 @@ import { ButtonLoaderComponent } from '@app/shared/button-loader';
 import { TableSortDirective } from './table-sort/table-sort.directive';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { TableSearchComponent } from './table-search/table-search.component';
-
+/**
+	 * module list to be reused
+	 */
 const list = [
 	SpinnerComponent,
 	BreadcrumbComponent,
@@ -22,7 +24,6 @@ const list = [
 	TableSearchComponent,
 	BackButtonComponent
 ];
-
 @NgModule({
 	imports: [
 		CommonModule,

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-
+/**
+	 * pad number with zeros
+	 */
 function padNumber(value: number) {
 	if (isNumber(value)) {
 		return `0${value}`.slice(-2);
@@ -8,18 +10,28 @@ function padNumber(value: number) {
 		return '';
 	}
 }
-
+/**
+	 * check if is number
+	 */
 function isNumber(value: any): boolean {
 	return !isNaN(toInteger(value));
 }
-
+/**
+	 * conver to integer
+	 */
 function toInteger(value: any): number {
 	return parseInt(`${value}`, 10);
 }
 
+/**
+ * Date parser class
+ */
 @Injectable()
 export class DateParserFormatter extends NgbDateParserFormatter {
 
+	/**
+	 * Date parser internal variables
+	 */
 	separator: string;
 	ddIndex: number;
 	mmIndex: number;
@@ -27,9 +39,17 @@ export class DateParserFormatter extends NgbDateParserFormatter {
 	anioSumar = 0;
 	mask = 'dd.MM.yyyy';
 
+	/**
+	 * Date parser set mask value
+	 */
+
 	set Mask(value: string) {
 		this.mask = value;
 	}
+
+	/**
+	 * Date parser constructor
+	 */
 	constructor() {
 		super();
 		this.separator = this.mask.indexOf('-') >= 0 ? '-' : this.mask.indexOf('.') >= 0 ? '.' : '/';
@@ -42,6 +62,10 @@ export class DateParserFormatter extends NgbDateParserFormatter {
 			this.anioSumar = 2000;
 		}
 	}
+
+	/**
+	 * Date parser function
+	 */
 	parse(value: string): NgbDateStruct {
 		if (value) {
 			value = value.replace(/\.|\/|-/g, this.separator);
@@ -75,6 +99,10 @@ export class DateParserFormatter extends NgbDateParserFormatter {
 		return { year: 0, month: 0, day: 0 };
 	}
 
+
+	/**
+	 * Date parser format date
+	 */
 	format(date: NgbDateStruct): string {
 		let stringDate = '';
 		if (date) {

@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './volunteers.component.html',
 	styleUrls: ['./volunteers.component.scss']
 })
-/**
-	 * wrapper for the volunteers pages. acts as frame
-	 */
+
 export class VolunteersComponent implements OnInit {
 
+	/**
+	 * wrapper for the volunteers pages. acts as frame
+	 */
 	constructor() { }
 
 	ngOnInit() {

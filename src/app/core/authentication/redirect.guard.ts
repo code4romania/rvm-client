@@ -9,10 +9,19 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
+/**
+* Redirect if not logged in to home angular guard
+*/
 @Injectable()
 export class RedirectGuard implements CanActivate {
+	/**
+	* Current user data
+	*/
 	private currentUser: any;
 
+	/**
+	* Redirect angular guard constructor
+	*/
 	constructor(private authService: AuthenticationService,
 		private router: Router) {
 		this.currentUser = this.authService.user;

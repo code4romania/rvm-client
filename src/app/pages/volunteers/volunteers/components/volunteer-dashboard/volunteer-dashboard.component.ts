@@ -10,12 +10,25 @@ import { Router } from '@angular/router';
 	styleUrls: ['./volunteer-dashboard.component.scss']
 })
 export class VolunteerDashboardComponent implements OnInit {
+		/**
+	 * store the volunteers list
+	 */
 	volunteersData: any = [];
+		/**
+	 * pager for the resources table
+	 */
 	pager: any = {};
-	filterResult: any = {};
+	/**
+	 * flag for HTML to know how to display data
+	 */
 	displayBlock = true;
+	/**
+	 * selected filters array
+	 */
 	selected = Array(3);
-
+	/**
+	 *values to select from when filtering
+	 */
 	NGOFilterValues: any[];
 	locationFilterValues: any[];
 	specializationFilterValues: any[];
@@ -29,6 +42,9 @@ export class VolunteerDashboardComponent implements OnInit {
 		this.pager = this.volunteerService.getPager();
 
 		this.getData();
+		/**
+		 * get filterable values
+		 */
 		this.citiesandcounties.getCounties('').subscribe((response:  any) => {
 			const aux = response;
 			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
@@ -47,7 +63,9 @@ export class VolunteerDashboardComponent implements OnInit {
 			});
 		});
 
-		/* subscribe to screen size in order to use list instead of grid for display */
+		/**
+	 *observe screen chage and and switch to grid view if screen is too smal
+	 */
 		this.breakpointObserver.observe([
 			'(max-width: 768px)'
 		]).subscribe(result => {
@@ -56,7 +74,10 @@ export class VolunteerDashboardComponent implements OnInit {
 			}
 		});
 	}
+/**
+	 * get data from server and store localy
 
+	 */
 	getData() {
 		this.volunteerService.getVolunteers(this.pager).subscribe((element: any) => {
 			if (element) {
@@ -65,7 +86,9 @@ export class VolunteerDashboardComponent implements OnInit {
 			}
 		});
 	}
-
+/**
+	 * send user to add volunteers. if is NGO the ngo id is static.
+	 */
 	addvolunteer() {
 		if (this.authService.is('NGO')) {
 			const navigationExtras = {
@@ -82,17 +105,26 @@ export class VolunteerDashboardComponent implements OnInit {
 			this.router.navigate(['volunteers/add']);
 		}
 	}
-
+/**
+	 * sort callback. Filters added to pager and then a request is made
+	 * @param {any} pager the pager with the search filer added
+	 */
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-
+/**
+	 * search callback. Filters added to pager and then a request is made
+	 * @param {any} pager the pager with the search filer added
+	 */
 	searchChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-
+/**
+	 * filter callback. Filters added to pager and then a request is made
+	 * @param {number} id the index in the pager filters and filters Selected array
+	 */
 	filterChanged(id?: number) {
 		console.log(this.selected[id]);
 		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
@@ -100,18 +132,21 @@ export class VolunteerDashboardComponent implements OnInit {
 	}
 
 	/**
-	 * set class of display element with list view
+	 * set flag for HTML to list view
 	 */
 	switchtolist() {
 		this.displayBlock = false;
 	}
 	/**
-	 * set class of display element with grid view
+	 * set flag for HTML to grid view
 	 */
 	switchtoblock() {
 		this.displayBlock = true;
 	}
-
+	/**
+	 * navigate to organisation by id
+	 * @param {string} id of the NGO to display
+	 */
 	goToOrganisation(id: string, e: any) {
 		e.preventDefault();
 		this.router.navigate(['../organisations/id/' + id]);
