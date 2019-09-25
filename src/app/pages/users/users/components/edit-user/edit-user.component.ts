@@ -28,9 +28,9 @@ export class EditUserComponent implements OnInit {
 	* user data
 	*/
 	user: any = {};
-	/**
-	* flag -> if information is beeing loaded show loader elements in frontend
-	*/
+/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	/**
 	* references to NGBTypeahead for opening on focus or click

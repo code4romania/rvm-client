@@ -53,8 +53,8 @@ export class OrganisationEditComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	/**
-	* flag -> if information is beeing loaded show loader elements in frontend
-	*/
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	loadingCities = false;
 	/**
@@ -72,7 +72,9 @@ export class OrganisationEditComponent implements OnInit {
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-
+	/**
+	 * build form because otherwise the frontend will crash before the  {@link getOrganisationDetails} ends
+	 */
 		this.form = this.fb.group({
 			name: ['', [Validators.required]],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
@@ -87,7 +89,9 @@ export class OrganisationEditComponent implements OnInit {
 		});
 		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
 	}
-
+	/**
+	 * formatter to extract name from object and display in input
+	 */
 	formatter = (result: { name: string }) => result.name;
 	/**
 	 * get the details of the organisation when edititing

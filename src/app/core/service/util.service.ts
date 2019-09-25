@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-/*
+/**
 	* class with general utility methods
 	*/
 export class UtilService {
 	constructor() {}
-	/*
+	/**
 	* remove all empty prop in obj sent as param
 	* @param {any} obj the object from which to remove
 	* @returns the object without empty properties
@@ -24,7 +24,7 @@ export class UtilService {
 		}
 		return obj;
 	}
-	/*
+	/**
 	* remove all diacrirics from sting
 	* @param {string} term the string with diacritics
 	* @returns the string without diacritics
@@ -38,7 +38,7 @@ export class UtilService {
 		}
 		return term;
 	}
-	/*
+	/**
 	* copy value to clipboard. Create new textarea and apply copy command
 	* @param {string} vale the string to be copied
 	*/

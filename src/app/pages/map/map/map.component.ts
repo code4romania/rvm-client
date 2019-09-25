@@ -7,11 +7,11 @@ import { MapService } from '../map.service';
 	styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-	/*
+	/**
 	* Array of counties and county data
 	*/
 	ids: any[];
-	/*
+	/**
 	* Adjustments to align the icons so that they will fit within the county border
 	*/
 	adjustments: any =	{
@@ -100,15 +100,15 @@ export class MapComponent implements OnInit {
 				res_y: 0
 			},
 		};
-	/*
+	/**
 	* Flag to check if a county is selected
 	*/
 	hasclicked = false;
-	/*
+	/**
 	* Var with the previous selected county
 	*/
 	previous: any;
-		/*
+		/**
 	* Click listener to check if user has clicked on map or outside of it
 	*/
 	@HostListener('click', ['$event']) onClick(event: any) {
@@ -123,8 +123,8 @@ export class MapComponent implements OnInit {
 					/*
 				* if there is a previously selected county, it must be deselected
 				*/
-				if (this.previous && this.previous.id) {
-					this.deselectCountybyId(this.previous.id, this.previous.event);
+				if (this.previous && this.previous.event) {
+					this.deselectCountybyId(this.previous.event);
 				}
 					/*
 				* Select the new county
@@ -135,7 +135,7 @@ export class MapComponent implements OnInit {
 				* User has clicked ouside the map and there already is a selected county. must deslect the county
 				*/
 				if (this.previous && this.previous.id) {
-					this.deselectCountybyId(this.previous.id, this.previous.event);
+					this.deselectCountybyId(this.previous.event);
 				}
 				this.hasclicked = false;
 			}
@@ -210,7 +210,10 @@ export class MapComponent implements OnInit {
 			vol.setAttribute('height', '20');
 		}
 	}
-
+/*
+			* highlight county and add label over it
+			* @param {any} i the id of the county
+			*/
 	selectCountybyId(id: any, e: any) {
 		if (e.target && e.target.nodeName === 'path') {
 			this.previous = {id: id, event: e};
@@ -224,7 +227,12 @@ export class MapComponent implements OnInit {
 			e.target.setAttribute('fill', '#264998');
 		}
 	}
-
+/*
+			* add tooltip on the provided coordinates
+			* @param {any} x the x coord
+			* @param {any} y the y coord
+			* @param {any} txt the string to be shown
+			*/
 	tooltip(x: any, y: any, txt: string) {
 		const text: any = document.getElementById('recttext');
 		text.innerHTML = txt;
@@ -244,7 +252,10 @@ export class MapComponent implements OnInit {
 		}, 0);
 
 	}
-
+/*
+			* delete tooltip
+			*
+			*/
 	tooltipOut() {
 		const text = document.getElementById('recttext');
 		text.innerHTML = '';
@@ -257,12 +268,15 @@ export class MapComponent implements OnInit {
 		rect.setAttribute('width', '0');
 		rect.setAttribute('height', '0');
 	}
-
-	deselectCountybyId(id: any, e: any) {
+/*
+			* dehighlight county by id
+			* @param {any} e the rect of the county
+			*/
+	deselectCountybyId(e: any) {
 		if (e.target && e.target.nodeName === 'path') {
-			const p = e.target.getBBox();
-			const cx = p.x + p.width / 2;
-			const cy = p.y + p.height / 2;
+			// const p = e.target.getBBox();
+			// const cx = p.x + p.width / 2;
+			// const cy = p.y + p.height / 2;
 
 			this.tooltipOut();
 

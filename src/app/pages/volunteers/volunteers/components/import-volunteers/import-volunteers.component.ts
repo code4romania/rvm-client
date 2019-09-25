@@ -13,6 +13,9 @@ export class ImportVolunteersComponent implements OnInit {
 	@ViewChild('csvReader', { static: true }) csvReader: any;
 	public records: any[] = [];
 	file: any = null;
+	/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	organisation_id: any = '';
 	NGOValues: any[] = [];

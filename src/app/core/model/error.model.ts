@@ -1,5 +1,5 @@
 declare namespace ErrorModel {
-	/*
+	/**
 	*	Error object model for consistency
 	*/
 	export interface RootObject {
@@ -8,7 +8,7 @@ declare namespace ErrorModel {
 		message: string;
 		attributes?: any;
 	}
-	/*
+	/**
 	*	Error message object model for consistency
 	*/
 	export interface ErrorMessageObject {

@@ -53,8 +53,8 @@ export class OrganisationaddComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	/**
-	* flag -> if information is beeing loaded show loader elements in frontend
-	*/
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	loadingCities = false;
 	/**
@@ -71,7 +71,9 @@ export class OrganisationaddComponent implements OnInit {
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-
+		/**
+		* init form with empty values
+		*/
 		this.form = this.fb.group({
 			name: ['', [Validators.required]],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],

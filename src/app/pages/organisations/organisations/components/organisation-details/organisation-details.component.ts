@@ -80,7 +80,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	messageSent = false;
 	updateSent = false;
 	/**
-	 * flag for when deleting
+	 * flag for HTML to display loading animation
 	 */
 	loading = false;
 	/**
@@ -90,7 +90,9 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		'_id': 'id',
 		'parent_id': 'parent_id'
 	};
-
+	/**
+	* store the current voluneer that has courses open
+	*/
 	currentVolunteerId = '';
 
 	constructor(

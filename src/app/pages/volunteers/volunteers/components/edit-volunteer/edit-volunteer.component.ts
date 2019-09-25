@@ -80,7 +80,10 @@ export class EditVolunteerComponent implements OnInit {
 	* date object to force course acreditation date in the past
 	*/
 	now: any;
-
+	/**
+	* date object to force course acreditation date in the past
+	*/
+	static_accreditor = false;
 	constructor(
 		public volunteerService: VolunteerService,
 		private filterService: FiltersService,
@@ -216,7 +219,7 @@ export class EditVolunteerComponent implements OnInit {
 		const inputFocus$ = this.focus4$;
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
-				this.accreditedError = true;
+				this.accreditedError = false;
 				return this.filterService.getAcreditedFilters(term);
 			}));
 	}
@@ -257,14 +260,26 @@ export class EditVolunteerComponent implements OnInit {
 	courseKey(event: any) {
 		if (event.code !== 'Enter') {
 			this.coursenameError = true;
+			this.static_accreditor = false;
+			this.acreditedby = '';
 		}
 	}
-
-	selectedcourse() {
+	acreditorKey() {
+		this.accreditedError = false;
+	}
+	selectedcourse(obj: any) {
+		if (obj.item.static_accreditor) {
+			this.acreditedby = obj.item.static_accreditor;
+			this.static_accreditor = true;
+		} else {
+			this.acreditedby = {
+			};
+			this.static_accreditor = false;
+		}
 		this.coursenameError = false;
 	}
-
 	addCourse() {
+		const now = new Date();
 		if (!this.acreditedby) {
 			this.accreditedError = true;
 		}
@@ -274,7 +289,7 @@ export class EditVolunteerComponent implements OnInit {
 		if (!this.obtained) {
 			this.dateError = true;
 		}
-		// if (this.obtained < now) {
+		// if (this.obtained > now) {
 			if (!this.coursenameError && this.coursename && this.acreditedby) {
 				this.c.push(
 					this.fb.group({
@@ -284,7 +299,7 @@ export class EditVolunteerComponent implements OnInit {
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
-
+				this.static_accreditor = false;
 				this.coursename = null;
 				this.acreditedby = null;
 				this.obtained = null;
@@ -349,8 +364,15 @@ export class EditVolunteerComponent implements OnInit {
 		this.volunteerService.editVolunteer(this.route.snapshot.paramMap.get('id'), volunteer).subscribe(() => {
 			this.loading = false;
 			this.location.back();
-		}, () => {
+		}, (obj: any) => {
 			this.loading = false;
+			if (obj.error.errors) {
+				if (obj.error.errors[0].indexOf('CNP') !== -1) {
+					this.form.controls['ssn'].setErrors({'ssn': 'CNP-ul introdus există deja în sistem.'});
+				} else {
+					this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
+				}
+			}
 		});
 	}
 }

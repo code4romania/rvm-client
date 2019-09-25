@@ -14,6 +14,9 @@ export class VolunteerDetailsComponent implements OnInit {
 	hasAlocation = false;
 	hasAccreditation = false;
 	canEdit = true;
+	/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	allocations: any[] = [];
 

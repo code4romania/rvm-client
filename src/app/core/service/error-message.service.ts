@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
-/*
+/**
 	* Error service to show http error message in console
 */
 export class ErrorMessageService {
@@ -14,7 +14,7 @@ export class ErrorMessageService {
 	get errors(): ErrorModel.ErrorMessageObject[] {
 		return this._errors;
 	}
-	/*
+	/**
 	* Add error to errors list
 */
 	public set(error: string, type: string, serviceUrl: string) {
@@ -27,7 +27,7 @@ export class ErrorMessageService {
 		console.log(this._errors);
 		this.errors$.emit(this._errors);
 	}
-/*
+/**
 	* Clear all errors from error list
 */
 	public clear() {

@@ -1,12 +1,12 @@
 declare namespace Authentication {
-	/*
+	/**
 	*	Login payload model to be sent to server
 	*/
 	export interface LoginPayload {
 		username: string;
 		password: string;
 	}
-/*
+/**
 	*	Signup payload model to be sent to server
 	*/
 	export interface SignupPayload {
@@ -17,7 +17,7 @@ declare namespace Authentication {
 		password: string;
 		cPassword: string;
 	}
-	/*
+	/**
 	*	User model to be stored in credentials
 	*/
 	export interface User {
@@ -36,7 +36,7 @@ declare namespace Authentication {
 		organisation?: any;
 		institution?: any;
 	}
-	/*
+	/**
 	*	Credential model to be stored in local storage
 	*/
 	export interface Credentials {

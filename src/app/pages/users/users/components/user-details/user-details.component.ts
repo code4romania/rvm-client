@@ -12,6 +12,9 @@ import { AuthenticationService } from '@app/core';
 export class UserDetailsComponent implements OnInit {
 	data: any;
 	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator General'];
+	/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 
 	constructor(private route: ActivatedRoute,
