@@ -39,10 +39,13 @@ export class AddUserComponent implements OnInit {
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
 	/**
-	* list of institutions to pe parsed
+	* list of institutions or organisation to pe parsed
 	*/
 	institutions: any[] = [];
 	organisations: any[] = [];
+	/**
+	* FLAG form HTML to display form according to role
+	*/
 	displayInstitution = false;
 	displayOrganisation = false;
 
@@ -68,7 +71,9 @@ export class AddUserComponent implements OnInit {
 			this.setPageByRoles();
 		}
 	}
-
+/**
+	 * call function to complete form depending on the role of the user
+	 */
 	setPageByRoles() {
 		if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
 			this.setInstitutions();
@@ -78,7 +83,9 @@ export class AddUserComponent implements OnInit {
 			this.setOrganisations();
 		}
 	}
-
+/**
+	 * set organisation form if needed
+	 */
 	setOrganisations() {
 		this.filterService.getorganisationbyName().subscribe(response => {
 			this.organisations = response;
@@ -87,7 +94,10 @@ export class AddUserComponent implements OnInit {
 		this.displayOrganisation = true;
 		this.form.controls['organisation'].setValidators(Validators.required);
 	}
-
+/**
+	 * set institution form if needed
+	 *
+	 */
 	setInstitutions() {
 		this.filterService.getInstitutionFilters().subscribe(response => {
 			this.institutions = response;
@@ -135,6 +145,9 @@ export class AddUserComponent implements OnInit {
 			this.loading = false;
 		});
 	}
+	/**
+	 * Set error if email already exists
+	 */
 
 	setDuplicateEmailError() {
 		this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});

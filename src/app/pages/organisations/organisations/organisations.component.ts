@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./organisations.component.scss']
 })
 /**
-	 * wrapper for the component's pages. acts as frame
+	 * wrapper for the organisations pages. acts as frame
 	 */
 export class OrganisationsComponent implements OnInit {
 

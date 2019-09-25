@@ -10,7 +10,13 @@ import { AuthenticationService } from '@app/core';
 	styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
+	/**
+	 * store the user details
+	 */
 	data: any;
+	/**
+	 * user types to display instead of role which is number
+	 */
 	userTypes = [ 'Ofițer de intervenție', 'Administratorul instituțional', 'Administrator ONG', 'Administrator General'];
 	/**
 	 * flag for HTML to display loading animation
@@ -28,12 +34,19 @@ export class UserDetailsComponent implements OnInit {
 			this.data = response;
 		});
 	}
-
+/**
+	 * send to edit page
+	 */
 	edit() {
 		this.router.navigate(['/users/edit/' + this.data._id]);
 	}
-
+/**
+	 * send to delete page
+	 */
 	delete() {
+		/**
+	 * check if is the current user deleting his own account
+	 */
 		if (this.authService.user._id === this.data._id) {
 			if (confirm('Sunteți sigur că doriți să vă ștergeți contul?')) {
 				this.loading = true;

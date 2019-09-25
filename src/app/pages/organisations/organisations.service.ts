@@ -81,7 +81,7 @@ export class OrganisationService {
 /**
 	 * edit a new organisation
 	 * @param {any} payload the org data to be modified
-	 * @param {string} id of the organistation to be added
+	 * @param {string} id of the organistation to be modified
 	 * @returns observable with response
 	 */
 	editOrganisation(id: string, payload: any) {

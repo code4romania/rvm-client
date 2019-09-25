@@ -98,32 +98,39 @@
 											(sortChanged)="volunteerSortChanged($event)">Localizare</th>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="2"
 											(sortChanged)="volunteerSortChanged($event)">Specializare</th>
-										<th scope="col" appTableSort [pager]="volunteerPager" [value]="4"
-											(sortChanged)="volunteerSortChanged($event)">Data ultimului update</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr *ngFor="let res of volunteersData">
+										
 										<td>{{res.name}}</td>
 										<td>{{res.city.name}}, {{res.county.name}}</td>
-										
-										<td *ngIf="currentVolunteerId === res._id">
-											<p *ngFor="let course of res.courses">
-												{{ course?.course_name?.name }}
-											</p>
+										<td>
+										<table class="no-borders">
+											<tr *ngFor="let course of res.courses; let i = index; ">
+												<td *ngIf="currentVolunteerId === res._id || i===0">
+														{{ course?.course_name?.name }}
+													</td>
+												<td *ngIf="currentVolunteerId === res._id  || i===0">
+													{{ course.obtained | date: 'dd.MM.yyyy' }}
+												</td>
+											</tr>
+												<!-- <td *ngIf="currentVolunteerId !== res._id">
+														{{ res.courses[0]?.course_name?.name}}
+													</td>
+												<td *ngIf="currentVolunteerId === res._id">
+													<p *ngFor="let course of res.courses">
+														{{ course.obtained | date: 'dd.MM.yyyy' }}
+													</p>
+												</td>
+												
+												<td *ngIf="currentVolunteerId !== res._id">
+													{{ res.courses[0]?.obtained | date: 'dd.MM.yyyy'}}
+												</td> -->
+											
+											</table>
 										</td>
-										<!-- <td *ngIf="currentVolunteerId === res._id">
-											<p *ngFor="let course of res.courses">
-												{{ course.obtained | date: 'dd.MM.yyyy' }}
-											</p>
-										</td> -->
-										<td *ngIf="currentVolunteerId !== res._id">
-											{{ res.courses[0]?.course_name?.name}}
-										</td>
-										<!-- <td *ngIf="currentVolunteerId !== res._id"> -->
-											<td>{{ res.courses[0]?.obtained | date: 'dd.MM.yyyy'}}</td>
-										<!-- </td> -->
 										<td>
 											<div class="d-flex text-right">
 												<button class="btn btn-info m-1 d-md-none"

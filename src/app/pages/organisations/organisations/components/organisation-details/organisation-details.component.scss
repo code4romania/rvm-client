@@ -24,3 +24,10 @@ td{
         word-break: break-word;
     }
 }
+.no-borders{
+    td{
+        border:none;
+        padding: 5px;
+        word-break: normal;
+    }
+}

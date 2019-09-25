@@ -43,6 +43,9 @@ export class EditUserComponent implements OnInit {
 	*/
 	institutions: any[] = [];
 	organisations: any[] = [];
+	/**
+	* FLAG form HTML to display form according to role
+	*/
 	displayInstitution = false;
 	displayOrganisation = false;
 
@@ -67,7 +70,9 @@ export class EditUserComponent implements OnInit {
 			this.getData(this.route.snapshot.paramMap.get('id'));
 		}
 	}
-
+/**
+	 * call function to complete form depending on the role of the user
+	 */
 	setPageByRoles() {
 		if (this.user.role === '1' || this.user.role === '0') {
 			this.form.controls['institution'].setValue(this.user.institution._id);
@@ -89,7 +94,9 @@ export class EditUserComponent implements OnInit {
 			this.setOrganisations();
 		}
 	}
-
+/**
+	 * set organisation form if needed
+	 */
 	setOrganisations() {
 		this.filterService.getorganisationbyName().subscribe(response => {
 			this.organisations = response;
@@ -98,7 +105,10 @@ export class EditUserComponent implements OnInit {
 		this.displayOrganisation = true;
 		this.form.controls['organisation'].setValidators(Validators.required);
 	}
-
+/**
+	 * set institution form if needed
+	 *
+	 */
 	setInstitutions() {
 		this.filterService.getInstitutionFilters().subscribe(response => {
 			this.institutions = response;
@@ -107,7 +117,10 @@ export class EditUserComponent implements OnInit {
 		this.displayInstitution = true;
 		this.form.controls['institution'].setValidators(Validators.required);
 	}
-
+/**
+	 * get user data by id
+	 * @param {string} id of the user to be edited
+	 */
 	getData(id: string) {
 		this.usersService.getUser(id).subscribe(response => {
 			this.user = response;
@@ -164,7 +177,9 @@ export class EditUserComponent implements OnInit {
 			this.loading = false;
 		});
 	}
-
+	/**
+	 * Set error if email already exists
+	 */
 	setDuplicateEmailError() {
 		this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
 	}
