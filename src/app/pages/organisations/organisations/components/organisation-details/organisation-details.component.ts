@@ -202,6 +202,17 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		});
 	}
 	/**
+	 * view details about resource by slug if DSU and by id if NGO
+	 * @param {any} res the resource to be viewed
+	 */
+	viewdetails(res: any) {
+		if (this.authService.is('DSU')) {
+			this.router.navigateByUrl(`/resources/name/${res.slug}`);
+		} else {
+			this.router.navigateByUrl(`/resources/id/${res.resources[0]._id}`);
+		}
+	}
+	/**
 		 * get resourcesData
 		 */
 	getResources() {

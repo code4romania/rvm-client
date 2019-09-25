@@ -231,7 +231,7 @@ body {
         padding: 15px;
 		border-top: 1px solid black;
 		word-break: break-all;
-		max-width: 250px;
+		
     }    
 }
 
@@ -503,4 +503,8 @@ body {
 
 .import-box {
 	position: relative;
+}
+
+.non-clickable{
+    cursor: default !important;
 }
