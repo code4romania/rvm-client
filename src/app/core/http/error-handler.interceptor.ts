@@ -33,7 +33,9 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 			.pipe(catchError(error => this.errorHandler(error)));
 	}
 
-	// Customize the default error handler here if needed
+	/**
+	* Customize the default error handler here if needed
+	*/
 	private errorHandler(
 		response: HttpResponse<any>
 	): Observable<HttpEvent<any>> {

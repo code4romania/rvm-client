@@ -5,6 +5,9 @@ import { AuthenticationService } from '@app/core/authentication/authentication.s
 
 @Injectable()
 export class AnonymousGuard implements CanActivate {
+	/**
+	* Angular anonymous user guard for routes
+	*/
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService

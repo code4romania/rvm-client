@@ -17,8 +17,11 @@ import { AuthenticationService } from '../../../../../core/authentication/authen
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
-import { FiltersService } from '@app/core';
+import { FiltersService, UsersService } from '@app/core';
 
+/**
+	 * Alert message interface
+	 */
 interface Alert {
 	type: string;
 	message: string;
@@ -50,6 +53,8 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	 */
 	hasVolunteers = false;
 	hasResources = false;
+
+	nrvol = 0;
 	/**
 	 * flag used to get ID from link and pass it to get method
 	 */
@@ -78,7 +83,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	messageSent = false;
 	updateSent = false;
 	/**
-	 * flag for when deleting
+	 * flag for HTML to display loading animation
 	 */
 	loading = false;
 	/**
@@ -88,7 +93,9 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		'_id': 'id',
 		'parent_id': 'parent_id'
 	};
-
+	/**
+	* store the current voluneer that has courses open
+	*/
 	currentVolunteerId = '';
 
 	constructor(
@@ -99,6 +106,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		private organisationService: OrganisationService,
 		private filterService: FiltersService,
 		private location: Location,
+		private userService: UsersService,
 		private citiesandcounties: CitiesCountiesService,
 	) {
 		if (this.router.url.indexOf('validate') > -1) {
@@ -180,30 +188,47 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	getVolunteers() {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			this.volunteerPager.total = data.pager.total;
-			if (data.data[0]) {
-				this.hasVolunteers = true;
-
-				if (!!data.data.courses) {
-					data.data.courses = data.data.courses.reverse();
+			this.volunteersData = data.data;
+			if (!!data.data.courses) {
+				data.data.courses = data.data.courses.reverse();
+			}
+			if (Object.entries(this.volunteerPager.filters).length === 0 && this.volunteerPager.filters.constructor === Object) {
+				if (this.volunteersData.length === 0) {
+					this.hasVolunteers = false;
+				} else {
+					this.hasVolunteers = true;
+					this.nrvol = data.pager.total;
 				}
-
-				this.volunteersData = data.data;
 			} else {
-				this.hasVolunteers = false;
+				this.hasVolunteers = true;
 			}
 		});
+	}
+	/**
+	 * view details about resource by slug if DSU and by id if NGO
+	 * @param {any} res the resource to be viewed
+	 */
+	viewdetails(res: any) {
+		if (this.authService.is('DSU')) {
+			this.router.navigateByUrl(`/resources/name/${res.slug}`);
+		} else {
+			this.router.navigateByUrl(`/resources/id/${res.resources[0]._id}`);
+		}
 	}
 	/**
 		 * get resourcesData
 		 */
 	getResources() {
 		this.organisationService.getResourcesbyorganisation(this.ngoid, this.resourcePager).subscribe(data => {
-			if (data.data[0]) {
-				this.hasResources = true;
-				this.resourceData = data.data;
-				this.resourcePager.total = data.pager.total;
-			} else {
+			this.resourcePager.total = data.pager.total;
+			this.resourceData = data.data;
+			if (Object.entries(this.volunteerPager.filters).length === 0 &&
+				this.volunteerPager.filters.constructor === Object &&
+				this.resourceData.length === 0) {
+
 				this.hasResources = false;
+			} else {
+				this.hasResources = true;
 			}
 		});
 	}
@@ -304,9 +329,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			setTimeout(() => this.close(), 5000);
 		});
 	}
+	/**
+	* send info updated and trigger popup
+	*/
 	validateinfo() {
 		this.organisationService.updated(this.ngoid).subscribe(() => {
 			this.updateSent = true;
+			this.needupdate = false;
 			setTimeout(() => this.close(), 5000);
 		});
 	}

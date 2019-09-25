@@ -113,7 +113,9 @@ export class AddResourceComponent implements OnInit {
 			comments: ''
 		});
 	}
-
+/**
+	 * formater to display only name from object
+	 */
 	formatter = (result: { name: string }) => result.name;
 	/**
 	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
@@ -134,7 +136,7 @@ export class AddResourceComponent implements OnInit {
 		);
 	}
 /**
-	 * trigger for city typeahead. registers typing, focus, and click and searches the stored list of cities
+	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
 	 * @param {Observable} text observable event with the filter text
 	 */
 	searchcity = (text$: Observable<string>) => {
@@ -159,7 +161,7 @@ export class AddResourceComponent implements OnInit {
 			}));
 	}
 	/**
-	 * trigger for city typeahead. registers typing, focus, and click and searches the backend
+	 * trigger for organisation typeahead. registers typing, focus, and click and searches the backend
 	 * @param {Observable} text observable event with the filter text
 	 */
 	searchOrganisation = (text$: Observable<string>) => {

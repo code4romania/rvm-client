@@ -11,8 +11,17 @@ import { Location } from '@angular/common';
 	styleUrls: ['./resource-details.component.scss']
 })
 export class ResourcedetailsComponent implements OnInit {
+	/**
+	 * store resource data
+	 */
 	public data: any;
+	/**
+	 * flag for HTML to display edit button
+	 */
 	canEdit = true;
+	/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	constructor(private resourceService: ResourcesService,
 		private route: ActivatedRoute,
@@ -23,11 +32,15 @@ export class ResourcedetailsComponent implements OnInit {
 	ngOnInit() {
 		this.getData();
 	}
-
+/**
+	 * edit this resource
+	 */
 	edit() {
 		this.router.navigateByUrl(`/resources/edit/${this.data._id}`);
 	}
-
+/**
+	 * delete this resource
+	 */
 	deleteSelf() {
 		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
 			this.loading = true;
@@ -39,7 +52,9 @@ export class ResourcedetailsComponent implements OnInit {
 			});
 		}
 	}
-
+/**
+	 * get resource data from server
+	 */
 
 	getData() {
 		this.resourceService.getResource(this.route.snapshot.paramMap.get('id')).subscribe((data) => {

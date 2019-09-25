@@ -7,7 +7,13 @@ import { MapService } from '../map.service';
 	styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+	/**
+	* Array of counties and county data
+	*/
 	ids: any[];
+	/**
+	* Adjustments to align the icons so that they will fit within the county border
+	*/
 	adjustments: any =	{
 			'Dambovita': {
 				vol_x: -15,
@@ -94,36 +100,49 @@ export class MapComponent implements OnInit {
 				res_y: 0
 			},
 		};
+	/**
+	* Flag to check if a county is selected
+	*/
 	hasclicked = false;
+	/**
+	* Var with the previous selected county
+	*/
 	previous: any;
-	// @HostListener('mouseover', ['$event']) onMouseOver(event: any) {
-	// 	if (event.target.nodeName === 'path') {
-	// 		//
-	// 	}
-	// }
-
-	// @HostListener('mouseout', ['$event']) onMouseOut(event: any) {
-	// 	if (event.target.nodeName === 'path') {
-	// 		this.deselectCountybyId(event.target.getAttribute('id'), event);
-	// 	}
-	// }
-
+		/**
+	* Click listener to check if user has clicked on map or outside of it
+	*/
 	@HostListener('click', ['$event']) onClick(event: any) {
-		console.log(this.ids);
+		/*
+		* If a county is already selected
+		*/
 		if (this.hasclicked) {
+			/*
+			* if the user has clicked inside the rect of a county
+			*/
 			if (event.target.nodeName === 'path') {
-				if (this.previous && this.previous.id) {
-					this.deselectCountybyId(this.previous.id, this.previous.event);
+					/*
+				* if there is a previously selected county, it must be deselected
+				*/
+				if (this.previous && this.previous.event) {
+					this.deselectCountybyId(this.previous.event);
 				}
+					/*
+				* Select the new county
+				*/
 				this.selectCountybyId(event.target.getAttribute('id'), event);
 			} else {
+				/*
+				* User has clicked ouside the map and there already is a selected county. must deslect the county
+				*/
 				if (this.previous && this.previous.id) {
-					this.deselectCountybyId(this.previous.id, this.previous.event);
+					this.deselectCountybyId(this.previous.event);
 				}
 				this.hasclicked = false;
-				// this.deselectCountybyId(this.previous.id, this.previous.id);
 			}
 		} else {
+				/*
+			* First time click. If inside a county select the county
+			*/
 			if (event.target.nodeName === 'path') {
 				this.hasclicked = true;
 				this.selectCountybyId(event.target.getAttribute('id'), event);
@@ -135,6 +154,9 @@ export class MapComponent implements OnInit {
 	}
 
 	ngOnInit() {
+			/*
+			* Get nr of resources and nr of volunteers per county
+			*/
 		this.mapservice.getMapFilters().subscribe((res: any) => {
 			res.map((elem: any) => {
 
@@ -154,7 +176,9 @@ export class MapComponent implements OnInit {
 			}, 0);
 		});
 	}
-
+	/*
+			* If there are volunteers or resources in a county, render icons over said county
+			*/
 	setIcons() {
 		for (let i = 0; i < this.ids.length; i++) {
 			if (this.ids[i].name !== 'București' && this.ids[i].name !== 'Ilfov') {
@@ -162,7 +186,10 @@ export class MapComponent implements OnInit {
 			}
 		}
 	}
-
+/*
+			* Add icons over a specific county
+			* @param {any} i the id of the county
+			*/
 	setIcon(i: any) {
 		const p = (document.getElementById(this.ids[i].id) as any).getBBox();
 		const cx = p.x + p.width / 2;
@@ -183,7 +210,10 @@ export class MapComponent implements OnInit {
 			vol.setAttribute('height', '20');
 		}
 	}
-
+/*
+			* highlight county and add label over it
+			* @param {any} i the id of the county
+			*/
 	selectCountybyId(id: any, e: any) {
 		if (e.target && e.target.nodeName === 'path') {
 			this.previous = {id: id, event: e};
@@ -197,7 +227,12 @@ export class MapComponent implements OnInit {
 			e.target.setAttribute('fill', '#264998');
 		}
 	}
-
+/*
+			* add tooltip on the provided coordinates
+			* @param {any} x the x coord
+			* @param {any} y the y coord
+			* @param {any} txt the string to be shown
+			*/
 	tooltip(x: any, y: any, txt: string) {
 		const text: any = document.getElementById('recttext');
 		text.innerHTML = txt;
@@ -217,7 +252,10 @@ export class MapComponent implements OnInit {
 		}, 0);
 
 	}
-
+/*
+			* delete tooltip
+			*
+			*/
 	tooltipOut() {
 		const text = document.getElementById('recttext');
 		text.innerHTML = '';
@@ -230,12 +268,15 @@ export class MapComponent implements OnInit {
 		rect.setAttribute('width', '0');
 		rect.setAttribute('height', '0');
 	}
-
-	deselectCountybyId(id: any, e: any) {
+/*
+			* dehighlight county by id
+			* @param {any} e the rect of the county
+			*/
+	deselectCountybyId(e: any) {
 		if (e.target && e.target.nodeName === 'path') {
-			const p = e.target.getBBox();
-			const cx = p.x + p.width / 2;
-			const cy = p.y + p.height / 2;
+			// const p = e.target.getBBox();
+			// const cx = p.x + p.width / 2;
+			// const cy = p.y + p.height / 2;
 
 			this.tooltipOut();
 

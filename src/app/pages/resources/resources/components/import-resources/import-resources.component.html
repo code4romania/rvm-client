@@ -7,14 +7,13 @@
 	<div class="note col-md-7">
 		<span>
 			Vrei să adaugi resurse individual?
-			<a [routerLink]="['../add']">Adaugă o resursa</a>.
+			<a ref="javascript:void(0)" [routerLink]="['../add']">Adaugă o resursa</a>.
 		</span>
 	</div>
 
 	<p class="m-2" *ngIf="!!file">{{ file.name }}</p>
 
-	<div *ngIf="!loading">
-		
+	<div *ngIf="!loading" class="col-md-7">
 		<select class="form-control mt-2" *ngIf="authService.is('DSU')" [(ngModel)]="organisation_id">
 			<option value="" selected disabled>Vă rugăm să selectați o organizație la care să adaugați</option>
 			<option *ngFor="let org of NGOValues; let i=index" [value]="org._id">
@@ -22,23 +21,23 @@
 			</option>
 		</select>
 		<div class="import-box" >
-			<button class="btn btn-info mt-4 btn-import">
+			<button class="btn btn-info mt-4 btn-import" [disabled]="organisation_id==''">
 				Importați un fișier CSV
 			</button>
-			<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
+			<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" [disabled]="organisation_id==''"
 				accept=".csv" class="import-csv" />
 		</div>
 	</div>
 	<div class="spinner-border text-green" role="status" *ngIf="loading">
 		<span class="sr-only">Loading...</span>
 	</div>
-	<div class="row" *ngIf="resp.has_errror">
-			<span>Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}</span>
-			<span>Au apărut erori la unele rânduri:</span>
-			<div class="col-md-12" *ngFor="let err of resp.errors">
-				<span>Rândul {{err.line}}: </span>
-				<span>err.error</span>
+	<div class="error-table" *ngIf="resp.has_errors">
+		<span>Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}. Au apărut erori la unele rânduri:</span>
+		<div class="col-md-12" *ngFor="let err of resp.errors">
+			<span>Rândul {{err.line}}: </span>
+			<div *ngFor="let ex of err.error">
+				<span>{{ex.value}} &nbsp; - &nbsp; {{ex.error}}</span>
 			</div>
-			
 		</div>
+	</div>
 </div>

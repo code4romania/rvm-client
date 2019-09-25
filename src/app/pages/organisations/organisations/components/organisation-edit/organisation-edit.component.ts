@@ -23,7 +23,7 @@ import { PhoneValidation } from '@app/core/validators/phone-validation';
 import { WebsiteValidation } from '@app/core/validators/website-validation';
 import { Location } from '@angular/common';
 import { LocationValidation } from '@app/core/validators/location-validation';
-import { UtilService } from '@app/core';
+import { UtilService, UsersService } from '@app/core';
 
 @Component({
 	selector: 'app-organisation-edit',
@@ -53,8 +53,8 @@ export class OrganisationEditComponent implements OnInit {
 	focus2$ = new Subject<string>();
 	click2$ = new Subject<string>();
 	/**
-	* flag -> if information is beeing loaded show loader elements in frontend
-	*/
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	loadingCities = false;
 	/**
@@ -66,12 +66,15 @@ export class OrganisationEditComponent implements OnInit {
 		private route: ActivatedRoute,
 		private organisationService: OrganisationService,
 		private utilService: UtilService,
+		private userService: UsersService,
 		private location: Location,
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder) { }
 
 	ngOnInit() {
-
+	/**
+	 * build form because otherwise the frontend will crash before the  {@link getOrganisationDetails} ends
+	 */
 		this.form = this.fb.group({
 			name: ['', [Validators.required]],
 			website: ['', [Validators.required, WebsiteValidation.websiteValidation]],
@@ -84,11 +87,11 @@ export class OrganisationEditComponent implements OnInit {
 			city: [{value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
-		if (this.route.snapshot.paramMap.get('id')) {
-			this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
-		}
+		this.getOrganisationDetails(this.route.snapshot.paramMap.get('id'));
 	}
-
+	/**
+	 * formatter to extract name from object and display in input
+	 */
 	formatter = (result: { name: string }) => result.name;
 	/**
 	 * get the details of the organisation when edititing
@@ -101,10 +104,10 @@ export class OrganisationEditComponent implements OnInit {
 					name: [data.name ],
 					cover: [data.cover],
 					website: [data.website, [Validators.required, WebsiteValidation.websiteValidation]],
-					contact_person: [data.contact_person, Validators.required],
-					phone: [data.phone, [Validators.required, PhoneValidation.phoneValidation]],
+					contact_person: [data.contact_person.name, Validators.required],
+					phone: [data.contact_person.phone, [Validators.required, PhoneValidation.phoneValidation]],
 					address: [data.address],
-					email: [data.email, [Validators.required, EmailValidation.emailValidation]],
+					email: [data.contact_person.email, [Validators.required, EmailValidation.emailValidation]],
 					county: ['', [Validators.required, LocationValidation.locationValidation]],
 					city: ['', [Validators.required]],
 					comments: [data.comments]

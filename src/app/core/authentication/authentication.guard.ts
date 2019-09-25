@@ -5,6 +5,9 @@ import { AuthenticationService } from '@app/core/authentication/authentication.s
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
+	/**
+	* Angular auth guard for routes
+	*/
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService

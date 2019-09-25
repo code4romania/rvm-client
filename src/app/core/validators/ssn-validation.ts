@@ -2,6 +2,9 @@ import { AbstractControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
 export class SsnValidation {
+	/**
+	* CNP validator for reactive forms
+	*/
 	static ssnValidation(abstractControl: AbstractControl): any {
 		const ssn = parseInt(abstractControl.value, 10) || 0;
 

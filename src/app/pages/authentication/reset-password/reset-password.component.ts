@@ -13,10 +13,23 @@ import { PasswordValidation } from '@app/core/validators/password-validation';
 	templateUrl: './reset-password.component.html',
 	styleUrls: ['./reset-password.component.scss']
 })
+
 export class ResetPasswordComponent implements OnInit {
+	/**
+	 * Form holds data to be completed
+	 */
 	resetPasswordForm: FormGroup;
+	/**
+	 * reset password token received from reset link
+	 */
 	token: string;
+	/**
+	 * error message to display in html
+	 */
 	errorMessage: string = null;
+	/**
+	 * flag for HTML to display a loading animation
+	 */
 	loading = false;
 
 	constructor(
@@ -27,6 +40,9 @@ export class ResetPasswordComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		/**
+		 * Check if user is logged in. if true, redirect to login
+		 */
 		if (!!this.authenticationService.isAuthenticated()) {
 			this.authenticationService.logout().subscribe(
 				(didlogout: Boolean) => {
@@ -39,11 +55,15 @@ export class ResetPasswordComponent implements OnInit {
 				});
 		}
 
-
+			/**
+		 * get token from email link
+		 */
 		this.route.params.subscribe(params => {
 			this.token = params['token'];
 		});
-
+		/**
+		 * build form that holds data to be completed
+		 */
 		this.resetPasswordForm = this.formBuilder.group(
 			{
 				password: ['',
@@ -66,7 +86,9 @@ export class ResetPasswordComponent implements OnInit {
 			}
 		);
 	}
-
+	/**
+		 * function to call on form submit
+		 */
 	resetPassword() {
 		this.loading = true;
 		this.authenticationService.resetPassword(this.resetPasswordForm.value.password, this.token).subscribe(response => {

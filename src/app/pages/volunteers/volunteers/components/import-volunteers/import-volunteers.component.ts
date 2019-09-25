@@ -10,17 +10,35 @@ import { Router } from '@angular/router';
 	styleUrls: ['./import-volunteers.component.scss']
 })
 export class ImportVolunteersComponent implements OnInit {
+	/**
+	 * csv reader input reference
+	 */
 	@ViewChild('csvReader', { static: true }) csvReader: any;
-	public records: any[] = [];
+	/**
+	 * the file that will be extracted from file input
+	 */
 	file: any = null;
+	/**
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
+	/**
+	 * id of the org to which the resources will be added
+	 */
 	organisation_id: any = '';
+	/**
+	 * list of all the NGO from which the DSU can select
+	 */
 	NGOValues: any[] = [];
-	resp: any;
+	/**
+	 * response from server. contains all errors
+	 */
+	public resp: any = {};
 	constructor(private volunteerService: VolunteerService,
 		private filterService: FiltersService,
 		private router: Router,
 		public authService: AuthenticationService) {
+			this.resp.has_errors = false;
 			if (authService.is('NGO')) {
 				this.organisation_id = this.authService.user.organisation._id;
 			}
@@ -31,7 +49,10 @@ export class ImportVolunteersComponent implements OnInit {
 			this.NGOValues = data;
 		});
 	}
-
+/**
+	 * send file to service and upload to server
+	 * @param {any} event contains the file
+	 */
 	uploadListener($event: any): void {
 		const files = $event.srcElement.files;
 		this.loading = true;
@@ -55,13 +76,19 @@ export class ImportVolunteersComponent implements OnInit {
 			this.loading = false;
 		}
 	}
-
+/**
+	 * check if file is ending with csv
+	 * @param {any} file that will be uploaded
+	 * @returns {boolead}
+	 */
 	isValidCSVFile(file: any) {
 		return file.name.endsWith('.csv');
 	}
-
+/**
+	 * reset file input and response records
+	 * @returns observable with response
+	 */
 	fileReset() {
 		this.csvReader.nativeElement.value = '';
-		this.records = [];
 	}
 }

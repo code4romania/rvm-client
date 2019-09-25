@@ -5,7 +5,7 @@ import {
 	HttpClientModule
 } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
 	AuthenticationGuard,
 	AuthenticationService,
@@ -17,7 +17,6 @@ import {
 	ErrorHandlerInterceptor
 } from '@app/core/http';
 import { LocalStorageService } from '@app/core/local-storage.service';
-import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
 import {
 	ErrorMessageService,
 	UtilService,
@@ -52,10 +51,6 @@ import {
 			useClass: ErrorHandlerInterceptor,
 			multi: true
 		},
-		{
-			provide: RouteReuseStrategy,
-			useClass: RouteReusableStrategy
-		}
 	]
 })
 export class CoreModule {}

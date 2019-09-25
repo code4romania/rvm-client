@@ -1,6 +1,9 @@
 import { AbstractControl } from '@angular/forms';
 
 export class WebsiteValidation {
+	/**
+	* Website validator for reactive forms
+	*/
 	static websiteValidation(abstractControl: AbstractControl): any {
 		const website = abstractControl.value;
 		const reg = new RegExp('^(https?:\\/\\/)?' + // protocol

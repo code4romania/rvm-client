@@ -14,7 +14,9 @@ export class RoleGuard implements CanActivate {
 		private authService: AuthenticationService,
 		private router: Router
 	) {}
-
+	/**
+	 * Roleguyard blocks users of type rescue officer, redirects to login
+	 */
 	canActivate(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot

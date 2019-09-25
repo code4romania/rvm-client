@@ -25,11 +25,19 @@ import { DOCUMENT } from '@angular/common';
 	encapsulation: ViewEncapsulation.None
 })
 export class SpinnerComponent implements OnDestroy {
+	/**
+	 * Variable for spinner visibility status
+	 */
 	public isSpinnerVisible = true;
 
+	/**
+	 * Background input variable
+	 */
 	@Input()
 	public backgroundColor = 'rgba(0, 115, 170, 0.69)';
-
+	/**
+	 * loading screen spinner trigger
+	 */
 	constructor(
 		private router: Router,
 		@Inject(DOCUMENT) private document: Document
@@ -52,6 +60,9 @@ export class SpinnerComponent implements OnDestroy {
 		);
 	}
 
+	/**
+	 * Spinner component destroy method called by Angular internally
+	 */
 	ngOnDestroy(): void {
 		this.isSpinnerVisible = false;
 	}

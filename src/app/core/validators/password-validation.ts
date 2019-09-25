@@ -1,6 +1,9 @@
 import { AbstractControl } from '@angular/forms';
 
 export class PasswordValidation {
+	/**
+	* Match password validator for reactive forms
+	*/
 	static MatchPassword(abstractControl: AbstractControl): any {
 		const password = abstractControl.get('password').value;
 		const confirmPassword = abstractControl.get('confirmPassword').value;
@@ -14,6 +17,9 @@ export class PasswordValidation {
 		return null;
 	}
 
+	/**
+	* Password validator for reactive forms
+	*/
 	static passwordValidation(abstractControl: AbstractControl): any {
 		const number = new RegExp('\\d');
 		const password = abstractControl.value;

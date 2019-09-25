@@ -44,6 +44,7 @@ export class OrganisationsDashboardComponent implements OnInit {
 
 
 	ngOnInit() {
+		this.organisationService.setPager();
 		/**
 		* get and store filter values
 		*/

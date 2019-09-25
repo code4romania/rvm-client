@@ -189,7 +189,7 @@
 											type="text"
 											class="form-control"
 											[ngClass]="{ 'error': coursenameError }"
-											(selectItem)="selectedcourse()"
+											(selectItem)="selectedcourse($event)"
 											(keyup)="courseKey($event)"
 											[ngbTypeahead]="searchcourse"
 											[resultFormatter]="formatter"
@@ -220,6 +220,8 @@
 											[(ngModel)]="acreditedby"
 											[ngModelOptions]="{ standalone: true }"
 											type="text"
+											(keyup)="acreditorKey()"
+											[disabled]=static_accreditor
 											class="form-control"
 											[ngbTypeahead]="searchacreditedby"
 											[resultFormatter]="formatter"
@@ -228,7 +230,7 @@
 											(click)="click4$.next($event.target.value)"
 											#instance="ngbTypeahead"/>
 									</div>
-									<span class="error-message" *ngIf="accreditedError">*Data trebuie să fie anterioară</span>
+									<span class="error-message" *ngIf="accreditedError">*Acest câmp este obligatoriu</span>
 								</td>
 								<td>
 									<button	placement="top" ngbTooltip="Adaugă cursul"
@@ -261,7 +263,7 @@
 				*ngIf="!loading"
 				class=" btn btn-info btn-rounded waves-effect waves-light mt-5 float-right mb-5"
 				type="submit">
-				Editează
+				Salvează
 			</button>
 			<div class="spinner-border text-green float-right mt-5" role="status" *ngIf="loading">
 				<span class="sr-only">Loading...</span>

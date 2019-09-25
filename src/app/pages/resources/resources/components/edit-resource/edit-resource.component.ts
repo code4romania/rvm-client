@@ -30,8 +30,8 @@ export class EditResourceComponent implements OnInit {
 	categories: any[] = [];
 	subCategories: any[] = [];
 	/**
-	* flag -> if information is beeing loaded show loader elements in frontend
-	*/
+	 * flag for HTML to display loading animation
+	 */
 	loading = false;
 	loadingCities = false;
 

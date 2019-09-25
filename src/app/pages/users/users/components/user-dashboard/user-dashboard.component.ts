@@ -17,9 +17,21 @@ import { AuthenticationService, FiltersService } from '@app/core';
 })
 
 export class UserDashboardComponent implements OnInit {
+	/**
+	 * var to hold the users
+	 */
 	data: any[] = [];
+	/**
+	 * pager for the resources table
+	 */
 	pager: any = {};
+	/**
+	 * flag for HTML to know how to display data
+	 */
 	displayBlock = true;
+	/**
+	 * form in which to store the role from the modal
+	 */
 	form: FormGroup;
 	roles = [
 		{
@@ -39,7 +51,13 @@ export class UserDashboardComponent implements OnInit {
 			name: 'Administrator General'
 		},
 	];
+	/**
+	 * selected values for the filter
+	 */
 	selected = Array(1);
+	/**
+	 * insitution to select from
+	 */
 	institutionfiltervalues: any[] = [];
 
 	constructor(private usersService: UsersService,
@@ -69,13 +87,18 @@ export class UserDashboardComponent implements OnInit {
 				role: ['', Validators.required]
 			});
 	}
-
+/**
+	 * get role names from local list to display in select
+	 * @param {string} id of the role to be found in the roles array
+	 */
 	getRole(id: string) {
 		for (const elem of this.roles) {
 			if (elem.id === parseInt(id, 10)) { return elem.name; }
 		}
 	}
-
+/**
+	 * go to add page for rescue officer or open the modal to select type of user
+	 */
 	addUser(content: any) {
 		if (this.authService.is('DSU')) {
 			this.modalService.open(content, { centered: true });
@@ -83,7 +106,10 @@ export class UserDashboardComponent implements OnInit {
 			this.router.navigateByUrl('/users/add/0');
 		}
 	}
+/**
+	 * get data from server and store localy
 
+	 */
 	getData() {
 		this.usersService.getUsers(this.pager).subscribe(element => {
 			if (element.data) {
@@ -92,21 +118,33 @@ export class UserDashboardComponent implements OnInit {
 			}
 		});
 	}
-
+	/**
+	 * go to add page and dismiss the modal
+	 */
 	continue() {
 		this.router.navigateByUrl('/users/add/' + this.form.value.role);
 		this.modalService.dismissAll();
 	}
-
+	/**
+	 * sort callback. Filters added to pager and then a request is made
+	 * @param {any} pager the pager with the search filer added
+	 */
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
+	/**
+	 * search callback. Filters added to pager and then a request is made
+	 * @param {any} pager the pager with the search filer added
+	 */
 	searchChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-
+/**
+	 * filter callback. Filters added to pager and then a request is made
+	 * @param {number} id the index in the pager filters and filters Selected array
+	 */
 	filterChanged(id?: number) {
 		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
@@ -124,7 +162,10 @@ export class UserDashboardComponent implements OnInit {
 	switchtoblock() {
 		this.displayBlock = true;
 	}
-
+	/**
+	 * navigate to organisation by id
+	 * @param {string} id of the NGO to display
+	 */
 	goToOrganisation(id: string, e: any) {
 		e.preventDefault();
 		this.router.navigate(['../organisations/id/' + id]);
