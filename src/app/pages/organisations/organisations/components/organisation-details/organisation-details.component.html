@@ -82,14 +82,14 @@
 								</ngx-multiselect>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3">
-								<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-									class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
-								<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+								<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+									class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+								<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
 									class="fa fa-check-square"></span></button>		
 							</div>
 						</div>
 						<div class="table-responsive-md">
-							<table class="table customTable table-sm">
+							<table class="table customTable table-sm mb-1">
 								<thead>
 									<tr>
 										<th scope="col" appTableSort [pager]="volunteerPager" [value]="1"
@@ -132,10 +132,10 @@
 										</td>
 										<td>
 											<div class="d-flex text-right">
-												<button class="btn btn-info m-1 d-md-none"
+												<button class="btn btn-info ml-5 m-1 d-lg-none"
 													[routerLink]="['/volunteers/id',res._id]">
 													<span class="fa fa-eye"></span></button>
-												<button class="btn btn-info m-1  d-none d-md-block"
+												<button class="btn btn-info m-1 d-none d-lg-block"
 													[routerLink]="['/volunteers/id',res._id]">Vezi detalii</button>
 												<i class="fa fa-chevron-down clickable m-auto" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, true)" *ngIf="currentVolunteerId !== res._id"></i>
 												<i class="fa fa-chevron-up clickable m-auto" [ngClass]="{'show' : res.courses.length > 1, 'hide' : res.courses.length <= 1}" (click)="openMenu(res._id, false)" *ngIf="currentVolunteerId === res._id && res.courses.length > 1"></i>
@@ -153,9 +153,9 @@
 								</ngb-pagination>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3">
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
 										class="fa fa-check-square"></span></button>		
 							</div>
 								
@@ -205,15 +205,15 @@
 									</ngx-multiselect>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
 										class="fa fa-check-square"></span></button>		
 								</div>	
 							</div>
 							
 							<div class="table-responsive-md">
-							<table class="table customTable table-sm">
+							<table class="table customTable table-sm mb-1">
 								<thead>
 									<tr>
 										<!-- sortable="name" (sort)="onSort($event)" -->
@@ -236,21 +236,21 @@
 										<td>{{res.quantity}}</td>
 										<td>{{res.city.name}}, {{res.county.name}}</td>
 										<td class="text-right">
-											<!-- <button class="btn btn-info m-1 d-none d-md-block"
+											<button class="btn btn-info m-1 d-none d-lg-block"
 												[routerLink]="['/resources/edit/', res._id]">
 												<span class="fa fa-edit"></span>&nbsp;Editează</button>
-											<button class="d-md-none pull-right btn btn-info"
+											<button class="d-lg-none m-1 pull-right btn btn-info"
 												[routerLink]="['/resources/edit/', res._id]">
-												<span class="fa fa-edit"></span></button>		 -->
-											<button class="btn btn-danger m-1 d-none d-md-block" (click)="deleteRes(res._id)">
+												<span class="fa fa-edit"></span></button>	
+											<button class="btn btn-danger m-1 d-none d-lg-block" (click)="deleteRes(res._id)">
 												<span class="fa fa-trash-o"></span>&nbsp;Șterge</button>
-											<button class="d-md-none pull-right btn btn-danger" (click)="deleteRes(res._id)"><span
-												class="fa fa-trash-o"></span></button>
-											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-md-none"
-												[routerLink]="['/resources/name',res.slug]">
+											<button class="d-lg-none m-1 pull-right btn btn-danger" (click)="deleteRes(res._id)"><span
+												class="fa fa-trash-o"></span></button>	
+											<!-- <button class="btn btn-info m-1 d-md-none"
+												(click)="viewdetails(res)">
 												<span class="fa fa-eye"></span></button>
-											<button *ngIf="authService.is('DSU')" class="btn btn-info m-1 d-none d-md-block"
-												[routerLink]="['/resources/name',res.slug]">Edit</button>
+											<button  class="btn btn-info m-1 d-none d-md-block"
+												(click)="viewdetails(res)">Vezi detalii</button> -->
 										</td>
 									</tr>
 								</tbody>
@@ -262,9 +262,9 @@
 									</ngb-pagination>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Valideaza datele</button>	
-									<button *ngIf = "authService.is('NGO') && needupdate" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
+									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
 										class="fa fa-check-square"></span></button>		
 								</div>
 							</div>
