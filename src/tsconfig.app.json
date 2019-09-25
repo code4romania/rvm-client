@@ -8,7 +8,6 @@
     "test.ts",
     "environments/*",
     "assets/**/*",
-    "app/core/model/**/*",
     "**/*.spec.ts"
   ]
 }
