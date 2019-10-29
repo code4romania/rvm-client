@@ -137,8 +137,4 @@ export class ResourcesService {
 		}
 		return this.httpClient.get(`/resources/by_slug/${slug}`, {params: params});
 	}
-
-	getTemplate() {
-		return this.httpClient.get('/resources/template');
-	}
 }

@@ -112,8 +112,4 @@ export class VolunteerService {
 	getAllocations(volunteerId: string) {
 		return this.httpClient.get(`/volunteers/${volunteerId}/allocations`);
 	}
-
-	getTemplate() {
-		return this.httpClient.get('/volunteers/template');
-	}
 }

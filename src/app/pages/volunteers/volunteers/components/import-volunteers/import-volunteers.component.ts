@@ -3,6 +3,7 @@ import { VolunteerService } from '@app/pages/volunteers/volunteers.service';
 import { FiltersService, AuthenticationService } from '@app/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
 	selector: 'app-import-volunteers',
@@ -34,6 +35,12 @@ export class ImportVolunteersComponent implements OnInit {
 	 * response from server. contains all errors
 	 */
 	public resp: any = {};
+
+	/**
+	 * Csv download tempalte url
+	 */
+	public templateUrl = environment.serverUrl + '/volunteers/template';
+
 	constructor(private volunteerService: VolunteerService,
 		private filterService: FiltersService,
 		private router: Router,
@@ -90,11 +97,5 @@ export class ImportVolunteersComponent implements OnInit {
 	 */
 	fileReset() {
 		this.csvReader.nativeElement.value = '';
-	}
-
-	getTemplate() {
-		this.volunteerService.getTemplate().subscribe(result => {
-			console.log(result);
-		});
 	}
 }
