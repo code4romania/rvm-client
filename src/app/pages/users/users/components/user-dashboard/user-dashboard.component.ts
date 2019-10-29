@@ -18,7 +18,7 @@ import { AuthenticationService, FiltersService } from '@app/core';
 
 export class UserDashboardComponent implements OnInit {
 	/**
-	 * var to hold the users
+	 * var to hold the users.
 	 */
 	data: any[] = [];
 	/**
@@ -36,7 +36,7 @@ export class UserDashboardComponent implements OnInit {
 	roles = [
 		{
 			id: 0,
-			name: 'Ofițer de intervenție'
+			name: 'Comandant de intervenție'
 		},
 		{
 			id: 1,
