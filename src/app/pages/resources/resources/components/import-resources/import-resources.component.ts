@@ -91,4 +91,10 @@ export class ImportResourcesComponent implements OnInit {
 	fileReset() {
 		this.csvReader.nativeElement.value = '';
 	}
+
+	getTemplate() {
+		this.resourceService.getTemplate().subscribe(result => {
+			console.log(result);
+		});
+	}
 }
