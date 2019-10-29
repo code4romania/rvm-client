@@ -14,7 +14,7 @@ export class RecoverPasswordComponent implements OnInit {
 	 * Form holds data to be completed
 	 */
 	resetPasswordForm: FormGroup;
-/**
+  /**
 	 * flag for HTML to display loading animation
 	 */
 	loading = false;

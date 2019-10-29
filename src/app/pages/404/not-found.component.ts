@@ -7,10 +7,10 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 
 export class NotFoundComponent implements AfterViewInit {
-	/**
+
+  /**
 	* Component to show when a page is not found. Only displays 404 message
 	*/
-
 	ngAfterViewInit() {
 
 	}

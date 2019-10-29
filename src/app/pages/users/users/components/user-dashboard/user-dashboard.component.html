@@ -125,7 +125,11 @@
                     <div class="form-group">
                         <label>Tipul utilizatorului</label>
                         <select formControlName="role" class="form-control">
-                            <option [value]="role.id" *ngFor="let role of roles"> {{role.name}} </option>
+                            <ng-container *ngFor="let role of roles">
+                                <ng-container *ngIf="1 !== role.id">
+                                    <option [value]="role.id" > {{role.name}} </option>
+                                </ng-container>
+                            </ng-container>
                         </select>
                     </div>
                 </div>
