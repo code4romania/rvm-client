@@ -91,4 +91,10 @@ export class ImportVolunteersComponent implements OnInit {
 	fileReset() {
 		this.csvReader.nativeElement.value = '';
 	}
+
+	getTemplate() {
+		this.volunteerService.getTemplate().subscribe(result => {
+			console.log(result);
+		});
+	}
 }
