@@ -149,35 +149,21 @@
 							class="mb-3">
 							<td style="padding-right:15px">
 								<div class="form-group">
-									<input
-									readonly
-										formControlName="course_name"
-										class="form-control"
-										type="text"	/>
+									<input readonly formControlName="course_name" class="form-control" type="text" placeholder="Specializare"/>
 								</div>
 							</td>
 							<td style="padding-right:15px">
 								<div class="form-group">
-									<input	formControlName="obtained"
-									readonly
-										class="form-control"
-										/>
+									<input formControlName="obtained" readonly class="form-control" placeholder="Data acreditării"/>
 								</div>
 							</td>
 							<td>
 								<div class="form-group">
-									<input formControlName="accredited_by"
-										class="form-control"
-										readonly
-										type="text"	/>
+									<input formControlName="accredited_by" class="form-control" readonlytype="text" placeholder="Acreditat de"/>
 								</div>
 							</td>
 							<td>
-								<button
-									placement="top" ngbTooltip="Șterge cursul"
-									(click)="removeCourse(i)"
-									class="btn-danger btn margin-auto-center"
-									type="button">
+								<button placement="top" ngbTooltip="Șterge cursul" (click)="removeCourse(i)" class="btn-danger btn margin-auto-center" type="button">
 									<span class="fa fa-trash"></span>
 								</button>
 							</td>

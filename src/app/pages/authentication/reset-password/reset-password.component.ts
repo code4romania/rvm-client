@@ -55,7 +55,7 @@ export class ResetPasswordComponent implements OnInit {
 				});
 		}
 
-			/**
+		/**
 		 * get token from email link
 		 */
 		this.route.params.subscribe(params => {

@@ -15,8 +15,9 @@ export class TopBarComponent implements OnInit {
 	constructor(public authService: AuthenticationService,
 		private router: Router) {}
 
-	ngOnInit() { }
-/**
+  ngOnInit() { }
+
+  /**
 	 * logout from account
 	 */
 	logout() {
@@ -29,8 +30,9 @@ export class TopBarComponent implements OnInit {
 		(error: any) => {
 			console.log('logout error: ', error);
 		});
-	}
-/**
+  }
+
+  /**
 	 * go to home path on icon click
 	 */
 	goToDashboard() {
