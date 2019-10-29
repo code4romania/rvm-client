@@ -16,7 +16,7 @@
 					</div>
 				</div>
 	
-				<div class="mt-4 col-md-4 col-sm-12">
+				<div class="mt-4 col-md-4 col-sm-12" *ngIf="!authService.is('DSU')">
 					<div class="form-group">
 						<label>CNP *</label>
 						<input

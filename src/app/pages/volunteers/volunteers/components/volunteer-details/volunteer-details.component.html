@@ -18,7 +18,7 @@
             <span class="col-md-12"><span class="fa fa-phone"></span>  {{data?.phone}}</span>
             <span class="col-md-12"><b>Organizație: </b> {{data?.organisation?.name || 'Neafiliat'}}</span>
             <span class="col-md-12"><b>Localizare: </b>{{data?.city.name}}, {{data?.county.name}}</span>
-            <span class="col-md-12"><b>CNP: </b> {{data?.ssn }}</span>
+            <span class="col-md-12" *ngIf="!authService.is('DSU')"><b>CNP: </b> {{data?.ssn }}</span>
             <span class="col-md-12"><b>Profesie: </b> {{data?.job || 'Nici o profesie' }}</span>
             <div class="col-md-12">
                 <span><b>Data ultimului update: </b> {{ (data?.updated_at | date: 'dd.MM.yyyy') || 'Nu există' }}</span>
