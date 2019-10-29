@@ -149,17 +149,17 @@
 							class="mb-3">
 							<td style="padding-right:15px">
 								<div class="form-group">
-									<input readonly formControlName="course_name" class="form-control" type="text" placeholder="Specializare"/>
+									<input readonly formControlName="course_name" class="form-control" type="text"/>
 								</div>
 							</td>
 							<td style="padding-right:15px">
 								<div class="form-group">
-									<input formControlName="obtained" readonly class="form-control" placeholder="Data acreditării"/>
+									<input formControlName="obtained" readonly class="form-control"/>
 								</div>
 							</td>
 							<td>
 								<div class="form-group">
-									<input formControlName="accredited_by" class="form-control" readonlytype="text" placeholder="Acreditat de"/>
+									<input formControlName="accredited_by" class="form-control" readonlytype="text"/>
 								</div>
 							</td>
 							<td>
@@ -189,14 +189,15 @@
 										[inputFormatter]="formatter"
 										(focus)="focus3$.next($event.target.value)"
 										(click)="click3$.next($event.target.value)"
-										#instance="ngbTypeahead"/>
+                    #instance="ngbTypeahead"
+                    placeholder="Specializare"/>
 								</div>
 								<span class="error-message" *ngIf="coursenameError">*Alegeți un curs din listă</span>
 							</td>
 							<td style="padding-right:15px">
 								<div class="form-group">
 									<div class="input-group datepicker">
-										<input class="form-control" placeholder="dd.mm.yyyy" [ngModelOptions]="{ standalone: true }"
+										<input class="form-control" placeholder="Data acreditării: dd.mm.yyyy" [ngModelOptions]="{ standalone: true }"
 										readonly style="background: white;"
 										(focus)="d.open()"
 										name="dp" [(ngModel)]="obtained" ngbDatepicker [maxDate]="now" #d="ngbDatepicker">
@@ -221,7 +222,8 @@
 										[inputFormatter]="formatter"
 										(focus)="focus4$.next($event.target.value)"
 										(click)="click4$.next($event.target.value)"
-										#instance="ngbTypeahead"/>
+                    #instance="ngbTypeahead"
+                    placeholder="Acreditat de"/>
 								</div>
 								<span class="error-message" *ngIf="accreditedError">*Acest câmp este obligatoriu</span>
 							</td>
