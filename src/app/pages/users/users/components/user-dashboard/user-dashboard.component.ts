@@ -36,7 +36,7 @@ export class UserDashboardComponent implements OnInit {
 	roles = [
 		{
 			id: 0,
-			name: 'Ofițer de intervenție'
+			name: 'Comandant de intervenție'
 		},
 		{
 			id: 1,
