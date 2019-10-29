@@ -3,6 +3,7 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 import { FiltersService, AuthenticationService } from '@app/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
 	selector: 'app-import-resources',
@@ -34,6 +35,12 @@ export class ImportResourcesComponent implements OnInit {
 	 * response from server. contains all errors
 	 */
 	public resp: any = {};
+
+	/**
+	 * Csv download tempalte url
+	 */
+	public templateUrl = environment.serverUrl + '/resources/template';
+
 	constructor(private resourceService: ResourcesService,
 		private filterService: FiltersService,
 		private router: Router,
@@ -90,11 +97,5 @@ export class ImportResourcesComponent implements OnInit {
 	 */
 	fileReset() {
 		this.csvReader.nativeElement.value = '';
-	}
-
-	getTemplate() {
-		this.resourceService.getTemplate().subscribe(result => {
-			console.log(result);
-		});
 	}
 }
