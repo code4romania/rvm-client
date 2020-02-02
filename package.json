@@ -26,8 +26,8 @@
 	},
 	"lint-staged": {
 		"src/**/*.ts": [
-			"tslint --fix --config tslint.json --project tsconfig.json",
-			"git add"
+			"npm run format:fix",
+			"npm run lint"
 		]
 	},
 	"private": true,
@@ -46,16 +46,13 @@
 		"@angular/service-worker": "^8.2.4",
 		"@ngtools/webpack": "^8.3.2",
 		"@ngx-lib/multiselect": "^1.0.3",
+		"@ng-bootstrap/ng-bootstrap": "5.0.0",
 		"bootstrap": "^4.3.1",
 		"core-js": "^3.2.1",
 		"custom-select-dropdown": "^1.0.11",
 		"font-awesome": "^4.7.0",
-		"jquery": "^3.4.1",
-		"luxon": "^1.17.2",
 		"moment": "^2.24.0",
-		"popper.js": "^1.15.0",
 		"rxjs": "^6.5.3",
-		"websocket-driver": "^0.7.3",
 		"zone.js": "~0.9.1"
 	},
 	"devDependencies": {
@@ -64,15 +61,10 @@
 		"@angular/compiler-cli": "^8.2.4",
 		"@angular/language-service": "^8.2.4",
 		"@compodoc/compodoc": "^1.1.10",
-		"@ng-bootstrap/ng-bootstrap": "5.0.0",
 		"@types/jasmine": "^3.4.0",
 		"@types/jasminewd2": "~2.0.6",
-		"@types/jquery": "^3.3.31",
-		"@types/luxon": "^1.15.2",
 		"@types/node": "^12.7.4",
-		"@types/tween.js": "^17.2.0",
 		"codelyzer": "~5.1.0",
-		"husky": "^2.7.0",
 		"jasmine-core": "~3.4.0",
 		"jasmine-spec-reporter": "~4.2.1",
 		"karma": "^4.3.0",
@@ -81,7 +73,6 @@
 		"karma-jasmine": "~2.0.1",
 		"karma-jasmine-html-reporter": "^1.4.2",
 		"lint-staged": "^8.2.1",
-		"node-sass": "^4.12.0",
 		"prettier": "^1.18.2",
 		"pretty-quick": "^1.11.1",
 		"protractor": "^5.4.2",
