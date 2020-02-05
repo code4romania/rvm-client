@@ -1,0 +1,32 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <app-back-button></app-back-button>
+            <div class="mx-2 my-sm-0">
+                <button *ngIf="canEdit && !loading" (click)="deleteSelf()" class="btn btn-danger mx-2 my-sm-0"><span
+                    class="fa fa-trash-o"></span>&nbsp;&nbsp;Șterge Resursa</button>
+                <div class="spinner-border text-danger" role="status" *ngIf="canEdit && loading">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <button (click)="edit()" class="mx-2 btn btn-info" *ngIf="canEdit"><span class="fa fa-edit"></span>&nbsp;&nbsp;Modifică</button>
+                <!-- <button></button> -->
+            </div>
+    </nav>
+    <div class="ngo-details row">
+            <h3 class="col-md-12">Nume resursa: {{data?.name}}</h3>
+
+            <span class="col-md-12"><b>Organizație: </b> {{data?.organisation?.name || 'Neafiliat'}}</span>
+            <span class="col-md-12"><b>Localizare: </b>{{data?.city.name}}, {{data?.county.name}}</span>
+            <span *ngIf="data?.address" class="col-md-12"><b>Adresa: </b> {{data?.address }}</span>
+            <span class="col-md-12"><b>Tip Resursa: </b> {{data?.resource_type }}</span>
+            <span class="col-md-12"><b>Comentarii: </b> {{data?.comments}}</span>
+            <div class="col-md-12">
+                <span><b>Data ultimului update: </b> {{ (data?.updated_at | date: 'dd.MM.yyyy') || 'Nu există' }}</span>
+            </div>
+            <div class="col-md-12 mt-3 ml-3">
+                <h4> Categorii: </h4>
+                <span *ngFor = "let elem of data?.categories">
+                    {{elem.name}}
+                </span>
+            </div>
+    </div>
+</div>

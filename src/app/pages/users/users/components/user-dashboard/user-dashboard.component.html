@@ -1,0 +1,143 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <h4 class="navtitle mb-2"> Utilizatori </h4> 
+        <div class="form-inline ml-auto">
+            <app-table-search [pager]="pager" id=1 (searchChanged)="searchChanged($event)"></app-table-search>
+            <div class="btn-group btn-group-toggle m-2 hidden-radio"  ngbRadioGroup name="radioBasic" [(ngModel)]="displayBlock">
+                <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
+                </label>
+                <label ngbButtonLabel (click)="switchtolist()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
+                </label>
+            </div>
+            <button (click)="addUser(content)" class=" add-btn btn-adjusting btn btn-info btn-rounded m-2"><span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Utilizator</button>
+        </div>
+    </nav>
+    <div class="filters my-3 mx-30px row">
+		<span class="padding-rem">Total: {{pager.total}}</span>
+		<span class="padding-rem">&nbsp;&nbsp;</span>
+		<span class="padding-rem">Filtrează după: &nbsp;</span>
+		<ngx-multiselect
+			class="institutie"
+			[(ngModel)]="selected[0]"
+			showMaxLables = "1"
+			[options]="institutionfiltervalues"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)">
+		</ngx-multiselect>
+	</div>
+    <div *ngIf="displayBlock; else displayList" class="cardlist row mt-5">
+        <div *ngFor="let elem of data" class="d-flex col-md-6 col-sm-12 col-lg-4">
+            <div class="card mb-2" style="flex-grow: 1" [routerLink]="['id',elem._id]" >
+                    <div class="card-body">
+                        <a class="btn btn-fix text-left">
+                            <h4 class="card-title">{{ elem.name }}</h4>
+                            <div class="card-text row"> 
+                                <span class="col-md-12">
+                                    <i class="fa fa-envelope"></i>
+                                    {{ elem.email }}
+                                </span>
+                                <span class="col-md-12">
+                                    <i class="fa fa-phone"></i>
+                                    {{ elem.phone }}
+                                </span>
+                            </div>
+                        </a>
+                        
+                        <span *ngIf="!!elem.organisation" class="ml-3"> 
+                            <i class="fa fa-building"></i>
+                            <a class="col-md-12 text-left pl-0" (click)="goToOrganisation(elem.organisation?._id, $event)" href="javascript:void(0);">
+                                {{ elem.organisation.name }}
+                            </a>
+                        </span>
+
+                        <span *ngIf="!!elem.institution" class="ml-3">
+                            <i class="fa fa-building"></i>
+                            {{ elem.institution.name }}
+                        </span>
+
+                        <span *ngIf="elem.role === '3'" class="ml-3">
+                            <i class="fa fa-building"></i>
+                            Administrator General
+                        </span>
+                    </div>
+
+            </div>
+        </div>
+        <div class="col-md-12  mx-30px">
+			<ngb-pagination
+                    [maxSize]="5"
+				[(page)]="pager.page"
+				[pageSize]="pager.size"
+				(pageChange)="getData()"
+				[collectionSize]="pager.total">
+			</ngb-pagination>
+		</div>
+    </div>
+
+    <ng-template #displayList>
+        <div class="table-responsive">
+		<table class="table customTable table-sm">
+			<thead>
+					<tr>
+						<!-- sortable="name" (sort)="onSort($event)" -->
+						<th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">Nume</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">Tip</th>
+						<th scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">Instituție</th>
+						<!-- <th scope="col" appTableSort [pager]="pager" [value]="4" (sortChanged)="sortChanged($event)"></!-->
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let res of data">
+						<!-- <tr> -->
+							<td>{{res.name}}</td>
+							<td>{{getRole(res.role)}}</td>
+							<td>{{res.institution?.name}}</td>
+							<td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi detalii</button></td>
+						</tr>
+					
+				</tbody>
+		</table>
+     </div>
+		<ngb-pagination
+                    [maxSize]="5"
+			[(page)]="pager.page"
+			[pageSize]="pager.size"
+			(pageChange)="getData()"
+			[collectionSize]="pager.total">
+		</ngb-pagination>
+	</ng-template>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Utilizator nou</h4>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="form">
+        <div class="modal-body">
+            <div class="row">
+                <div class="mt-4 col-md-12">
+                    <div class="form-group">
+                        <label>Tipul utilizatorului</label>
+                        <select formControlName="role" class="form-control">
+                            <ng-container *ngFor="let role of roles">
+                                <ng-container *ngIf="1 !== role.id">
+                                    <option [value]="role.id" > {{role.name}} </option>
+                                </ng-container>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ngbAutofocus class="btn btn-info rounded" (click)="continue()" [disabled]="form.invalid">Continuă</button>
+        </div>
+    </form>
+</ng-template>
+    
