@@ -12,9 +12,10 @@ jobs:
     - name: Checkout branch
       uses: actions/checkout@master
     - name: Install dependencies
-      uses: actions/npm@master
+      uses: actions/setup-node@v1
       with:
-        args: install
+        node-version: 12
+      run: npm install
     - name: Update environments file
       env: 
         RVM_BASE_URL: ${{ secrets.RVM_BASE_URL }}
