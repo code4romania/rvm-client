@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-      run: npm install
+    - run: npm install
     - name: Update environments file
       env: 
         RVM_BASE_URL: ${{ secrets.RVM_BASE_URL }}
