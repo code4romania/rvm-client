@@ -12,9 +12,10 @@ jobs:
     - name: Checkout branch
       uses: actions/checkout@master
     - name: Install dependencies
-      uses: actions/npm@master
+      uses: actions/setup-node@v1
       with:
-        args: install
+        node-version: 12
+    - run: npm install
     - name: Update environments file
       env: 
         RVM_BASE_URL: ${{ secrets.RVM_BASE_URL }}
@@ -25,9 +26,7 @@ jobs:
         sed -i "s#SERVER_BASE_URL#${RVM_BASE_URL}#g" $ENVIRONMENTS_FILE
         echo "$(cat $ENVIRONMENTS_FILE)"
     - name: Build the solution
-      uses: actions/npm@master
-      with:
-        args: "run-script build:stage"
+      run: npm run-script build:stage
     - name: Deploy the solution
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
