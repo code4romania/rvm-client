@@ -22,7 +22,7 @@ You can also list any pending features and planned improvements for the project 
 
 ### Programming languages
 
-JavaScript
+TypeScript
 
 ### Platforms
 
