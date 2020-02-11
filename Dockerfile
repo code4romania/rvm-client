@@ -10,7 +10,7 @@ RUN npm ci
 # Bundle app source
 COPY . .
 
-RUN npm run build:prod
+RUN npm run build:local
 
 
 FROM nginx:1.16.1-alpine
