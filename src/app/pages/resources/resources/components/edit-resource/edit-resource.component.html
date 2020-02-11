@@ -1,0 +1,128 @@
+<div class="container mt-5">
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<app-back-button></app-back-button>
+	</nav>
+	<p class="page-title">Modifică resursă:</p>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Nume resursă *</label>
+					<input formControlName="name"
+						[ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
+						class="form-control" type="text" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Categorie *</label>
+					<select class="form-control" (change)="selectedCategory()" formControlName="category">
+						<option *ngFor="let category of categories; let i=index" [value]="category._id">
+							{{category.name}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Subcategorie</label>
+					<select class="form-control" formControlName="subCategory">
+						<option *ngFor="let subCat of subCategories; let i=index" [value]="subCat._id">
+							{{subCat.name}}
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Cantitate *</label>
+					<input formControlName="quantity"
+						[ngClass]="{ 'error': form.controls.quantity.invalid && form.controls.quantity.touched }"
+						class="form-control" type="number" />
+					<span class="error-message"
+						*ngIf="form.controls.quantity.invalid && form.controls.quantity.touched">* Cantitatea trebuie să
+						fie mai mare decât 0.</span>
+				</div>
+			</div>
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Tip *</label>
+					<select class="form-control" formControlName="resource_type"
+						[ngClass]="{ 'error': form.controls.resource_type.invalid && form.controls.resource_type.touched }"
+						class="form-control">
+						<option>Perisabil</option>
+						<option>Neperisabil</option>
+					</select>
+					<span class="error-message"
+						*ngIf="form.controls.resource_type.invalid && form.controls.resource_type.touched">* Trebuie sa
+						alegeți un tip.</span>
+				</div>
+			</div>
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Organizație *</label>
+					<input formControlName="organisation" type="text"
+						[ngClass]="{ 'error': form.controls.organisation.invalid && form.controls.organisation.touched }"
+						(selectItem)="selectedOrganisation($event)" class="form-control"
+						[ngbTypeahead]="searchOrganisation" [resultFormatter]="formatter" [inputFormatter]="formatter"
+						(focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
+						#instance="ngbTypeahead" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Județ *</label>
+					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+						(blur)="selectedCounty($event.target.value)" class="form-control" [ngbTypeahead]="searchcounty"
+						(focus)="focus1$.next($event.target.value)" [inputFormatter]="formatter"
+						[resultFormatter]="formatter" (keyup)="countykey($event)"
+						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
+						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Localitate *</label>
+					<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+						(selectItem)="selectedCity($event)"
+						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
+						placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
+						[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
+						(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
+					<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Adresă</label>
+					<input formControlName="address" class="form-control"
+						[ngClass]="{ 'error': form.controls.address.invalid && form.controls.address.touched }"
+						type="text" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-12">
+				<div class="form-group">
+					<label>Comentarii</label>
+					<textarea rows="3" formControlName="comments"
+						[ngClass]="{ 'error': form.controls.comments.invalid && form.controls.comments.touched }"
+						class="form-control" type="text"></textarea>
+				</div>
+			</div>
+		</div>
+		<button *ngIf="!loading" [disabled]="form.invalid"
+			class="btn btn-info btn-rounded waves-effect waves-light mt-5 float-right" type="submit">
+			Salvează
+		</button>
+		<div class="spinner-border text-green float-right" role="status" *ngIf="loading">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</form>
+</div>

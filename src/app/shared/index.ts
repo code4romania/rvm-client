@@ -6,4 +6,5 @@ export * from './button-loader';
 export * from './layouts';
 export * from './layouts/blank';
 export * from './layouts/full';
+export * from './back-button';
 // end:ng42.barrel

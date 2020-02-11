@@ -1,0 +1,132 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+        <h4 class="navtitle mb-2"> Voluntari </h4> 
+        <div class="form-inline ml-auto">
+            <app-table-search id=3 [pager]="pager" (searchChanged)="searchChanged($event)"></app-table-search>
+            <div class="btn-group btn-group-toggle m-2 hidden-button" ngbRadioGroup name="radioBasic"
+                [(ngModel)]="displayBlock">
+                <label ngbButtonLabel (click)="switchtoblock()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="true"><span class="fa fa-th-large"></span>
+                </label>
+                <label ngbButtonLabel (click)="switchtolist()" class="btn btn-primary">
+                    <input ngbButton type="radio" [value]="false"><span class="fa fa-bars"></span>
+                </label>
+            </div>
+            <button *ngIf ="authService.is('DSU', 'NGO')" (click)="addvolunteer()"  class="add-btn btn-adjusting btn btn-info btn-rounded m-2">
+                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Adaugă Voluntar
+            </button>
+        </div>
+    </nav>
+    <div class="filters  my-3 mx-30px row">
+        <span class='padding-rem'>Total: {{pager.total}}</span>
+        <span class='padding-rem'>&nbsp;&nbsp;</span>
+        <span class='padding-rem'>Filtrează după: &nbsp;</span>
+        <ngx-multiselect
+			class="location"
+			[(ngModel)]="selected[0]"
+			showMaxLables = "1"
+			[options]="locationFilterValues"
+			(onItemClick)="filterChanged(0)"
+			(onSelectNone)="filterChanged(0)"
+			(onSelectAll)="filterChanged(0)">
+		</ngx-multiselect>
+        <span class="vertical-bar">&nbsp;</span>
+        <ngx-multiselect
+			class="specialization"
+			[(ngModel)]="selected[1]"
+			showMaxLables = "1"
+			[options]="specializationFilterValues"
+			(onItemClick)="filterChanged(1)"
+			(onSelectNone)="filterChanged(1)"
+			(onSelectAll)="filterChanged(1)">
+		</ngx-multiselect>
+        <span *ngIf="authService.is('DSU')" class="vertical-bar">&nbsp;</span>
+        <ngx-multiselect
+            *ngIf="authService.is('DSU')"
+            class="ngo"
+            [(ngModel)]="selected[2]"
+            showMaxLables = "1"
+            [options]="NGOFilterValues"
+            (onItemClick)="filterChanged(2)"
+            (onSelectNone)="filterChanged(2)"
+            (onSelectAll)="filterChanged(2)">
+        </ngx-multiselect>
+        </div>
+
+    <div *ngIf="displayBlock; else displayList" class="mt-5 cardlist row">
+        <div *ngFor="let elem of volunteersData" class="d-flex col-md-6 col-sm-12 col-lg-4">
+            <div class="card mb-2" style="flex-grow: 1">
+                <div class="card-body" [routerLink]="['id',elem._id]">
+                    <a class="btn btn-fix text-left d-block">
+                        <h4 class="card-title">{{elem.name}}</h4>
+                        <div class="card-text row">
+                            <span class="col-md-12">
+                                <i class="fa fa-envelope"></i>
+                                {{ elem.email }}
+                            </span>
+                            <span class="col-md-12">
+                                <i class="fa fa-phone"></i>
+                                {{ elem.phone }}
+                            </span>
+                            <span *ngIf="!!elem.organisation && !authService.is('INS')" class="col-md-12">
+                                <i class="fa fa-building"></i>
+                                <a (click)="goToOrganisation(elem.organisation._id, $event)" href="javascript:void(0);" class="ml-1">{{ elem.organisation.name }}</a>        
+                            </span>
+                            <span *ngIf="!elem.organisation && !authService.is('INS')" class="col-md-12"> 
+                                <i class="fa fa-building"></i>
+                                Neafiliat
+                            </span>        
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mx-30px">
+                <ngb-pagination
+                    [maxSize]="5"
+                    [(page)]="pager.page"
+                    [pageSize]="pager.size"
+                    (pageChange)="getData()"
+                    [collectionSize]="pager.total">
+                </ngb-pagination>
+            </div>
+    </div>
+
+    <ng-template #displayList>
+        <div class="table-responsive">
+            <table class="table customTable table-sm">
+                <thead>
+                    <tr>
+                        <!-- sortable="name" (sort)="onSort($event)" -->
+                        <th scope="col" appTableSort [pager]="pager" [value]="1" (sortChanged)="sortChanged($event)">
+                            Nume</th>
+                        <th scope="col" appTableSort [pager]="pager" [value]="2" (sortChanged)="sortChanged($event)">
+                            Locație</th>
+                        <th *ngIf="!authService.is('INS')" scope="col" appTableSort [pager]="pager" [value]="3" (sortChanged)="sortChanged($event)">
+                            Organizație</th>
+                        <th scope="col" class="non-clickable">Specializări</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of volunteersData">
+                        <!-- <tr> -->
+                        <td>{{res.name}}</td>
+                        <td>{{res.city?.name}}, {{res.county?.name}}</td>
+                        <td *ngIf="!authService.is('INS')">{{res.organisation?.name || 'Neafiliat'}}</td>
+                        <td><div *ngFor="let elem of res?.courses">
+                                {{elem.course_name.name}}
+                            </div></td>
+                        <!-- <td>{{res.updated_at}}</td> -->
+                        <td class="text-right"><button class="btn btn-info" [routerLink]="['id',res._id]">Vezi
+                                detalii</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <ngb-pagination
+                    [maxSize]="5" [(page)]="pager.page" [pageSize]="pager.size" (pageChange)="getData()"
+            [collectionSize]="pager.total">
+        </ngb-pagination>
+    </ng-template>
+</div>

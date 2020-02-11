@@ -8,33 +8,33 @@ import { FullComponent } from '@app/shared/layouts/full/full.component';
 import { SpinnerComponent } from '@app/shared/spinner.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonLoaderComponent } from '@app/shared/button-loader';
-import { FormErrorWrapperComponent } from '@app/shared/form-error-wrapper/form-error-wrapper.component';
-
+import { TableSortDirective } from './table-sort/table-sort.directive';
+import { BackButtonComponent } from './back-button/back-button.component';
+import { TableSearchComponent } from './table-search/table-search.component';
+/**
+	 * module list to be reused
+	 */
+const list = [
+	SpinnerComponent,
+	BreadcrumbComponent,
+	BlankComponent,
+	FullComponent,
+	ButtonLoaderComponent,
+	TableSortDirective,
+	TableSearchComponent,
+	BackButtonComponent
+];
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    NgbModule,
-    ReactiveFormsModule
-  ],
-  declarations: [
-    SpinnerComponent,
-    BreadcrumbComponent,
-    BlankComponent,
-    FullComponent,
-    ButtonLoaderComponent,
-    FormErrorWrapperComponent
-  ],
-  exports: [
-    SpinnerComponent,
-    BreadcrumbComponent,
-    BlankComponent,
-    FullComponent,
-    ButtonLoaderComponent,
-    FormErrorWrapperComponent
-  ],
-  entryComponents: [],
-  providers: []
+	imports: [
+		CommonModule,
+		FormsModule,
+		RouterModule,
+		NgbModule,
+		ReactiveFormsModule
+	],
+	declarations: [...list],
+	exports: [...list],
+	entryComponents: [],
+	providers: []
 })
 export class SharedModule {}

@@ -1,0 +1,1521 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rvm-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rvm-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>MapComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/map/map/map.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-map</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./map.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./map.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#adjustments">adjustments</a>
+                            </li>
+                            <li>
+                                <a href="#hasclicked">hasclicked</a>
+                            </li>
+                            <li>
+                                <a href="#ids">ids</a>
+                            </li>
+                            <li>
+                                <a href="#previous">previous</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deselectCountybyId">deselectCountybyId</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#selectCountybyId">selectCountybyId</a>
+                            </li>
+                            <li>
+                                <a href="#setIcon">setIcon</a>
+                            </li>
+                            <li>
+                                <a href="#setIcons">setIcons</a>
+                            </li>
+                            <li>
+                                <a href="#tooltip">tooltip</a>
+                            </li>
+                            <li>
+                                <a href="#tooltipOut">tooltipOut</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#click">click</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(mapservice: <a href="../injectables/MapService.html">MapService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/pages/map/map/map.component.ts:151</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>mapservice</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MapService.html" target="_self" >MapService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="click"></a>
+                    <span class="name">
+                        <b>
+                            click
+                        </b>
+                        <a href="#click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>click(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Click listener to check if user has clicked on map or outside of it</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deselectCountybyId"></a>
+                    <span class="name">
+                        <b>
+                            deselectCountybyId
+                        </b>
+                        <a href="#deselectCountybyId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deselectCountybyId(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:275</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:156</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectCountybyId"></a>
+                    <span class="name">
+                        <b>
+                            selectCountybyId
+                        </b>
+                        <a href="#selectCountybyId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectCountybyId(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setIcon"></a>
+                    <span class="name">
+                        <b>
+                            setIcon
+                        </b>
+                        <a href="#setIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setIcon(i: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>i</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setIcons"></a>
+                    <span class="name">
+                        <b>
+                            setIcons
+                        </b>
+                        <a href="#setIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setIcons()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:182</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltip"></a>
+                    <span class="name">
+                        <b>
+                            tooltip
+                        </b>
+                        <a href="#tooltip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>tooltip(x: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, y: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, txt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:236</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>x</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>y</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>txt</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltipOut"></a>
+                    <span class="name">
+                        <b>
+                            tooltipOut
+                        </b>
+                        <a href="#tooltipOut"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>tooltipOut()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/pages/map/map/map.component.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="adjustments"></a>
+                        <span class="name">
+                            <b>
+                            adjustments</b>
+                            <a href="#adjustments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+			&#x27;Dambovita&#x27;: {
+				vol_x: -15,
+				vol_y: 20,
+				res_x: -5,
+				res_y: -10
+			},
+			&#x27;Tulcea&#x27;: {
+				vol_x: -35,
+				vol_y: 0,
+				res_x: -35,
+				res_y: 0
+			},
+			&#x27;Ialomita&#x27;: {
+				vol_x: 0,
+				vol_y: -5,
+				res_x: 0,
+				res_y: -5
+			},
+			&#x27;Constanta&#x27;: {
+				vol_x: 15,
+				vol_y: 0,
+				res_x: 15,
+				res_y: 0
+			},
+			&#x27;Alba&#x27;: {
+				vol_x: 10,
+				vol_y: -20,
+				res_x: 10,
+				res_y: -20,
+			},
+			&#x27;Timis&#x27;: {
+				vol_x: 0,
+				vol_y: -10,
+				res_x: 0,
+				res_y: -10,
+			},
+			&#x27;Cluj&#x27;: {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 0,
+				res_y: 20,
+			},
+			&#x27;Neamt&#x27;: {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0,
+			},
+			&#x27;Brasov&#x27;: {
+				vol_x: -20,
+				vol_y: 0,
+				res_x: -20,
+				res_y: 0,
+			},
+			&#x27;Ilfov&#x27;: {
+				vol_x: -15,
+				vol_y: 10,
+				res_x: 10,
+				res_y: -15
+			},
+			&#x27;Harghita&#x27;: {
+				vol_x: 0,
+				vol_y: 15,
+				res_x: 0,
+				res_y: 15
+			},
+			&#x27;Mehedinti&#x27;: {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 10,
+				res_y: -25
+			},
+			&#x27;Salaj&#x27;: {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0
+			},
+			&#x27;Olt&#x27;: {
+				vol_x: 10,
+				vol_y: 0,
+				res_x: 10,
+				res_y: 0
+			},
+		}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/pages/map/map/map.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Adjustments to align the icons so that they will fit within the county border</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasclicked"></a>
+                        <span class="name">
+                            <b>
+                            hasclicked</b>
+                            <a href="#hasclicked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/pages/map/map/map.component.ts:106</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Flag to check if a county is selected</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ids"></a>
+                        <span class="name">
+                            <b>
+                            ids</b>
+                            <a href="#ids"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/pages/map/map/map.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of counties and county data</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="previous"></a>
+                        <span class="name">
+                            <b>
+                            previous</b>
+                            <a href="#previous"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/pages/map/map/map.component.ts:110</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Var with the previous selected county</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, AfterViewInit, HostListener } from &#x27;@angular/core&#x27;;
+import { MapService } from &#x27;../map.service&#x27;;
+
+@Component({
+	selector: &#x27;app-map&#x27;,
+	templateUrl: &#x27;./map.component.html&#x27;,
+	styleUrls: [&#x27;./map.component.scss&#x27;]
+})
+export class MapComponent implements OnInit {
+	/**
+	* Array of counties and county data
+	*/
+	ids: any[];
+	/**
+	* Adjustments to align the icons so that they will fit within the county border
+	*/
+	adjustments: any &#x3D;	{
+			&#x27;Dambovita&#x27;: {
+				vol_x: -15,
+				vol_y: 20,
+				res_x: -5,
+				res_y: -10
+			},
+			&#x27;Tulcea&#x27;: {
+				vol_x: -35,
+				vol_y: 0,
+				res_x: -35,
+				res_y: 0
+			},
+			&#x27;Ialomita&#x27;: {
+				vol_x: 0,
+				vol_y: -5,
+				res_x: 0,
+				res_y: -5
+			},
+			&#x27;Constanta&#x27;: {
+				vol_x: 15,
+				vol_y: 0,
+				res_x: 15,
+				res_y: 0
+			},
+			&#x27;Alba&#x27;: {
+				vol_x: 10,
+				vol_y: -20,
+				res_x: 10,
+				res_y: -20,
+			},
+			&#x27;Timis&#x27;: {
+				vol_x: 0,
+				vol_y: -10,
+				res_x: 0,
+				res_y: -10,
+			},
+			&#x27;Cluj&#x27;: {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 0,
+				res_y: 20,
+			},
+			&#x27;Neamt&#x27;: {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0,
+			},
+			&#x27;Brasov&#x27;: {
+				vol_x: -20,
+				vol_y: 0,
+				res_x: -20,
+				res_y: 0,
+			},
+			&#x27;Ilfov&#x27;: {
+				vol_x: -15,
+				vol_y: 10,
+				res_x: 10,
+				res_y: -15
+			},
+			&#x27;Harghita&#x27;: {
+				vol_x: 0,
+				vol_y: 15,
+				res_x: 0,
+				res_y: 15
+			},
+			&#x27;Mehedinti&#x27;: {
+				vol_x: 0,
+				vol_y: 20,
+				res_x: 10,
+				res_y: -25
+			},
+			&#x27;Salaj&#x27;: {
+				vol_x: -10,
+				vol_y: 0,
+				res_x: -10,
+				res_y: 0
+			},
+			&#x27;Olt&#x27;: {
+				vol_x: 10,
+				vol_y: 0,
+				res_x: 10,
+				res_y: 0
+			},
+		};
+	/**
+	* Flag to check if a county is selected
+	*/
+	hasclicked &#x3D; false;
+	/**
+	* Var with the previous selected county
+	*/
+	previous: any;
+		/**
+	* Click listener to check if user has clicked on map or outside of it
+	*/
+	@HostListener(&#x27;click&#x27;, [&#x27;$event&#x27;]) onClick(event: any) {
+		/*
+		* If a county is already selected
+		*/
+		if (this.hasclicked) {
+			/*
+			* if the user has clicked inside the rect of a county
+			*/
+			if (event.target.nodeName &#x3D;&#x3D;&#x3D; &#x27;path&#x27;) {
+					/*
+				* if there is a previously selected county, it must be deselected
+				*/
+				if (this.previous &amp;&amp; this.previous.event) {
+					this.deselectCountybyId(this.previous.event);
+				}
+					/*
+				* Select the new county
+				*/
+				this.selectCountybyId(event.target.getAttribute(&#x27;id&#x27;), event);
+			} else {
+				/*
+				* User has clicked ouside the map and there already is a selected county. must deslect the county
+				*/
+				if (this.previous &amp;&amp; this.previous.id) {
+					this.deselectCountybyId(this.previous.event);
+				}
+				this.hasclicked &#x3D; false;
+			}
+		} else {
+				/*
+			* First time click. If inside a county select the county
+			*/
+			if (event.target.nodeName &#x3D;&#x3D;&#x3D; &#x27;path&#x27;) {
+				this.hasclicked &#x3D; true;
+				this.selectCountybyId(event.target.getAttribute(&#x27;id&#x27;), event);
+			}
+		}
+	}
+
+	constructor(private mapservice: MapService) {
+	}
+
+	ngOnInit() {
+			/*
+			* Get nr of resources and nr of volunteers per county
+			*/
+		this.mapservice.getMapFilters().subscribe((res: any) &#x3D;&gt; {
+			res.map((elem: any) &#x3D;&gt; {
+
+				elem.id &#x3D; elem._id;
+				elem.icons &#x3D; [];
+				if (elem.nrResurse !&#x3D;&#x3D; 0) {
+					elem.icons.push(&#x27;res&#x27;);
+				}
+				if (elem.nrVoluntari !&#x3D;&#x3D; 0) {
+					elem.icons.push(&#x27;vol&#x27;);
+				}
+				return elem;
+			});
+			this.ids &#x3D; res;
+			setTimeout(() &#x3D;&gt; {
+				this.setIcons();
+			}, 0);
+		});
+	}
+	/*
+			* If there are volunteers or resources in a county, render icons over said county
+			*/
+	setIcons() {
+		for (let i &#x3D; 0; i &lt; this.ids.length; i++) {
+			if (this.ids[i].name !&#x3D;&#x3D; &#x27;București&#x27; &amp;&amp; this.ids[i].name !&#x3D;&#x3D; &#x27;Ilfov&#x27;) {
+				this.setIcon(i);
+			}
+		}
+	}
+/*
+			* Add icons over a specific county
+			* @param {any} i the id of the county
+			*/
+	setIcon(i: any) {
+		const p &#x3D; (document.getElementById(this.ids[i].id) as any).getBBox();
+		const cx &#x3D; p.x + p.width / 2;
+		const cy &#x3D; p.y + p.height / 2;
+		const adjust &#x3D; this.adjustments[this.ids[i].slug];
+		if (this.ids[i].icons.includes(&#x27;res&#x27;)) {
+			const res &#x3D; document.getElementById(&#x27;icon_res_&#x27; + this.ids[i].id);
+			res.setAttribute(&#x27;x&#x27;,  String(cx - 20 + (adjust ? adjust.res_x : 0)));
+			res.setAttribute(&#x27;y&#x27;,  String(cy - 10 + (adjust ? adjust.res_y : 0)));
+			res.setAttribute(&#x27;width&#x27;, &#x27;20&#x27;);
+			res.setAttribute(&#x27;height&#x27;, &#x27;20&#x27;);
+		}
+		if (this.ids[i].icons.includes(&#x27;vol&#x27;)) {
+			const vol &#x3D; document.getElementById(&#x27;icon_vol_&#x27; + this.ids[i].id);
+			vol.setAttribute(&#x27;x&#x27;,  String(cx + 5 + (adjust ? adjust.vol_x : 0)));
+			vol.setAttribute(&#x27;y&#x27;,  String(cy - 10 + (adjust ? adjust.vol_y : 0)));
+			vol.setAttribute(&#x27;width&#x27;, &#x27;20&#x27;);
+			vol.setAttribute(&#x27;height&#x27;, &#x27;20&#x27;);
+		}
+	}
+/*
+			* highlight county and add label over it
+			* @param {any} i the id of the county
+			*/
+	selectCountybyId(id: any, e: any) {
+		if (e.target &amp;&amp; e.target.nodeName &#x3D;&#x3D;&#x3D; &#x27;path&#x27;) {
+			this.previous &#x3D; {id: id, event: e};
+			const p &#x3D; e.target.getBBox();
+			const cx &#x3D; p.x + p.width / 2;
+			const cy &#x3D; p.y + p.height / 2;
+			this.tooltip(cx, cy,
+				this.ids.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id).name +
+				&#x27;&lt;br/&gt; Resurse: &#x27; + this.ids.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id).nrResurse +
+				&#x27;&lt;br/&gt; Voluntari: &#x27; + this.ids.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id).nrVoluntari);
+			e.target.setAttribute(&#x27;fill&#x27;, &#x27;#264998&#x27;);
+		}
+	}
+/*
+			* add tooltip on the provided coordinates
+			* @param {any} x the x coord
+			* @param {any} y the y coord
+			* @param {any} txt the string to be shown
+			*/
+	tooltip(x: any, y: any, txt: string) {
+		const text: any &#x3D; document.getElementById(&#x27;recttext&#x27;);
+		text.innerHTML &#x3D; txt;
+		const p &#x3D; text.getBBox();
+		setTimeout(function() {
+			text.setAttribute(&#x27;width&#x27;, p.width - 110);
+			text.setAttribute(&#x27;height&#x27;, p.height + 110);
+			text.setAttribute(&#x27;x&#x27;, String(x - p.width / 2 - p.x));
+			text.setAttribute(&#x27;y&#x27;,  String(y - p.height / 2 - p.y));
+			text.setAttribute(&#x27;fill&#x27;, &#x27;#000000&#x27;);
+			const rect &#x3D; document.getElementById(&#x27;recttest&#x27;);
+			rect.setAttribute(&#x27;x&#x27;,   String(x - (p.width / 2) - 5));
+			rect.setAttribute(&#x27;y&#x27;,   String(y - (p.height / 2) - 5));
+			rect.setAttribute(&#x27;width&#x27;, p.width + 10);
+			rect.setAttribute(&#x27;height&#x27;, p.height + 10);
+			rect.setAttribute(&#x27;fill&#x27;, &#x27;#ffffff&#x27;);
+		}, 0);
+
+	}
+/*
+			* delete tooltip
+			*
+			*/
+	tooltipOut() {
+		const text &#x3D; document.getElementById(&#x27;recttext&#x27;);
+		text.innerHTML &#x3D; &#x27;&#x27;;
+		text.setAttribute(&#x27;x&#x27;, &#x27;0&#x27;);
+		text.setAttribute(&#x27;y&#x27;, &#x27;0&#x27;);
+
+		const rect &#x3D; document.getElementById(&#x27;recttest&#x27;);
+		rect.setAttribute(&#x27;x&#x27;, &#x27;0&#x27;);
+		rect.setAttribute(&#x27;y&#x27;, &#x27;0&#x27;);
+		rect.setAttribute(&#x27;width&#x27;, &#x27;0&#x27;);
+		rect.setAttribute(&#x27;height&#x27;, &#x27;0&#x27;);
+	}
+/*
+			* dehighlight county by id
+			* @param {any} e the rect of the county
+			*/
+	deselectCountybyId(e: any) {
+		if (e.target &amp;&amp; e.target.nodeName &#x3D;&#x3D;&#x3D; &#x27;path&#x27;) {
+			// const p &#x3D; e.target.getBBox();
+			// const cx &#x3D; p.x + p.width / 2;
+			// const cy &#x3D; p.y + p.height / 2;
+
+			this.tooltipOut();
+
+			e.target.setAttribute(&#x27;fill&#x27;, &#x27;#f3d973&#x27;);
+		}
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-ph mt-2&quot;&gt;
+    &lt;div class&#x3D;&quot;svg-box&quot;&gt;
+&lt;svg 
+    class&#x3D;&quot;svg-box-content&quot;
+    viewBox&#x3D;&quot;0 0 1000 705&quot;
+ preserveAspectRatio&#x3D;&quot;none&quot;
+    version&#x3D;&quot;1.1&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink&#x3D;&quot;http://www.w3.org/1999/xlink&quot;&gt;
+    &lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m373.8 546.1l0.8 3.5 0.1 1.2 0.5 1.3 0.8 1.1 1.9 1.1 1.6 0.7 3.5 2.2 1 0.9 1 1.3 2.1 7.3 1.3 2.3 1.7 2.6 3 3.1-4 4.7-1.4 2.6-0.1 2.2 0.4 1.1 0.9 1 4.2 2.5 1.2 1.2 2.8 4 0.8 1 2.3 0.6 1.3 0.7 1.5 1.6 1.4 2.9 1.2 1.9 1.3 1.4 2.4 1.9 1 1.2 1.8 3.9 1.1 1.6 1.1 1.3 3.8 2.5 2.7 1 1.2 0.9 2 2.1 0.6 1.4 0 1.2-0.9 2.1-0.2 1.9 0.2 2.2 0.8 3.6 2.2 4 0 0.9-0.7 0.3-3.6-0.7-1 0.1-1.1 1.1-0.1 2.5-1.1 5 0.2 0.9 0.6 0.9 1.8 0.7 3.3 0.2 1.4 0.3 1.4 1.2 0.5 1.4 0.2 1.5-0.2 1.3-0.4 0.9-2 1.2-1 0.7-0.5 1.3 0.2 1.2 1.5 2.5 0.3 1.2-0.2 1-1.3 4-0.6 1-1.5 1.1-0.3 0.7-0.3 1.7-0.5 0.8-1.9 1.5-0.7 1.1-5.8 12.3-36.9-9.3-6-3.6-2.4-0.4-8.9 2-4.6-0.8-11.4-6.3-16.8-0.9-9.6 1.4-3.9 2.1-3.7 0.8-3.2 1.4-22.4 2-3.3-0.8-2.6-2.3-1.3-2.8-0.1-3.3 2.6-11 1.1-3.3 2.1-1.4 2.2-0.3 4.2-1.4 2.3-0.3 3.7-2.1 1.8-4.5-1-4.5-2.3-1.1 8.6-9.1 3.3-0.9 1.1 0.2 0.8-0.5 0.4-1.8 0-1.7-0.3-1.8-0.7-2.4-0.2-1.9 0.3-1.7 2.2-4.8 0.3-1.2 0.5-3.7 0.5-2.6 0.6-1.9 0.9-1.3 5.6-3.2 1.4-0.2 2.1 0.4 0.6-0.2 0.2-1-0.3-0.8-1.4-1.1-3.3-0.4-1.2-0.3-0.8-0.6-0.4-1 0-1 0.8-3.2 0.2-1.2 0.4-0.8 0.8-0.8 2.1-0.7 1.6-0.8 1.4-1.6 1.4-2.1 2.3-2 0-0.6-2.4-0.9 0.4-0.5 1.4-0.7 6.6-0.4 1.3-0.9 1.7-0.7 2.6-0.6 5.8 0.3 1.5-1.7 9.7-6.8 10-3.2 5-0.3 0.9-0.6 0.5-0.8 0-2.2-0.4-2.7 0.4-2.2 0.1-1.7-0.5-3.8 0.3-2.2 0.5-0.6 1.3-0.1 1.4 0.6 1 1.1z&quot; id&#x3D;&quot;county_romania_dolj_0&quot; name&#x3D;&quot;Dolj&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot;  
+    d&#x3D;&quot;m373.8 546.1l-1-1.1-1.4-0.6-1.3 0.1-0.5 0.6-0.3 2.2 0.5 3.8-0.1 1.7-0.4 2.2 0.4 2.7 0 2.2-0.5 0.8-0.9 0.6-5 0.3-10 3.2-9.7 6.8-1.7-3.6-1.1-1.5-5.9-5.9-6.8-4.7-2.5-1.1-18.3-5.3-2-1-2.4-1.7-8.1-7.7-9.4-10.7-0.7-1.7-0.3-1.6-0.4-3.2-1-4-0.2-2.7 0.5-2.5 0.5-1.3 0-1.3-0.5-1.3-1.3-1.3-2.7-1.7-1.7-1.6-1.2-1.4-0.8-1.3-1-1-1.3-0.6-2-0.3-5 0.6-1.6-0.4-1.9-1-4.6-5.9-4.1-1.9 0.6-3.2-0.6-1.2-0.7-0.9-1-0.3-4-0.2-1.3-0.5-0.9-0.7-0.4-1.2 0.2-1.5 0.9-2.1 3-4 7.2-6.4 22.4-8.2 1.1-0.2 1.4 0.7 0.7 1 1 0.8 1.2 0.4 4.6 0.3 0.9 0.4 1.7 1.6 1.1 0.4 1.6-0.1 6.8-2.9 2.6-0.2 1.6 0.2 3.2 1.5 1.3 0 1.7-0.4 5.7-3.5 1.7-0.6 4.7-1 3.6-1.8 2-0.6 2.7 0.1 1.6 0.4 1.5 0.8 1.9 1.4 0.9 0.1 1.1-0.4 1.8-1.5 6-3.3 6.6-2.2 3.2 1 5.1 0 1.2 0.4 2 1.1 1.6 0.3 1.9 0.1 6.5-0.7 1.8 0.4 1.8 1.4 0.8 1.2 0.5 1.7-1.4 5.8-0.2 2.9 0.8 4.1 1.1 2.7 0.5 2.1-0.2 1.8-1.7 5-0.4 2.2 0.4 5.1-0.1 2-2.9 11.7-1.2 3.3-0.5 2-0.2 2.9 1.5 17.1-0.4 7.9-1.5 8.6z&quot; id&#x3D;&quot;county_romania_gorj_32&quot; name&#x3D;&quot;Gorj&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot;  
+    d&#x3D;&quot;m343.6 571.6l-1.5 1.7-5.8-0.3-2.6 0.6-1.7 0.7-1.3 0.9-6.6 0.4-1.4 0.7-0.4 0.5 2.4 0.9 0 0.6-2.3 2-1.4 2.1-1.4 1.6-1.6 0.8-2.1 0.7-0.8 0.8-0.4 0.8-0.2 1.2-0.8 3.2 0 1 0.4 1 0.8 0.6 1.2 0.3 3.3 0.4 1.4 1.1 0.3 0.8-0.2 1-0.6 0.2-2.1-0.4-1.4 0.2-5.6 3.2-0.9 1.3-0.6 1.9-0.5 2.6-0.5 3.7-0.3 1.2-2.2 4.8-0.3 1.7 0.2 1.9 0.7 2.4 0.3 1.8 0 1.7-0.4 1.8-0.8 0.5-1.1-0.2-3.3 0.9-8.6 9.1-2.2-0.9-4.8-0.7-3.8-1.7-22.8-15.6-0.5-2.1 0.4-7.1-0.8-2-2-1-4.4-0.6-4.1-1.8-3.5-3.1-2.8-3.8-1.9-4.3-0.1-1.1 0.3-2.4-0.1-1.1-0.5-1-2.2-2.1-0.3-1.2 0-1.9 0.3-2 0.4-1.4 0.8-0.6 0.9-0.3 3.8-0.2 1.3-0.6 0.9-1.5 0.3-2.5 0.6-2.5 1.6-1.5 2.1-0.6 2.2 0 2.2 0.9 3.8 2.6 2.3 0.6 2.1-0.4 2.3-1.1 1.9-1.9 0.6-2.7-5.3-5.9-1.6-1.2-8.3-1-3.6-1.7-3.6-3-7.3-8.1-1.6-0.9-1.9-0.5-2.6-0.1-1.1 0.9-3.7 4.1-2 1.2-4.4 1-1.6 1.2-0.6 2.3-12 21.8-1.4 1.4-2.5 0.7-2.3-0.3-2.4-1-1.8-1.8-1.1-4.3-1-1-1.2-0.7-1.1-1.1-0.6-1.1-0.5-2.9 5.7-1 1.4 0.2 2.6 0.7 2.5-0.1 1.1-0.6 0.9-1 0.5-1.9-0.1-1.8-0.5-2.1-0.8-2.5-0.1-1.9 0.2-1.9 0.4-1.8 0.7-2.2 1.1-2.5 2.4-4.1 0.9-2.4 0.6-2 0-1.2 0.3-1 0.6-0.8 1.6-0.3 1.1 0.2 1 0.5 3.6 3.7 1.5 0.9 1.1 0.1 3.4-0.1 0.9 0.2 1.5 1.1 1.2 2.3 0.8 0.4 1.1 0.1 1.6-0.3 1.1-0.9 1.1-1.7 1-3.3 1.6-7.1 2.6-6.7 4.5-7.4 1.1-3.5 0.6-2.4 0.5-3.5 0.4-1.8 0.8-2.2 3.4-5.4 4.5-4.8 4.1 1.9 4.6 5.9 1.9 1 1.6 0.4 5-0.6 2 0.3 1.3 0.6 1 1 0.8 1.3 1.2 1.4 1.7 1.6 2.7 1.7 1.3 1.3 0.5 1.3 0 1.3-0.5 1.3-0.5 2.5 0.2 2.7 1 4 0.4 3.2 0.3 1.6 0.7 1.7 9.4 10.7 8.1 7.7 2.4 1.7 2 1 18.3 5.3 2.5 1.1 6.8 4.7 5.9 5.9 1.1 1.5 1.7 3.6z&quot; id&#x3D;&quot;county_romania_mehedinti_36&quot; name&#x3D;&quot;mehedinti&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot;  
+    d&#x3D;&quot;m443.7 527.1l1.2 3.6 0.7 0.6 1 0.3 0.9-0.4 4.3-3.6 0.7-0.9 1.4-3.6 1.2-1.7 0.9-0.6 1 0.2 0.5 0.8 0.3 1.2-0.3 2.7 0.1 1.7 0.8 2 4.7 9.9 1.2 1.6 2.1 2.1 1.7 0.5 1.7 0 1.6-0.4 1.9 0.2 0.8 0.6 0.5 0.8-0.6 0.9-1.9 0.8-0.9 0.7-0.9 1.6 0.3 1.4 2.6 4.3 0.8 2.3 0.5 3.3 0.2 1.8 1.1 3.8 1 6.7-0.1 1-0.6 1.9-0.1 2.6 1.3 4.9 0.4 6.5 0.6 2.3 0.7 1.2 1 0.7 5.1 0.4 2.3 1.6-1.4 3.4-0.2 3.8 0.9 6.5 0.3 7-0.3 3.3-1.2 5-0.1 3.9 0.2 2.5 0.5 2.2 0.2 2.8-0.7 1.3-1.3 0.9-3.6 0.7-1.4 0.5-1.2 0.9-3.1 3.4-1.1 0.6-1.5 0.4-1.8 0.1-1.8 0.6-1.9 1-2.2 3-0.6 2.1 0.1 2.8 3.2 8.4 3.8 7.6 4.5 7.6 0.6 2.2-0.2 1.1-0.9 0.8-3 1.5-1.4 1-1.2 1.2-2.3 3.1-17-6.4-3.6-0.5-3.7 1.2-5.9 4.5-1.8 0.5-21 1.1-1-0.3 5.8-12.3 0.7-1.1 1.9-1.5 0.5-0.8 0.3-1.7 0.3-0.7 1.5-1.1 0.6-1 1.3-4 0.2-1-0.3-1.2-1.5-2.5-0.2-1.2 0.5-1.3 1-0.7 2-1.2 0.4-0.9 0.2-1.3-0.2-1.5-0.5-1.4-1.4-1.2-1.4-0.3-3.3-0.2-1.8-0.7-0.6-0.9-0.2-0.9 1.1-5 0.1-2.5 1.1-1.1 1-0.1 3.6 0.7 0.7-0.3 0-0.9-2.2-4-0.8-3.6-0.2-2.2 0.2-1.9 0.9-2.1 0-1.2-0.6-1.4-2-2.1-1.2-0.9-2.7-1-3.8-2.5-1.1-1.3-1.1-1.6-1.8-3.9-1-1.2-2.4-1.9-1.3-1.4-1.2-1.9-1.4-2.9-1.5-1.6-1.3-0.7-2.3-0.6-0.8-1-2.8-4-1.2-1.2-4.2-2.5-0.9-1-0.4-1.1 0.1-2.2 1.4-2.6 4-4.7 4-2.5 2.5-0.6 1.2 0.2 2.1 1.2 0.8 1.1 1 1.7 0.8 0.7 0.8 0.1 1.3-0.6 3.3-4.8 1.1-1.2 1.3-0.7 1.1-0.2 1.4 0 2.5 0.7 2.1-0.2 3.1-1.8 0.8-1.1 0.7-3.1 0.5-1.3 1.3-1 1 0 0.9 0.9-0.2 2.5 0.8 2 0.8 1 1 0.5 1.6-1.4-0.3-2.7-0.8-3.4-1.2-2.8-1.2-1.9 0.4-2.5-1.4-6.4-0.5-3.2 0-1.3 2-2.1 1.7-2.6 0.9-1.9 0.6-1.6 0.8-3.3 0.2-2 0.9-3.5 3-5.3 1.6-2 1.1-0.6 1-0.1 1.1 0.3 1.3 2.3-0.2 6.9z&quot; id&#x3D;&quot;county_romania_olt_41&quot; name&#x3D;&quot;Olt&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m557.2 578.2l2.3 1.8 0.2 1 0 1.2-1.9 3.2-2.2 5.6-0.5 1.9 0.4 1.2 1.8 3.4 1.4 4 1.1 1.7 1.3 1.1 9.3 1.2 1.5 0.5 3 2.8 2.1 1.5 0.9 1 0.6 1.6 0.4 2.3 0.1 3.8-0.3 2.2 0.5 4.2 0 2.2-0.2 1.7-0.9 0.7-3.1 0.9-1 0.7-0.4 1.2-0.5 3.1-0.5 1.5-1.2 2.7-0.6 1.8-0.2 2 0 2.3 0.9 8.4 2.7 15.3 1.3 3.6 2.5 3.6 0.6 1.9 1.8 15-6.5 0.2-1.9 1.3-1.6 1.6-2.3 1.4-2.4 1-2 0.5-1.9 1-2.4 0.3-4.8-0.3-2.2 0.4-4.4 2-2.4 0.6-4.6-0.6-3.9-2.3-3.6-2.8-3.8-2.3-4.4-1-13.6-1.1-12.5-4.4-22.3 1.5-4.9-0.7-4.7-1.7 2.3-3.1 1.2-1.2 1.4-1 3-1.5 0.9-0.8 0.2-1.1-0.6-2.2-4.5-7.6-3.8-7.6-3.2-8.4-0.1-2.8 0.6-2.1 2.2-3 1.9-1 1.8-0.6 1.8-0.1 1.5-0.4 1.1-0.6 3.1-3.4 1.2-0.9 1.4-0.5 3.6-0.7 1.3-0.9 0.7-1.3-0.2-2.8-0.5-2.2-0.2-2.5 0.1-3.9 1.2-5 0.3-3.3-0.3-7-0.9-6.5 0.2-3.8 1.4-3.4 4.5-1.2 5.7 1.5 1.9-0.1 1.6-0.4 1.9-1.3 1.3-1.6 1.1-0.8 1-0.2 3.3 0.5 2.6-0.7 1.5-0.6 2.3-2.3 2.2-1.3 4.8-0.9 2.4 0 1.8 0.2 1.7 0.5 3.4 1.7 2.3 0.9 1.2-0.1 1.8-0.6 2.1-2 1.1-1.6 1.6-2.8 2.1-2.6 0.5-0.8 0-0.9-0.8-1.5-0.1-0.9 0.6-0.5 1.5-0.3 2.4 0.5 5.9 2.8 2.6 0.2z&quot; id&#x3D;&quot;county_romania_teleorman_11&quot; name&#x3D;&quot;Teleorman&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; id&#x3D;&quot;county_romania_bucuresti_8&quot; name&#x3D;&quot;Bucharest&quot;
+    d&#x3D;&quot;m630.8 588.8l-1.6 4.7-5-1.6-0.8 2.3 3.3 8.1-2.8 2.5-5.1-6.7-5.8-1.3-7-7.5 0-4.7 7-0.6 0-4.7-5.6-2.4 5.1-8.9 7.1-2.6 0.9 9.9 8.3 2-2.6 7.6 4.6 3.9z&quot; &gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m822 600.6l-3 7.4-2.8 3.5-3.5 2.2-15.3 3.8-3.8 3.1-2.1 1.3-4.4 0.8-8.8-0.1-4.1 1.4-5.6 3.4-1 1.1-0.8 1.4-1.8 1.5-2.2 1.1-1.7 0.6-16.1-2.6-2.9 2.5-1.3 1.9-2.8 0.2-2.2-1.3-11.1-2.2-7.7-4.8-2.7 1.7-12.4 1.3-10 6-3.8 1.1-4.7 0-1.2 0.3-2.1 1.3-1.1 0.3-2.1 0.3-3.5 1.2-20.9 3.1-0.2-2.1 0.3-1.5 0.8-1.8 3-4.4 0.7-2 0.3-2.4-0.3-3.6-0.9-3.2-1.4-2.9-2.4-2.6-9.4-5.6-4.9-5.8 1.2-3.9 2.7-4.3 2.7-3.6 1.8-1.8 2-1.4 6.3-3 1.2-1.3 1.2-2.4-0.1-0.8-0.6-0.6-2-0.7-1.5-0.9-1-1.1 0.1-1.9 0.4-0.9 1.9-1.3 8.4-4.4 1.7-0.3 1.5 0.4 1.5 0.8 3.3 2.5 1.3 0.5 1.5 0.2 1.8-0.3 2.6-0.9 1.9-1.4 1.6-2.1 0.7-0.6 1-0.3 0.9 0.4 3.4 3.4 1.8 1.1 2 0.6 2.6 0 1.7-0.3 1.6-0.1 1.2 0.4 3.1 1.8 2 0.4 6.1-1.1 2.1 0.2 2.4 0.5 7.8 3.3 2.5 0.6 3.2-0.1 6.1-1.1 18.8 0.4 1.9-0.5 3-1.2 2.7-0.4 3.2 0.1 14.7 2.8 3 1.5 5.9 1.3 1.3 0.6 1.7 1.5 2.2 2.5 4.3 3 9.7 4.1 15.9 5.2z&quot; id&#x3D;&quot;county_romania_calarasi_23&quot; name&#x3D;&quot;Calarasi&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m611.6 543.8l-2.6 3.1-1.3 1-0.7 1.5-0.4 1.5-0.6 1-2.3 1.7-0.4 0.9 0 0.9 0.4 0.9 3.6 1.2 0.4 1.2-0.5 1.3-1 1.4-5 6-2.4 1.9-32.5 2-3 0.8-2.1 1.1-1.1 1.3-2.9 3.7-2.6-0.2-5.9-2.8-2.4-0.5-1.5 0.3-0.6 0.5 0.1 0.9 0.8 1.5 0 0.9-0.5 0.8-2.1 2.6-1.6 2.8-1.1 1.6-2.1 2-1.8 0.6-1.2 0.1-2.3-0.9 2.3-4.2 0.3-2.7-1-3.7-0.1-2 0.6-1.5 1.9-3.6 0.1-1.3-0.4-1.1-1.8-1.1-2.4-0.4-1.1-0.4-0.9-0.6-2.9-2.9-1.1-1.5-2.7-5.3-0.3-1.8 0.4-1.2 2.4-1.5 0.4-0.7-2.1-2-1.5-1.8-0.2-1.7 0.3-1.7 1.6-2.9 0.5-1.3 0.2-1.6 0.9-12.2-0.3-2.3-1.7-8.1-0.2-2.9 0.2-2.5 0.6-1.3 3-3.5 0.5-1.3 0-1.4-0.5-1.9-1.2-2.9-3.3-3.8-1.5-2.5-1.1-5.9 0.1-2.9 0.5-2 0.5-0.9 1.1-2.7 1.1-1.1 0.7 0.1 0.7 0.7 1.2 2 0.8 0.7 0.9 0.3 1-0.2 0.9-0.7 1-1.1 0.8-1.6 1-2.4 0.8-3.1 0.2-3.5 0.5-2.4 0.6-2 0.8-1.6 1.6-2.7 0.7-1.6 0.5-2.5 0-1.8-0.4-1.5-0.6-1.4-1.6-2.9 6.4-1.7 2-2.5 0.5-1.6 0.9-1.9 0.8-0.9 2.1-1 1.9 9.4 0.7 6.7 0.5 1.8 0.7 1.3 3.2 2.4 1.1 1.2 1.2 2 0.7 1.8 0.3 1.5-0.3 4.1 0.1 2.1 1.6 2.8 2.1 2.3 1.2 1.8 5.8 11.3 4.4 4.9 0.9 1.6 0.4 1.6 0.7 6.4 0.8 3.7 0.8 1.9 0.9 1.6 1.1 1 2.3 1 1.2 0 2.9-0.8 0.8 0.4 1.1 1.2 1.4 2.4 0.5 2.1 0.1 2.1-0.6 4.3 0.4 2.7 0.8 1.4 1.2 0.9 5 0.7 1.6 0.6 1.8 1 7.3 9 1.3 1.1 2.1 1.1 1.2 0.4z&quot; id&#x3D;&quot;county_romania_dambovita_4&quot; name&#x3D;&quot;Dâmbovita&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m638.1 605.5l4.9 5.8 9.4 5.6 2.4 2.6 1.4 2.9 0.9 3.2 0.3 3.6-0.3 2.4-0.7 2-3 4.4-0.8 1.8-0.3 1.5 0.2 2.1-11.2 1.7-8.3 3.7-8.5 2.2-3.7 2-3.9 4.3-1.8 2.9-0.8 2.2-12.7 9.4-1 1.7-0.8 2.1-5 6.4-3.2 1.8-3.5 3.6-0.2 0.6-2.4 4-4.4 1.9-0.7 0.1-1.8-15-0.6-1.9-2.5-3.6-1.3-3.6-2.7-15.3-0.9-8.4 0-2.3 0.2-2 0.6-1.8 1.2-2.7 0.5-1.5 0.5-3.1 0.4-1.2 1-0.7 3.1-0.9 0.9-0.7 0.2-1.7 0-2.2-0.5-4.2 0.3-2.2-0.1-3.8-0.4-2.3-0.6-1.6-0.9-1-2.1-1.5-3-2.8-1.5-0.5-9.3-1.2-1.3-1.1-1.1-1.7-1.4-4-1.8-3.4-0.4-1.2 0.5-1.9 2.2-5.6 1.9-3.2 0-1.2-0.2-1-2.3-1.8 2.9-3.7 1.1-1.3 2.1-1.1 3-0.8 32.5-2 2.6 5.7-0.4 4.3-0.5 1.6-1.7 3.3-1 2.9-1 6.7 0.7 2.8 1.1 1.8 2.8 1.4 2 0.7 1.5 1 0.8 1.8 0.8 0.8 0.9 0.3 2.4 0 1.2 0.6 8 7.2 1.8 1.1 1.6 0.8 1.7 0.4 1.6 0.3 1.4-0.1 1.4-0.3 1.3-0.8 2.6-2.1 5.7-6z&quot; id&#x3D;&quot;county_romania_giurgiu_21&quot; name&#x3D;&quot;Giurgiu&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot;  
+    d&#x3D;&quot;m735.3 531.7l8.7 3.6 1.7 0.2 2.1-0.1 2.4-1.2 1.8-0.6 1.4 0.2 1.3 0.7 3 1.2 28.8 0.8 4.1-0.9 2.4-0.8 1.8-1 2.4-0.8 4.9-0.5 2.2 0.4 1.9 1.2 0.8 1.1 3.2 3-1.7 1-1.1 1.6-0.8 2.1 0.8 2.7 1.5 2.6 1.9 2.1 2 0.8 2.6 0.4 1.9 1 5.6 6.3 0.4 0.9-0.1 1.3-0.6 3.5-0.7 1.6 0 5.2-0.7 1.4-1.1 0.5 0.3 1.2 1.4 1.4 2.3 1.3 2.6 0.9 2 0.4 0.8 1.2 0.9 2.7 0.7 3 0.2 2.3-1.2 1.8-4.4 3.6-1 1.1-2.7 6.5-15.9-5.2-9.7-4.1-4.3-3-2.2-2.5-1.7-1.5-1.3-0.6-5.9-1.3-3-1.5-14.7-2.8-3.2-0.1-2.7 0.4-3 1.2-1.9 0.5-18.8-0.4-6.1 1.1-3.2 0.1-2.5-0.6-7.8-3.3-2.4-0.5-2.1-0.2-6.1 1.1-2-0.4-3.1-1.8-1.2-0.4-1.6 0.1-1.7 0.3-2.6 0-2-0.6-1.8-1.1-3.4-3.4-0.9-0.4-1 0.3-0.7 0.6-1.6 2.1-1.9 1.4-2.6 0.9-1.8 0.3-1.5-0.2-1.3-0.5-3.3-2.5-1.5-0.8-1.5-0.4-1.7 0.3-8.4 4.4-2.5-1.9-3.3-1.7-0.9-1.3-0.3-1.2 0.5-2.5 1.2-2.3 0.9-1 4.1-2.9 0.7-0.8 0.5-1.2-0.3-1-0.9-1.1-6.5-3.6-1.1-1.4-0.2-2.4-0.3-1.2-0.8-1.5-0.3-1.2 0-2.5-0.6-0.7-1.1-0.4-4.2-0.6-2-0.6 3.8-3.6 3.6-1.7 1.5-0.1 1.2 0.3 2.5 1.4 2.3 0.2 1.2-0.5 1.8-2.1 1.5-1.2 1.4-0.3 5.7 0.5 1.5-0.4 1.4-0.8 1.9-1.6 1.3-2.4 2.7-3.4 2.4 1.2 3.5 3.1 1.9 0.5 2.5 0.2 7-0.5 6.3 1.1 2.4 0.8 1.5 0 3.7-0.7 2.1 0.1 2.5 0.9 3.1 2 1.4 0.6 1.5 0 1.5-0.9 1.1-1.2 1.3-0.8 1.6-0.2 2.5 0.7 1.7 0.9 1.4 0.9 1 1 0.6 1 0.1 1.1-0.2 1.9 0.1 1.5 0.4 0.4 1.5-0.1 3-1.2 2.4-0.6 1-0.5 0.5-0.7-0.5-0.8-1.9-1.5-0.7-0.7 0.5-1.5 2.3-1.2z&quot; id&#x3D;&quot;county_romania_ialomita_29&quot; name&#x3D;&quot;Ialomita&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m902.5 552.5l-0.4 2.1 0.3 2.4 0.9 0.6 5.6-1 2.5-1.5 2.3-2.3 2.2-2.8-1.5-3.1 7.3 2.4 1.7 1.2 0.5 2.6-0.9 3-1.8 2.3-2.5 0.8 1.9-2.5 1.7-2.8 0.3-2.5-2.4-1.4 0 1.1 0.7 1-0.2 0.5-2 0.5-1.5-1-1.1 0.3-1 1.7-2 1.6-3.3 3.5-7 3.7-1.5 1.3 1.9-3.5 0.3-1.5-1.6-0.2-1.3 0.3-1 1-0.4 1.9 1.4 0-0.7 1.5 0.4 1.2 1.1 0.8 1.4 0.6-4.2 1.3-1.6 1.4 0 2.3 1.5-2 1.5 0.9 1.3 1.1-0.9 2-1.2 3.8-0.9 4 0.5 2.9 0.9 0.2 0.8-1.1 0.6-1.6 0.7-3.5 1-1.2 2.1-1.4 3.2-4.3 1.8-2 1.9-0.9 2-0.5 1.5-1.6 0.9-2 0.4 0-1 2.5-6.9 13.4-5 3.8-9.5 12.9-1.1 3.3-0.3 1.8-1.4-1-1.6 0.7-1.4 1.2-1.1 1.7-0.6 1.8-0.3 2.1-0.2 5.6 0.5 1.8 1.7 3.2 1.4 4.6 0.4 2.2-0.4 1.3-2 0.5-1 1.1-0.6 1.5 0.7 2.7 1.8 11.9 1.8 7.6-0.2 2.1-1 1.4-0.5 2.7-1.5 4.2-0.4 2-2.5 5.1-0.4 1.4-1.7 8-0.6 1.4-0.4 1.4 0.5 1.4-0.4 1.3-0.4 3 0.2 1.6-0.5 1.4-15.2 0.9-22.5-3.9-21.8-10-3.6-2.8-4.7-16.9-2.5-4.2-5.9 0.7-7.3 4.1-6.9 1.7-4.8-6.6-2.1-4.4-2.4-0.9-6.3 2-20.1 0.2-1.1-0.9-2.1-3.6-1.2-1.1-6-2.9-2.2-2.5 0.5-3.3-1.7-1.4 1.3-1.9 2.9-2.5 16.1 2.6 1.7-0.6 2.2-1.1 1.8-1.5 0.8-1.4 1-1.1 5.6-3.4 4.1-1.4 8.8 0.1 4.4-0.8 2.1-1.3 3.8-3.1 15.3-3.8 3.5-2.2 2.8-3.5 3-7.4 2.7-6.5 1-1.1 4.4-3.6 1.2-1.8-0.2-2.3-0.7-3-0.9-2.7-0.8-1.2-2-0.4-2.6-0.9-2.3-1.3-1.4-1.4-0.3-1.2 1.1-0.5 0.7-1.4 0-5.2 0.7-1.6 0.6-3.5 0.1-1.3-0.4-0.9-5.6-6.3-1.9-1-2.6-0.4-2-0.8-1.9-2.1-1.5-2.6-0.8-2.7 0.8-2.1 1.1-1.6 1.7-1 1.7-0.3 2-0.1 2.1 0.5 3.1 2.1 2 0.4 2.2-0.8 2.1-2 9.6-0.8 5.3 2.1 9.1 8.6 4.6-1.1 2.2-6.4 6.1 0 5.3 6.4 7.6 3.2 8.4 0 6.8-2.1 6.1 3.2 6 1.4z&quot; id&#x3D;&quot;county_romania_constanta_33&quot; name&#x3D;&quot;Constanta&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m261 297.9l5.1 5.3-6.9 5.2-1.8 4-1 2.5-2.4 4-2.2 2-2 1.1-2.5 0.4-2-0.2-5.9-1.4-1.9 0.2-1.4 0.9-2.5 2.2-0.9 1.5-0.5 1.7 0.3 5-0.2 2.2-0.5 2.3-1.5 3.1-0.6 1.9-0.3 1.5 1.1 3.6 0.3 1.5-0.1 1.9-0.7 2.5-1.2 2.6-4.9 6.4-1.9 0.9-0.9 1.1-0.7 2.2-1.1 0.9-1.8 0.1-3.9 1-0.9 0.4-2.1 2-0.9 0-2.6-1.5-1.5-0.3-2.1 0.3-1.6 0-1.6-0.4-2.7-2.6-1.8-0.8-0.8-0.6-0.7-1.8-0.6-0.8-1.1-0.6-4.1-0.3-1.9-0.6-1.3-1.2-0.9-1.1-1.1-0.8-1.6-0.5-2.5 0-1.3 0.3-0.8 0.4-0.7 1.7-0.7 3.4-1 1.3-3.2 0.2-1-0.4-1.7-1.4-0.6 0-0.5 0.9-0.2 2.3 0.1 2.1-0.1 0.8-1.1-0.1-0.9-1.1-1.3-2.1-2.1-1.7-3.4-1.6-1.5 0-0.9 0.5-0.8 1-1.4 2.5-1.1 2.4-0.6 0.8-0.8 0.1-2-2.7-1.8-1.5-0.1-0.6 0.7-2.4-0.4-1.1-0.9-1.2-2.2-1.8-2.3-2.5-1.1-0.6-1.2-0.2-2.9 0.4-1-0.4-0.8-1.1-0.2-1.2-0.1-2.2-0.9-0.9-1.6-0.5-3.5-0.4-1.8 0.2-1.1 0.6-0.2 0.8-0.2 2.1-0.4 1-0.6 0.7-2.8 2.3-2.4 2.4-1.4 0.1-1.5-1.8-1.1-0.6-1.8 0-1.5 0.3-1.2 0.5-2.4 2.1-1.5 0-1.8-1-2.8-2.8-0.8-1.8-0.4-2-0.8-0.3-1.6 0.2-1 0.6-1 0.9-0.6 1.7-0.1 1.7-0.6 1.6-0.7 0.4-1.1 0.1-1.6-0.3-1.4-0.7-1.3-1.9-0.3-1 0.3-1.8-0.5-0.7-1.1-0.7-2.2-0.6-1.3 0.1-2 0.5-0.9 0-6.6-1.2-1.5-0.5-1.3-0.9-1.4-2.1-1.1-3-3.7-3.8-15-10.5-1.5-0.6 0.1-1.9 0.5-1.1 0.8-0.3 2 0.5 0.9-0.8 0-1.3-1-3.4-0.1-1.4 0.5-0.8 4.1-3.5 2.2-1.1 2.2-0.7 2.1 0.1 1 0.5 1.9 1.7 0.8 0.4 1.1-0.1 2.2-1.1 1.9 0.4 4 1.7 2.1-0.1 0.9-0.4 0.9 0 0.8 0.4 0.8 0.9 2 1.8 1.9-0.7 5.1-6.2 0.7-0.3 3 0 1.1-0.8 1.2-2.3 0.9-3 0.4-6.8 1.1-3.3 1.8-2.1 2-0.7 4.5-0.2 2.4-1.9-0.6-3.4-3.1-5.9 0.2-3.1 1.5-2.4 1.8-2.4 1.4-2.8 0.4-5.9 0.6-2.9 1.6-1.9 2.2-0.6 3.9 0.3 2.3-1.2 2.2-2.9 0.7-2 2.3 0.8 4.9 1.2 35.3-2 2.7 0.5 1.5 1.8 1.5 0.8 1.3 0.1 2 0 1.4 0.4 1.7 0.9 1.4 1.4 2.6 1 9.3 0.4 2.8 0.6 2 0.9 1.1 1.1 2.4 1.7 0.8 1 0.8 1.8 2.3 6.2 1.2 2.5 1.6 2 2.1 1.4 2.7 0.9 1.7 0.7 5 4.4 7.9 3 0.9 1 0.8 2.9 1.2 1.7 1.6 0.9 1.6 0.4 9.6 0.2 8 1.7 5 0.4 4.4-0.3z&quot; id&#x3D;&quot;county_romania_arad_28&quot; name&#x3D;&quot;Arad&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m247.7 150.9l-1.1 4.3-0.6 1.3-1.2 1.9-0.5 1.3-0.3 2.6-0.3 1.2-0.6 1.2-2.7 4-1.8 1.9 0.1 2.1 1.3 3.3 4.5 7.1 3.1 6.1 0.4 1.3 0.8 1.2 1.1 1.3 6.6 3.8 4.1 4.1 1.8 3.1-0.8 2.1-2.3 4.5-0.4 1.5 0.2 1 0.9 0.7 5.3 2.1 1.4 1.1 0.5 1.6-0.4 2.9-1.1 3.5-1.3 2.3-0.9 0.7-3.9 1.8-1.2 0.8-0.9 1.1-0.6 1.1-0.2 1.3 0.3 1.4 1.3 1.8 4.2 3.8 1.4 2.2 1.4 3.2 1.8 7.2 1 1.9 2.1 1.7 1 0.9 0.5 1.3-0.5 3.8 0 5.8-1.6-1-2.4-0.6-2.7 0.3-1.2 0.7-1.3 1.6-1.4 2.8-1.1 3.9-0.6 3.6 0.2 9.4 1.9 8.1-4.4 0.3-5-0.4-8-1.7-9.6-0.2-1.6-0.4-1.6-0.9-1.2-1.7-0.8-2.9-0.9-1-7.9-3-5-4.4-1.7-0.7-2.7-0.9-2.1-1.4-1.6-2-1.2-2.5-2.3-6.2-0.8-1.8-0.8-1-2.4-1.7-1.1-1.1-2-0.9-2.8-0.6-9.3-0.4-2.6-1-1.4-1.4-1.7-0.9-1.4-0.4-2 0-1.3-0.1-1.5-0.8-1.5-1.8-2.7-0.5-35.3 2-4.9-1.2-2.3-0.8 1.3-2.4 2.9-0.5 2.1-1.2 2-2.9 0.3-3-2.8-2-0.8-1.1 0.3-1.8 0.8-1.5 2.3-6.3 1.3-2.5 2.2-2 3.9-1.1 1.1-0.9 0.9-2-0.1-1.7-0.3-1.6-0.1-1.9 0.1-1.8 0.6-0.6 4.9-4 0.8-1.1 2.1-7.7 0.4-0.1-1.1-2-0.7-0.6-1.9-0.6-0.4-1.4 4.1-4.9 2.4-2.3 5.2-3.4 2.1-2.1 0.7-1.4 0.5-2.8 0.5-1.4 1-1.4 2.3-2.3 0.9-1.2 0.7-1.9-0.3-2.9 0-1.8 0.5-1.7 1.2-2.3 0.5-1.4 1.3-5.6 0.6-1.8 4.1-6 1.9-2.2 1.9-1.1 4.7-1.4 2.1-4.3-0.1-5.2-1-5.4-0.2-4.9 2-3.8 3.1-3.5 6.5-4.9 5.2-1.3 1.4-1.1 0.6-1.3 2.7 4.1 1.3 3.1 0.9 1.5 1.2 1.2 4.3 3.3 1.6 2.2 1.7 3.1 3 4.7 0.9 1.8 1.2 3.3 0.6 1.2 1 0.7 1.8 0.4 1.9-0.5 1.9 0 1.6 0.3 1-0.2 2.5-1.4 1.1-0.3 1.1 0.3 1.5 1 1.7 1.5 3.1 1.8 1.3 1.1 1 1.8 0.7 3.9 1 2.8z&quot; id&#x3D;&quot;county_romania_bihor_24&quot; name&#x3D;&quot;Bihor&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m257.1 468.8l-7.2 6.4-3 4-0.9 2.1-0.2 1.5 0.4 1.2 0.9 0.7 1.3 0.5 4 0.2 1 0.3 0.7 0.9 0.6 1.2-0.6 3.2-4.5 4.8-3.4 5.4-0.8 2.2-0.4 1.8-0.5 3.5-0.6 2.4-1.1 3.5-4.5 7.4-2.6 6.7-1.6 7.1-1 3.3-1.1 1.7-1.1 0.9-1.6 0.3-1.1-0.1-0.8-0.4-1.2-2.3-1.5-1.1-0.9-0.2-3.4 0.1-1.1-0.1-1.5-0.9-3.6-3.7-1-0.5-1.1-0.2-1.6 0.3-0.6 0.8-0.3 1 0 1.2-0.6 2-0.9 2.4-2.4 4.1-1.1 2.5-0.7 2.2-0.4 1.8-0.2 1.9 0.1 1.9 0.8 2.5 0.5 2.1 0.1 1.8-0.5 1.9-0.9 1-1.1 0.6-2.5 0.1-2.6-0.7-1.4-0.2-5.7 1-0.3-1-2.9-7.2-1.1-1-3.3-0.6-9.6-5-1.7-0.3-1.8 0.5-3.9 1.6-4.7 1-5.5 0-5.1-1.5-3.9-3.9-1-2.7-0.6-2.7-0.9-2.4-1.9-1.7-2.1-0.6-6.4 0.5-9-1-1.7-0.8-1.8-3.9-1.9-1.5-1.9-0.8 0.4-2 0.9-1.6 1.4-1.3 2.8-1 6.2 0.3 2.9-0.4 4.3-1.3 1.5-1.2 0.3-2.9-0.9-2.4-1.5-1.4-3.7-1.4-2.6-1.3-5.1-0.9-2.4-1.7 0.2-1.8-0.4-0.7-1.8-0.1-1.4-0.4-0.2-1.3 0.5-1.5 0.8-1.2 1-0.5 2.7-0.2 1.1-0.4 1.3-1.1 0.8-3.9 1.5-2.3 0.1-1.9-0.2-1.1 0.8-1.2 0.9-1 1.1-0.5 1.3-0.1 1.4-1.2 0.3-1.8-0.4-2-1-1.2 2.1-1.1 1.9-2.6 1.1-2.6 0-1.5-0.6-4.1 0-1.6 0.3-1.2 2.1-2.6 0.5-1.8-0.4-2.3 0-2-0.9-2.1-0.8-1-2.1-1.7-3.6-3.8-0.7-1.1-0.4-2.6 0.3-1.2 1.1-2.1 0.4-1.4 0-1.3-0.2-2.8 1-1.4 1.9-1.6 4.5-2.5 1.4-1.6 0.8-1.5 0.2-3.2 0.5-1.6 1-1.6 1.8-1.2 3-1.1 3.3 0 1.7 0.5 2 1.2 2.4 0.7 2.3 1.3 1.3 1.7 0.8 0.7 1.9 0 2.6-0.7 4.8-2.2 3.8-2.4 1-0.2 1.6 0.5 1 0.8 0.8 1.2 1 2.5 1.3 2.2 0.9 0.7 1.1 0.6 1.4 0.2 2.1-0.3 2.1-0.8 2.6-1.9 0.7-0.9-0.1-0.6-1.4-0.1-1-0.5-0.2-0.7-0.5-2.8 0.2-0.8 0.6-0.5 3.7 0 2.5-0.4 2.2-0.8 2.6-1.7 2.7-2.4 1.1-0.5 1.4 0.3 0.8 0.6 1.3 1.5 1.6 0.6 1.5-0.2 2.6 0.3 0.7-0.5 2.9-6.1 3.9-2.8 11.6-2.2 0.9 3.5 3.2 4.3 1.4 1 1.5 0.5 2.8 0.6 0.5 0.7-0.2 2.2 0.2 1.2 0.6 0.4 1.8-0.2 1.1 0.3 0.7 0.7 0.7 1.2 1.3 1.1 2 1.3 3.5 2.7 1.6 2.1 1 2.1 1.3 4.4 0.3 1.8 0.1 3.3 0.4 2.5-0.2 1.4-0.5 1.5-1.3 2-0.4 0.9 0.2 1.4 0.8 1.4 1.4 2 0.6 1.6 0.3 1.4-0.2 2.3-0.6 1.3-2.3 3.4-0.8 2.4 0 2.9z&quot; id&#x3D;&quot;county_romania_caras-severin_30&quot; name&#x3D;&quot;Caras-Severin&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m49.7 328.5l1.5 0.6 15 10.5 3.7 3.8 1.1 3 1.4 2.1 1.3 0.9 1.5 0.5 6.6 1.2 0.9 0 2-0.5 1.3-0.1 2.2 0.6 1.1 0.7 0.5 0.7-0.3 1.8 0.3 1 1.3 1.9 1.4 0.7 1.6 0.3 1.1-0.1 0.7-0.4 0.6-1.6 0.1-1.7 0.6-1.7 1-0.9 1-0.6 1.6-0.2 0.8 0.3 0.4 2 0.8 1.8 2.8 2.8 1.8 1 1.5 0 2.4-2.1 1.2-0.5 1.5-0.3 1.8 0 1.1 0.6 1.5 1.8 1.4-0.1 2.4-2.4 2.8-2.3 0.6-0.7 0.4-1 0.2-2.1 0.2-0.8 1.1-0.6 1.8-0.2 3.5 0.4 1.6 0.5 0.9 0.9 0.1 2.2 0.2 1.2 0.8 1.1 1 0.4 2.9-0.4 1.2 0.2 1.1 0.6 2.3 2.5 2.2 1.8 0.9 1.2 0.4 1.1-0.7 2.4 0.1 0.6 1.8 1.5 2 2.7 0.8-0.1 0.6-0.8 1.1-2.4 1.4-2.5 0.8-1 0.9-0.5 1.5 0 3.4 1.6 2.1 1.7 1.3 2.1 0.9 1.1 1.1 0.1 0.1-0.8-0.1-2.1 0.2-2.3 0.5-0.9 0.6 0 1.7 1.4 1 0.4 3.2-0.2 1-1.3 0.7-3.4 0.7-1.7 0.8-0.4 1.3-0.3 2.5 0 1.6 0.5 1.1 0.8 0.9 1.1 1.3 1.2 1.9 0.6 4.1 0.3 1.1 0.6 0.6 0.8 0.7 1.8 0.8 0.6 1.8 0.8 2.7 2.6 1.6 0.4 1.6 0 2.1-0.3 1.5 0.3 2.6 1.5 0.9 0 2.1-2 0.9-0.4 3.9-1 1.8-0.1 1.1-0.9 0.7-2.2 0.9-1.1 1.9-0.9 3.6 3.8 1 2.5 0.3 2.8 1.2 4.1 1 1.5 2.9 2.3 0.8 1 1.1 1.9 1.9 4.9 0.9 1.3 0.9 0.5 1.3-0.7 1.6-0.2 1.1 0.7 0.3 1-0.3 1.1-0.8 1.2-4.3 3.9-1.2 1.3-0.8 1.6-0.5 1.4-0.8 3.9-0.8 1.2-0.9 0.4-11.6 2.2-3.9 2.8-2.9 6.1-0.7 0.5-2.6-0.3-1.5 0.2-1.6-0.6-1.3-1.5-0.8-0.6-1.4-0.3-1.1 0.5-2.7 2.4-2.6 1.7-2.2 0.8-2.5 0.4-3.7 0-0.6 0.5-0.2 0.8 0.5 2.8 0.2 0.7 1 0.5 1.4 0.1 0.1 0.6-0.7 0.9-2.6 1.9-2.1 0.8-2.1 0.3-1.4-0.2-1.1-0.6-0.9-0.7-1.3-2.2-1-2.5-0.8-1.2-1-0.8-1.6-0.5-1 0.2-3.8 2.4-4.8 2.2-2.6 0.7-1.9 0-0.8-0.7-1.3-1.7-2.3-1.3-2.4-0.7-2-1.2-1.7-0.5-3.3 0-3 1.1-1.8 1.2-1 1.6-0.5 1.6-0.2 3.2-0.8 1.5-1.4 1.6-4.5 2.5-1.9 1.6-1 1.4 0.2 2.8 0 1.3-0.4 1.4-1.1 2.1-0.3 1.2 0.4 2.6 0.7 1.1 3.6 3.8 2.1 1.7 0.8 1 0.9 2.1 0 2 0.4 2.3-0.5 1.8-2.1 2.6-0.3 1.2 0 1.6 0.6 4.1 0 1.5-1.1 2.6-1.9 2.6-2.1 1.1-2.6-3.2-2.7-2.2-3-1.6-11.2-3.5-4.5-0.2-1.8-0.8-3.5-2.4-1.8-2.1-3.6-5.3-1.7-1.3-1.1 0.3-1.7 1.9-1 0.4-1.2-0.3-1.9-1.8-1-0.9-8.7-4-1.7-1.3-4-5.4-6.8-6.2-3.5-5.1-1.5-1.5-1.8-0.9-1.8-0.6-1.6-1-0.6-2.1 2.3-1.9 1.5-1.6 0.3-2.1-1.3-3.5-3.1-5.4-0.4-2.4 0.8-3.8 1.2-2.8 0.4-1.3 0.3-2.1-0.1-7.9 0.7-3 0-1.3-0.9-1.5-1.3-0.7-1.1 0.5-1 1.3-0.6 1.7-1.3 1.1-1.4 0.5-1.4-0.3-1.3-1.2-1-2.1-2.4-3.1-1.1-1.7-0.3-1.5-0.3-3.1-0.3-1.2-0.8-1-1.8-1.2-0.7-0.7-3.5-6.3-1.7-1.6-1.9-0.8-4.1-0.5-1.9-0.9-5.5-5.2-2-1.3-4.2-1.9-1.8-1.3-1.6-2.5-2.2-6.9-1.3-2.3-6.6-8.3 4.3-5.4 16.9-0.5 2.6-4.2 4.3 1 4.2 1.8 3.1 2.8 1 0.7 1.3 0.5 0.8 0 5.9-1.2 2.1-1.1 1.6-1.8 0.6-1.8z&quot; id&#x3D;&quot;county_romania_timis_14&quot; name&#x3D;&quot;Timis&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m759.6 111.6l-5.8 2.8-4.3-0.1-1.7-0.4-1.3 0.1-1.2 0.8-1.8 2-1.8 2-0.6 1.1-0.4 2.7-0.9 1.1-1.2 0.7-2.9 0-1.4-0.4-1.8-1-1.9-0.8-3-0.6-1.7-1.4-0.8-0.3-1.2 0.2-1.2 0.9-0.7 1.1-0.4 1.1 0.2 1.4 1.9 4.2 0.1 1.3-0.5 1.1-1.1 0.9-2.2 0.8-1.6 0.3-2-0.6-1.3-1-1.1-1.2-1.6-2-1.8-1.4-1-0.4-17.7 0-1.7-0.4-3.1-2.1-1.1-0.1-0.9 0.5-0.7 0.9-0.6 1.7-1.5 3.2-4.2 4.1-4.4-0.6-2.6-2.1-2.6-3.7-0.6-1.6-0.2-1.8 0.3-4.1-0.1-1.9-1.7-8.2-0.9-3.4-1.1-1.9-3.4-3.5-1.3-2.2-7-8.7-2-3.5-12-15.4-2.5-2.5-5.4-3-4.3-3.7-2.8-1.8-1.6-1.5-0.7-1.8-1.8-9.6 2.4 0 5-2.3 1.1-1.6 2.3-5.4 1.3-1.7 2.7-2.4 1.3-1.4 1.6-3.4 1.8-4.9 1.1-5-0.2-3.6 0.8-5.2 0.9 0.3 1.9 0.2 1.8-0.6 3.5-1.7 1.8-0.5 5-0.2 15.1-3.5 8.2-3.9 2.4-0.1 2.5 2.1 1.1 0.3 1.1-1.8 1.2 2.5 2.1 0.4 4.3-0.9 1.8 0.9 2.4 3.1 1.2-0.7 4.4 4.5 0.7 1.2 0.4 2.7 1-0.5 1.2-1.8 1-0.9 1.3 1.2 0.5 1.8 0.8 1.7 3.7 1.4 0 1.3-1.2 1.2-2.1 0.1 0 1 2.9 1.8 1.9 0.6 1.4-1.1 0.9 0.5 1.5 1.6-0.1 0.9-1.1 1.4-0.3 0.9 0.8 3.9 1.9 3 2.5 2.3 2.7 1.6 0 1.2-2.1 1 0.7 2.2 2.7-1.2 1.4 2 1 2.2 1.4-0.9 1.2 1.5 0.1 1.4-0.7 1.4-1.3 1.1 2.3 1.8 0.6 0.4 0 1-1.8 2.5 1.1 1.5 2.4 1.3 1.9 2.3-0.1 0.7 0.2 4.9-0.1 0.9 1.1 0.9 2.4 0.9 0.8 1.4-3.6 2.2 1.3 1.1 1.4 2.2 2.1 4.4 2.4 2 0.4 1.5-0.1 1.7 0.5 1.1 0 1-2.4 0.5 1 3.5 2.4 4.1 6.9 9.1 2.9 3.1 3.3 1.2 0.3 1.3z&quot; id&#x3D;&quot;county_romania_botosani_6&quot; name&#x3D;&quot;Botosani&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m271.2 269.1l3.2 2.8 14.8 0.4 2.4 0.7 1.5 1 1.5 3 1 1 2.2 1.8 0.5 0.8 0.4 2.8 0.7 1.1 0.7 0.1 0.8-0.4 1.2-1.7 0.8-0.8 4.3-2.7 1-0.3 2-0.1 4.8 1.6 1.8 0.2 1.3-0.2 1-0.6 1.1-1 3.8-2.9 10.6-2.1 1.8 0.5 1.5 0.8 5.9 4.3 5.2 2.2 2.3 0.4 1.9 0.1 3.4-0.3 1.2 0.4 0.7 0.9 0 1.2-1.7 2.8-0.5 1.2 0.1 1.3 0.8 1.5 2.2 1.5 1.7 0.6 1.5 0.1 0.7-0.5 0.2-0.9-0.4-2 0-1 0.6-0.7 1.2-0.3 5-0.1 1.2-0.2 2-1 1.1-0.3 4.7 0.2 1.6-0.2 3.9-1 2.1 0.3 6.6 2.1 1.4 0 1.7-0.8 0.8-1.2 3.3 0.2 1.6 1.1 1.2 1.4 0.6 1.8-0.4 1.4-0.8 1.2-1.3 1.2-0.9 1.1-0.5 1.8 0.5 1.2 3.3 3.6 1 0.7 5.8 2.5 2.2 1.8 1.1 2.3 0.8 4.8 1.6 2.2 1.7 1.1 0.5 10.1-0.1 1.6-0.4 1.2-1.2 1.2-2.1 1.3-1.6 1.8-2.3 2.1-8.8 9.5-1.2 1.9-0.7 2.2-0.5 2.8-0.4 0.8-0.9 0.4-0.9-0.2-0.9-0.7-1.9-1.9-1.9-1.2-1.2 0-7.3 1.6-1.3 0.9-0.7 1.4-0.1 2.5 0.5 1.5 0.7 1.4 0.4 1.4-0.3 1.8-1.6 2-1.4 1.2-1.6 1-1.3 0.2-2.5-0.1-1.7 0.5-1-0.2-2.9-1.7-2-0.2-0.8 0.4-0.5 0.8 0.5 5 0.7 1 1 0.5 2.7 0.7 1.2 0.7 0.7 0.8-0.2 1.3-3.6 5.6-1.4 2.7-1.4 1.4-1 0.1-2.4-0.3-1.5 0.9-1.5 2-0.7 1.6-2.4 7.7-0.3 2.7 0.7 3.9 0.8 2.2 0.7 2.5 0.2 2.8-0.9 4.5-0.8 2.6-0.3 2.4 1.1 3.3 2.6 4.5 0.4 2 0.1 1.4-2.9 4.3-4.4 0.7 0.2-5-0.6-2.6-0.7-0.9-5.2-5.1-2.3-2.6-1.8-1.3-4.1-2-2.5-2-1.3-1.9-1.1-2.6-0.4-1.5-0.1-1.3 1-3.3-0.4-1.4-2.2-2.7-0.6-1.1-0.2-1.3 0.3-2.8-0.4-2.3-0.9-3.2-2.3-6.3-2.7-11.7-0.9-1.7-2.8-3.4-1.7-2.8-4.1-10.7-1.2-1-2.1-0.3-2.5-1.2-10.2-13.5-1-2.3 0.6-1.1 0.7-0.2 1.5 0.5 0.5-0.6-0.1-1.5-1.7-4.5-1.3-2.4-1.4-1.9-1.1-0.8-1.3-0.6-4.8-0.7-1.2-0.5-0.7-0.9-1.8-6.7-1.7-4.4-1.1-2.2-1-1.3-1-0.3-9.7 1-0.9-0.3-5.2-3.3-5.1-5.3-1.9-8.1-0.2-9.4 0.6-3.6 1.1-3.9 1.4-2.8 1.3-1.6 1.2-0.7 2.7-0.3 2.4 0.6 1.6 1z&quot; id&#x3D;&quot;county_romania_alba_20&quot; name&#x3D;&quot;Alba&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m498.4 110.1l1.2 1.4 8.3 6.8 2.8 3.3 1.2 2.4 0.6 1.6 0.1 1.8-0.7 2.2-1.2 1.3-2.7 1.5-0.8 0.7-0.2 0.8 1.4 2.3 0.1 1-0.3 1.4-1.1 0.7-1.6-0.2-1 0.1-0.7 0.6-0.5 0.9 0.2 1.1 0.9 1.7 2.1 2.7 0.8 1.3 1.3 2.8 0.4 1.5 0.1 1.8-0.8 2.7-1.4 2.4-0.8 2.1-0.1 1.6 1.2 1.6 1.2 0.3 2-0.2 0.5 0.3 0.2 0.9-0.4 2.4-0.4 1.6-0.6 4.7 0.6 10.8-8.2 3.3-6.9 1.3-2.8 1-3.4 2.3-5.4 4.7-0.8 1.1-1.4 3.8-0.6 1.2-2.6 4-0.9 1.9-0.6 2.1-0.8 4.4-0.7 1.2-1.3 0.6-1.9-0.2-1.7-0.8-3.1-2-1.3-0.5-1.2-0.3-1.3 0.2-1.9 0.9-2.6 2.1-2.2 2.9-1 1.8-1 2.9-0.6 1.1-2 2.5-0.7 1.3-0.8 4.9-0.6 1.2-1.4 1-2.1 0.7-3.7 0.5-4.8 2-1.7 0.3-2.3-0.1-7-1.8-8.7-4.3 2.3-4.7 0.6-1.9 0.7-6.4 0.6-2.2 0.2-2.5-0.5-2.1-2-2.1-3.7-2.1-1.3-1-0.7-1.3-0.2-1.8 0.4-2.3-0.2-1-1.8-1.3-0.9-1 0.1-2.3 0.3-2 0.5-1.9 0.1-2-0.4-1.9-1.5-2.2-1.5-1.1-2.5-1.2-1.1-0.7-2.2-2.1-1.6-1-6-1.7-1.3-0.7-1.2-1.3-0.7-1.6-0.5-1.9-1.1-8.6-0.4-1.6 0-1.9 0.6-1.5 3.4-2.9 1.4-1.6 1.1-1.8 1-4.4 4.1-4 6.4-9.5 0.7-1.5 0.4-1.5 0.4-3.3 0.5-0.8 1.5-0.7 8.9-1.9 2.2-1.4 1-1.3 2.1-4.8 0.8-1.4 1.5-1.2 7.3-3.3 1.9-0.5 19.8 4.7 19.8-0.7 2.2-0.7 1.7-1.2 4.3-4.1 3.6-1.3 9 0.1z&quot; id&#x3D;&quot;county_romania_bistrita-nasaud_3&quot; name&#x3D;&quot;Bistrita-Nasaud&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m398.3 150.4l-1 4.4-1.1 1.8-1.4 1.6-3.4 2.9-0.6 1.5 0 1.9 0.4 1.6 1.1 8.6 0.5 1.9 0.7 1.6 1.2 1.3 1.3 0.7 6 1.7 1.6 1 2.2 2.1 1.1 0.7 2.5 1.2 1.5 1.1 1.5 2.2 0.4 1.9-0.1 2-0.5 1.9-0.3 2-0.1 2.3 0.9 1 1.8 1.3 0.2 1-0.4 2.3 0.2 1.8 0.7 1.3 1.3 1 3.7 2.1 2 2.1 0.5 2.1-0.2 2.5-0.6 2.2-0.7 6.4-0.6 1.9-2.3 4.7-3.2 0.4-2.1 2.5-4 7.6-0.4 1.7 0 1.4 1.5 2.3 0.7 1.5 0.2 2.6-0.7 1.7-1.1 1-3.8 0.7-1.3 0.6-1.8 1.7-1 2.2-1.1 3.2-0.2 1.8 0.2 1.4 0.9 2.5-0.1 1.7-0.7 0.9-2.3 1.4-1.4 1.5-2.1 3.2-0.4 1.9 0.5 1.7 2.4 2.4-0.8 1.2-1.7 0.8-1.4 0-6.6-2.1-2.1-0.3-3.9 1-1.6 0.2-4.7-0.2-1.1 0.3-2 1-1.2 0.2-5 0.1-1.2 0.3-0.6 0.7 0 1 0.4 2-0.2 0.9-0.7 0.5-1.5-0.1-1.7-0.6-2.2-1.5-0.8-1.5-0.1-1.3 0.5-1.2 1.7-2.8 0-1.2-0.7-0.9-1.2-0.4-3.4 0.3-1.9-0.1-2.3-0.4-5.2-2.2-5.9-4.3-1.5-0.8-1.8-0.5-10.6 2.1-3.8 2.9-1.1 1-1 0.6-1.3 0.2-1.8-0.2-4.8-1.6-2 0.1-1 0.3-4.3 2.7-0.8 0.8-1.2 1.7-0.8 0.4-0.7-0.1-0.7-1.1-0.4-2.8-0.5-0.8-2.2-1.8-1-1-1.5-3-1.5-1-2.4-0.7-14.8-0.4-3.2-2.8 0-5.8 0.5-3.8-0.5-1.3-1-0.9-2.1-1.7-1-1.9-1.8-7.2-1.4-3.2-1.4-2.2-4.2-3.8-1.3-1.8-0.3-1.4 0.2-1.3 0.6-1.1 0.9-1.1 1.2-0.8 3.9-1.8 0.9-0.7 1.3-2.3 1.1-3.5 0.4-2.9-0.5-1.6-1.4-1.1-5.3-2.1-0.9-0.7-0.2-1 0.4-1.5 2.3-4.5 0.8-2.1 1.2 0.4 12.6 0.3 1.9 0.3 1.1 0.6 1.1 0.9 0.8 1.5 1.8 4.6 1.1 2 1.1 1.3 1.3 0.5 3.9 0.4 1 0.4 0.8 0.6 1 1.6 0.8 0.6 1 0 2.3-0.4 1.3-0.1 3.9 1.1 1.8-0.3 2.1-0.8 1.5-0.3 1.2 0.2 2.4 0.9 1.3-0.1 1-0.6 0.3-1.3-0.2-2.5 0.3-1.1 1.5-2.8 0.7-1.1 1.2-0.2 0.9 0.6 0.7 1.2 0.7 2.3 0.6 0.7 0.9 0.3 2.2-0.8 1.1 0 0.9 0.3 2.1 2.4 1-0.1 1-0.7 0.9-2.2 0-1.4-0.5-1.4-2-2.3-0.4-1.4 0.5-1 1.5-0.7 1.1 0 1.8 0.7 0.6-0.3 0.4-2 0.5-0.9 1.2-0.7 1.3-0.2 2.3 0.1 1.4-0.2 1.6-0.4 1-0.9 0.4-1.5-0.1-1.2-1-3.4-0.5-1.1-1.4-1.8-0.4-1 0.1-1 0.6-0.8 2.2-0.6 0.6-0.5 0.9-2.6 0.8-1.4 0.4-2.6 0.3-1 4.9-2 2.4-1.6 1.3-0.4 1.2 0.1 1.1 0.5 1 0 0.9-0.7 0.7-1.9 1-1.9 1.6-1.9 3.7-2 3.5-1.1 6.2-0.7 1.6-0.6 0.9-1.4-0.1-3 0.5-3 0.5-1.8 0.7-1.4 0.1-2.2-1.6-2.5 3-2.6 17.5 1.4z&quot; id&#x3D;&quot;county_romania_cluj_19&quot; name&#x3D;&quot;Cluj&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m353.6 437.7l-0.3 2.3 0.2 1.4 1.5 4.5 0.3 1.7-1.5 4.4-6.6 2.2-6 3.3-1.8 1.5-1.1 0.4-0.9-0.1-1.9-1.4-1.5-0.8-1.6-0.4-2.7-0.1-2 0.6-3.6 1.8-4.7 1-1.7 0.6-5.7 3.5-1.7 0.4-1.3 0-3.2-1.5-1.6-0.2-2.6 0.2-6.8 2.9-1.6 0.1-1.1-0.4-1.7-1.6-0.9-0.4-4.6-0.3-1.2-0.4-1-0.8-0.7-1-1.4-0.7-1.1 0.2-22.4 8.2 0-2.9 0.8-2.4 2.3-3.4 0.6-1.3 0.2-2.3-0.3-1.4-0.6-1.6-1.4-2-0.8-1.4-0.2-1.4 0.4-0.9 1.3-2 0.5-1.5 0.2-1.4-0.4-2.5-0.1-3.3-0.3-1.8-1.3-4.4-1-2.1-1.6-2.1-3.5-2.7-2-1.3-1.3-1.1-0.7-1.2-0.7-0.7-1.1-0.3-1.8 0.2-0.6-0.4-0.2-1.2 0.2-2.2-0.5-0.7-2.8-0.6-1.5-0.5-1.4-1-3.2-4.3-0.9-3.5 0.9-0.4 0.8-1.2 0.8-3.9 0.5-1.4 0.8-1.6 1.2-1.3 4.3-3.9 0.8-1.2 0.3-1.1-0.3-1-1.1-0.7-1.6 0.2-1.3 0.7-0.9-0.5-0.9-1.3-1.9-4.9-1.1-1.9-0.8-1-2.9-2.3-1-1.5-1.2-4.1-0.3-2.8-1-2.5-3.6-3.8 4.9-6.4 1.2-2.6 0.7-2.5 0.1-1.9-0.3-1.5-1.1-3.6 0.3-1.5 0.6-1.9 1.5-3.1 0.5-2.3 0.2-2.2-0.3-5 0.5-1.7 0.9-1.5 2.5-2.2 1.4-0.9 1.9-0.2 5.9 1.4 2 0.2 2.5-0.4 2-1.1 2.2-2 2.4-4 1-2.5 1.8-4 6.9-5.2 5.2 3.3 0.9 0.3 9.7-1 1 0.3 1 1.3 1.1 2.2 1.7 4.4 1.8 6.7 0.7 0.9 1.2 0.5 4.8 0.7 1.3 0.6 1.1 0.8 1.4 1.9 1.3 2.4 1.7 4.5 0.1 1.5-0.5 0.6-1.5-0.5-0.7 0.2-0.6 1.1 1 2.3 10.2 13.5 2.5 1.2 2.1 0.3 1.2 1 4.1 10.7 1.7 2.8 2.8 3.4 0.9 1.7 2.7 11.7 2.3 6.3 0.9 3.2 0.4 2.3-0.3 2.8 0.2 1.3 0.6 1.1 2.2 2.7 0.4 1.4-1 3.3 0.1 1.3 0.4 1.5 1.1 2.6 1.3 1.9 2.5 2 4.1 2 1.8 1.3 2.3 2.6 5.2 5.1 0.7 0.9 0.6 2.6-0.2 5z&quot; id&#x3D;&quot;county_romania_hunedoara_10&quot; name&#x3D;&quot;Hunedoara&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m497 89.2l1.3 4.3 2.5 4 4.5 4.8 0.9 1.4 0.2 1.7-0.8 1.5-0.9 1-6.3 2.2-9-0.1-3.6 1.3-4.3 4.1-1.7 1.2-2.2 0.7-19.8 0.7-19.8-4.7-1.9 0.5-7.3 3.3-1.5 1.2-0.8 1.4-2.1 4.8-1 1.3-2.2 1.4-8.9 1.9-1.5 0.7-0.5 0.8-0.4 3.3-0.4 1.5-0.7 1.5-6.4 9.5-4.1 4-17.5-1.4-3 2.6-2.7 1.4-1.2 0.4-1.5 0-1.3-0.3-1.4-0.9-1.8-1.8-1.3-0.8-2.1-1-1-1.2-0.6-1.2-0.2-1.2-1.4-0.9-2.5-0.4-16.2 0.7-2.4-0.4-13.2-4.5-4.2-2.2-2.1-0.8-2.8-0.5-11.1 0-5.3 1.9-9.7-1.8-1.8-1-1.4-1.3-0.2-1.1 0.3-1 0.8-0.9 3.9-2.6 1.8-2 0.6-1.1 1.4-4.7 0.9-1.5 6.2-7.9 1-0.6 1 0 0.8 0.5 1.8 2.3 1.2 1.1 4.8 3.2 1.6 0.7 1.8 0 2-1.2 1.6-1.8 1.9-2.8 2.3-2.7 1.8-4 0.7-2 1.3-3 0.4-1.9-0.2-2.1-0.8-1.2-1.2-1.2-1.6-0.9-7.2-2-1.2-0.8-0.7-1.1-0.1-1.3 0.4-2.2 1.2-1.3 1.8-0.8 7.5 0.1 4.1 1.3 1.6 0.8 1.8 0.5 1.8 0.1 2.4-0.5 2.6-1.3 15-11.5 0.9-1.7 0.1-1.7-1.1-2-1.4-1.4-3.5-2.2-1.5-1.2-1-1.2-5.1-7.2-1.7-6.3 0.9-1 1-1.9 1.2-1 1.1-0.3 4-0.7 2 0.6 6.8 0.8 4.3 1.5 2.5 0.3 7.3-0.4 1.7 0.9 5.5 5.1 0.7 2.4 2.3 0 10.6-4.4 3.3 0.2 1.8 1.3 5.2 1.4 2.1 1 3.8 3.7 2.1 0.2 6.2 2.4 2.3 0.1 7-3.6 5.2-0.1 4.2-3.6 2.4-1.4 2 0 6.1 1.4 5.9-0.1 2.1 0.6 4.9 2.9 2.7 2.1 1.6 2.1 0.7 2.5 0.1 2.1 0.5 1.9 1.9 2.2 3.5 2.2 8.6 3.4 1.5 1.3 1.3 1.9 3.6 6.4 2.4 3.8 2 1.4 4.9-0.9z&quot; id&#x3D;&quot;county_romania_maramures_35&quot; name&#x3D;&quot;maramures&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m524.6 188.9l0.7 5.9 1.5 3 2.4 2.4 1 1.4 0.7 1.9 0.4 2.4 0.3 9.4-1.7 10.4 0.6 3.5 2.3 6.4 0.8 2.5-0.1 2.1-0.6 3.4-0.3 2.9 0.3 4.1-0.2 1.5-0.9 1.5-4.6 3.8-1.5 1.7-3.8 5.9-1.3 1.4-1.8 1.2-4.5 1.9-1.4 0.9-6.2 6.5-0.8 1.4-0.5 1.7-0.5 5.8-0.5 1.2-1.1 1.1-6.6 2.7-0.8 1 0 1 2.9 2.1 0.8 1 0 1.6-0.6 1.1-1.2 0.6-2.6 0.6-2.6 2-2.3 1-0.8 0.8-0.1 1 0.6 1.3 8.4 10.2 1.9 1.8 2 0.7 5-0.2 1.7 0.7 5.6 4.3 8.3 8.9-5.3 1.2-9.7 0.4-1.5 0.5-1.5 0.8-2.3 2-1.1 1.2-1 2.9 0.6 3.2-5-2.9-1.1-1-1.7-1.2-1.4-0.6-2.3-0.3-1.5 0.2-3.4 0.9-3.3 0.2-0.8 0.3-1.2 1-0.8 0.4-2.4 0-1.2 0.4-1.4 0-1.4-0.7-1.9-2.3-1.1-3.4-0.6-3.9-0.5-8.8-0.7-4.1 0.1-1.4 0.5-1.3 0.7-1 0.3-0.9-0.4-0.5-0.9-0.1-2.1 1.1-1.5 0.4-2-0.2-2.8-0.9-1.4 0-1.3 0.9-1.5 1.8-1.3 0.7-2.1 0.1-7.4-0.5-3.3 0.7-1.7 0.7-2.1 0.5-2-0.3-5.8-2.4-3.8 0.8-7.8 0-1.7-1.1-1.6-2.2-0.8-4.8-1.1-2.3-2.2-1.8-5.8-2.5-1-0.7-3.3-3.6-0.5-1.2 0.5-1.8 0.9-1.1 1.3-1.2 0.8-1.2 0.4-1.4-0.6-1.8-1.2-1.4-1.6-1.1-3.3-0.2-2.4-2.4-0.5-1.7 0.4-1.9 2.1-3.2 1.4-1.5 2.3-1.4 0.7-0.9 0.1-1.7-0.9-2.5-0.2-1.4 0.2-1.8 1.1-3.2 1-2.2 1.8-1.7 1.3-0.6 3.8-0.7 1.1-1 0.7-1.7-0.2-2.6-0.7-1.5-1.5-2.3 0-1.4 0.4-1.7 4-7.6 2.1-2.5 3.2-0.4 8.7 4.3 7 1.8 2.3 0.1 1.7-0.3 4.8-2 3.7-0.5 2.1-0.7 1.4-1 0.6-1.2 0.8-4.9 0.7-1.3 2-2.5 0.6-1.1 1-2.9 1-1.8 2.2-2.9 2.6-2.1 1.9-0.9 1.3-0.2 1.2 0.3 1.3 0.5 3.1 2 1.7 0.8 1.9 0.2 1.3-0.6 0.7-1.2 0.8-4.4 0.6-2.1 0.9-1.9 2.6-4 0.6-1.2 1.4-3.8 0.8-1.1 5.4-4.7 3.4-2.3 2.8-1 6.9-1.3 8.2-3.3 9.5 1.8 4.8 2.3z&quot; id&#x3D;&quot;county_romania_mures_39&quot; name&#x3D;&quot;mures&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m377.8 151.6l1.6 2.5-0.1 2.2-0.7 1.4-0.5 1.8-0.5 3 0.1 3-0.9 1.4-1.6 0.6-6.2 0.7-3.5 1.1-3.7 2-1.6 1.9-1 1.9-0.7 1.9-0.9 0.7-1 0-1.1-0.5-1.2-0.1-1.3 0.4-2.4 1.6-4.9 2-0.3 1-0.4 2.6-0.8 1.4-0.9 2.6-0.6 0.5-2.2 0.6-0.6 0.8-0.1 1 0.4 1 1.4 1.8 0.5 1.1 1 3.4 0.1 1.2-0.4 1.5-1 0.9-1.6 0.4-1.4 0.2-2.3-0.1-1.3 0.2-1.2 0.7-0.5 0.9-0.4 2-0.6 0.3-1.8-0.7-1.1 0-1.5 0.7-0.5 1 0.4 1.4 2 2.3 0.5 1.4 0 1.4-0.9 2.2-1 0.7-1 0.1-2.1-2.4-0.9-0.3-1.1 0-2.2 0.8-0.9-0.3-0.6-0.7-0.7-2.3-0.7-1.2-0.9-0.6-1.2 0.2-0.7 1.1-1.5 2.8-0.3 1.1 0.2 2.5-0.3 1.3-1 0.6-1.3 0.1-2.4-0.9-1.2-0.2-1.5 0.3-2.1 0.8-1.8 0.3-3.9-1.1-1.3 0.1-2.3 0.4-1 0-0.8-0.6-1-1.6-0.8-0.6-1-0.4-3.9-0.4-1.3-0.5-1.1-1.3-1.1-2-1.8-4.6-0.8-1.5-1.1-0.9-1.1-0.6-1.9-0.3-12.6-0.3-1.2-0.4-1.8-3.1-4.1-4.1-6.6-3.8-1.1-1.3-0.8-1.2-0.4-1.3-3.1-6.1-4.5-7.1-1.3-3.3-0.1-2.1 1.8-1.9 2.7-4 0.6-1.2 0.3-1.2 0.3-2.6 0.5-1.3 1.2-1.9 0.6-1.3 1.1-4.3 4.5-3.7 13.9-6.7 2.9-0.8 2.1 0 11.6 3.3 1.4 0.9 2.5 2.5 1.6 0.9 4.4 1.1 1.1 0.6 1.8 2.1 1.3 0.9 0.6-0.3 0.9-1.8 0.7-0.9 4.1-3.4 0.5-1 0.2-1.2-0.2-1.2-0.9-2.1-1.2-2.2 5.3-1.9 11.1 0 2.8 0.5 2.1 0.8 4.2 2.2 13.2 4.5 2.4 0.4 16.2-0.7 2.5 0.4 1.4 0.9 0.2 1.2 0.6 1.2 1 1.2 2.1 1 1.3 0.8 1.8 1.8 1.4 0.9 1.3 0.3 1.5 0 1.2-0.4 2.7-1.4z&quot; id&#x3D;&quot;county_romania_salaj_37&quot; name&#x3D;&quot;Salaj&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m343.2 48.5l1.7 6.3 5.1 7.2 1 1.2 1.5 1.2 3.5 2.2 1.4 1.4 1.1 2-0.1 1.7-0.9 1.7-15 11.5-2.6 1.3-2.4 0.5-1.8-0.1-1.8-0.5-1.6-0.8-4.1-1.3-7.5-0.1-1.8 0.8-1.2 1.3-0.4 2.2 0.1 1.3 0.7 1.1 1.2 0.8 7.2 2 1.6 0.9 1.2 1.2 0.8 1.2 0.2 2.1-0.4 1.9-1.3 3-0.7 2-1.8 4-2.3 2.7-1.9 2.8-1.6 1.8-2 1.2-1.8 0-1.6-0.7-4.8-3.2-1.2-1.1-1.8-2.3-0.8-0.5-1 0-1 0.6-6.2 7.9-0.9 1.5-1.4 4.7-0.6 1.1-1.8 2-3.9 2.6-0.8 0.9-0.3 1 0.2 1.1 1.4 1.3 1.8 1 9.7 1.8 1.2 2.2 0.9 2.1 0.2 1.2-0.2 1.2-0.5 1-4.1 3.4-0.7 0.9-0.9 1.8-0.6 0.3-1.3-0.9-1.8-2.1-1.1-0.6-4.4-1.1-1.6-0.9-2.5-2.5-1.4-0.9-11.6-3.3-2.1 0-2.9 0.8-13.9 6.7-4.5 3.7-1-2.8-0.7-3.9-1-1.8-1.3-1.1-3.1-1.8-1.7-1.5-1.5-1-1.1-0.3-1.1 0.3-2.5 1.4-1 0.2-1.6-0.3-1.9 0-1.9 0.5-1.8-0.4-1-0.7-0.6-1.2-1.2-3.3-0.9-1.8-3-4.7-1.7-3.1-1.6-2.2-4.3-3.3-1.2-1.2-0.9-1.5-1.3-3.1-2.7-4.1 0.3-2.2 0.3-1.1 2.6-3.7 0.3-1.4 0.4-2.8 0.4-1.2 0.8-1 1.7-1.3 0.8-0.8 2.4-3.5 1.2-1.3 1.9-1 1.9-0.7 1.3-0.2 4.9 0.8 1.5-0.1 1.4-0.6 1.2-1.2 1.8-6.2 3.2-0.7 7.8 4.1 3.7 0.6 4-0.6 3.8-1.7 3.1-2.7 2.6-3.4 1.3-1 2.2-1 2.2-0.3 0.7-0.4 0.9-1.7-0.2-1.2-0.6-1 0-1.4 1.1-2.1 1.7-1.2 4.2-1.5 1.8-1.6 2.6-5 1.8-2 2.1-0.7 1.9-1.3 0.9-2.1-0.9-3.2 0.9-1.9 1.6-0.1 1.8 0.9 3.3 2.1 1.7 0.6 1.7-0.3 4.5-3.6 1.5-2.7 2.3-7.4 2.1-3.2 2.2-1 2.3 0.3 7.4 2.6 1.8 1.3 4.4 5.2 5 4.4 2.4 2.8 0.7 0.3 1.6 0 1.5-0.3 6.8 3.4 2.2-0.1 0.4-0.4z&quot; id&#x3D;&quot;county_romania_satumare_34&quot; name&#x3D;&quot;Satu mare&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m535.7 446.6l1.6 2.9 0.6 1.4 0.4 1.5 0 1.8-0.5 2.5-0.7 1.6-1.6 2.7-0.8 1.6-0.6 2-0.5 2.4-0.2 3.5-0.8 3.1-1 2.4-0.8 1.6-1 1.1-0.9 0.7-1 0.2-0.9-0.3-0.8-0.7-1.2-2-0.7-0.7-0.7-0.1-1.1 1.1-1.1 2.7-0.5 0.9-0.5 2-0.1 2.9 1.1 5.9 1.5 2.5 3.3 3.8 1.2 2.9 0.5 1.9 0 1.4-0.5 1.3-3 3.5-0.6 1.3-0.2 2.5 0.2 2.9 1.7 8.1 0.3 2.3-0.9 12.2-0.2 1.6-0.5 1.3-1.6 2.9-0.3 1.7 0.2 1.7 1.5 1.8 2.1 2-0.4 0.7-2.4 1.5-0.4 1.2 0.3 1.8 2.7 5.3 1.1 1.5 2.9 2.9 0.9 0.6 1.1 0.4 2.4 0.4 1.8 1.1 0.4 1.1-0.1 1.3-1.9 3.6-0.6 1.5 0.1 2 1 3.7-0.3 2.7-2.3 4.2-3.4-1.7-1.7-0.5-1.8-0.2-2.4 0-4.8 0.9-2.2 1.3-2.3 2.3-1.5 0.6-2.6 0.7-3.3-0.5-1 0.2-1.1 0.8-1.3 1.6-1.9 1.3-1.6 0.4-1.9 0.1-5.7-1.5-4.5 1.2-2.3-1.6-5.1-0.4-1-0.7-0.7-1.2-0.6-2.3-0.4-6.5-1.3-4.9 0.1-2.6 0.6-1.9 0.1-1-1-6.7-1.1-3.8-0.2-1.8-0.5-3.3-0.8-2.3-2.6-4.3-0.3-1.4 0.9-1.6 0.9-0.7 1.9-0.8 0.6-0.9-0.5-0.8-0.8-0.6-1.9-0.2-1.6 0.4-1.7 0-1.7-0.5-2.1-2.1-1.2-1.6-4.7-9.9-0.8-2-0.1-1.7 0.3-2.7-0.3-1.2-0.5-0.8-1-0.2-0.9 0.6-1.2 1.7-1.4 3.6-0.7 0.9-4.3 3.6-0.9 0.4-1-0.3-0.7-0.6-1.2-3.6 2.7-2 4.1-5 0.7-1.3 0.3-1.2-0.1-1.3-0.7-1.8-1.6-2.6-0.1-1.2 0.8-3.1 1.2-9.1 3.2-14.1-0.2-3.5-0.6-2.2-0.8-1.8-0.7-1-1.6-1.9-0.5-1.5-0.2-1.9 0.4-3.1 0.3-3.7-1-3.6-0.1-1.6 0.2-1.4 0.6-1.2 1.7-2.2 0.3-1.4-0.2-1.8-2.2-9.4 0-1.7 0.3-1.6 3.1-6 1.4-6.6-1.3-4.8 19.2-5.6 6.7-0.6 1.6 0.4 1.4 0.8 1.7 1.8 1.5 2.5 0.8 0.5 1.3-0.4 1.9-1.2 1.2-0.5 1.3-0.1 3.1 0.2 6.5-0.6 11.8 1.6 2.5 1.5 4 3.5 1.8 1.2 1.7 0.6 1.7 1.2 1.5 2 5.9 13.1 3.5 4.2z&quot; id&#x3D;&quot;county_romania_arges_22&quot; name&#x3D;&quot;Arges&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m501.1 344.5l-2.2 3-6.3 5.2-5.9 3.2-0.6 0.7-0.3 1 0.7 2 0.1 1.1-0.3 1.5-0.9 0.5-0.7-0.1-1.7-0.7-1.2 0.2-1.8 1-1.6 1.7-4.7 2.5-0.7 0.9-0.1 1.2 0.4 0.9 1.5 1.7 0.4 1.2-0.2 2.9 0.3 1 0.6 0.8 1.5 0.9 0.3 1-0.6 1.6-1.4 1.1-1.8 0.8-2 0.5-3.8 1.6-1.6 1.3-0.5 1.3 0.1 1.5 3.3 7 1.1 3.7 0.9 5 0.4 4.3 0.3 2.3 0.2 3.1-19.2 5.6-21.6-0.2-14.7 3.4-1.5 0.5-10.6 6.1-2 0.1-1.6-0.3-3.7-1.7-4-0.5-17.6 0.7-1.7 0.5-1.7 2-1 0.8-1.3 0.3-1.8 0.1-1.4 0.5-3.3 2.6-2.1 1.3-1.3 0.5-2.2-0.2 2.9-4.3-0.1-1.4-0.4-2-2.6-4.5-1.1-3.3 0.3-2.4 0.8-2.6 0.9-4.5-0.2-2.8-0.7-2.5-0.8-2.2-0.7-3.9 0.3-2.7 2.4-7.7 0.7-1.6 1.5-2 1.5-0.9 2.4 0.3 1-0.1 1.4-1.4 1.4-2.7 3.6-5.6 0.2-1.3-0.7-0.8-1.2-0.7-2.7-0.7-1-0.5-0.7-1-0.5-5 0.5-0.8 0.8-0.4 2 0.2 2.9 1.7 1 0.2 1.7-0.5 2.5 0.1 1.3-0.2 1.6-1 1.4-1.2 1.6-2 0.3-1.8-0.4-1.4-0.7-1.4-0.5-1.5 0.1-2.5 0.7-1.4 1.3-0.9 7.3-1.6 1.2 0 1.9 1.2 1.9 1.9 0.9 0.7 0.9 0.2 0.9-0.4 0.4-0.8 0.5-2.8 0.7-2.2 1.2-1.9 8.8-9.5 2.3-2.1 1.6-1.8 2.1-1.3 1.2-1.2 0.4-1.2 0.1-1.6-0.5-10.1 7.8 0 3.8-0.8 5.8 2.4 2 0.3 2.1-0.5 1.7-0.7 3.3-0.7 7.4 0.5 2.1-0.1 1.3-0.7 1.5-1.8 1.3-0.9 1.4 0 2.8 0.9 2 0.2 1.5-0.4 2.1-1.1 0.9 0.1 0.4 0.5-0.3 0.9-0.7 1-0.5 1.3-0.1 1.4 0.7 4.1 0.5 8.8 0.6 3.9 1.1 3.4 1.9 2.3 1.4 0.7 1.4 0 1.2-0.4 2.4 0 0.8-0.4 1.2-1 0.8-0.3 3.3-0.2 3.4-0.9 1.5-0.2 2.3 0.3 1.4 0.6 1.7 1.2 1.1 1 5 2.9z&quot; id&#x3D;&quot;county_romania_sibiu_40&quot; name&#x3D;&quot;Sibiu&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m453.1 420.5l1.3 4.8-1.4 6.6-3.1 6-0.3 1.6 0 1.7 2.2 9.4 0.2 1.8-0.3 1.4-1.7 2.2-0.6 1.2-0.2 1.4 0.1 1.6 1 3.6-0.3 3.7-0.4 3.1 0.2 1.9 0.5 1.5 1.6 1.9 0.7 1 0.8 1.8 0.6 2.2 0.2 3.5-3.2 14.1-1.2 9.1-0.8 3.1 0.1 1.2 1.6 2.6 0.7 1.8 0.1 1.3-0.3 1.2-0.7 1.3-4.1 5-2.7 2 0.2-6.9-1.3-2.3-1.1-0.3-1 0.1-1.1 0.6-1.6 2-3 5.3-0.9 3.5-0.2 2-0.8 3.3-0.6 1.6-0.9 1.9-1.7 2.6-2 2.1 0 1.3 0.5 3.2 1.4 6.4-0.4 2.5 1.2 1.9 1.2 2.8 0.8 3.4 0.3 2.7-1.6 1.4-1-0.5-0.8-1-0.8-2 0.2-2.5-0.9-0.9-1 0-1.3 1-0.5 1.3-0.7 3.1-0.8 1.1-3.1 1.8-2.1 0.2-2.5-0.7-1.4 0-1.1 0.2-1.3 0.7-1.1 1.2-3.3 4.8-1.3 0.6-0.8-0.1-0.8-0.7-1-1.7-0.8-1.1-2.1-1.2-1.2-0.2-2.5 0.6-4 2.5-3-3.1-1.7-2.6-1.3-2.3-2.1-7.3-1-1.3-1-0.9-3.5-2.2-1.6-0.7-1.9-1.1-0.8-1.1-0.5-1.3-0.1-1.2-0.8-3.5 1.5-8.6 0.4-7.9-1.5-17.1 0.2-2.9 0.5-2 1.2-3.3 2.9-11.7 0.1-2-0.4-5.1 0.4-2.2 1.7-5 0.2-1.8-0.5-2.1-1.1-2.7-0.8-4.1 0.2-2.9 1.4-5.8-0.5-1.7-0.8-1.2-1.8-1.4-1.8-0.4-6.5 0.7-1.9-0.1-1.6-0.3-2-1.1-1.2-0.4-5.1 0-3.2-1 1.5-4.4-0.3-1.7-1.5-4.5-0.2-1.4 0.3-2.3 4.4-0.7 2.2 0.2 1.3-0.5 2.1-1.3 3.3-2.6 1.4-0.5 1.8-0.1 1.3-0.3 1-0.8 1.7-2 1.7-0.5 17.6-0.7 4 0.5 3.7 1.7 1.6 0.3 2-0.1 10.6-6.1 1.5-0.5 14.7-3.4 21.6 0.2z&quot; id&#x3D;&quot;county_romania_valcea_26&quot; name&#x3D;&quot;Vâlcea&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m551 338l-0.7 2.1 0.4 1.4 0.9 1.6 3.4 2.6 1.4 1.9 0.9-0.9 2.1-0.1 2.2 0.6 1.3 1 0.4 2.7-1.3 5.1 0.3 2.6-0.7 2.1-0.2 3.3 0.1 9.9 0.4 2.3 1 2.1 7.4 5 3.3 3.4 0.3 5.1 1.9 0 1.6-1.1 1.5 1 1.5-0.1 1.5-0.6 1.6-0.3 0.7-1 1.6 2.5 1.9 1 9.8 3.7 2.6 1.9 3.1 3.2 1.7 2.6 1.6 3.3 1.1 0.9 2 0.9 2 1.1 2.1 1.8 3.2 5.1 2.3 2.4-5.8 12.4-4.9-1-5.6-3.3-2.3-0.3-1.4 0.6-0.9 1.2-0.7 3.4-0.5 1.9-1 1.8-2 1.8-1.8 0.5-1.5-0.3-0.9-0.8-1.4-2.4-0.7-1-1.3-0.8-1.4 0.1-2.9 1-1.5-0.3-4.5-1.7-4.5-0.9-2.4 0.1-17.8 3.2-1.4 0.5-1.7 1.2-2.1 1-0.8 0.9-0.9 1.9-0.5 1.6-2 2.5-6.4 1.7-3.5-4.2-5.9-13.1-1.5-2-1.7-1.2-1.7-0.6-1.8-1.2-4-3.5-2.5-1.5-11.8-1.6-6.5 0.6-3.1-0.2-1.3 0.1-1.2 0.5-1.9 1.2-1.3 0.4-0.8-0.5-1.5-2.5-1.7-1.8-1.4-0.8-1.6-0.4-6.7 0.6-0.2-3.1-0.3-2.3-0.4-4.3-0.9-5-1.1-3.7-3.3-7-0.1-1.5 0.5-1.3 1.6-1.3 3.8-1.6 2-0.5 1.8-0.8 1.4-1.1 0.6-1.6-0.3-1-1.5-0.9-0.6-0.8-0.3-1 0.2-2.9-0.4-1.2-1.5-1.7-0.4-0.9 0.1-1.2 0.7-0.9 4.7-2.5 1.6-1.7 1.8-1 1.2-0.2 1.7 0.7 0.7 0.1 0.9-0.5 0.3-1.5-0.1-1.1-0.7-2 0.3-1 0.6-0.7 5.9-3.2 6.3-5.2 2.2-3-0.6-3.2 1-2.9 1.1-1.2 2.3-2 1.5-0.8 1.5-0.5 9.7-0.4 5.3-1.2 5.6-0.9 5.8-2.7 1.8 0 1.8 0.4 2.2 1.1 1.7 1.7 1.6 1.2 4.7 1.7 2.9 3.2z&quot; id&#x3D;&quot;county_romania_brasov_7&quot; name&#x3D;&quot;Brasov&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m635.1 331.3l4.4-1.5 3.4-3 0.9-0.1 0.8 0.4 1.5 1.8 0.8 0.8 3.9 2.4 1 1.3 0.6 1.3-0.3 1-1.4 1.6-0.3 1.1 0.6 1.4 2 1 1.2 0.9 0.9 1.1 0.5 1.3 1 3.3 1.4 2.6 1.7 0.9-6.7 10.8-1.7 5-0.2 2.2-1.5 7.7-0.9 7.4 1 3.2 0.5 1.4 0.3 1.7-0.2 1.8-2 4.2-0.4 1.8-0.2 1.7-0.4 2-0.9 2-1.7 2.6-0.6 2.1-0.8 3.5-1 1.4-1.9 1-1.8-0.1-1.2-0.6-1.9-1.9-1.1-0.7-1.1-0.2-1 0.4-1 1.6-0.4 1.5-0.4 2.8-0.7 0.9-1.3 0.5-5.2 0.2-4.1 1.3-2.3-2.4-3.2-5.1-2.1-1.8-2-1.1-2-0.9-1.1-0.9-1.6-3.3-1.7-2.6-3.1-3.2-2.6-1.9-9.8-3.7-1.9-1-1.6-2.5-0.7 1-1.6 0.3-1.5 0.6-1.5 0.1-1.5-1-1.6 1.1-1.9 0-0.3-5.1-3.3-3.4-7.4-5-1-2.1-0.4-2.3-0.1-9.9 0.2-3.3 0.7-2.1-0.3-2.6 1.3-5.1-0.4-2.7-1.3-1-2.2-0.6-2.1 0.1-0.9 0.9-1.4-1.9-3.4-2.6-0.9-1.6-0.4-1.4 0.7-2.1 2.6-5.2 1.6-1.5-0.1-1.4 0.4-0.9 3.8-4.2 2.2-1.6 1.6-1.8 3.8-5.5 1.7-1.6 3.5-2.3 1.3-1.3 1.2-0.9 1.4-0.3 1.6 0.9 2.8 2.5 1.2 1.2 0.7 1.3 0.8 4.4 3.9 7.6 4.2 3.4 1 1.2 0.9 1.5 1.8 1.5 3 1.5 9.8 0.8 27.4-6z&quot; id&#x3D;&quot;county_romania_covasna_12&quot; name&#x3D;&quot;Covasna&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m573.9 191.8l2.4 0.6 2.9 1.3 1.6 1 1.4 1.8 1.3 2.3 1.8 4.6 1.3 2.6 1.9 2.5 3.5 2.7 1.5 1.5 0.9 1.5 0.6 2.6-0.1 1.2-0.4 0.7-0.7 0.1-1.9-0.4-1.1 0.1-1.3 1.1-0.2 1.3-0.1 1.6 1.2 25.6 0.5 1.9 0.9 1.7 1.6 1.9 3.5 3.5 1.2 0.7 1.1 0.1 0.4-0.9-0.1-1.4-0.7-3.3 0-1.4 1.1-0.7 1-0.3 8.6 2.1 0.3 11.4 1.8 7 1.4 2.5 1.5 2.3 1.4 2.8 0.1 1.8-1.1 1-1.4 0.6-1.5 1.3-0.9 2-0.5 4.3 0.6 2.2 1.5 1.4 4.3 1.2 5.6 0.8 1.5 0.9 1.6 1.7 0.5 1.8 0.1 1.8-0.8 3.6-0.1 2.1 0.9 1 1.5 0 2.7-0.8 4.2-2.3 1.5-0.3 1.5 0.2 1.8 1.1 0.6 1.3 0.2 1.4-1.5 4-0.2 1.3-0.5 6.2-0.4 1.6-1.3 2.7-0.5 1.6-0.8 5.8-27.4 6-9.8-0.8-3-1.5-1.8-1.5-0.9-1.5-1-1.2-4.2-3.4-3.9-7.6-0.8-4.4-0.7-1.3-1.2-1.2-2.8-2.5-1.6-0.9-1.4 0.3-1.2 0.9-1.3 1.3-3.5 2.3-1.7 1.6-3.8 5.5-1.6 1.8-2.2 1.6-3.8 4.2-0.4 0.9 0.1 1.4-1.6 1.5-2.6 5.2-2.9-3.2-4.7-1.7-1.6-1.2-1.7-1.7-2.2-1.1-1.8-0.4-1.8 0-5.8 2.7-5.6 0.9-8.3-8.9-5.6-4.3-1.7-0.7-5 0.2-2-0.7-1.9-1.8-8.4-10.2-0.6-1.3 0.1-1 0.8-0.8 2.3-1 2.6-2 2.6-0.6 1.2-0.6 0.6-1.1 0-1.6-0.8-1-2.9-2.1 0-1 0.8-1 6.6-2.7 1.1-1.1 0.5-1.2 0.5-5.8 0.5-1.7 0.8-1.4 6.2-6.5 1.4-0.9 4.5-1.9 1.8-1.2 1.3-1.4 3.8-5.9 1.5-1.7 4.6-3.8 0.9-1.5 0.2-1.5-0.3-4.1 0.3-2.9 0.6-3.4 0.1-2.1-0.8-2.5-2.3-6.4-0.6-3.5 1.7-10.4-0.3-9.4-0.4-2.4-0.7-1.9-1-1.4-2.4-2.4-1.5-3-0.7-5.9 4 1.6 2.9 0 1.4-0.6 0.9-1 0.6-1.3 0.2-2.7 0.3-1.4 1-1.8 1.8-1.2 2.1-0.9 2.6-0.6 1.8 0.1 1.8 0.8 11.8 8.1 1.2 1.2 1 1.5 1.3 1.4 1.7 1.1 1.6 0.2 2.2-0.3 1.5-0.5 5.6-0.8z&quot; id&#x3D;&quot;county_romania_harghita_2&quot; name&#x3D;&quot;Harghita&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m832.6 225.1l-0.8 0.5-5.4 0.7-1.8 1.1-1.7 1.3-1.2 0-1.3-0.6-1.9-1.5-0.9-0.1-1.3 0.8-0.4 1-0.9 0.7-1.5 0-3.9-1.3-3.4-2.2-1.1-0.3-1.7 0.2-1.4-0.1-1.1-0.9-0.1-1.1 1.7-5.6 0.1-1.7-0.4-1.5-0.9-0.9-1.3-0.2-1.4 1-0.5 1.4 0 2.9-0.3 0.9-0.7 0-1.2-0.8-4-5.3-2.9-3-6.3-5-1.4-0.7-1.2 0-0.8 1-0.2 1.1 0.8 2.3 0.1 2.5-0.5 2.3 0.2 0.7 0.7 0.5 1.2 0.1 1.9-0.3 1 0.7-0.2 1.8-0.5 1-1.3 0.7-2.1 0.3-3.9-0.7-1.9-0.8-1.5 0-0.7 1-1.2 2.4-1.1 1-3.9 1.3-1.9 0.1-2.6-0.6-1.9-0.7-2-0.6-2 0-7.9 1.4-12.2-0.8-0.5-2.1-0.6-1.3-1.9-3.3-2.2-3-1.2-1.9-0.1-1.6 0.7-1.5 1.4-1.4 1.8-1 1.9-0.8 3.1-0.8 0.9-0.7 0.4-1.1-0.6-1.3-1.4-1.7-2.4-2.1-1.3-1.5-1-1.5-0.8-2.9-0.9-1.2-1.3-0.7-2.4-0.2-1.7 0.4-1.4 0.8-3.6 4.3-1.1 1-1.3 0.5-1.9-0.2-5-1.1-1.5 0.3-0.9 0.9-0.9 2.6-0.6 1-0.9 0.5-1.6 0.1-4.3-1-2.7-1.5-6.2-4.8-4.1-2.3-3-0.8-2.4-0.1-2 0.3-1.8-0.1-1.4-0.8-0.9-2.1-0.8-2.4-3.1-7.9-5.4-7.9-7.3-7.2 8.1-1.9 1.1-0.8 0.9-1.2-0.6-1.1-6.5-6-1.1-2.6 0.4-1.4 1.8-0.5 11 1.3 2.3-0.4 0.9-0.9 0.5-1.4 0.1-1.9 1.1-2.9 0.4-1.7-0.3-1.4-1.5-2.2 4.2-4.1 1.5-3.2 0.6-1.7 0.7-0.9 0.9-0.5 1.1 0.1 3.1 2.1 1.7 0.4 17.7 0 1 0.4 1.8 1.4 1.6 2 1.1 1.2 1.3 1 2 0.6 1.6-0.3 2.2-0.8 1.1-0.9 0.5-1.1-0.1-1.3-1.9-4.2-0.2-1.4 0.4-1.1 0.7-1.1 1.2-0.9 1.2-0.2 0.8 0.3 1.7 1.4 3 0.6 1.9 0.8 1.8 1 1.4 0.4 2.9 0 1.2-0.7 0.9-1.1 0.4-2.7 0.6-1.1 1.8-2 1.8-2 1.2-0.8 1.3-0.1 1.7 0.4 4.3 0.1 5.8-2.8 1 3.6-0.1 1.4 0.7 0.9 1.4 0.3 0.8 4.2 0.6 2.3 1.2 1 0.9 0.1 1.5 1 2.8 0.1 1.6 0.5 1.5 0.9 1.4 1.3 0.7 1.5-0.8 0.7-0.6 1.2-0.7 3.4 1.8 1.7-0.8 4.8 1.5 1 1.4 1.2 2.6 6.1 1.3 2.3 0.8 0.5 2.9 0.6 2.8 1.9 2.6 0.7 1.1 1.2 2.1 3.7-0.1 2 1.1 1.9 2.7 3.5 1.3 4.2 0.7 2.3-0.1 0.6-1.2 0.4 1.2 1.7 4.6 2.5 0 1.1-0.6 1.1 2.4 1.5 3.2 3.6 3 2 1.3 1.2 0.1 2.2 2.5 0.5 2.5 1.6 2.3 1.1 2.1-1 0.9 2.5 3.4 4.3 1.5 2.7 2 5.6 0.4 2.7-0.9 2.3 1.7 1.2 0.1 1.8-0.1 1.8 1.2 1.5-0.2 3z&quot; id&#x3D;&quot;county_romania_iasi_25&quot; name&#x3D;&quot;Iasi&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m659.5 161.4l7.3 7.2 5.4 7.9 3.1 7.9 0.8 2.4 0.9 2.1 1.4 0.8 1.8 0.1 2-0.3 2.4 0.1 3 0.8 4.1 2.3 6.2 4.8 2.7 1.5 4.3 1 1.6-0.1 0.9-0.5 0.6-1 0.9-2.6 0.9-0.9 1.5-0.3 5 1.1 1.9 0.2 1.3-0.5 1.1-1 3.6-4.3 1.4-0.8 1.7-0.4 2.4 0.2 1.3 0.7 0.9 1.2 0.8 2.9 1 1.5 1.3 1.5 2.4 2.1 1.4 1.7 0.6 1.3-0.4 1.1-0.9 0.7-3.1 0.8-1.9 0.8-1.8 1-1.4 1.4-0.7 1.5 0.1 1.6 1.2 1.9 2.2 3 1.9 3.3 0.6 1.3 0.5 2.1 0.6 4.8 2.4 6.5 0.4 2.5 0 1.7-1.2 2.5-4.2 2.1-3-0.9-1.1-0.6-8.5-2-2.6 0.1-7.4 1.1-2.1-1.5-1.5-1.6-0.6-1.5 0.1-2.1-0.1-1.1-0.6-1.3-2.2-1.6-1.1-0.1-0.6 0.6 0.2 2.3-0.2 1.3-0.7 1-2.8 2.4-0.5 1-0.1 1.2 0.2 1.3 0 1.2-0.6 1.2-1.2 1-1.7 0.8-1.7 0-1.3-0.7-3.2-2.4-2.8-1-2 0.2-1.3 0.8-0.9 2.1-0.9 1.1-6.5 2.8-1.5 1-2 2.6-0.9 0.8-1.4 0.2-4.3-0.9-3.8 0.9-4 0-1.1 0.4-1 0.9-1.8 2.6-1 0.9-1.8 0.2-8.4 0.1-1.2-0.3-0.3-0.6 0.5-3-0.3-1.1-1.3-2.2-1.2-2.4-0.7-0.8-1.5-0.6-1.3 0.2-1.2 0.7-6.5 4.7-2.7 1.2-2 0.3-1.4-0.3-3.1-1.7-2.4-0.7-1.4 0.1-3.9 1.1-8.6-2.1-1 0.3-1.1 0.7 0 1.4 0.7 3.3 0.1 1.4-0.4 0.9-1.1-0.1-1.2-0.7-3.5-3.5-1.6-1.9-0.9-1.7-0.5-1.9-1.2-25.6 0.1-1.6 0.2-1.3 1.3-1.1 1.1-0.1 1.9 0.4 0.7-0.1 0.4-0.7 0.1-1.2-0.6-2.6-0.9-1.5-1.5-1.5-3.5-2.7-1.9-2.5-1.3-2.6-1.8-4.6-1.3-2.3-1.4-1.8-1.6-1-2.9-1.3-2.4-0.6 0.1-3.4 1.2-4 1.3-2.7 4.7-5.7 1.6-1.5 4.1-2.7 1.8-1.6 0.8-1.5 0.2-1.5-0.2-1.3-0.8-1.1-2.1-2-1.8-2.6-0.3-1.1 0.4-0.9 0.8-0.5 1.2-0.1 1.3 0.5 1.4 1 4.8 4.5 1.3 1 1.4 0.2 1.9-0.3 7.7-3.7 1.5-0.1 1.5 0.5 1.3 0.9 1.8 0.6 2 0.1 5.4-1.5 11.9 0.1 3.8-1 9.9-5.2 2.4-0.6 2.1 0.1 2.1 0.4 1.8 0.8 1.6 1.2 3.7 4.3z&quot; id&#x3D;&quot;county_romania_neamt_18&quot; name&#x3D;&quot;Neamt&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m613.4 432.5l6.4 7.6 4.3 3.2 1.4 1.4 1.4 2.2 3.7 7.9 0.5 2.3-0.1 1.4-0.7 1-0.2 1.3 0.5 1.6 3 3.1 1.1 1.5 0.4 3 0.4 1.1 0.7 1 1.5 0.9 1.5 0.3 4.6-0.4 1.2 0.4 1.1 0.9 0.5 1.9 1.1 1 0.9 0.2 2.5-2.2 0.9-0.3 0.5 0.3 0.1 1.1-0.4 2.7 0.3 1.7 1.5 1.7 2.5 2 0.9 1.4 0.7 1.5 0.7 4.4 0.2 5.7 0.5 2.2 0.7 1.6 1.8 1 2.9 0.9 0.9 0.4 2.4 2.3 0.8 1.1 0.6 1.3-0.2 2.1-0.9 1.2-1.9 1.9-0.7 1.1 0 1.4 0.4 1.5 4 4 2 3.6-2.7 3.4-1.3 2.4-1.9 1.6-1.4 0.8-1.5 0.4-5.7-0.5-1.4 0.3-1.5 1.2-1.8 2.1-1.2 0.5-2.3-0.2-2.5-1.4-1.2-0.3-1.5 0.1-3.6 1.7-3.8 3.6-4.4-0.3-1.5 0.2-2.8-1.1-2.4-0.1-6.4 2.1-6.5 0.1-0.8 1.7-0.6 0.6-1.2-0.4-2.1-1.1-1.3-1.1-7.3-9-1.8-1-1.6-0.6-5-0.7-1.2-0.9-0.8-1.4-0.4-2.7 0.6-4.3-0.1-2.1-0.5-2.1-1.4-2.4-1.1-1.2-0.8-0.4-2.9 0.8-1.2 0-2.3-1-1.1-1-0.9-1.6-0.8-1.9-0.8-3.7-0.7-6.4-0.4-1.6-0.9-1.6-4.4-4.9-5.8-11.3-1.2-1.8-2.1-2.3-1.6-2.8-0.1-2.1 0.3-4.1-0.3-1.5-0.7-1.8-1.2-2-1.1-1.2-3.2-2.4-0.7-1.3-0.5-1.8-0.7-6.7-1.9-9.4 1.7-1.2 1.4-0.5 17.8-3.2 2.4-0.1 4.5 0.9 4.5 1.7 1.5 0.3 2.9-1 1.4-0.1 1.3 0.8 0.7 1 1.4 2.4 0.9 0.8 1.5 0.3 1.8-0.5 2-1.8 1-1.8 0.5-1.9 0.7-3.4 0.9-1.2 1.4-0.6 2.3 0.3 5.6 3.3 4.9 1z&quot; id&#x3D;&quot;county_romania_prahova_16&quot; name&#x3D;&quot;Prahova&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m678.1 134.4l1.5 2.2 0.3 1.4-0.4 1.7-1.1 2.9-0.1 1.9-0.5 1.4-0.9 0.9-2.3 0.4-11-1.3-1.8 0.5-0.4 1.4 1.1 2.6 6.5 6 0.6 1.1-0.9 1.2-1.1 0.8-8.1 1.9-3.7-4.3-1.6-1.2-1.8-0.8-2.1-0.4-2.1-0.1-2.4 0.6-9.9 5.2-3.8 1-11.9-0.1-5.4 1.5-2-0.1-1.8-0.6-1.3-0.9-1.5-0.5-1.5 0.1-7.7 3.7-1.9 0.3-1.4-0.2-1.3-1-4.8-4.5-1.4-1-1.3-0.5-1.2 0.1-0.8 0.5-0.4 0.9 0.3 1.1 1.8 2.6 2.1 2 0.8 1.1 0.2 1.3-0.2 1.5-0.8 1.5-1.8 1.6-4.1 2.7-1.6 1.5-4.7 5.7-1.3 2.7-1.2 4-0.1 3.4-5.6 0.8-1.5 0.5-2.2 0.3-1.6-0.2-1.7-1.1-1.3-1.4-1-1.5-1.2-1.2-11.8-8.1-1.8-0.8-1.8-0.1-2.6 0.6-2.1 0.9-1.8 1.2-1 1.8-0.3 1.4-0.2 2.7-0.6 1.3-0.9 1-1.4 0.6-2.9 0-4-1.6-4.8-2.3-9.5-1.8-0.6-10.8 0.6-4.7 0.4-1.6 0.4-2.4-0.2-0.9-0.5-0.3-2 0.2-1.2-0.3-1.2-1.6 0.1-1.6 0.8-2.1 1.4-2.4 0.8-2.7-0.1-1.8-0.4-1.5-1.3-2.8-0.8-1.3-2.1-2.7-0.9-1.7-0.2-1.1 0.5-0.9 0.7-0.6 1-0.1 1.6 0.2 1.1-0.7 0.3-1.4-0.1-1-1.4-2.3 0.2-0.8 0.8-0.7 2.7-1.5 1.2-1.3 0.7-2.2-0.1-1.8-0.6-1.6-1.2-2.4-2.8-3.3-8.3-6.8-1.2-1.4 6.3-2.2 0.9-1 0.8-1.5-0.2-1.7-0.9-1.4-4.5-4.8-2.5-4-1.3-4.3 7.9-1.4 6.6-2.9 4.4-4.3 10.2-17 4.6-3.1 51.8-5.7 6.9-2.8 5.6-0.7 3.2-1.5 1.7-0.3 5.1 0.5 6.7-2 7.7-0.1 1.8 9.6 0.7 1.8 1.6 1.5 2.8 1.8 4.3 3.7 5.4 3 2.5 2.5 12 15.4 2 3.5 7 8.7 1.3 2.2 3.4 3.5 1.1 1.9 0.9 3.4 1.7 8.2 0.1 1.9-0.3 4.1 0.2 1.8 0.6 1.6 2.6 3.7 2.6 2.1 4.4 0.6z&quot; id&#x3D;&quot;county_romania_suceava_5&quot; name&#x3D;&quot;Suceava&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m737.9 240.5l2.1 2.9 1.5 1.6 4.8 4.1 2 2.2 1.2 2.7 0.1 3.8-0.3 3.5 0.4 3.5 11 19.3 4 9.4 2.4 9.5 1.1 7.1 0.8 19.3-3.2-0.4-3.7-1.1-1 0.1-1.4 1.9-0.8 0.8-1.2 0.3-1.9-0.2-4.5-2.8-2.1-0.4-2.7 0.1-7.8 1.6-2.6 1.5-1.2 1.3-1.8 2.5-1.1 1.1-2.9 1.9-1 1.2-1.2 2.3-0.9 0.7-1.4 0.3-5.5-2-1.4-0.3-1.6 0.2-1.8 0.9-0.9 1-0.8 2.2-0.4 0.6-1 0.2-4.1-1.7-1.6-0.2-1.8 0-2.1 0.5-1.7-0.2-2.6-0.7-4.6-0.2-3.2-0.6-10.2 0.7-1.7 0.5-1.2 1.1-0.7 1.3-0.3 1.4-0.3 4.4-3.2 1.5-12.2-1.8-1.7-0.9-1.4-2.6-1-3.3-0.5-1.3-0.9-1.1-1.2-0.9-2-1-0.6-1.4 0.3-1.1 1.4-1.6 0.3-1-0.6-1.3-1-1.3-3.9-2.4-0.8-0.8-1.5-1.8-0.8-0.4-0.9 0.1-3.4 3-4.4 1.5 0.8-5.8 0.5-1.6 1.3-2.7 0.4-1.6 0.5-6.2 0.2-1.3 1.5-4-0.2-1.4-0.6-1.3-1.8-1.1-1.5-0.2-1.5 0.3-4.2 2.3-2.7 0.8-1.5 0-0.9-1 0.1-2.1 0.8-3.6-0.1-1.8-0.5-1.8-1.6-1.7-1.5-0.9-5.6-0.8-4.3-1.2-1.5-1.4-0.6-2.2 0.5-4.3 0.9-2 1.5-1.3 1.4-0.6 1.1-1-0.1-1.8-1.4-2.8-1.5-2.3-1.4-2.5-1.8-7-0.3-11.4 3.9-1.1 1.4-0.1 2.4 0.7 3.1 1.7 1.4 0.3 2-0.3 2.7-1.2 6.5-4.7 1.2-0.7 1.3-0.2 1.5 0.6 0.7 0.8 1.2 2.4 1.3 2.2 0.3 1.1-0.5 3 0.3 0.6 1.2 0.3 8.4-0.1 1.8-0.2 1-0.9 1.8-2.6 1-0.9 1.1-0.4 4 0 3.8-0.9 4.3 0.9 1.4-0.2 0.9-0.8 2-2.6 1.5-1 6.5-2.8 0.9-1.1 0.9-2.1 1.3-0.8 2-0.2 2.8 1 3.2 2.4 1.3 0.7 1.7 0 1.7-0.8 1.2-1 0.6-1.2 0-1.2-0.2-1.3 0.1-1.2 0.5-1 2.8-2.4 0.7-1 0.2-1.3-0.2-2.3 0.6-0.6 1.1 0.1 2.2 1.6 0.6 1.3 0.1 1.1-0.1 2.1 0.6 1.5 1.5 1.6 2.1 1.5 7.4-1.1 2.6-0.1 8.5 2 1.1 0.6 3 0.9 4.2-2.1z&quot; id&#x3D;&quot;county_romania_bacau_1&quot; name&#x3D;&quot;Bacau&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m822.8 445.5l-0.6 2.7-0.3 4.4-0.2 1.1-1.1 1.9-0.5 2.3-1.9 3.1 5.8 5.1 3.6 1.5 3.7-1.5 1.3 1.3 0.8 1.8-1.3 2-1.6 3.1-0.5 2.9 1.6 1.3 2 0.6 2.1 1.6 1.8 2 0.9 1.9-0.4 2-1.2 2-1.6 1.5-1.4 0.7-0.3 0.7 0.7 4.8 0.6 1.2-0.1 1.8-1 1.6-0.3 1.1 1.1 5.4 0.1 3.4-1.5 1.5-0.4 0.7 0.1 7.9-0.8 1.5-2.8 3.8-1.1 2.3-0.4 3.6-0.7 3.1-1.6 2.8-2.1 2-2.2 0.8-2-0.4-3.1-2.1-2.1-0.5-2 0.1-1.7 0.3-3.2-3-0.8-1.1-1.9-1.2-2.2-0.4-4.9 0.5-2.4 0.8-1.8 1-2.4 0.8-4.1 0.9-28.8-0.8-3-1.2-1.3-0.7-1.4-0.2-1.8 0.6-2.4 1.2-2.1 0.1-1.7-0.2-8.7-3.6-0.4-1.1 0.7-6.9-0.7-1.8-2.1-2.2-0.3-1.4 0.4-1.4 1.4-1.3 1.1-0.6 3.8-1 0.9-1.4 0.8-2.6 1.1-5.5 0.5-3.2 0.1-2.4-0.2-1.4-0.5-0.9-1-0.4-2.5 0.1-1.4-0.2-0.8-0.5-0.4-1.1 0.1-4.2-0.1-1.5-0.7-1.2-0.8-0.7-2.3-0.9-0.6-1-0.1-1.6 0.1-3-0.1-1.3-0.4-1.1-0.7-0.8-0.9-0.5-1-0.1-0.9 0.4-0.7 0.6-0.1 2-0.3 1-1 0.9-1.2 0.3-1-0.3-0.7-0.6-1.6-4.1 0.1-2.2 0.9-1.2 1.5-1.3 8.4-2.9 5 0.7 1.3 0 4.2-1.3 1.4 0 2.7 1.1 0.6-0.6 0.4-2.2-0.5-3.4 0-1.6 0.7-1.2 2-0.9 1.6 0 1.6 0.3 1.3-0.3 1-1.2 0.8-3.4 0.7-2.1 1.9-3.3 0.4-2.9 1-3.1 2.6-4.1 2.7-3.5 1.9-1.7 2.1-1.4 6.2-2.3 6.1 2.7 3.7-0.2 1.9-0.4 1.3 0.3 0.9 0.9 2.1 2.6 3.6 3.1 5.8 3.2 3.7 0.7 6.9-0.3 2.5 0.4 2.6 0.9 6.4 0.8z&quot; id&#x3D;&quot;county_romania_braila_9&quot; name&#x3D;&quot;Braila&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m758.8 446.9l-0.4 2.9-1.9 3.3-0.7 2.1-0.8 3.4-1 1.2-1.3 0.3-1.6-0.3-1.6 0-2 0.9-0.7 1.2 0 1.6 0.5 3.4-0.4 2.2-0.6 0.6-2.7-1.1-1.4 0-4.2 1.3-1.3 0-5-0.7-8.4 2.9-1.5 1.3-0.9 1.2-0.1 2.2 1.6 4.1 0.7 0.6 1 0.3 1.2-0.3 1-0.9 0.3-1 0.1-2 0.7-0.6 0.9-0.4 1 0.1 0.9 0.5 0.7 0.8 0.4 1.1 0.1 1.3-0.1 3 0.1 1.6 0.6 1 2.3 0.9 0.8 0.7 0.7 1.2 0.1 1.5-0.1 4.2 0.4 1.1 0.8 0.5 1.4 0.2 2.5-0.1 1 0.4 0.5 0.9 0.2 1.4-0.1 2.4-0.5 3.2-1.1 5.5-0.8 2.6-0.9 1.4-3.8 1-1.1 0.6-1.4 1.3-0.4 1.4 0.3 1.4 2.1 2.2 0.7 1.8-0.7 6.9 0.4 1.1-2.3 1.2-0.5 1.5 0.7 0.7 1.9 1.5 0.5 0.8-0.5 0.7-1 0.5-2.4 0.6-3 1.2-1.5 0.1-0.4-0.4-0.1-1.5 0.2-1.9-0.1-1.1-0.6-1-1-1-1.4-0.9-1.7-0.9-2.5-0.7-1.6 0.2-1.3 0.8-1.1 1.2-1.5 0.9-1.5 0-1.4-0.6-3.1-2-2.5-0.9-2.1-0.1-3.7 0.7-1.5 0-2.4-0.8-6.3-1.1-7 0.5-2.5-0.2-1.9-0.5-3.5-3.1-2.4-1.2-2-3.6-4-4-0.4-1.5 0-1.4 0.7-1.1 1.9-1.9 0.9-1.2 0.2-2.1-0.6-1.3-0.8-1.1-2.4-2.3-0.9-0.4-2.9-0.9-1.8-1-0.7-1.6-0.5-2.2-0.2-5.7-0.7-4.4-0.7-1.5-0.9-1.4-2.5-2-1.5-1.7-0.3-1.7 0.4-2.7-0.1-1.1-0.5-0.3-0.9 0.3-2.5 2.2-0.9-0.2-1.1-1-0.5-1.9-1.1-0.9-1.2-0.4-4.6 0.4-1.5-0.3-1.5-0.9-0.7-1-0.4-1.1-0.4-3-1.1-1.5-3-3.1-0.5-1.6 0.2-1.3 0.7-1 0.1-1.4-0.5-2.3-3.7-7.9-1.4-2.2-1.4-1.4-4.3-3.2-6.4-7.6 5.8-12.4 4.1-1.3 5.2-0.2 1.3-0.5 0.7-0.9 0.4-2.8 0.4-1.5 1-1.6 1-0.4 1.1 0.2 1.1 0.7 1.9 1.9 1.2 0.6 1.8 0.1 1.9-1 1-1.4 0.8-3.5 0.6-2.1 1.7-2.6 0.9-2 0.4-2 0.2-1.7 0.4-1.8 2-4.2 0.2-1.8-0.3-1.7-0.5-1.4-1-3.2 4.7 4.5 4.4 6.4 6.9 12.2 2.1 2.4 1.8 1.5 3 0.4 1.5-0.1 2.4-0.8 1.3 0 2.4 1 6.7 5.8 2.3 2.9 3.6 2.7 4.5 2.6 1.3 0.5 2.1 0.3 1.5 0.6 1.8 0.1 0.7-1.6-0.4-1.3 1-1.1 1.6-0.1 2.5 0.5 3.2 1.4 1.8 1.4 0.6 1.3 0 3.1 0.8 1.9 2.7 2.9 1.9 1.3 1.4 0.5 1.4-0.1 1.2-0.5 2.6-1.5 1.2-0.4 1.5-0.1 0.6 0.6 0.2 1-0.3 2.7 0.4 1.4 0.9 0.2 1-0.4 1.8-1.9 1-0.8 1-0.3 1.7 0.3 1.2 0.7 1 1 0.9 0.3 1.8-0.1 1.3 0.3 0.8 0.7 0.4 1 0.4 2.4 0.7 1.1 1.1 0.6 5 1.4 2.4 0.3 4.8-0.2z&quot; id&#x3D;&quot;county_romania_buzau_15&quot; name&#x3D;&quot;Buzau&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m831 339.5l-0.7 2.2-0.9 0.5-0.2 1.6 0.6 0.4 0.1 0.9-1.3 5.3-0.2 1.5 0.3 2.2 2.6 7.6 0.5 2.6 1 2.2-0.6 2.3-0.2 1.2 0.3 1.2 1.2 2.5-0.3 0.7-1.4 1-0.5 0.8 0.3 4.4 1.6 4.6 1.9 3.6 0.9 1.5 0.9 15.1-0.2 2.5 0.7 1.9-1.5 0.8-3.5-0.1-1.4 0.5-1.7 1.3-1.8 1.7-1.3 1.7 5.9 3.1 2.4 1.9 2.6 4.8 0 5.1 0.8 1.5 4.2 5.2 0.2 0-1.6 2-0.9 3-1 0.6-1.1-0.2-3-1.5-1.9-0.6-2.1 0.2-4.6 1.6-1.1 0.2-0.7 0.5-1.5 2.4-6.4-0.8-2.6-0.9-2.5-0.4-6.9 0.3-3.7-0.7-5.8-3.2-3.6-3.1-2.1-2.6-0.9-0.9-1.3-0.3-1.9 0.4-3.7 0.2-6.1-2.7-2.8-3.1-1-1.7-1.9-5.3-0.4-1.1 0-3.2-0.8-3.3-0.9-2.1-1.1-1.8-2.2-2.2-1.8-3.1-1.1-0.7-2.9-1.5-1-1-2.7-3.9-1.4-3.3-0.6-2.2-11.2-28.4-1-4.1 0.1-3.3 0.3-1.7 0.8-1.5 0.9-1.2 1.5-1.6 2.6-3.3 2.3-2 1.9-1.2 3-0.6 3.7-0.2 1.7-0.5 1.8-1.6 1-1.4 2.2-1.9 6.1-0.4 3.6 5 1.3 2.6 1 4.4 1.3 3.8 0.9 1.7 1.1 0.8 1.3-0.6 0.6-1.6 0-2.3 0.6-4.1 0-1.4-0.9-2.8-2.1-4.1-0.2-1.2 0.4-1 1.4-0.9 18.1 2.3 1.7 0.6 0.8 0.9 0.3 2.3 0.7 0.9 1.1 0 0.9-0.6 1.7-3.1 0.8-1.3 1-0.8 1.7-0.8 1.5 0 7.9 2.6 3.9 2.1 2.7 0.7 1.6 0.1 3.5-0.9 0.4-0.2z&quot; id&#x3D;&quot;county_romania_galati_31&quot; name&#x3D;&quot;Galati&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m832.6 225.1l-0.1 1.3 1.7 4.3 4.2 7.3 0 2.9 5.9 11.9 1.1 4.2 0.3 2.2 0 2.1-0.7 1.7-1 1.9-0.6 2.2 0.9 2.5-0.9 0.7-0.4 1.2-0.2 5.7 0.2 1.2 1.3 2.8 1.3 0.4 0.1 1.2 0 4.8-0.1 1.3-0.6 1.1-1.5 0.8 0.8 2.1-0.5 0.8-1 0.4-0.7 0.8-0.6 4.6-0.5 0.7-1.3 0.4-0.2 1.1 0.4 3.1 0.1 1.9-1.6 3.7-1.3 1.3-3.2 1.4-0.4 1.1 0.3 2.6-0.2 0.8-2.5 0.9 0.3 1.3 1.9 3.2 1.3 1.9 0.3 1.3-1.2 3.6-0.6 3.7-2.1 6-0.4 0.2-3.5 0.9-1.6-0.1-2.7-0.7-3.9-2.1-7.9-2.6-1.5 0-1.7 0.8-1 0.8-0.8 1.3-1.7 3.1-0.9 0.6-1.1 0-0.7-0.9-0.3-2.3-0.8-0.9-1.7-0.6-18.1-2.3-1.4 0.9-0.4 1 0.2 1.2 2.1 4.1 0.9 2.8 0 1.4-0.6 4.1 0 2.3-0.6 1.6-1.3 0.6-1.1-0.8-0.9-1.7-1.3-3.8-1-4.4-1.3-2.6-3.6-5-1.4-7-0.8-19.3-1.1-7.1-2.4-9.5-4-9.4-11-19.3-0.4-3.5 0.3-3.5-0.1-3.8-1.2-2.7-2-2.2-4.8-4.1-1.5-1.6-2.1-2.9 1.2-2.5 0-1.7-0.4-2.5-2.4-6.5-0.6-4.8 12.2 0.8 7.9-1.4 2 0 2 0.6 1.9 0.7 2.6 0.6 1.9-0.1 3.9-1.3 1.1-1 1.2-2.4 0.7-1 1.5 0 1.9 0.8 3.9 0.7 2.1-0.3 1.3-0.7 0.5-1 0.2-1.8-1-0.7-1.9 0.3-1.2-0.1-0.7-0.5-0.2-0.7 0.5-2.3-0.1-2.5-0.8-2.3 0.2-1.1 0.8-1 1.2 0 1.4 0.7 6.3 5 2.9 3 4 5.3 1.2 0.8 0.7 0 0.3-0.9 0-2.9 0.5-1.4 1.4-1 1.3 0.2 0.9 0.9 0.4 1.5-0.1 1.7-1.7 5.6 0.1 1.1 1.1 0.9 1.4 0.1 1.7-0.2 1.1 0.3 3.4 2.2 3.9 1.3 1.5 0 0.9-0.7 0.4-1 1.3-0.8 0.9 0.1 1.9 1.5 1.3 0.6 1.2 0 1.7-1.3 1.8-1.1 5.4-0.7 0.8-0.5z&quot; id&#x3D;&quot;county_romania_vaslui_38&quot; name&#x3D;&quot;Vaslui&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m769 329.4l1.4 7-6.1 0.4-2.2 1.9-1 1.4-1.8 1.6-1.7 0.5-3.7 0.2-3 0.6-1.9 1.2-2.3 2-2.6 3.3-1.5 1.6-0.9 1.2-0.8 1.5-0.3 1.7-0.1 3.3 1 4.1 11.2 28.4 0.6 2.2 1.4 3.3 2.7 3.9 1 1 2.9 1.5 1.1 0.7 1.8 3.1 2.2 2.2 1.1 1.8 0.9 2.1 0.8 3.3 0 3.2 0.4 1.1 1.9 5.3 1 1.7 2.8 3.1-6.2 2.3-2.1 1.4-1.9 1.7-2.7 3.5-2.6 4.1-1 3.1-4.8 0.2-2.4-0.3-5-1.4-1.1-0.6-0.7-1.1-0.4-2.4-0.4-1-0.8-0.7-1.3-0.3-1.8 0.1-0.9-0.3-1-1-1.2-0.7-1.7-0.3-1 0.3-1 0.8-1.8 1.9-1 0.4-0.9-0.2-0.4-1.4 0.3-2.7-0.2-1-0.6-0.6-1.5 0.1-1.2 0.4-2.6 1.5-1.2 0.5-1.4 0.1-1.4-0.5-1.9-1.3-2.7-2.9-0.8-1.9 0-3.1-0.6-1.3-1.8-1.4-3.2-1.4-2.5-0.5-1.6 0.1-1 1.1 0.4 1.3-0.7 1.6-1.8-0.1-1.5-0.6-2.1-0.3-1.3-0.5-4.5-2.6-3.6-2.7-2.3-2.9-6.7-5.8-2.4-1-1.3 0-2.4 0.8-1.5 0.1-3-0.4-1.8-1.5-2.1-2.4-6.9-12.2-4.4-6.4-4.7-4.5 0.9-7.4 1.5-7.7 0.2-2.2 1.7-5 6.7-10.8 12.2 1.8 3.2-1.5 0.3-4.4 0.3-1.4 0.7-1.3 1.2-1.1 1.7-0.5 10.2-0.7 3.2 0.6 4.6 0.2 2.6 0.7 1.7 0.2 2.1-0.5 1.8 0 1.6 0.2 4.1 1.7 1-0.2 0.4-0.6 0.8-2.2 0.9-1 1.8-0.9 1.6-0.2 1.4 0.3 5.5 2 1.4-0.3 0.9-0.7 1.2-2.3 1-1.2 2.9-1.9 1.1-1.1 1.8-2.5 1.2-1.3 2.6-1.5 7.8-1.6 2.7-0.1 2.1 0.4 4.5 2.8 1.9 0.2 1.2-0.3 0.8-0.8 1.4-1.9 1-0.1 3.7 1.1 3.2 0.4z&quot; id&#x3D;&quot;county_romania_vrancea_27&quot; name&#x3D;&quot;Vrancea&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m637 540.6l2 0.6 4.2 0.6 1.1 0.4 0.6 0.7 0 2.5 0.3 1.2 0.8 1.5 0.3 1.2 0.2 2.4 1.1 1.4 6.5 3.6 0.9 1.1 0.3 1-0.5 1.2-0.7 0.8-4.1 2.9-0.9 1-1.2 2.3-0.5 2.5 0.3 1.2 0.9 1.3 3.3 1.7 2.5 1.9-1.9 1.3-0.4 0.9-0.1 1.9 1 1.1 1.5 0.9 2 0.7 0.6 0.6 0.1 0.8-1.2 2.4-1.2 1.3-6.3 3-2 1.4-1.8 1.8-2.7 3.6-2.7 4.3-1.2 3.9-5.7 6-2.6 2.1-1.3 0.8-1.4 0.3-1.4 0.1-1.6-0.3-1.7-0.4-1.6-0.8-1.8-1.1-8-7.2-1.2-0.6-2.4 0-0.9-0.3-0.8-0.8-0.8-1.8-1.5-1-2-0.7-2.8-1.4-1.1-1.8-0.7-2.8 1-6.7 1-2.9 1.7-3.3 0.5-1.6 0.4-4.3-2.6-5.7 2.4-1.9 5-6 1-1.4 0.5-1.3-0.4-1.2-3.6-1.2-0.4-0.9 0-0.9 0.4-0.9 2.3-1.7 0.6-1 0.4-1.5 0.7-1.5 1.3-1 2.6-3.1 0.6-0.6 0.8-1.7 6.5-0.1 6.4-2.1 2.4 0.1 2.8 1.1 1.5-0.2 4.4 0.3z m-6.2 48.2l-4.6-3.9 2.6-7.6-8.3-2-0.9-9.9-7.1 2.6-5.1 8.9 5.6 2.4 0 4.7-7 0.6 0 4.7 7 7.5 5.8 1.3 5.1 6.7 2.8-2.5-3.3-8.1 0.8-2.3 5 1.6 1.6-4.7z&quot; id&#x3D;&quot;county_romania_ilfov_17&quot; name&#x3D;&quot;Ilfov&quot;&gt;
+&lt;/path&gt;
+&lt;path fill&#x3D;&quot;#f3d973&quot; stroke&#x3D;&quot;#fff&quot; 
+    d&#x3D;&quot;m902.5 552.5l-6-1.4-6.1-3.2-6.8 2.1-8.4 0-7.6-3.2-5.3-6.4-6.1 0-2.2 6.4-4.6 1.1-9.1-8.6-5.3-2.1-9.6 0.8 1.6-2.8 0.7-3.1 0.4-3.6 1.1-2.3 2.8-3.8 0.8-1.5-0.1-7.9 0.4-0.7 1.5-1.5-0.1-3.4-1.1-5.4 0.3-1.1 1-1.6 0.1-1.8-0.6-1.2-0.7-4.8 0.3-0.7 1.4-0.7 1.6-1.5 1.2-2 0.4-2-0.9-1.9-1.8-2-2.1-1.6-2-0.6-1.6-1.3 0.5-2.9 1.6-3.1 1.3-2-0.8-1.8-1.3-1.3-3.7 1.5-3.6-1.5-5.8-5.1 1.9-3.1 0.5-2.3 1.1-1.9 0.2-1.1 0.3-4.4 0.6-2.7 1.5-2.4 0.7-0.5 1.1-0.2 4.6-1.6 2.1-0.2 1.9 0.6 3 1.5 1.1 0.2 1-0.6 0.9-3 1.6-2 2.4-0.3 3.1 1.7 2.1 2.9-0.6 3 3.1 8.1 2.1 3.7 2.4 1.6 1.8 0.5 3.7 2.1 9.4 2.4 8.7 4.6 14.1 3.2 3.9-0.5 3.3-0.1 1.4-0.6 1.1-1.4-2.9-1.3-0.8-0.7-0.8-2.5 0.2-1.1 3-1.6-0.1-2.2 0.1-2.2 2.8-0.7 1.6 0.6 2.8 2 2.4 0.4 1.3 1 1.8 1.9 2.1 1.2 2.4-0.9 0.5-1 0.3-2.9 0.6-1.3 1.7-0.9 2.4-0.1 1.4-0.7 5.4-4.5 4.3-1.2 1.8-0.8 1.5-1.6 0.9-0.4 2.6-0.2 0.5-0.4 0.4-1.1 0.9-1.1 1.6-1.4 2.3-1.2 1.7-0.1 1.7 0.3 2.2 0 1.9-1 1.4-1.6 1-0.7 1.1 0.3 2.2 0.9 8.1 0.9 14.7 5.3 4.9 4.4 1.3 0.7 2.3 2.2 1.8 5.2 0.5 5.8-1.4 4.3 0.7 1 0.1 1.1-0.8 2.2-0.9-0.2-2.8 0.1 0 0.9 1.6 2.2 1.1 2.7 1.9 2 3.4 0.4-2.4 2.5-1.3 4.2-0.9 13.1-0.6 2.6-1.3 4.2-0.3 2.1-0.2 2.4-0.2 2.2-0.8 1.4 0.7 3.2-2.7 4.2 1.4 2.7-0.7 1.8-0.9 0.6-1 0.2-1 0.6-1.5 2.3-0.8 0.7-2.1-1.2-1.2 0.3-2.1 0.8-20.6 3.3-13.1 0.8-3.8 1.3-10.5 7.3-3.1 3.1-2.7 3.8-0.8-1.1 0.1-2.2-1.4-2.7-0.7-2.3 2.4-1 2.5-0.5 3.9-2 4.2-1.1 2.4-1.6 1.9-2.6 0.6-3.4-0.6-1.9-1.3-1.9-3.2-3.4 0.6 2.4 0.2 2.8-1.6-0.4-1.6 1.1-1.4 0.5-1.2-2.2-0.5-2.8-0.2-8.9 1.1-2.9 4.9-1.8 1.2-2-0.9-1.5-4.6-3.1-1.4-0.6-3.2 0-3.3-1.1-1.1 0.2-0.7 2.2-0.6 1.3-1.2 0.6-2.3 0.2-1.1 0.4-3.9 3.7-1.1 1.7-0.6 3.2 0.1 0.8 1 0.8 0.3 1-0.3 0.8-1.1 1.1 0.3 1.4 0.7 1.1 0.9 0.8 2.3 1 5.2 5.4-1.4 1.5-1.5 0.5 1.4 1 0 1.2-1.3 0.8-0.1 1.4 0.8 1.5 1.4 1.2-1 0.8-1.4 0.4-4.7 0.1-1.1 0.5-6.3 3.9-1.1 1-1 2.1-0.2 1.9 0.7 0.8 1.5-1.2-0.4 1.8-2 0.7z&quot; id&#x3D;&quot;county_romania_tulcea_13&quot; name&#x3D;&quot;Tulcea&quot;&gt;
+&lt;/path&gt;
+    &lt;ng-container *ngFor&#x3D;&quot;let county of ids; let i &#x3D; index&quot;&gt;
+            &lt;image xlink:href&#x3D;&quot;assets/images/medkit.svg&quot; height&#x3D;&quot;0&quot; width&#x3D;&quot;0&quot; id&#x3D;&quot;icon_res_{{county.id}}&quot; style&#x3D;&quot;pointer-events:none&quot;/&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-container *ngFor&#x3D;&quot;let county of ids; let i &#x3D; index&quot;&gt;
+        &lt;image xlink:href&#x3D;&quot;assets/images/volunteers.svg&quot; height&#x3D;&quot;0&quot; width&#x3D;&quot;0&quot; id&#x3D;&quot;icon_vol_{{county.id}}&quot; style&#x3D;&quot;pointer-events:none&quot;/&gt;
+    &lt;/ng-container&gt;
+
+    &lt;rect x&#x3D;&quot;0&quot; y&#x3D;&quot;0&quot; width&#x3D;&quot;0&quot; height&#x3D;&quot;0&quot; fill&#x3D;&quot;#000&quot; id&#x3D;&quot;recttest&quot; style&#x3D;&quot;pointer-events: none&quot;&gt;&lt;/rect&gt;
+    &lt;text x&#x3D;&quot;0&quot; y&#x3D;&quot;0&quot; fill&#x3D;&quot;#ffffff&quot; id&#x3D;&quot;recttext&quot; style&#x3D;&quot;pointer-events:none&quot;&gt;&lt;/text&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./map.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.svg-box {
+    width: 100%;
+    height: 0;
+    padding-top: 100%; /* Aspect ratio */ 
+    position: relative;
+}
+
+.svg-box-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container container-ph mt-2">    <div class="svg-box"><svg     class="svg-box-content"    viewBox="0 0 1000 705" preserveAspectRatio="none"    version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    <path fill="#f3d973" stroke="#fff"     d="m373.8 546.1l0.8 3.5 0.1 1.2 0.5 1.3 0.8 1.1 1.9 1.1 1.6 0.7 3.5 2.2 1 0.9 1 1.3 2.1 7.3 1.3 2.3 1.7 2.6 3 3.1-4 4.7-1.4 2.6-0.1 2.2 0.4 1.1 0.9 1 4.2 2.5 1.2 1.2 2.8 4 0.8 1 2.3 0.6 1.3 0.7 1.5 1.6 1.4 2.9 1.2 1.9 1.3 1.4 2.4 1.9 1 1.2 1.8 3.9 1.1 1.6 1.1 1.3 3.8 2.5 2.7 1 1.2 0.9 2 2.1 0.6 1.4 0 1.2-0.9 2.1-0.2 1.9 0.2 2.2 0.8 3.6 2.2 4 0 0.9-0.7 0.3-3.6-0.7-1 0.1-1.1 1.1-0.1 2.5-1.1 5 0.2 0.9 0.6 0.9 1.8 0.7 3.3 0.2 1.4 0.3 1.4 1.2 0.5 1.4 0.2 1.5-0.2 1.3-0.4 0.9-2 1.2-1 0.7-0.5 1.3 0.2 1.2 1.5 2.5 0.3 1.2-0.2 1-1.3 4-0.6 1-1.5 1.1-0.3 0.7-0.3 1.7-0.5 0.8-1.9 1.5-0.7 1.1-5.8 12.3-36.9-9.3-6-3.6-2.4-0.4-8.9 2-4.6-0.8-11.4-6.3-16.8-0.9-9.6 1.4-3.9 2.1-3.7 0.8-3.2 1.4-22.4 2-3.3-0.8-2.6-2.3-1.3-2.8-0.1-3.3 2.6-11 1.1-3.3 2.1-1.4 2.2-0.3 4.2-1.4 2.3-0.3 3.7-2.1 1.8-4.5-1-4.5-2.3-1.1 8.6-9.1 3.3-0.9 1.1 0.2 0.8-0.5 0.4-1.8 0-1.7-0.3-1.8-0.7-2.4-0.2-1.9 0.3-1.7 2.2-4.8 0.3-1.2 0.5-3.7 0.5-2.6 0.6-1.9 0.9-1.3 5.6-3.2 1.4-0.2 2.1 0.4 0.6-0.2 0.2-1-0.3-0.8-1.4-1.1-3.3-0.4-1.2-0.3-0.8-0.6-0.4-1 0-1 0.8-3.2 0.2-1.2 0.4-0.8 0.8-0.8 2.1-0.7 1.6-0.8 1.4-1.6 1.4-2.1 2.3-2 0-0.6-2.4-0.9 0.4-0.5 1.4-0.7 6.6-0.4 1.3-0.9 1.7-0.7 2.6-0.6 5.8 0.3 1.5-1.7 9.7-6.8 10-3.2 5-0.3 0.9-0.6 0.5-0.8 0-2.2-0.4-2.7 0.4-2.2 0.1-1.7-0.5-3.8 0.3-2.2 0.5-0.6 1.3-0.1 1.4 0.6 1 1.1z" id="county_romania_dolj_0" name="Dolj"></path><path fill="#f3d973" stroke="#fff"      d="m373.8 546.1l-1-1.1-1.4-0.6-1.3 0.1-0.5 0.6-0.3 2.2 0.5 3.8-0.1 1.7-0.4 2.2 0.4 2.7 0 2.2-0.5 0.8-0.9 0.6-5 0.3-10 3.2-9.7 6.8-1.7-3.6-1.1-1.5-5.9-5.9-6.8-4.7-2.5-1.1-18.3-5.3-2-1-2.4-1.7-8.1-7.7-9.4-10.7-0.7-1.7-0.3-1.6-0.4-3.2-1-4-0.2-2.7 0.5-2.5 0.5-1.3 0-1.3-0.5-1.3-1.3-1.3-2.7-1.7-1.7-1.6-1.2-1.4-0.8-1.3-1-1-1.3-0.6-2-0.3-5 0.6-1.6-0.4-1.9-1-4.6-5.9-4.1-1.9 0.6-3.2-0.6-1.2-0.7-0.9-1-0.3-4-0.2-1.3-0.5-0.9-0.7-0.4-1.2 0.2-1.5 0.9-2.1 3-4 7.2-6.4 22.4-8.2 1.1-0.2 1.4 0.7 0.7 1 1 0.8 1.2 0.4 4.6 0.3 0.9 0.4 1.7 1.6 1.1 0.4 1.6-0.1 6.8-2.9 2.6-0.2 1.6 0.2 3.2 1.5 1.3 0 1.7-0.4 5.7-3.5 1.7-0.6 4.7-1 3.6-1.8 2-0.6 2.7 0.1 1.6 0.4 1.5 0.8 1.9 1.4 0.9 0.1 1.1-0.4 1.8-1.5 6-3.3 6.6-2.2 3.2 1 5.1 0 1.2 0.4 2 1.1 1.6 0.3 1.9 0.1 6.5-0.7 1.8 0.4 1.8 1.4 0.8 1.2 0.5 1.7-1.4 5.8-0.2 2.9 0.8 4.1 1.1 2.7 0.5 2.1-0.2 1.8-1.7 5-0.4 2.2 0.4 5.1-0.1 2-2.9 11.7-1.2 3.3-0.5 2-0.2 2.9 1.5 17.1-0.4 7.9-1.5 8.6z" id="county_romania_gorj_32" name="Gorj"></path><path fill="#f3d973" stroke="#fff"      d="m343.6 571.6l-1.5 1.7-5.8-0.3-2.6 0.6-1.7 0.7-1.3 0.9-6.6 0.4-1.4 0.7-0.4 0.5 2.4 0.9 0 0.6-2.3 2-1.4 2.1-1.4 1.6-1.6 0.8-2.1 0.7-0.8 0.8-0.4 0.8-0.2 1.2-0.8 3.2 0 1 0.4 1 0.8 0.6 1.2 0.3 3.3 0.4 1.4 1.1 0.3 0.8-0.2 1-0.6 0.2-2.1-0.4-1.4 0.2-5.6 3.2-0.9 1.3-0.6 1.9-0.5 2.6-0.5 3.7-0.3 1.2-2.2 4.8-0.3 1.7 0.2 1.9 0.7 2.4 0.3 1.8 0 1.7-0.4 1.8-0.8 0.5-1.1-0.2-3.3 0.9-8.6 9.1-2.2-0.9-4.8-0.7-3.8-1.7-22.8-15.6-0.5-2.1 0.4-7.1-0.8-2-2-1-4.4-0.6-4.1-1.8-3.5-3.1-2.8-3.8-1.9-4.3-0.1-1.1 0.3-2.4-0.1-1.1-0.5-1-2.2-2.1-0.3-1.2 0-1.9 0.3-2 0.4-1.4 0.8-0.6 0.9-0.3 3.8-0.2 1.3-0.6 0.9-1.5 0.3-2.5 0.6-2.5 1.6-1.5 2.1-0.6 2.2 0 2.2 0.9 3.8 2.6 2.3 0.6 2.1-0.4 2.3-1.1 1.9-1.9 0.6-2.7-5.3-5.9-1.6-1.2-8.3-1-3.6-1.7-3.6-3-7.3-8.1-1.6-0.9-1.9-0.5-2.6-0.1-1.1 0.9-3.7 4.1-2 1.2-4.4 1-1.6 1.2-0.6 2.3-12 21.8-1.4 1.4-2.5 0.7-2.3-0.3-2.4-1-1.8-1.8-1.1-4.3-1-1-1.2-0.7-1.1-1.1-0.6-1.1-0.5-2.9 5.7-1 1.4 0.2 2.6 0.7 2.5-0.1 1.1-0.6 0.9-1 0.5-1.9-0.1-1.8-0.5-2.1-0.8-2.5-0.1-1.9 0.2-1.9 0.4-1.8 0.7-2.2 1.1-2.5 2.4-4.1 0.9-2.4 0.6-2 0-1.2 0.3-1 0.6-0.8 1.6-0.3 1.1 0.2 1 0.5 3.6 3.7 1.5 0.9 1.1 0.1 3.4-0.1 0.9 0.2 1.5 1.1 1.2 2.3 0.8 0.4 1.1 0.1 1.6-0.3 1.1-0.9 1.1-1.7 1-3.3 1.6-7.1 2.6-6.7 4.5-7.4 1.1-3.5 0.6-2.4 0.5-3.5 0.4-1.8 0.8-2.2 3.4-5.4 4.5-4.8 4.1 1.9 4.6 5.9 1.9 1 1.6 0.4 5-0.6 2 0.3 1.3 0.6 1 1 0.8 1.3 1.2 1.4 1.7 1.6 2.7 1.7 1.3 1.3 0.5 1.3 0 1.3-0.5 1.3-0.5 2.5 0.2 2.7 1 4 0.4 3.2 0.3 1.6 0.7 1.7 9.4 10.7 8.1 7.7 2.4 1.7 2 1 18.3 5.3 2.5 1.1 6.8 4.7 5.9 5.9 1.1 1.5 1.7 3.6z" id="county_romania_mehedinti_36" name="mehedinti"></path><path fill="#f3d973" stroke="#fff"      d="m443.7 527.1l1.2 3.6 0.7 0.6 1 0.3 0.9-0.4 4.3-3.6 0.7-0.9 1.4-3.6 1.2-1.7 0.9-0.6 1 0.2 0.5 0.8 0.3 1.2-0.3 2.7 0.1 1.7 0.8 2 4.7 9.9 1.2 1.6 2.1 2.1 1.7 0.5 1.7 0 1.6-0.4 1.9 0.2 0.8 0.6 0.5 0.8-0.6 0.9-1.9 0.8-0.9 0.7-0.9 1.6 0.3 1.4 2.6 4.3 0.8 2.3 0.5 3.3 0.2 1.8 1.1 3.8 1 6.7-0.1 1-0.6 1.9-0.1 2.6 1.3 4.9 0.4 6.5 0.6 2.3 0.7 1.2 1 0.7 5.1 0.4 2.3 1.6-1.4 3.4-0.2 3.8 0.9 6.5 0.3 7-0.3 3.3-1.2 5-0.1 3.9 0.2 2.5 0.5 2.2 0.2 2.8-0.7 1.3-1.3 0.9-3.6 0.7-1.4 0.5-1.2 0.9-3.1 3.4-1.1 0.6-1.5 0.4-1.8 0.1-1.8 0.6-1.9 1-2.2 3-0.6 2.1 0.1 2.8 3.2 8.4 3.8 7.6 4.5 7.6 0.6 2.2-0.2 1.1-0.9 0.8-3 1.5-1.4 1-1.2 1.2-2.3 3.1-17-6.4-3.6-0.5-3.7 1.2-5.9 4.5-1.8 0.5-21 1.1-1-0.3 5.8-12.3 0.7-1.1 1.9-1.5 0.5-0.8 0.3-1.7 0.3-0.7 1.5-1.1 0.6-1 1.3-4 0.2-1-0.3-1.2-1.5-2.5-0.2-1.2 0.5-1.3 1-0.7 2-1.2 0.4-0.9 0.2-1.3-0.2-1.5-0.5-1.4-1.4-1.2-1.4-0.3-3.3-0.2-1.8-0.7-0.6-0.9-0.2-0.9 1.1-5 0.1-2.5 1.1-1.1 1-0.1 3.6 0.7 0.7-0.3 0-0.9-2.2-4-0.8-3.6-0.2-2.2 0.2-1.9 0.9-2.1 0-1.2-0.6-1.4-2-2.1-1.2-0.9-2.7-1-3.8-2.5-1.1-1.3-1.1-1.6-1.8-3.9-1-1.2-2.4-1.9-1.3-1.4-1.2-1.9-1.4-2.9-1.5-1.6-1.3-0.7-2.3-0.6-0.8-1-2.8-4-1.2-1.2-4.2-2.5-0.9-1-0.4-1.1 0.1-2.2 1.4-2.6 4-4.7 4-2.5 2.5-0.6 1.2 0.2 2.1 1.2 0.8 1.1 1 1.7 0.8 0.7 0.8 0.1 1.3-0.6 3.3-4.8 1.1-1.2 1.3-0.7 1.1-0.2 1.4 0 2.5 0.7 2.1-0.2 3.1-1.8 0.8-1.1 0.7-3.1 0.5-1.3 1.3-1 1 0 0.9 0.9-0.2 2.5 0.8 2 0.8 1 1 0.5 1.6-1.4-0.3-2.7-0.8-3.4-1.2-2.8-1.2-1.9 0.4-2.5-1.4-6.4-0.5-3.2 0-1.3 2-2.1 1.7-2.6 0.9-1.9 0.6-1.6 0.8-3.3 0.2-2 0.9-3.5 3-5.3 1.6-2 1.1-0.6 1-0.1 1.1 0.3 1.3 2.3-0.2 6.9z" id="county_romania_olt_41" name="Olt"></path><path fill="#f3d973" stroke="#fff"     d="m557.2 578.2l2.3 1.8 0.2 1 0 1.2-1.9 3.2-2.2 5.6-0.5 1.9 0.4 1.2 1.8 3.4 1.4 4 1.1 1.7 1.3 1.1 9.3 1.2 1.5 0.5 3 2.8 2.1 1.5 0.9 1 0.6 1.6 0.4 2.3 0.1 3.8-0.3 2.2 0.5 4.2 0 2.2-0.2 1.7-0.9 0.7-3.1 0.9-1 0.7-0.4 1.2-0.5 3.1-0.5 1.5-1.2 2.7-0.6 1.8-0.2 2 0 2.3 0.9 8.4 2.7 15.3 1.3 3.6 2.5 3.6 0.6 1.9 1.8 15-6.5 0.2-1.9 1.3-1.6 1.6-2.3 1.4-2.4 1-2 0.5-1.9 1-2.4 0.3-4.8-0.3-2.2 0.4-4.4 2-2.4 0.6-4.6-0.6-3.9-2.3-3.6-2.8-3.8-2.3-4.4-1-13.6-1.1-12.5-4.4-22.3 1.5-4.9-0.7-4.7-1.7 2.3-3.1 1.2-1.2 1.4-1 3-1.5 0.9-0.8 0.2-1.1-0.6-2.2-4.5-7.6-3.8-7.6-3.2-8.4-0.1-2.8 0.6-2.1 2.2-3 1.9-1 1.8-0.6 1.8-0.1 1.5-0.4 1.1-0.6 3.1-3.4 1.2-0.9 1.4-0.5 3.6-0.7 1.3-0.9 0.7-1.3-0.2-2.8-0.5-2.2-0.2-2.5 0.1-3.9 1.2-5 0.3-3.3-0.3-7-0.9-6.5 0.2-3.8 1.4-3.4 4.5-1.2 5.7 1.5 1.9-0.1 1.6-0.4 1.9-1.3 1.3-1.6 1.1-0.8 1-0.2 3.3 0.5 2.6-0.7 1.5-0.6 2.3-2.3 2.2-1.3 4.8-0.9 2.4 0 1.8 0.2 1.7 0.5 3.4 1.7 2.3 0.9 1.2-0.1 1.8-0.6 2.1-2 1.1-1.6 1.6-2.8 2.1-2.6 0.5-0.8 0-0.9-0.8-1.5-0.1-0.9 0.6-0.5 1.5-0.3 2.4 0.5 5.9 2.8 2.6 0.2z" id="county_romania_teleorman_11" name="Teleorman"></path><path fill="#f3d973" stroke="#fff" id="county_romania_bucuresti_8" name="Bucharest"    d="m630.8 588.8l-1.6 4.7-5-1.6-0.8 2.3 3.3 8.1-2.8 2.5-5.1-6.7-5.8-1.3-7-7.5 0-4.7 7-0.6 0-4.7-5.6-2.4 5.1-8.9 7.1-2.6 0.9 9.9 8.3 2-2.6 7.6 4.6 3.9z" ></path><path fill="#f3d973" stroke="#fff"     d="m822 600.6l-3 7.4-2.8 3.5-3.5 2.2-15.3 3.8-3.8 3.1-2.1 1.3-4.4 0.8-8.8-0.1-4.1 1.4-5.6 3.4-1 1.1-0.8 1.4-1.8 1.5-2.2 1.1-1.7 0.6-16.1-2.6-2.9 2.5-1.3 1.9-2.8 0.2-2.2-1.3-11.1-2.2-7.7-4.8-2.7 1.7-12.4 1.3-10 6-3.8 1.1-4.7 0-1.2 0.3-2.1 1.3-1.1 0.3-2.1 0.3-3.5 1.2-20.9 3.1-0.2-2.1 0.3-1.5 0.8-1.8 3-4.4 0.7-2 0.3-2.4-0.3-3.6-0.9-3.2-1.4-2.9-2.4-2.6-9.4-5.6-4.9-5.8 1.2-3.9 2.7-4.3 2.7-3.6 1.8-1.8 2-1.4 6.3-3 1.2-1.3 1.2-2.4-0.1-0.8-0.6-0.6-2-0.7-1.5-0.9-1-1.1 0.1-1.9 0.4-0.9 1.9-1.3 8.4-4.4 1.7-0.3 1.5 0.4 1.5 0.8 3.3 2.5 1.3 0.5 1.5 0.2 1.8-0.3 2.6-0.9 1.9-1.4 1.6-2.1 0.7-0.6 1-0.3 0.9 0.4 3.4 3.4 1.8 1.1 2 0.6 2.6 0 1.7-0.3 1.6-0.1 1.2 0.4 3.1 1.8 2 0.4 6.1-1.1 2.1 0.2 2.4 0.5 7.8 3.3 2.5 0.6 3.2-0.1 6.1-1.1 18.8 0.4 1.9-0.5 3-1.2 2.7-0.4 3.2 0.1 14.7 2.8 3 1.5 5.9 1.3 1.3 0.6 1.7 1.5 2.2 2.5 4.3 3 9.7 4.1 15.9 5.2z" id="county_romania_calarasi_23" name="Calarasi"></path><path fill="#f3d973" stroke="#fff"     d="m611.6 543.8l-2.6 3.1-1.3 1-0.7 1.5-0.4 1.5-0.6 1-2.3 1.7-0.4 0.9 0 0.9 0.4 0.9 3.6 1.2 0.4 1.2-0.5 1.3-1 1.4-5 6-2.4 1.9-32.5 2-3 0.8-2.1 1.1-1.1 1.3-2.9 3.7-2.6-0.2-5.9-2.8-2.4-0.5-1.5 0.3-0.6 0.5 0.1 0.9 0.8 1.5 0 0.9-0.5 0.8-2.1 2.6-1.6 2.8-1.1 1.6-2.1 2-1.8 0.6-1.2 0.1-2.3-0.9 2.3-4.2 0.3-2.7-1-3.7-0.1-2 0.6-1.5 1.9-3.6 0.1-1.3-0.4-1.1-1.8-1.1-2.4-0.4-1.1-0.4-0.9-0.6-2.9-2.9-1.1-1.5-2.7-5.3-0.3-1.8 0.4-1.2 2.4-1.5 0.4-0.7-2.1-2-1.5-1.8-0.2-1.7 0.3-1.7 1.6-2.9 0.5-1.3 0.2-1.6 0.9-12.2-0.3-2.3-1.7-8.1-0.2-2.9 0.2-2.5 0.6-1.3 3-3.5 0.5-1.3 0-1.4-0.5-1.9-1.2-2.9-3.3-3.8-1.5-2.5-1.1-5.9 0.1-2.9 0.5-2 0.5-0.9 1.1-2.7 1.1-1.1 0.7 0.1 0.7 0.7 1.2 2 0.8 0.7 0.9 0.3 1-0.2 0.9-0.7 1-1.1 0.8-1.6 1-2.4 0.8-3.1 0.2-3.5 0.5-2.4 0.6-2 0.8-1.6 1.6-2.7 0.7-1.6 0.5-2.5 0-1.8-0.4-1.5-0.6-1.4-1.6-2.9 6.4-1.7 2-2.5 0.5-1.6 0.9-1.9 0.8-0.9 2.1-1 1.9 9.4 0.7 6.7 0.5 1.8 0.7 1.3 3.2 2.4 1.1 1.2 1.2 2 0.7 1.8 0.3 1.5-0.3 4.1 0.1 2.1 1.6 2.8 2.1 2.3 1.2 1.8 5.8 11.3 4.4 4.9 0.9 1.6 0.4 1.6 0.7 6.4 0.8 3.7 0.8 1.9 0.9 1.6 1.1 1 2.3 1 1.2 0 2.9-0.8 0.8 0.4 1.1 1.2 1.4 2.4 0.5 2.1 0.1 2.1-0.6 4.3 0.4 2.7 0.8 1.4 1.2 0.9 5 0.7 1.6 0.6 1.8 1 7.3 9 1.3 1.1 2.1 1.1 1.2 0.4z" id="county_romania_dambovita_4" name="Dâmbovita"></path><path fill="#f3d973" stroke="#fff"     d="m638.1 605.5l4.9 5.8 9.4 5.6 2.4 2.6 1.4 2.9 0.9 3.2 0.3 3.6-0.3 2.4-0.7 2-3 4.4-0.8 1.8-0.3 1.5 0.2 2.1-11.2 1.7-8.3 3.7-8.5 2.2-3.7 2-3.9 4.3-1.8 2.9-0.8 2.2-12.7 9.4-1 1.7-0.8 2.1-5 6.4-3.2 1.8-3.5 3.6-0.2 0.6-2.4 4-4.4 1.9-0.7 0.1-1.8-15-0.6-1.9-2.5-3.6-1.3-3.6-2.7-15.3-0.9-8.4 0-2.3 0.2-2 0.6-1.8 1.2-2.7 0.5-1.5 0.5-3.1 0.4-1.2 1-0.7 3.1-0.9 0.9-0.7 0.2-1.7 0-2.2-0.5-4.2 0.3-2.2-0.1-3.8-0.4-2.3-0.6-1.6-0.9-1-2.1-1.5-3-2.8-1.5-0.5-9.3-1.2-1.3-1.1-1.1-1.7-1.4-4-1.8-3.4-0.4-1.2 0.5-1.9 2.2-5.6 1.9-3.2 0-1.2-0.2-1-2.3-1.8 2.9-3.7 1.1-1.3 2.1-1.1 3-0.8 32.5-2 2.6 5.7-0.4 4.3-0.5 1.6-1.7 3.3-1 2.9-1 6.7 0.7 2.8 1.1 1.8 2.8 1.4 2 0.7 1.5 1 0.8 1.8 0.8 0.8 0.9 0.3 2.4 0 1.2 0.6 8 7.2 1.8 1.1 1.6 0.8 1.7 0.4 1.6 0.3 1.4-0.1 1.4-0.3 1.3-0.8 2.6-2.1 5.7-6z" id="county_romania_giurgiu_21" name="Giurgiu"></path><path fill="#f3d973" stroke="#fff"      d="m735.3 531.7l8.7 3.6 1.7 0.2 2.1-0.1 2.4-1.2 1.8-0.6 1.4 0.2 1.3 0.7 3 1.2 28.8 0.8 4.1-0.9 2.4-0.8 1.8-1 2.4-0.8 4.9-0.5 2.2 0.4 1.9 1.2 0.8 1.1 3.2 3-1.7 1-1.1 1.6-0.8 2.1 0.8 2.7 1.5 2.6 1.9 2.1 2 0.8 2.6 0.4 1.9 1 5.6 6.3 0.4 0.9-0.1 1.3-0.6 3.5-0.7 1.6 0 5.2-0.7 1.4-1.1 0.5 0.3 1.2 1.4 1.4 2.3 1.3 2.6 0.9 2 0.4 0.8 1.2 0.9 2.7 0.7 3 0.2 2.3-1.2 1.8-4.4 3.6-1 1.1-2.7 6.5-15.9-5.2-9.7-4.1-4.3-3-2.2-2.5-1.7-1.5-1.3-0.6-5.9-1.3-3-1.5-14.7-2.8-3.2-0.1-2.7 0.4-3 1.2-1.9 0.5-18.8-0.4-6.1 1.1-3.2 0.1-2.5-0.6-7.8-3.3-2.4-0.5-2.1-0.2-6.1 1.1-2-0.4-3.1-1.8-1.2-0.4-1.6 0.1-1.7 0.3-2.6 0-2-0.6-1.8-1.1-3.4-3.4-0.9-0.4-1 0.3-0.7 0.6-1.6 2.1-1.9 1.4-2.6 0.9-1.8 0.3-1.5-0.2-1.3-0.5-3.3-2.5-1.5-0.8-1.5-0.4-1.7 0.3-8.4 4.4-2.5-1.9-3.3-1.7-0.9-1.3-0.3-1.2 0.5-2.5 1.2-2.3 0.9-1 4.1-2.9 0.7-0.8 0.5-1.2-0.3-1-0.9-1.1-6.5-3.6-1.1-1.4-0.2-2.4-0.3-1.2-0.8-1.5-0.3-1.2 0-2.5-0.6-0.7-1.1-0.4-4.2-0.6-2-0.6 3.8-3.6 3.6-1.7 1.5-0.1 1.2 0.3 2.5 1.4 2.3 0.2 1.2-0.5 1.8-2.1 1.5-1.2 1.4-0.3 5.7 0.5 1.5-0.4 1.4-0.8 1.9-1.6 1.3-2.4 2.7-3.4 2.4 1.2 3.5 3.1 1.9 0.5 2.5 0.2 7-0.5 6.3 1.1 2.4 0.8 1.5 0 3.7-0.7 2.1 0.1 2.5 0.9 3.1 2 1.4 0.6 1.5 0 1.5-0.9 1.1-1.2 1.3-0.8 1.6-0.2 2.5 0.7 1.7 0.9 1.4 0.9 1 1 0.6 1 0.1 1.1-0.2 1.9 0.1 1.5 0.4 0.4 1.5-0.1 3-1.2 2.4-0.6 1-0.5 0.5-0.7-0.5-0.8-1.9-1.5-0.7-0.7 0.5-1.5 2.3-1.2z" id="county_romania_ialomita_29" name="Ialomita"></path><path fill="#f3d973" stroke="#fff"     d="m902.5 552.5l-0.4 2.1 0.3 2.4 0.9 0.6 5.6-1 2.5-1.5 2.3-2.3 2.2-2.8-1.5-3.1 7.3 2.4 1.7 1.2 0.5 2.6-0.9 3-1.8 2.3-2.5 0.8 1.9-2.5 1.7-2.8 0.3-2.5-2.4-1.4 0 1.1 0.7 1-0.2 0.5-2 0.5-1.5-1-1.1 0.3-1 1.7-2 1.6-3.3 3.5-7 3.7-1.5 1.3 1.9-3.5 0.3-1.5-1.6-0.2-1.3 0.3-1 1-0.4 1.9 1.4 0-0.7 1.5 0.4 1.2 1.1 0.8 1.4 0.6-4.2 1.3-1.6 1.4 0 2.3 1.5-2 1.5 0.9 1.3 1.1-0.9 2-1.2 3.8-0.9 4 0.5 2.9 0.9 0.2 0.8-1.1 0.6-1.6 0.7-3.5 1-1.2 2.1-1.4 3.2-4.3 1.8-2 1.9-0.9 2-0.5 1.5-1.6 0.9-2 0.4 0-1 2.5-6.9 13.4-5 3.8-9.5 12.9-1.1 3.3-0.3 1.8-1.4-1-1.6 0.7-1.4 1.2-1.1 1.7-0.6 1.8-0.3 2.1-0.2 5.6 0.5 1.8 1.7 3.2 1.4 4.6 0.4 2.2-0.4 1.3-2 0.5-1 1.1-0.6 1.5 0.7 2.7 1.8 11.9 1.8 7.6-0.2 2.1-1 1.4-0.5 2.7-1.5 4.2-0.4 2-2.5 5.1-0.4 1.4-1.7 8-0.6 1.4-0.4 1.4 0.5 1.4-0.4 1.3-0.4 3 0.2 1.6-0.5 1.4-15.2 0.9-22.5-3.9-21.8-10-3.6-2.8-4.7-16.9-2.5-4.2-5.9 0.7-7.3 4.1-6.9 1.7-4.8-6.6-2.1-4.4-2.4-0.9-6.3 2-20.1 0.2-1.1-0.9-2.1-3.6-1.2-1.1-6-2.9-2.2-2.5 0.5-3.3-1.7-1.4 1.3-1.9 2.9-2.5 16.1 2.6 1.7-0.6 2.2-1.1 1.8-1.5 0.8-1.4 1-1.1 5.6-3.4 4.1-1.4 8.8 0.1 4.4-0.8 2.1-1.3 3.8-3.1 15.3-3.8 3.5-2.2 2.8-3.5 3-7.4 2.7-6.5 1-1.1 4.4-3.6 1.2-1.8-0.2-2.3-0.7-3-0.9-2.7-0.8-1.2-2-0.4-2.6-0.9-2.3-1.3-1.4-1.4-0.3-1.2 1.1-0.5 0.7-1.4 0-5.2 0.7-1.6 0.6-3.5 0.1-1.3-0.4-0.9-5.6-6.3-1.9-1-2.6-0.4-2-0.8-1.9-2.1-1.5-2.6-0.8-2.7 0.8-2.1 1.1-1.6 1.7-1 1.7-0.3 2-0.1 2.1 0.5 3.1 2.1 2 0.4 2.2-0.8 2.1-2 9.6-0.8 5.3 2.1 9.1 8.6 4.6-1.1 2.2-6.4 6.1 0 5.3 6.4 7.6 3.2 8.4 0 6.8-2.1 6.1 3.2 6 1.4z" id="county_romania_constanta_33" name="Constanta"></path><path fill="#f3d973" stroke="#fff"     d="m261 297.9l5.1 5.3-6.9 5.2-1.8 4-1 2.5-2.4 4-2.2 2-2 1.1-2.5 0.4-2-0.2-5.9-1.4-1.9 0.2-1.4 0.9-2.5 2.2-0.9 1.5-0.5 1.7 0.3 5-0.2 2.2-0.5 2.3-1.5 3.1-0.6 1.9-0.3 1.5 1.1 3.6 0.3 1.5-0.1 1.9-0.7 2.5-1.2 2.6-4.9 6.4-1.9 0.9-0.9 1.1-0.7 2.2-1.1 0.9-1.8 0.1-3.9 1-0.9 0.4-2.1 2-0.9 0-2.6-1.5-1.5-0.3-2.1 0.3-1.6 0-1.6-0.4-2.7-2.6-1.8-0.8-0.8-0.6-0.7-1.8-0.6-0.8-1.1-0.6-4.1-0.3-1.9-0.6-1.3-1.2-0.9-1.1-1.1-0.8-1.6-0.5-2.5 0-1.3 0.3-0.8 0.4-0.7 1.7-0.7 3.4-1 1.3-3.2 0.2-1-0.4-1.7-1.4-0.6 0-0.5 0.9-0.2 2.3 0.1 2.1-0.1 0.8-1.1-0.1-0.9-1.1-1.3-2.1-2.1-1.7-3.4-1.6-1.5 0-0.9 0.5-0.8 1-1.4 2.5-1.1 2.4-0.6 0.8-0.8 0.1-2-2.7-1.8-1.5-0.1-0.6 0.7-2.4-0.4-1.1-0.9-1.2-2.2-1.8-2.3-2.5-1.1-0.6-1.2-0.2-2.9 0.4-1-0.4-0.8-1.1-0.2-1.2-0.1-2.2-0.9-0.9-1.6-0.5-3.5-0.4-1.8 0.2-1.1 0.6-0.2 0.8-0.2 2.1-0.4 1-0.6 0.7-2.8 2.3-2.4 2.4-1.4 0.1-1.5-1.8-1.1-0.6-1.8 0-1.5 0.3-1.2 0.5-2.4 2.1-1.5 0-1.8-1-2.8-2.8-0.8-1.8-0.4-2-0.8-0.3-1.6 0.2-1 0.6-1 0.9-0.6 1.7-0.1 1.7-0.6 1.6-0.7 0.4-1.1 0.1-1.6-0.3-1.4-0.7-1.3-1.9-0.3-1 0.3-1.8-0.5-0.7-1.1-0.7-2.2-0.6-1.3 0.1-2 0.5-0.9 0-6.6-1.2-1.5-0.5-1.3-0.9-1.4-2.1-1.1-3-3.7-3.8-15-10.5-1.5-0.6 0.1-1.9 0.5-1.1 0.8-0.3 2 0.5 0.9-0.8 0-1.3-1-3.4-0.1-1.4 0.5-0.8 4.1-3.5 2.2-1.1 2.2-0.7 2.1 0.1 1 0.5 1.9 1.7 0.8 0.4 1.1-0.1 2.2-1.1 1.9 0.4 4 1.7 2.1-0.1 0.9-0.4 0.9 0 0.8 0.4 0.8 0.9 2 1.8 1.9-0.7 5.1-6.2 0.7-0.3 3 0 1.1-0.8 1.2-2.3 0.9-3 0.4-6.8 1.1-3.3 1.8-2.1 2-0.7 4.5-0.2 2.4-1.9-0.6-3.4-3.1-5.9 0.2-3.1 1.5-2.4 1.8-2.4 1.4-2.8 0.4-5.9 0.6-2.9 1.6-1.9 2.2-0.6 3.9 0.3 2.3-1.2 2.2-2.9 0.7-2 2.3 0.8 4.9 1.2 35.3-2 2.7 0.5 1.5 1.8 1.5 0.8 1.3 0.1 2 0 1.4 0.4 1.7 0.9 1.4 1.4 2.6 1 9.3 0.4 2.8 0.6 2 0.9 1.1 1.1 2.4 1.7 0.8 1 0.8 1.8 2.3 6.2 1.2 2.5 1.6 2 2.1 1.4 2.7 0.9 1.7 0.7 5 4.4 7.9 3 0.9 1 0.8 2.9 1.2 1.7 1.6 0.9 1.6 0.4 9.6 0.2 8 1.7 5 0.4 4.4-0.3z" id="county_romania_arad_28" name="Arad"></path><path fill="#f3d973" stroke="#fff"     d="m247.7 150.9l-1.1 4.3-0.6 1.3-1.2 1.9-0.5 1.3-0.3 2.6-0.3 1.2-0.6 1.2-2.7 4-1.8 1.9 0.1 2.1 1.3 3.3 4.5 7.1 3.1 6.1 0.4 1.3 0.8 1.2 1.1 1.3 6.6 3.8 4.1 4.1 1.8 3.1-0.8 2.1-2.3 4.5-0.4 1.5 0.2 1 0.9 0.7 5.3 2.1 1.4 1.1 0.5 1.6-0.4 2.9-1.1 3.5-1.3 2.3-0.9 0.7-3.9 1.8-1.2 0.8-0.9 1.1-0.6 1.1-0.2 1.3 0.3 1.4 1.3 1.8 4.2 3.8 1.4 2.2 1.4 3.2 1.8 7.2 1 1.9 2.1 1.7 1 0.9 0.5 1.3-0.5 3.8 0 5.8-1.6-1-2.4-0.6-2.7 0.3-1.2 0.7-1.3 1.6-1.4 2.8-1.1 3.9-0.6 3.6 0.2 9.4 1.9 8.1-4.4 0.3-5-0.4-8-1.7-9.6-0.2-1.6-0.4-1.6-0.9-1.2-1.7-0.8-2.9-0.9-1-7.9-3-5-4.4-1.7-0.7-2.7-0.9-2.1-1.4-1.6-2-1.2-2.5-2.3-6.2-0.8-1.8-0.8-1-2.4-1.7-1.1-1.1-2-0.9-2.8-0.6-9.3-0.4-2.6-1-1.4-1.4-1.7-0.9-1.4-0.4-2 0-1.3-0.1-1.5-0.8-1.5-1.8-2.7-0.5-35.3 2-4.9-1.2-2.3-0.8 1.3-2.4 2.9-0.5 2.1-1.2 2-2.9 0.3-3-2.8-2-0.8-1.1 0.3-1.8 0.8-1.5 2.3-6.3 1.3-2.5 2.2-2 3.9-1.1 1.1-0.9 0.9-2-0.1-1.7-0.3-1.6-0.1-1.9 0.1-1.8 0.6-0.6 4.9-4 0.8-1.1 2.1-7.7 0.4-0.1-1.1-2-0.7-0.6-1.9-0.6-0.4-1.4 4.1-4.9 2.4-2.3 5.2-3.4 2.1-2.1 0.7-1.4 0.5-2.8 0.5-1.4 1-1.4 2.3-2.3 0.9-1.2 0.7-1.9-0.3-2.9 0-1.8 0.5-1.7 1.2-2.3 0.5-1.4 1.3-5.6 0.6-1.8 4.1-6 1.9-2.2 1.9-1.1 4.7-1.4 2.1-4.3-0.1-5.2-1-5.4-0.2-4.9 2-3.8 3.1-3.5 6.5-4.9 5.2-1.3 1.4-1.1 0.6-1.3 2.7 4.1 1.3 3.1 0.9 1.5 1.2 1.2 4.3 3.3 1.6 2.2 1.7 3.1 3 4.7 0.9 1.8 1.2 3.3 0.6 1.2 1 0.7 1.8 0.4 1.9-0.5 1.9 0 1.6 0.3 1-0.2 2.5-1.4 1.1-0.3 1.1 0.3 1.5 1 1.7 1.5 3.1 1.8 1.3 1.1 1 1.8 0.7 3.9 1 2.8z" id="county_romania_bihor_24" name="Bihor"></path><path fill="#f3d973" stroke="#fff"     d="m257.1 468.8l-7.2 6.4-3 4-0.9 2.1-0.2 1.5 0.4 1.2 0.9 0.7 1.3 0.5 4 0.2 1 0.3 0.7 0.9 0.6 1.2-0.6 3.2-4.5 4.8-3.4 5.4-0.8 2.2-0.4 1.8-0.5 3.5-0.6 2.4-1.1 3.5-4.5 7.4-2.6 6.7-1.6 7.1-1 3.3-1.1 1.7-1.1 0.9-1.6 0.3-1.1-0.1-0.8-0.4-1.2-2.3-1.5-1.1-0.9-0.2-3.4 0.1-1.1-0.1-1.5-0.9-3.6-3.7-1-0.5-1.1-0.2-1.6 0.3-0.6 0.8-0.3 1 0 1.2-0.6 2-0.9 2.4-2.4 4.1-1.1 2.5-0.7 2.2-0.4 1.8-0.2 1.9 0.1 1.9 0.8 2.5 0.5 2.1 0.1 1.8-0.5 1.9-0.9 1-1.1 0.6-2.5 0.1-2.6-0.7-1.4-0.2-5.7 1-0.3-1-2.9-7.2-1.1-1-3.3-0.6-9.6-5-1.7-0.3-1.8 0.5-3.9 1.6-4.7 1-5.5 0-5.1-1.5-3.9-3.9-1-2.7-0.6-2.7-0.9-2.4-1.9-1.7-2.1-0.6-6.4 0.5-9-1-1.7-0.8-1.8-3.9-1.9-1.5-1.9-0.8 0.4-2 0.9-1.6 1.4-1.3 2.8-1 6.2 0.3 2.9-0.4 4.3-1.3 1.5-1.2 0.3-2.9-0.9-2.4-1.5-1.4-3.7-1.4-2.6-1.3-5.1-0.9-2.4-1.7 0.2-1.8-0.4-0.7-1.8-0.1-1.4-0.4-0.2-1.3 0.5-1.5 0.8-1.2 1-0.5 2.7-0.2 1.1-0.4 1.3-1.1 0.8-3.9 1.5-2.3 0.1-1.9-0.2-1.1 0.8-1.2 0.9-1 1.1-0.5 1.3-0.1 1.4-1.2 0.3-1.8-0.4-2-1-1.2 2.1-1.1 1.9-2.6 1.1-2.6 0-1.5-0.6-4.1 0-1.6 0.3-1.2 2.1-2.6 0.5-1.8-0.4-2.3 0-2-0.9-2.1-0.8-1-2.1-1.7-3.6-3.8-0.7-1.1-0.4-2.6 0.3-1.2 1.1-2.1 0.4-1.4 0-1.3-0.2-2.8 1-1.4 1.9-1.6 4.5-2.5 1.4-1.6 0.8-1.5 0.2-3.2 0.5-1.6 1-1.6 1.8-1.2 3-1.1 3.3 0 1.7 0.5 2 1.2 2.4 0.7 2.3 1.3 1.3 1.7 0.8 0.7 1.9 0 2.6-0.7 4.8-2.2 3.8-2.4 1-0.2 1.6 0.5 1 0.8 0.8 1.2 1 2.5 1.3 2.2 0.9 0.7 1.1 0.6 1.4 0.2 2.1-0.3 2.1-0.8 2.6-1.9 0.7-0.9-0.1-0.6-1.4-0.1-1-0.5-0.2-0.7-0.5-2.8 0.2-0.8 0.6-0.5 3.7 0 2.5-0.4 2.2-0.8 2.6-1.7 2.7-2.4 1.1-0.5 1.4 0.3 0.8 0.6 1.3 1.5 1.6 0.6 1.5-0.2 2.6 0.3 0.7-0.5 2.9-6.1 3.9-2.8 11.6-2.2 0.9 3.5 3.2 4.3 1.4 1 1.5 0.5 2.8 0.6 0.5 0.7-0.2 2.2 0.2 1.2 0.6 0.4 1.8-0.2 1.1 0.3 0.7 0.7 0.7 1.2 1.3 1.1 2 1.3 3.5 2.7 1.6 2.1 1 2.1 1.3 4.4 0.3 1.8 0.1 3.3 0.4 2.5-0.2 1.4-0.5 1.5-1.3 2-0.4 0.9 0.2 1.4 0.8 1.4 1.4 2 0.6 1.6 0.3 1.4-0.2 2.3-0.6 1.3-2.3 3.4-0.8 2.4 0 2.9z" id="county_romania_caras-severin_30" name="Caras-Severin"></path><path fill="#f3d973" stroke="#fff"     d="m49.7 328.5l1.5 0.6 15 10.5 3.7 3.8 1.1 3 1.4 2.1 1.3 0.9 1.5 0.5 6.6 1.2 0.9 0 2-0.5 1.3-0.1 2.2 0.6 1.1 0.7 0.5 0.7-0.3 1.8 0.3 1 1.3 1.9 1.4 0.7 1.6 0.3 1.1-0.1 0.7-0.4 0.6-1.6 0.1-1.7 0.6-1.7 1-0.9 1-0.6 1.6-0.2 0.8 0.3 0.4 2 0.8 1.8 2.8 2.8 1.8 1 1.5 0 2.4-2.1 1.2-0.5 1.5-0.3 1.8 0 1.1 0.6 1.5 1.8 1.4-0.1 2.4-2.4 2.8-2.3 0.6-0.7 0.4-1 0.2-2.1 0.2-0.8 1.1-0.6 1.8-0.2 3.5 0.4 1.6 0.5 0.9 0.9 0.1 2.2 0.2 1.2 0.8 1.1 1 0.4 2.9-0.4 1.2 0.2 1.1 0.6 2.3 2.5 2.2 1.8 0.9 1.2 0.4 1.1-0.7 2.4 0.1 0.6 1.8 1.5 2 2.7 0.8-0.1 0.6-0.8 1.1-2.4 1.4-2.5 0.8-1 0.9-0.5 1.5 0 3.4 1.6 2.1 1.7 1.3 2.1 0.9 1.1 1.1 0.1 0.1-0.8-0.1-2.1 0.2-2.3 0.5-0.9 0.6 0 1.7 1.4 1 0.4 3.2-0.2 1-1.3 0.7-3.4 0.7-1.7 0.8-0.4 1.3-0.3 2.5 0 1.6 0.5 1.1 0.8 0.9 1.1 1.3 1.2 1.9 0.6 4.1 0.3 1.1 0.6 0.6 0.8 0.7 1.8 0.8 0.6 1.8 0.8 2.7 2.6 1.6 0.4 1.6 0 2.1-0.3 1.5 0.3 2.6 1.5 0.9 0 2.1-2 0.9-0.4 3.9-1 1.8-0.1 1.1-0.9 0.7-2.2 0.9-1.1 1.9-0.9 3.6 3.8 1 2.5 0.3 2.8 1.2 4.1 1 1.5 2.9 2.3 0.8 1 1.1 1.9 1.9 4.9 0.9 1.3 0.9 0.5 1.3-0.7 1.6-0.2 1.1 0.7 0.3 1-0.3 1.1-0.8 1.2-4.3 3.9-1.2 1.3-0.8 1.6-0.5 1.4-0.8 3.9-0.8 1.2-0.9 0.4-11.6 2.2-3.9 2.8-2.9 6.1-0.7 0.5-2.6-0.3-1.5 0.2-1.6-0.6-1.3-1.5-0.8-0.6-1.4-0.3-1.1 0.5-2.7 2.4-2.6 1.7-2.2 0.8-2.5 0.4-3.7 0-0.6 0.5-0.2 0.8 0.5 2.8 0.2 0.7 1 0.5 1.4 0.1 0.1 0.6-0.7 0.9-2.6 1.9-2.1 0.8-2.1 0.3-1.4-0.2-1.1-0.6-0.9-0.7-1.3-2.2-1-2.5-0.8-1.2-1-0.8-1.6-0.5-1 0.2-3.8 2.4-4.8 2.2-2.6 0.7-1.9 0-0.8-0.7-1.3-1.7-2.3-1.3-2.4-0.7-2-1.2-1.7-0.5-3.3 0-3 1.1-1.8 1.2-1 1.6-0.5 1.6-0.2 3.2-0.8 1.5-1.4 1.6-4.5 2.5-1.9 1.6-1 1.4 0.2 2.8 0 1.3-0.4 1.4-1.1 2.1-0.3 1.2 0.4 2.6 0.7 1.1 3.6 3.8 2.1 1.7 0.8 1 0.9 2.1 0 2 0.4 2.3-0.5 1.8-2.1 2.6-0.3 1.2 0 1.6 0.6 4.1 0 1.5-1.1 2.6-1.9 2.6-2.1 1.1-2.6-3.2-2.7-2.2-3-1.6-11.2-3.5-4.5-0.2-1.8-0.8-3.5-2.4-1.8-2.1-3.6-5.3-1.7-1.3-1.1 0.3-1.7 1.9-1 0.4-1.2-0.3-1.9-1.8-1-0.9-8.7-4-1.7-1.3-4-5.4-6.8-6.2-3.5-5.1-1.5-1.5-1.8-0.9-1.8-0.6-1.6-1-0.6-2.1 2.3-1.9 1.5-1.6 0.3-2.1-1.3-3.5-3.1-5.4-0.4-2.4 0.8-3.8 1.2-2.8 0.4-1.3 0.3-2.1-0.1-7.9 0.7-3 0-1.3-0.9-1.5-1.3-0.7-1.1 0.5-1 1.3-0.6 1.7-1.3 1.1-1.4 0.5-1.4-0.3-1.3-1.2-1-2.1-2.4-3.1-1.1-1.7-0.3-1.5-0.3-3.1-0.3-1.2-0.8-1-1.8-1.2-0.7-0.7-3.5-6.3-1.7-1.6-1.9-0.8-4.1-0.5-1.9-0.9-5.5-5.2-2-1.3-4.2-1.9-1.8-1.3-1.6-2.5-2.2-6.9-1.3-2.3-6.6-8.3 4.3-5.4 16.9-0.5 2.6-4.2 4.3 1 4.2 1.8 3.1 2.8 1 0.7 1.3 0.5 0.8 0 5.9-1.2 2.1-1.1 1.6-1.8 0.6-1.8z" id="county_romania_timis_14" name="Timis"></path><path fill="#f3d973" stroke="#fff"     d="m759.6 111.6l-5.8 2.8-4.3-0.1-1.7-0.4-1.3 0.1-1.2 0.8-1.8 2-1.8 2-0.6 1.1-0.4 2.7-0.9 1.1-1.2 0.7-2.9 0-1.4-0.4-1.8-1-1.9-0.8-3-0.6-1.7-1.4-0.8-0.3-1.2 0.2-1.2 0.9-0.7 1.1-0.4 1.1 0.2 1.4 1.9 4.2 0.1 1.3-0.5 1.1-1.1 0.9-2.2 0.8-1.6 0.3-2-0.6-1.3-1-1.1-1.2-1.6-2-1.8-1.4-1-0.4-17.7 0-1.7-0.4-3.1-2.1-1.1-0.1-0.9 0.5-0.7 0.9-0.6 1.7-1.5 3.2-4.2 4.1-4.4-0.6-2.6-2.1-2.6-3.7-0.6-1.6-0.2-1.8 0.3-4.1-0.1-1.9-1.7-8.2-0.9-3.4-1.1-1.9-3.4-3.5-1.3-2.2-7-8.7-2-3.5-12-15.4-2.5-2.5-5.4-3-4.3-3.7-2.8-1.8-1.6-1.5-0.7-1.8-1.8-9.6 2.4 0 5-2.3 1.1-1.6 2.3-5.4 1.3-1.7 2.7-2.4 1.3-1.4 1.6-3.4 1.8-4.9 1.1-5-0.2-3.6 0.8-5.2 0.9 0.3 1.9 0.2 1.8-0.6 3.5-1.7 1.8-0.5 5-0.2 15.1-3.5 8.2-3.9 2.4-0.1 2.5 2.1 1.1 0.3 1.1-1.8 1.2 2.5 2.1 0.4 4.3-0.9 1.8 0.9 2.4 3.1 1.2-0.7 4.4 4.5 0.7 1.2 0.4 2.7 1-0.5 1.2-1.8 1-0.9 1.3 1.2 0.5 1.8 0.8 1.7 3.7 1.4 0 1.3-1.2 1.2-2.1 0.1 0 1 2.9 1.8 1.9 0.6 1.4-1.1 0.9 0.5 1.5 1.6-0.1 0.9-1.1 1.4-0.3 0.9 0.8 3.9 1.9 3 2.5 2.3 2.7 1.6 0 1.2-2.1 1 0.7 2.2 2.7-1.2 1.4 2 1 2.2 1.4-0.9 1.2 1.5 0.1 1.4-0.7 1.4-1.3 1.1 2.3 1.8 0.6 0.4 0 1-1.8 2.5 1.1 1.5 2.4 1.3 1.9 2.3-0.1 0.7 0.2 4.9-0.1 0.9 1.1 0.9 2.4 0.9 0.8 1.4-3.6 2.2 1.3 1.1 1.4 2.2 2.1 4.4 2.4 2 0.4 1.5-0.1 1.7 0.5 1.1 0 1-2.4 0.5 1 3.5 2.4 4.1 6.9 9.1 2.9 3.1 3.3 1.2 0.3 1.3z" id="county_romania_botosani_6" name="Botosani"></path><path fill="#f3d973" stroke="#fff"     d="m271.2 269.1l3.2 2.8 14.8 0.4 2.4 0.7 1.5 1 1.5 3 1 1 2.2 1.8 0.5 0.8 0.4 2.8 0.7 1.1 0.7 0.1 0.8-0.4 1.2-1.7 0.8-0.8 4.3-2.7 1-0.3 2-0.1 4.8 1.6 1.8 0.2 1.3-0.2 1-0.6 1.1-1 3.8-2.9 10.6-2.1 1.8 0.5 1.5 0.8 5.9 4.3 5.2 2.2 2.3 0.4 1.9 0.1 3.4-0.3 1.2 0.4 0.7 0.9 0 1.2-1.7 2.8-0.5 1.2 0.1 1.3 0.8 1.5 2.2 1.5 1.7 0.6 1.5 0.1 0.7-0.5 0.2-0.9-0.4-2 0-1 0.6-0.7 1.2-0.3 5-0.1 1.2-0.2 2-1 1.1-0.3 4.7 0.2 1.6-0.2 3.9-1 2.1 0.3 6.6 2.1 1.4 0 1.7-0.8 0.8-1.2 3.3 0.2 1.6 1.1 1.2 1.4 0.6 1.8-0.4 1.4-0.8 1.2-1.3 1.2-0.9 1.1-0.5 1.8 0.5 1.2 3.3 3.6 1 0.7 5.8 2.5 2.2 1.8 1.1 2.3 0.8 4.8 1.6 2.2 1.7 1.1 0.5 10.1-0.1 1.6-0.4 1.2-1.2 1.2-2.1 1.3-1.6 1.8-2.3 2.1-8.8 9.5-1.2 1.9-0.7 2.2-0.5 2.8-0.4 0.8-0.9 0.4-0.9-0.2-0.9-0.7-1.9-1.9-1.9-1.2-1.2 0-7.3 1.6-1.3 0.9-0.7 1.4-0.1 2.5 0.5 1.5 0.7 1.4 0.4 1.4-0.3 1.8-1.6 2-1.4 1.2-1.6 1-1.3 0.2-2.5-0.1-1.7 0.5-1-0.2-2.9-1.7-2-0.2-0.8 0.4-0.5 0.8 0.5 5 0.7 1 1 0.5 2.7 0.7 1.2 0.7 0.7 0.8-0.2 1.3-3.6 5.6-1.4 2.7-1.4 1.4-1 0.1-2.4-0.3-1.5 0.9-1.5 2-0.7 1.6-2.4 7.7-0.3 2.7 0.7 3.9 0.8 2.2 0.7 2.5 0.2 2.8-0.9 4.5-0.8 2.6-0.3 2.4 1.1 3.3 2.6 4.5 0.4 2 0.1 1.4-2.9 4.3-4.4 0.7 0.2-5-0.6-2.6-0.7-0.9-5.2-5.1-2.3-2.6-1.8-1.3-4.1-2-2.5-2-1.3-1.9-1.1-2.6-0.4-1.5-0.1-1.3 1-3.3-0.4-1.4-2.2-2.7-0.6-1.1-0.2-1.3 0.3-2.8-0.4-2.3-0.9-3.2-2.3-6.3-2.7-11.7-0.9-1.7-2.8-3.4-1.7-2.8-4.1-10.7-1.2-1-2.1-0.3-2.5-1.2-10.2-13.5-1-2.3 0.6-1.1 0.7-0.2 1.5 0.5 0.5-0.6-0.1-1.5-1.7-4.5-1.3-2.4-1.4-1.9-1.1-0.8-1.3-0.6-4.8-0.7-1.2-0.5-0.7-0.9-1.8-6.7-1.7-4.4-1.1-2.2-1-1.3-1-0.3-9.7 1-0.9-0.3-5.2-3.3-5.1-5.3-1.9-8.1-0.2-9.4 0.6-3.6 1.1-3.9 1.4-2.8 1.3-1.6 1.2-0.7 2.7-0.3 2.4 0.6 1.6 1z" id="county_romania_alba_20" name="Alba"></path><path fill="#f3d973" stroke="#fff"     d="m498.4 110.1l1.2 1.4 8.3 6.8 2.8 3.3 1.2 2.4 0.6 1.6 0.1 1.8-0.7 2.2-1.2 1.3-2.7 1.5-0.8 0.7-0.2 0.8 1.4 2.3 0.1 1-0.3 1.4-1.1 0.7-1.6-0.2-1 0.1-0.7 0.6-0.5 0.9 0.2 1.1 0.9 1.7 2.1 2.7 0.8 1.3 1.3 2.8 0.4 1.5 0.1 1.8-0.8 2.7-1.4 2.4-0.8 2.1-0.1 1.6 1.2 1.6 1.2 0.3 2-0.2 0.5 0.3 0.2 0.9-0.4 2.4-0.4 1.6-0.6 4.7 0.6 10.8-8.2 3.3-6.9 1.3-2.8 1-3.4 2.3-5.4 4.7-0.8 1.1-1.4 3.8-0.6 1.2-2.6 4-0.9 1.9-0.6 2.1-0.8 4.4-0.7 1.2-1.3 0.6-1.9-0.2-1.7-0.8-3.1-2-1.3-0.5-1.2-0.3-1.3 0.2-1.9 0.9-2.6 2.1-2.2 2.9-1 1.8-1 2.9-0.6 1.1-2 2.5-0.7 1.3-0.8 4.9-0.6 1.2-1.4 1-2.1 0.7-3.7 0.5-4.8 2-1.7 0.3-2.3-0.1-7-1.8-8.7-4.3 2.3-4.7 0.6-1.9 0.7-6.4 0.6-2.2 0.2-2.5-0.5-2.1-2-2.1-3.7-2.1-1.3-1-0.7-1.3-0.2-1.8 0.4-2.3-0.2-1-1.8-1.3-0.9-1 0.1-2.3 0.3-2 0.5-1.9 0.1-2-0.4-1.9-1.5-2.2-1.5-1.1-2.5-1.2-1.1-0.7-2.2-2.1-1.6-1-6-1.7-1.3-0.7-1.2-1.3-0.7-1.6-0.5-1.9-1.1-8.6-0.4-1.6 0-1.9 0.6-1.5 3.4-2.9 1.4-1.6 1.1-1.8 1-4.4 4.1-4 6.4-9.5 0.7-1.5 0.4-1.5 0.4-3.3 0.5-0.8 1.5-0.7 8.9-1.9 2.2-1.4 1-1.3 2.1-4.8 0.8-1.4 1.5-1.2 7.3-3.3 1.9-0.5 19.8 4.7 19.8-0.7 2.2-0.7 1.7-1.2 4.3-4.1 3.6-1.3 9 0.1z" id="county_romania_bistrita-nasaud_3" name="Bistrita-Nasaud"></path><path fill="#f3d973" stroke="#fff"     d="m398.3 150.4l-1 4.4-1.1 1.8-1.4 1.6-3.4 2.9-0.6 1.5 0 1.9 0.4 1.6 1.1 8.6 0.5 1.9 0.7 1.6 1.2 1.3 1.3 0.7 6 1.7 1.6 1 2.2 2.1 1.1 0.7 2.5 1.2 1.5 1.1 1.5 2.2 0.4 1.9-0.1 2-0.5 1.9-0.3 2-0.1 2.3 0.9 1 1.8 1.3 0.2 1-0.4 2.3 0.2 1.8 0.7 1.3 1.3 1 3.7 2.1 2 2.1 0.5 2.1-0.2 2.5-0.6 2.2-0.7 6.4-0.6 1.9-2.3 4.7-3.2 0.4-2.1 2.5-4 7.6-0.4 1.7 0 1.4 1.5 2.3 0.7 1.5 0.2 2.6-0.7 1.7-1.1 1-3.8 0.7-1.3 0.6-1.8 1.7-1 2.2-1.1 3.2-0.2 1.8 0.2 1.4 0.9 2.5-0.1 1.7-0.7 0.9-2.3 1.4-1.4 1.5-2.1 3.2-0.4 1.9 0.5 1.7 2.4 2.4-0.8 1.2-1.7 0.8-1.4 0-6.6-2.1-2.1-0.3-3.9 1-1.6 0.2-4.7-0.2-1.1 0.3-2 1-1.2 0.2-5 0.1-1.2 0.3-0.6 0.7 0 1 0.4 2-0.2 0.9-0.7 0.5-1.5-0.1-1.7-0.6-2.2-1.5-0.8-1.5-0.1-1.3 0.5-1.2 1.7-2.8 0-1.2-0.7-0.9-1.2-0.4-3.4 0.3-1.9-0.1-2.3-0.4-5.2-2.2-5.9-4.3-1.5-0.8-1.8-0.5-10.6 2.1-3.8 2.9-1.1 1-1 0.6-1.3 0.2-1.8-0.2-4.8-1.6-2 0.1-1 0.3-4.3 2.7-0.8 0.8-1.2 1.7-0.8 0.4-0.7-0.1-0.7-1.1-0.4-2.8-0.5-0.8-2.2-1.8-1-1-1.5-3-1.5-1-2.4-0.7-14.8-0.4-3.2-2.8 0-5.8 0.5-3.8-0.5-1.3-1-0.9-2.1-1.7-1-1.9-1.8-7.2-1.4-3.2-1.4-2.2-4.2-3.8-1.3-1.8-0.3-1.4 0.2-1.3 0.6-1.1 0.9-1.1 1.2-0.8 3.9-1.8 0.9-0.7 1.3-2.3 1.1-3.5 0.4-2.9-0.5-1.6-1.4-1.1-5.3-2.1-0.9-0.7-0.2-1 0.4-1.5 2.3-4.5 0.8-2.1 1.2 0.4 12.6 0.3 1.9 0.3 1.1 0.6 1.1 0.9 0.8 1.5 1.8 4.6 1.1 2 1.1 1.3 1.3 0.5 3.9 0.4 1 0.4 0.8 0.6 1 1.6 0.8 0.6 1 0 2.3-0.4 1.3-0.1 3.9 1.1 1.8-0.3 2.1-0.8 1.5-0.3 1.2 0.2 2.4 0.9 1.3-0.1 1-0.6 0.3-1.3-0.2-2.5 0.3-1.1 1.5-2.8 0.7-1.1 1.2-0.2 0.9 0.6 0.7 1.2 0.7 2.3 0.6 0.7 0.9 0.3 2.2-0.8 1.1 0 0.9 0.3 2.1 2.4 1-0.1 1-0.7 0.9-2.2 0-1.4-0.5-1.4-2-2.3-0.4-1.4 0.5-1 1.5-0.7 1.1 0 1.8 0.7 0.6-0.3 0.4-2 0.5-0.9 1.2-0.7 1.3-0.2 2.3 0.1 1.4-0.2 1.6-0.4 1-0.9 0.4-1.5-0.1-1.2-1-3.4-0.5-1.1-1.4-1.8-0.4-1 0.1-1 0.6-0.8 2.2-0.6 0.6-0.5 0.9-2.6 0.8-1.4 0.4-2.6 0.3-1 4.9-2 2.4-1.6 1.3-0.4 1.2 0.1 1.1 0.5 1 0 0.9-0.7 0.7-1.9 1-1.9 1.6-1.9 3.7-2 3.5-1.1 6.2-0.7 1.6-0.6 0.9-1.4-0.1-3 0.5-3 0.5-1.8 0.7-1.4 0.1-2.2-1.6-2.5 3-2.6 17.5 1.4z" id="county_romania_cluj_19" name="Cluj"></path><path fill="#f3d973" stroke="#fff"     d="m353.6 437.7l-0.3 2.3 0.2 1.4 1.5 4.5 0.3 1.7-1.5 4.4-6.6 2.2-6 3.3-1.8 1.5-1.1 0.4-0.9-0.1-1.9-1.4-1.5-0.8-1.6-0.4-2.7-0.1-2 0.6-3.6 1.8-4.7 1-1.7 0.6-5.7 3.5-1.7 0.4-1.3 0-3.2-1.5-1.6-0.2-2.6 0.2-6.8 2.9-1.6 0.1-1.1-0.4-1.7-1.6-0.9-0.4-4.6-0.3-1.2-0.4-1-0.8-0.7-1-1.4-0.7-1.1 0.2-22.4 8.2 0-2.9 0.8-2.4 2.3-3.4 0.6-1.3 0.2-2.3-0.3-1.4-0.6-1.6-1.4-2-0.8-1.4-0.2-1.4 0.4-0.9 1.3-2 0.5-1.5 0.2-1.4-0.4-2.5-0.1-3.3-0.3-1.8-1.3-4.4-1-2.1-1.6-2.1-3.5-2.7-2-1.3-1.3-1.1-0.7-1.2-0.7-0.7-1.1-0.3-1.8 0.2-0.6-0.4-0.2-1.2 0.2-2.2-0.5-0.7-2.8-0.6-1.5-0.5-1.4-1-3.2-4.3-0.9-3.5 0.9-0.4 0.8-1.2 0.8-3.9 0.5-1.4 0.8-1.6 1.2-1.3 4.3-3.9 0.8-1.2 0.3-1.1-0.3-1-1.1-0.7-1.6 0.2-1.3 0.7-0.9-0.5-0.9-1.3-1.9-4.9-1.1-1.9-0.8-1-2.9-2.3-1-1.5-1.2-4.1-0.3-2.8-1-2.5-3.6-3.8 4.9-6.4 1.2-2.6 0.7-2.5 0.1-1.9-0.3-1.5-1.1-3.6 0.3-1.5 0.6-1.9 1.5-3.1 0.5-2.3 0.2-2.2-0.3-5 0.5-1.7 0.9-1.5 2.5-2.2 1.4-0.9 1.9-0.2 5.9 1.4 2 0.2 2.5-0.4 2-1.1 2.2-2 2.4-4 1-2.5 1.8-4 6.9-5.2 5.2 3.3 0.9 0.3 9.7-1 1 0.3 1 1.3 1.1 2.2 1.7 4.4 1.8 6.7 0.7 0.9 1.2 0.5 4.8 0.7 1.3 0.6 1.1 0.8 1.4 1.9 1.3 2.4 1.7 4.5 0.1 1.5-0.5 0.6-1.5-0.5-0.7 0.2-0.6 1.1 1 2.3 10.2 13.5 2.5 1.2 2.1 0.3 1.2 1 4.1 10.7 1.7 2.8 2.8 3.4 0.9 1.7 2.7 11.7 2.3 6.3 0.9 3.2 0.4 2.3-0.3 2.8 0.2 1.3 0.6 1.1 2.2 2.7 0.4 1.4-1 3.3 0.1 1.3 0.4 1.5 1.1 2.6 1.3 1.9 2.5 2 4.1 2 1.8 1.3 2.3 2.6 5.2 5.1 0.7 0.9 0.6 2.6-0.2 5z" id="county_romania_hunedoara_10" name="Hunedoara"></path><path fill="#f3d973" stroke="#fff"     d="m497 89.2l1.3 4.3 2.5 4 4.5 4.8 0.9 1.4 0.2 1.7-0.8 1.5-0.9 1-6.3 2.2-9-0.1-3.6 1.3-4.3 4.1-1.7 1.2-2.2 0.7-19.8 0.7-19.8-4.7-1.9 0.5-7.3 3.3-1.5 1.2-0.8 1.4-2.1 4.8-1 1.3-2.2 1.4-8.9 1.9-1.5 0.7-0.5 0.8-0.4 3.3-0.4 1.5-0.7 1.5-6.4 9.5-4.1 4-17.5-1.4-3 2.6-2.7 1.4-1.2 0.4-1.5 0-1.3-0.3-1.4-0.9-1.8-1.8-1.3-0.8-2.1-1-1-1.2-0.6-1.2-0.2-1.2-1.4-0.9-2.5-0.4-16.2 0.7-2.4-0.4-13.2-4.5-4.2-2.2-2.1-0.8-2.8-0.5-11.1 0-5.3 1.9-9.7-1.8-1.8-1-1.4-1.3-0.2-1.1 0.3-1 0.8-0.9 3.9-2.6 1.8-2 0.6-1.1 1.4-4.7 0.9-1.5 6.2-7.9 1-0.6 1 0 0.8 0.5 1.8 2.3 1.2 1.1 4.8 3.2 1.6 0.7 1.8 0 2-1.2 1.6-1.8 1.9-2.8 2.3-2.7 1.8-4 0.7-2 1.3-3 0.4-1.9-0.2-2.1-0.8-1.2-1.2-1.2-1.6-0.9-7.2-2-1.2-0.8-0.7-1.1-0.1-1.3 0.4-2.2 1.2-1.3 1.8-0.8 7.5 0.1 4.1 1.3 1.6 0.8 1.8 0.5 1.8 0.1 2.4-0.5 2.6-1.3 15-11.5 0.9-1.7 0.1-1.7-1.1-2-1.4-1.4-3.5-2.2-1.5-1.2-1-1.2-5.1-7.2-1.7-6.3 0.9-1 1-1.9 1.2-1 1.1-0.3 4-0.7 2 0.6 6.8 0.8 4.3 1.5 2.5 0.3 7.3-0.4 1.7 0.9 5.5 5.1 0.7 2.4 2.3 0 10.6-4.4 3.3 0.2 1.8 1.3 5.2 1.4 2.1 1 3.8 3.7 2.1 0.2 6.2 2.4 2.3 0.1 7-3.6 5.2-0.1 4.2-3.6 2.4-1.4 2 0 6.1 1.4 5.9-0.1 2.1 0.6 4.9 2.9 2.7 2.1 1.6 2.1 0.7 2.5 0.1 2.1 0.5 1.9 1.9 2.2 3.5 2.2 8.6 3.4 1.5 1.3 1.3 1.9 3.6 6.4 2.4 3.8 2 1.4 4.9-0.9z" id="county_romania_maramures_35" name="maramures"></path><path fill="#f3d973" stroke="#fff"     d="m524.6 188.9l0.7 5.9 1.5 3 2.4 2.4 1 1.4 0.7 1.9 0.4 2.4 0.3 9.4-1.7 10.4 0.6 3.5 2.3 6.4 0.8 2.5-0.1 2.1-0.6 3.4-0.3 2.9 0.3 4.1-0.2 1.5-0.9 1.5-4.6 3.8-1.5 1.7-3.8 5.9-1.3 1.4-1.8 1.2-4.5 1.9-1.4 0.9-6.2 6.5-0.8 1.4-0.5 1.7-0.5 5.8-0.5 1.2-1.1 1.1-6.6 2.7-0.8 1 0 1 2.9 2.1 0.8 1 0 1.6-0.6 1.1-1.2 0.6-2.6 0.6-2.6 2-2.3 1-0.8 0.8-0.1 1 0.6 1.3 8.4 10.2 1.9 1.8 2 0.7 5-0.2 1.7 0.7 5.6 4.3 8.3 8.9-5.3 1.2-9.7 0.4-1.5 0.5-1.5 0.8-2.3 2-1.1 1.2-1 2.9 0.6 3.2-5-2.9-1.1-1-1.7-1.2-1.4-0.6-2.3-0.3-1.5 0.2-3.4 0.9-3.3 0.2-0.8 0.3-1.2 1-0.8 0.4-2.4 0-1.2 0.4-1.4 0-1.4-0.7-1.9-2.3-1.1-3.4-0.6-3.9-0.5-8.8-0.7-4.1 0.1-1.4 0.5-1.3 0.7-1 0.3-0.9-0.4-0.5-0.9-0.1-2.1 1.1-1.5 0.4-2-0.2-2.8-0.9-1.4 0-1.3 0.9-1.5 1.8-1.3 0.7-2.1 0.1-7.4-0.5-3.3 0.7-1.7 0.7-2.1 0.5-2-0.3-5.8-2.4-3.8 0.8-7.8 0-1.7-1.1-1.6-2.2-0.8-4.8-1.1-2.3-2.2-1.8-5.8-2.5-1-0.7-3.3-3.6-0.5-1.2 0.5-1.8 0.9-1.1 1.3-1.2 0.8-1.2 0.4-1.4-0.6-1.8-1.2-1.4-1.6-1.1-3.3-0.2-2.4-2.4-0.5-1.7 0.4-1.9 2.1-3.2 1.4-1.5 2.3-1.4 0.7-0.9 0.1-1.7-0.9-2.5-0.2-1.4 0.2-1.8 1.1-3.2 1-2.2 1.8-1.7 1.3-0.6 3.8-0.7 1.1-1 0.7-1.7-0.2-2.6-0.7-1.5-1.5-2.3 0-1.4 0.4-1.7 4-7.6 2.1-2.5 3.2-0.4 8.7 4.3 7 1.8 2.3 0.1 1.7-0.3 4.8-2 3.7-0.5 2.1-0.7 1.4-1 0.6-1.2 0.8-4.9 0.7-1.3 2-2.5 0.6-1.1 1-2.9 1-1.8 2.2-2.9 2.6-2.1 1.9-0.9 1.3-0.2 1.2 0.3 1.3 0.5 3.1 2 1.7 0.8 1.9 0.2 1.3-0.6 0.7-1.2 0.8-4.4 0.6-2.1 0.9-1.9 2.6-4 0.6-1.2 1.4-3.8 0.8-1.1 5.4-4.7 3.4-2.3 2.8-1 6.9-1.3 8.2-3.3 9.5 1.8 4.8 2.3z" id="county_romania_mures_39" name="mures"></path><path fill="#f3d973" stroke="#fff"     d="m377.8 151.6l1.6 2.5-0.1 2.2-0.7 1.4-0.5 1.8-0.5 3 0.1 3-0.9 1.4-1.6 0.6-6.2 0.7-3.5 1.1-3.7 2-1.6 1.9-1 1.9-0.7 1.9-0.9 0.7-1 0-1.1-0.5-1.2-0.1-1.3 0.4-2.4 1.6-4.9 2-0.3 1-0.4 2.6-0.8 1.4-0.9 2.6-0.6 0.5-2.2 0.6-0.6 0.8-0.1 1 0.4 1 1.4 1.8 0.5 1.1 1 3.4 0.1 1.2-0.4 1.5-1 0.9-1.6 0.4-1.4 0.2-2.3-0.1-1.3 0.2-1.2 0.7-0.5 0.9-0.4 2-0.6 0.3-1.8-0.7-1.1 0-1.5 0.7-0.5 1 0.4 1.4 2 2.3 0.5 1.4 0 1.4-0.9 2.2-1 0.7-1 0.1-2.1-2.4-0.9-0.3-1.1 0-2.2 0.8-0.9-0.3-0.6-0.7-0.7-2.3-0.7-1.2-0.9-0.6-1.2 0.2-0.7 1.1-1.5 2.8-0.3 1.1 0.2 2.5-0.3 1.3-1 0.6-1.3 0.1-2.4-0.9-1.2-0.2-1.5 0.3-2.1 0.8-1.8 0.3-3.9-1.1-1.3 0.1-2.3 0.4-1 0-0.8-0.6-1-1.6-0.8-0.6-1-0.4-3.9-0.4-1.3-0.5-1.1-1.3-1.1-2-1.8-4.6-0.8-1.5-1.1-0.9-1.1-0.6-1.9-0.3-12.6-0.3-1.2-0.4-1.8-3.1-4.1-4.1-6.6-3.8-1.1-1.3-0.8-1.2-0.4-1.3-3.1-6.1-4.5-7.1-1.3-3.3-0.1-2.1 1.8-1.9 2.7-4 0.6-1.2 0.3-1.2 0.3-2.6 0.5-1.3 1.2-1.9 0.6-1.3 1.1-4.3 4.5-3.7 13.9-6.7 2.9-0.8 2.1 0 11.6 3.3 1.4 0.9 2.5 2.5 1.6 0.9 4.4 1.1 1.1 0.6 1.8 2.1 1.3 0.9 0.6-0.3 0.9-1.8 0.7-0.9 4.1-3.4 0.5-1 0.2-1.2-0.2-1.2-0.9-2.1-1.2-2.2 5.3-1.9 11.1 0 2.8 0.5 2.1 0.8 4.2 2.2 13.2 4.5 2.4 0.4 16.2-0.7 2.5 0.4 1.4 0.9 0.2 1.2 0.6 1.2 1 1.2 2.1 1 1.3 0.8 1.8 1.8 1.4 0.9 1.3 0.3 1.5 0 1.2-0.4 2.7-1.4z" id="county_romania_salaj_37" name="Salaj"></path><path fill="#f3d973" stroke="#fff"     d="m343.2 48.5l1.7 6.3 5.1 7.2 1 1.2 1.5 1.2 3.5 2.2 1.4 1.4 1.1 2-0.1 1.7-0.9 1.7-15 11.5-2.6 1.3-2.4 0.5-1.8-0.1-1.8-0.5-1.6-0.8-4.1-1.3-7.5-0.1-1.8 0.8-1.2 1.3-0.4 2.2 0.1 1.3 0.7 1.1 1.2 0.8 7.2 2 1.6 0.9 1.2 1.2 0.8 1.2 0.2 2.1-0.4 1.9-1.3 3-0.7 2-1.8 4-2.3 2.7-1.9 2.8-1.6 1.8-2 1.2-1.8 0-1.6-0.7-4.8-3.2-1.2-1.1-1.8-2.3-0.8-0.5-1 0-1 0.6-6.2 7.9-0.9 1.5-1.4 4.7-0.6 1.1-1.8 2-3.9 2.6-0.8 0.9-0.3 1 0.2 1.1 1.4 1.3 1.8 1 9.7 1.8 1.2 2.2 0.9 2.1 0.2 1.2-0.2 1.2-0.5 1-4.1 3.4-0.7 0.9-0.9 1.8-0.6 0.3-1.3-0.9-1.8-2.1-1.1-0.6-4.4-1.1-1.6-0.9-2.5-2.5-1.4-0.9-11.6-3.3-2.1 0-2.9 0.8-13.9 6.7-4.5 3.7-1-2.8-0.7-3.9-1-1.8-1.3-1.1-3.1-1.8-1.7-1.5-1.5-1-1.1-0.3-1.1 0.3-2.5 1.4-1 0.2-1.6-0.3-1.9 0-1.9 0.5-1.8-0.4-1-0.7-0.6-1.2-1.2-3.3-0.9-1.8-3-4.7-1.7-3.1-1.6-2.2-4.3-3.3-1.2-1.2-0.9-1.5-1.3-3.1-2.7-4.1 0.3-2.2 0.3-1.1 2.6-3.7 0.3-1.4 0.4-2.8 0.4-1.2 0.8-1 1.7-1.3 0.8-0.8 2.4-3.5 1.2-1.3 1.9-1 1.9-0.7 1.3-0.2 4.9 0.8 1.5-0.1 1.4-0.6 1.2-1.2 1.8-6.2 3.2-0.7 7.8 4.1 3.7 0.6 4-0.6 3.8-1.7 3.1-2.7 2.6-3.4 1.3-1 2.2-1 2.2-0.3 0.7-0.4 0.9-1.7-0.2-1.2-0.6-1 0-1.4 1.1-2.1 1.7-1.2 4.2-1.5 1.8-1.6 2.6-5 1.8-2 2.1-0.7 1.9-1.3 0.9-2.1-0.9-3.2 0.9-1.9 1.6-0.1 1.8 0.9 3.3 2.1 1.7 0.6 1.7-0.3 4.5-3.6 1.5-2.7 2.3-7.4 2.1-3.2 2.2-1 2.3 0.3 7.4 2.6 1.8 1.3 4.4 5.2 5 4.4 2.4 2.8 0.7 0.3 1.6 0 1.5-0.3 6.8 3.4 2.2-0.1 0.4-0.4z" id="county_romania_satumare_34" name="Satu mare"></path><path fill="#f3d973" stroke="#fff"     d="m535.7 446.6l1.6 2.9 0.6 1.4 0.4 1.5 0 1.8-0.5 2.5-0.7 1.6-1.6 2.7-0.8 1.6-0.6 2-0.5 2.4-0.2 3.5-0.8 3.1-1 2.4-0.8 1.6-1 1.1-0.9 0.7-1 0.2-0.9-0.3-0.8-0.7-1.2-2-0.7-0.7-0.7-0.1-1.1 1.1-1.1 2.7-0.5 0.9-0.5 2-0.1 2.9 1.1 5.9 1.5 2.5 3.3 3.8 1.2 2.9 0.5 1.9 0 1.4-0.5 1.3-3 3.5-0.6 1.3-0.2 2.5 0.2 2.9 1.7 8.1 0.3 2.3-0.9 12.2-0.2 1.6-0.5 1.3-1.6 2.9-0.3 1.7 0.2 1.7 1.5 1.8 2.1 2-0.4 0.7-2.4 1.5-0.4 1.2 0.3 1.8 2.7 5.3 1.1 1.5 2.9 2.9 0.9 0.6 1.1 0.4 2.4 0.4 1.8 1.1 0.4 1.1-0.1 1.3-1.9 3.6-0.6 1.5 0.1 2 1 3.7-0.3 2.7-2.3 4.2-3.4-1.7-1.7-0.5-1.8-0.2-2.4 0-4.8 0.9-2.2 1.3-2.3 2.3-1.5 0.6-2.6 0.7-3.3-0.5-1 0.2-1.1 0.8-1.3 1.6-1.9 1.3-1.6 0.4-1.9 0.1-5.7-1.5-4.5 1.2-2.3-1.6-5.1-0.4-1-0.7-0.7-1.2-0.6-2.3-0.4-6.5-1.3-4.9 0.1-2.6 0.6-1.9 0.1-1-1-6.7-1.1-3.8-0.2-1.8-0.5-3.3-0.8-2.3-2.6-4.3-0.3-1.4 0.9-1.6 0.9-0.7 1.9-0.8 0.6-0.9-0.5-0.8-0.8-0.6-1.9-0.2-1.6 0.4-1.7 0-1.7-0.5-2.1-2.1-1.2-1.6-4.7-9.9-0.8-2-0.1-1.7 0.3-2.7-0.3-1.2-0.5-0.8-1-0.2-0.9 0.6-1.2 1.7-1.4 3.6-0.7 0.9-4.3 3.6-0.9 0.4-1-0.3-0.7-0.6-1.2-3.6 2.7-2 4.1-5 0.7-1.3 0.3-1.2-0.1-1.3-0.7-1.8-1.6-2.6-0.1-1.2 0.8-3.1 1.2-9.1 3.2-14.1-0.2-3.5-0.6-2.2-0.8-1.8-0.7-1-1.6-1.9-0.5-1.5-0.2-1.9 0.4-3.1 0.3-3.7-1-3.6-0.1-1.6 0.2-1.4 0.6-1.2 1.7-2.2 0.3-1.4-0.2-1.8-2.2-9.4 0-1.7 0.3-1.6 3.1-6 1.4-6.6-1.3-4.8 19.2-5.6 6.7-0.6 1.6 0.4 1.4 0.8 1.7 1.8 1.5 2.5 0.8 0.5 1.3-0.4 1.9-1.2 1.2-0.5 1.3-0.1 3.1 0.2 6.5-0.6 11.8 1.6 2.5 1.5 4 3.5 1.8 1.2 1.7 0.6 1.7 1.2 1.5 2 5.9 13.1 3.5 4.2z" id="county_romania_arges_22" name="Arges"></path><path fill="#f3d973" stroke="#fff"     d="m501.1 344.5l-2.2 3-6.3 5.2-5.9 3.2-0.6 0.7-0.3 1 0.7 2 0.1 1.1-0.3 1.5-0.9 0.5-0.7-0.1-1.7-0.7-1.2 0.2-1.8 1-1.6 1.7-4.7 2.5-0.7 0.9-0.1 1.2 0.4 0.9 1.5 1.7 0.4 1.2-0.2 2.9 0.3 1 0.6 0.8 1.5 0.9 0.3 1-0.6 1.6-1.4 1.1-1.8 0.8-2 0.5-3.8 1.6-1.6 1.3-0.5 1.3 0.1 1.5 3.3 7 1.1 3.7 0.9 5 0.4 4.3 0.3 2.3 0.2 3.1-19.2 5.6-21.6-0.2-14.7 3.4-1.5 0.5-10.6 6.1-2 0.1-1.6-0.3-3.7-1.7-4-0.5-17.6 0.7-1.7 0.5-1.7 2-1 0.8-1.3 0.3-1.8 0.1-1.4 0.5-3.3 2.6-2.1 1.3-1.3 0.5-2.2-0.2 2.9-4.3-0.1-1.4-0.4-2-2.6-4.5-1.1-3.3 0.3-2.4 0.8-2.6 0.9-4.5-0.2-2.8-0.7-2.5-0.8-2.2-0.7-3.9 0.3-2.7 2.4-7.7 0.7-1.6 1.5-2 1.5-0.9 2.4 0.3 1-0.1 1.4-1.4 1.4-2.7 3.6-5.6 0.2-1.3-0.7-0.8-1.2-0.7-2.7-0.7-1-0.5-0.7-1-0.5-5 0.5-0.8 0.8-0.4 2 0.2 2.9 1.7 1 0.2 1.7-0.5 2.5 0.1 1.3-0.2 1.6-1 1.4-1.2 1.6-2 0.3-1.8-0.4-1.4-0.7-1.4-0.5-1.5 0.1-2.5 0.7-1.4 1.3-0.9 7.3-1.6 1.2 0 1.9 1.2 1.9 1.9 0.9 0.7 0.9 0.2 0.9-0.4 0.4-0.8 0.5-2.8 0.7-2.2 1.2-1.9 8.8-9.5 2.3-2.1 1.6-1.8 2.1-1.3 1.2-1.2 0.4-1.2 0.1-1.6-0.5-10.1 7.8 0 3.8-0.8 5.8 2.4 2 0.3 2.1-0.5 1.7-0.7 3.3-0.7 7.4 0.5 2.1-0.1 1.3-0.7 1.5-1.8 1.3-0.9 1.4 0 2.8 0.9 2 0.2 1.5-0.4 2.1-1.1 0.9 0.1 0.4 0.5-0.3 0.9-0.7 1-0.5 1.3-0.1 1.4 0.7 4.1 0.5 8.8 0.6 3.9 1.1 3.4 1.9 2.3 1.4 0.7 1.4 0 1.2-0.4 2.4 0 0.8-0.4 1.2-1 0.8-0.3 3.3-0.2 3.4-0.9 1.5-0.2 2.3 0.3 1.4 0.6 1.7 1.2 1.1 1 5 2.9z" id="county_romania_sibiu_40" name="Sibiu"></path><path fill="#f3d973" stroke="#fff"     d="m453.1 420.5l1.3 4.8-1.4 6.6-3.1 6-0.3 1.6 0 1.7 2.2 9.4 0.2 1.8-0.3 1.4-1.7 2.2-0.6 1.2-0.2 1.4 0.1 1.6 1 3.6-0.3 3.7-0.4 3.1 0.2 1.9 0.5 1.5 1.6 1.9 0.7 1 0.8 1.8 0.6 2.2 0.2 3.5-3.2 14.1-1.2 9.1-0.8 3.1 0.1 1.2 1.6 2.6 0.7 1.8 0.1 1.3-0.3 1.2-0.7 1.3-4.1 5-2.7 2 0.2-6.9-1.3-2.3-1.1-0.3-1 0.1-1.1 0.6-1.6 2-3 5.3-0.9 3.5-0.2 2-0.8 3.3-0.6 1.6-0.9 1.9-1.7 2.6-2 2.1 0 1.3 0.5 3.2 1.4 6.4-0.4 2.5 1.2 1.9 1.2 2.8 0.8 3.4 0.3 2.7-1.6 1.4-1-0.5-0.8-1-0.8-2 0.2-2.5-0.9-0.9-1 0-1.3 1-0.5 1.3-0.7 3.1-0.8 1.1-3.1 1.8-2.1 0.2-2.5-0.7-1.4 0-1.1 0.2-1.3 0.7-1.1 1.2-3.3 4.8-1.3 0.6-0.8-0.1-0.8-0.7-1-1.7-0.8-1.1-2.1-1.2-1.2-0.2-2.5 0.6-4 2.5-3-3.1-1.7-2.6-1.3-2.3-2.1-7.3-1-1.3-1-0.9-3.5-2.2-1.6-0.7-1.9-1.1-0.8-1.1-0.5-1.3-0.1-1.2-0.8-3.5 1.5-8.6 0.4-7.9-1.5-17.1 0.2-2.9 0.5-2 1.2-3.3 2.9-11.7 0.1-2-0.4-5.1 0.4-2.2 1.7-5 0.2-1.8-0.5-2.1-1.1-2.7-0.8-4.1 0.2-2.9 1.4-5.8-0.5-1.7-0.8-1.2-1.8-1.4-1.8-0.4-6.5 0.7-1.9-0.1-1.6-0.3-2-1.1-1.2-0.4-5.1 0-3.2-1 1.5-4.4-0.3-1.7-1.5-4.5-0.2-1.4 0.3-2.3 4.4-0.7 2.2 0.2 1.3-0.5 2.1-1.3 3.3-2.6 1.4-0.5 1.8-0.1 1.3-0.3 1-0.8 1.7-2 1.7-0.5 17.6-0.7 4 0.5 3.7 1.7 1.6 0.3 2-0.1 10.6-6.1 1.5-0.5 14.7-3.4 21.6 0.2z" id="county_romania_valcea_26" name="Vâlcea"></path><path fill="#f3d973" stroke="#fff"     d="m551 338l-0.7 2.1 0.4 1.4 0.9 1.6 3.4 2.6 1.4 1.9 0.9-0.9 2.1-0.1 2.2 0.6 1.3 1 0.4 2.7-1.3 5.1 0.3 2.6-0.7 2.1-0.2 3.3 0.1 9.9 0.4 2.3 1 2.1 7.4 5 3.3 3.4 0.3 5.1 1.9 0 1.6-1.1 1.5 1 1.5-0.1 1.5-0.6 1.6-0.3 0.7-1 1.6 2.5 1.9 1 9.8 3.7 2.6 1.9 3.1 3.2 1.7 2.6 1.6 3.3 1.1 0.9 2 0.9 2 1.1 2.1 1.8 3.2 5.1 2.3 2.4-5.8 12.4-4.9-1-5.6-3.3-2.3-0.3-1.4 0.6-0.9 1.2-0.7 3.4-0.5 1.9-1 1.8-2 1.8-1.8 0.5-1.5-0.3-0.9-0.8-1.4-2.4-0.7-1-1.3-0.8-1.4 0.1-2.9 1-1.5-0.3-4.5-1.7-4.5-0.9-2.4 0.1-17.8 3.2-1.4 0.5-1.7 1.2-2.1 1-0.8 0.9-0.9 1.9-0.5 1.6-2 2.5-6.4 1.7-3.5-4.2-5.9-13.1-1.5-2-1.7-1.2-1.7-0.6-1.8-1.2-4-3.5-2.5-1.5-11.8-1.6-6.5 0.6-3.1-0.2-1.3 0.1-1.2 0.5-1.9 1.2-1.3 0.4-0.8-0.5-1.5-2.5-1.7-1.8-1.4-0.8-1.6-0.4-6.7 0.6-0.2-3.1-0.3-2.3-0.4-4.3-0.9-5-1.1-3.7-3.3-7-0.1-1.5 0.5-1.3 1.6-1.3 3.8-1.6 2-0.5 1.8-0.8 1.4-1.1 0.6-1.6-0.3-1-1.5-0.9-0.6-0.8-0.3-1 0.2-2.9-0.4-1.2-1.5-1.7-0.4-0.9 0.1-1.2 0.7-0.9 4.7-2.5 1.6-1.7 1.8-1 1.2-0.2 1.7 0.7 0.7 0.1 0.9-0.5 0.3-1.5-0.1-1.1-0.7-2 0.3-1 0.6-0.7 5.9-3.2 6.3-5.2 2.2-3-0.6-3.2 1-2.9 1.1-1.2 2.3-2 1.5-0.8 1.5-0.5 9.7-0.4 5.3-1.2 5.6-0.9 5.8-2.7 1.8 0 1.8 0.4 2.2 1.1 1.7 1.7 1.6 1.2 4.7 1.7 2.9 3.2z" id="county_romania_brasov_7" name="Brasov"></path><path fill="#f3d973" stroke="#fff"     d="m635.1 331.3l4.4-1.5 3.4-3 0.9-0.1 0.8 0.4 1.5 1.8 0.8 0.8 3.9 2.4 1 1.3 0.6 1.3-0.3 1-1.4 1.6-0.3 1.1 0.6 1.4 2 1 1.2 0.9 0.9 1.1 0.5 1.3 1 3.3 1.4 2.6 1.7 0.9-6.7 10.8-1.7 5-0.2 2.2-1.5 7.7-0.9 7.4 1 3.2 0.5 1.4 0.3 1.7-0.2 1.8-2 4.2-0.4 1.8-0.2 1.7-0.4 2-0.9 2-1.7 2.6-0.6 2.1-0.8 3.5-1 1.4-1.9 1-1.8-0.1-1.2-0.6-1.9-1.9-1.1-0.7-1.1-0.2-1 0.4-1 1.6-0.4 1.5-0.4 2.8-0.7 0.9-1.3 0.5-5.2 0.2-4.1 1.3-2.3-2.4-3.2-5.1-2.1-1.8-2-1.1-2-0.9-1.1-0.9-1.6-3.3-1.7-2.6-3.1-3.2-2.6-1.9-9.8-3.7-1.9-1-1.6-2.5-0.7 1-1.6 0.3-1.5 0.6-1.5 0.1-1.5-1-1.6 1.1-1.9 0-0.3-5.1-3.3-3.4-7.4-5-1-2.1-0.4-2.3-0.1-9.9 0.2-3.3 0.7-2.1-0.3-2.6 1.3-5.1-0.4-2.7-1.3-1-2.2-0.6-2.1 0.1-0.9 0.9-1.4-1.9-3.4-2.6-0.9-1.6-0.4-1.4 0.7-2.1 2.6-5.2 1.6-1.5-0.1-1.4 0.4-0.9 3.8-4.2 2.2-1.6 1.6-1.8 3.8-5.5 1.7-1.6 3.5-2.3 1.3-1.3 1.2-0.9 1.4-0.3 1.6 0.9 2.8 2.5 1.2 1.2 0.7 1.3 0.8 4.4 3.9 7.6 4.2 3.4 1 1.2 0.9 1.5 1.8 1.5 3 1.5 9.8 0.8 27.4-6z" id="county_romania_covasna_12" name="Covasna"></path><path fill="#f3d973" stroke="#fff"     d="m573.9 191.8l2.4 0.6 2.9 1.3 1.6 1 1.4 1.8 1.3 2.3 1.8 4.6 1.3 2.6 1.9 2.5 3.5 2.7 1.5 1.5 0.9 1.5 0.6 2.6-0.1 1.2-0.4 0.7-0.7 0.1-1.9-0.4-1.1 0.1-1.3 1.1-0.2 1.3-0.1 1.6 1.2 25.6 0.5 1.9 0.9 1.7 1.6 1.9 3.5 3.5 1.2 0.7 1.1 0.1 0.4-0.9-0.1-1.4-0.7-3.3 0-1.4 1.1-0.7 1-0.3 8.6 2.1 0.3 11.4 1.8 7 1.4 2.5 1.5 2.3 1.4 2.8 0.1 1.8-1.1 1-1.4 0.6-1.5 1.3-0.9 2-0.5 4.3 0.6 2.2 1.5 1.4 4.3 1.2 5.6 0.8 1.5 0.9 1.6 1.7 0.5 1.8 0.1 1.8-0.8 3.6-0.1 2.1 0.9 1 1.5 0 2.7-0.8 4.2-2.3 1.5-0.3 1.5 0.2 1.8 1.1 0.6 1.3 0.2 1.4-1.5 4-0.2 1.3-0.5 6.2-0.4 1.6-1.3 2.7-0.5 1.6-0.8 5.8-27.4 6-9.8-0.8-3-1.5-1.8-1.5-0.9-1.5-1-1.2-4.2-3.4-3.9-7.6-0.8-4.4-0.7-1.3-1.2-1.2-2.8-2.5-1.6-0.9-1.4 0.3-1.2 0.9-1.3 1.3-3.5 2.3-1.7 1.6-3.8 5.5-1.6 1.8-2.2 1.6-3.8 4.2-0.4 0.9 0.1 1.4-1.6 1.5-2.6 5.2-2.9-3.2-4.7-1.7-1.6-1.2-1.7-1.7-2.2-1.1-1.8-0.4-1.8 0-5.8 2.7-5.6 0.9-8.3-8.9-5.6-4.3-1.7-0.7-5 0.2-2-0.7-1.9-1.8-8.4-10.2-0.6-1.3 0.1-1 0.8-0.8 2.3-1 2.6-2 2.6-0.6 1.2-0.6 0.6-1.1 0-1.6-0.8-1-2.9-2.1 0-1 0.8-1 6.6-2.7 1.1-1.1 0.5-1.2 0.5-5.8 0.5-1.7 0.8-1.4 6.2-6.5 1.4-0.9 4.5-1.9 1.8-1.2 1.3-1.4 3.8-5.9 1.5-1.7 4.6-3.8 0.9-1.5 0.2-1.5-0.3-4.1 0.3-2.9 0.6-3.4 0.1-2.1-0.8-2.5-2.3-6.4-0.6-3.5 1.7-10.4-0.3-9.4-0.4-2.4-0.7-1.9-1-1.4-2.4-2.4-1.5-3-0.7-5.9 4 1.6 2.9 0 1.4-0.6 0.9-1 0.6-1.3 0.2-2.7 0.3-1.4 1-1.8 1.8-1.2 2.1-0.9 2.6-0.6 1.8 0.1 1.8 0.8 11.8 8.1 1.2 1.2 1 1.5 1.3 1.4 1.7 1.1 1.6 0.2 2.2-0.3 1.5-0.5 5.6-0.8z" id="county_romania_harghita_2" name="Harghita"></path><path fill="#f3d973" stroke="#fff"     d="m832.6 225.1l-0.8 0.5-5.4 0.7-1.8 1.1-1.7 1.3-1.2 0-1.3-0.6-1.9-1.5-0.9-0.1-1.3 0.8-0.4 1-0.9 0.7-1.5 0-3.9-1.3-3.4-2.2-1.1-0.3-1.7 0.2-1.4-0.1-1.1-0.9-0.1-1.1 1.7-5.6 0.1-1.7-0.4-1.5-0.9-0.9-1.3-0.2-1.4 1-0.5 1.4 0 2.9-0.3 0.9-0.7 0-1.2-0.8-4-5.3-2.9-3-6.3-5-1.4-0.7-1.2 0-0.8 1-0.2 1.1 0.8 2.3 0.1 2.5-0.5 2.3 0.2 0.7 0.7 0.5 1.2 0.1 1.9-0.3 1 0.7-0.2 1.8-0.5 1-1.3 0.7-2.1 0.3-3.9-0.7-1.9-0.8-1.5 0-0.7 1-1.2 2.4-1.1 1-3.9 1.3-1.9 0.1-2.6-0.6-1.9-0.7-2-0.6-2 0-7.9 1.4-12.2-0.8-0.5-2.1-0.6-1.3-1.9-3.3-2.2-3-1.2-1.9-0.1-1.6 0.7-1.5 1.4-1.4 1.8-1 1.9-0.8 3.1-0.8 0.9-0.7 0.4-1.1-0.6-1.3-1.4-1.7-2.4-2.1-1.3-1.5-1-1.5-0.8-2.9-0.9-1.2-1.3-0.7-2.4-0.2-1.7 0.4-1.4 0.8-3.6 4.3-1.1 1-1.3 0.5-1.9-0.2-5-1.1-1.5 0.3-0.9 0.9-0.9 2.6-0.6 1-0.9 0.5-1.6 0.1-4.3-1-2.7-1.5-6.2-4.8-4.1-2.3-3-0.8-2.4-0.1-2 0.3-1.8-0.1-1.4-0.8-0.9-2.1-0.8-2.4-3.1-7.9-5.4-7.9-7.3-7.2 8.1-1.9 1.1-0.8 0.9-1.2-0.6-1.1-6.5-6-1.1-2.6 0.4-1.4 1.8-0.5 11 1.3 2.3-0.4 0.9-0.9 0.5-1.4 0.1-1.9 1.1-2.9 0.4-1.7-0.3-1.4-1.5-2.2 4.2-4.1 1.5-3.2 0.6-1.7 0.7-0.9 0.9-0.5 1.1 0.1 3.1 2.1 1.7 0.4 17.7 0 1 0.4 1.8 1.4 1.6 2 1.1 1.2 1.3 1 2 0.6 1.6-0.3 2.2-0.8 1.1-0.9 0.5-1.1-0.1-1.3-1.9-4.2-0.2-1.4 0.4-1.1 0.7-1.1 1.2-0.9 1.2-0.2 0.8 0.3 1.7 1.4 3 0.6 1.9 0.8 1.8 1 1.4 0.4 2.9 0 1.2-0.7 0.9-1.1 0.4-2.7 0.6-1.1 1.8-2 1.8-2 1.2-0.8 1.3-0.1 1.7 0.4 4.3 0.1 5.8-2.8 1 3.6-0.1 1.4 0.7 0.9 1.4 0.3 0.8 4.2 0.6 2.3 1.2 1 0.9 0.1 1.5 1 2.8 0.1 1.6 0.5 1.5 0.9 1.4 1.3 0.7 1.5-0.8 0.7-0.6 1.2-0.7 3.4 1.8 1.7-0.8 4.8 1.5 1 1.4 1.2 2.6 6.1 1.3 2.3 0.8 0.5 2.9 0.6 2.8 1.9 2.6 0.7 1.1 1.2 2.1 3.7-0.1 2 1.1 1.9 2.7 3.5 1.3 4.2 0.7 2.3-0.1 0.6-1.2 0.4 1.2 1.7 4.6 2.5 0 1.1-0.6 1.1 2.4 1.5 3.2 3.6 3 2 1.3 1.2 0.1 2.2 2.5 0.5 2.5 1.6 2.3 1.1 2.1-1 0.9 2.5 3.4 4.3 1.5 2.7 2 5.6 0.4 2.7-0.9 2.3 1.7 1.2 0.1 1.8-0.1 1.8 1.2 1.5-0.2 3z" id="county_romania_iasi_25" name="Iasi"></path><path fill="#f3d973" stroke="#fff"     d="m659.5 161.4l7.3 7.2 5.4 7.9 3.1 7.9 0.8 2.4 0.9 2.1 1.4 0.8 1.8 0.1 2-0.3 2.4 0.1 3 0.8 4.1 2.3 6.2 4.8 2.7 1.5 4.3 1 1.6-0.1 0.9-0.5 0.6-1 0.9-2.6 0.9-0.9 1.5-0.3 5 1.1 1.9 0.2 1.3-0.5 1.1-1 3.6-4.3 1.4-0.8 1.7-0.4 2.4 0.2 1.3 0.7 0.9 1.2 0.8 2.9 1 1.5 1.3 1.5 2.4 2.1 1.4 1.7 0.6 1.3-0.4 1.1-0.9 0.7-3.1 0.8-1.9 0.8-1.8 1-1.4 1.4-0.7 1.5 0.1 1.6 1.2 1.9 2.2 3 1.9 3.3 0.6 1.3 0.5 2.1 0.6 4.8 2.4 6.5 0.4 2.5 0 1.7-1.2 2.5-4.2 2.1-3-0.9-1.1-0.6-8.5-2-2.6 0.1-7.4 1.1-2.1-1.5-1.5-1.6-0.6-1.5 0.1-2.1-0.1-1.1-0.6-1.3-2.2-1.6-1.1-0.1-0.6 0.6 0.2 2.3-0.2 1.3-0.7 1-2.8 2.4-0.5 1-0.1 1.2 0.2 1.3 0 1.2-0.6 1.2-1.2 1-1.7 0.8-1.7 0-1.3-0.7-3.2-2.4-2.8-1-2 0.2-1.3 0.8-0.9 2.1-0.9 1.1-6.5 2.8-1.5 1-2 2.6-0.9 0.8-1.4 0.2-4.3-0.9-3.8 0.9-4 0-1.1 0.4-1 0.9-1.8 2.6-1 0.9-1.8 0.2-8.4 0.1-1.2-0.3-0.3-0.6 0.5-3-0.3-1.1-1.3-2.2-1.2-2.4-0.7-0.8-1.5-0.6-1.3 0.2-1.2 0.7-6.5 4.7-2.7 1.2-2 0.3-1.4-0.3-3.1-1.7-2.4-0.7-1.4 0.1-3.9 1.1-8.6-2.1-1 0.3-1.1 0.7 0 1.4 0.7 3.3 0.1 1.4-0.4 0.9-1.1-0.1-1.2-0.7-3.5-3.5-1.6-1.9-0.9-1.7-0.5-1.9-1.2-25.6 0.1-1.6 0.2-1.3 1.3-1.1 1.1-0.1 1.9 0.4 0.7-0.1 0.4-0.7 0.1-1.2-0.6-2.6-0.9-1.5-1.5-1.5-3.5-2.7-1.9-2.5-1.3-2.6-1.8-4.6-1.3-2.3-1.4-1.8-1.6-1-2.9-1.3-2.4-0.6 0.1-3.4 1.2-4 1.3-2.7 4.7-5.7 1.6-1.5 4.1-2.7 1.8-1.6 0.8-1.5 0.2-1.5-0.2-1.3-0.8-1.1-2.1-2-1.8-2.6-0.3-1.1 0.4-0.9 0.8-0.5 1.2-0.1 1.3 0.5 1.4 1 4.8 4.5 1.3 1 1.4 0.2 1.9-0.3 7.7-3.7 1.5-0.1 1.5 0.5 1.3 0.9 1.8 0.6 2 0.1 5.4-1.5 11.9 0.1 3.8-1 9.9-5.2 2.4-0.6 2.1 0.1 2.1 0.4 1.8 0.8 1.6 1.2 3.7 4.3z" id="county_romania_neamt_18" name="Neamt"></path><path fill="#f3d973" stroke="#fff"     d="m613.4 432.5l6.4 7.6 4.3 3.2 1.4 1.4 1.4 2.2 3.7 7.9 0.5 2.3-0.1 1.4-0.7 1-0.2 1.3 0.5 1.6 3 3.1 1.1 1.5 0.4 3 0.4 1.1 0.7 1 1.5 0.9 1.5 0.3 4.6-0.4 1.2 0.4 1.1 0.9 0.5 1.9 1.1 1 0.9 0.2 2.5-2.2 0.9-0.3 0.5 0.3 0.1 1.1-0.4 2.7 0.3 1.7 1.5 1.7 2.5 2 0.9 1.4 0.7 1.5 0.7 4.4 0.2 5.7 0.5 2.2 0.7 1.6 1.8 1 2.9 0.9 0.9 0.4 2.4 2.3 0.8 1.1 0.6 1.3-0.2 2.1-0.9 1.2-1.9 1.9-0.7 1.1 0 1.4 0.4 1.5 4 4 2 3.6-2.7 3.4-1.3 2.4-1.9 1.6-1.4 0.8-1.5 0.4-5.7-0.5-1.4 0.3-1.5 1.2-1.8 2.1-1.2 0.5-2.3-0.2-2.5-1.4-1.2-0.3-1.5 0.1-3.6 1.7-3.8 3.6-4.4-0.3-1.5 0.2-2.8-1.1-2.4-0.1-6.4 2.1-6.5 0.1-0.8 1.7-0.6 0.6-1.2-0.4-2.1-1.1-1.3-1.1-7.3-9-1.8-1-1.6-0.6-5-0.7-1.2-0.9-0.8-1.4-0.4-2.7 0.6-4.3-0.1-2.1-0.5-2.1-1.4-2.4-1.1-1.2-0.8-0.4-2.9 0.8-1.2 0-2.3-1-1.1-1-0.9-1.6-0.8-1.9-0.8-3.7-0.7-6.4-0.4-1.6-0.9-1.6-4.4-4.9-5.8-11.3-1.2-1.8-2.1-2.3-1.6-2.8-0.1-2.1 0.3-4.1-0.3-1.5-0.7-1.8-1.2-2-1.1-1.2-3.2-2.4-0.7-1.3-0.5-1.8-0.7-6.7-1.9-9.4 1.7-1.2 1.4-0.5 17.8-3.2 2.4-0.1 4.5 0.9 4.5 1.7 1.5 0.3 2.9-1 1.4-0.1 1.3 0.8 0.7 1 1.4 2.4 0.9 0.8 1.5 0.3 1.8-0.5 2-1.8 1-1.8 0.5-1.9 0.7-3.4 0.9-1.2 1.4-0.6 2.3 0.3 5.6 3.3 4.9 1z" id="county_romania_prahova_16" name="Prahova"></path><path fill="#f3d973" stroke="#fff"     d="m678.1 134.4l1.5 2.2 0.3 1.4-0.4 1.7-1.1 2.9-0.1 1.9-0.5 1.4-0.9 0.9-2.3 0.4-11-1.3-1.8 0.5-0.4 1.4 1.1 2.6 6.5 6 0.6 1.1-0.9 1.2-1.1 0.8-8.1 1.9-3.7-4.3-1.6-1.2-1.8-0.8-2.1-0.4-2.1-0.1-2.4 0.6-9.9 5.2-3.8 1-11.9-0.1-5.4 1.5-2-0.1-1.8-0.6-1.3-0.9-1.5-0.5-1.5 0.1-7.7 3.7-1.9 0.3-1.4-0.2-1.3-1-4.8-4.5-1.4-1-1.3-0.5-1.2 0.1-0.8 0.5-0.4 0.9 0.3 1.1 1.8 2.6 2.1 2 0.8 1.1 0.2 1.3-0.2 1.5-0.8 1.5-1.8 1.6-4.1 2.7-1.6 1.5-4.7 5.7-1.3 2.7-1.2 4-0.1 3.4-5.6 0.8-1.5 0.5-2.2 0.3-1.6-0.2-1.7-1.1-1.3-1.4-1-1.5-1.2-1.2-11.8-8.1-1.8-0.8-1.8-0.1-2.6 0.6-2.1 0.9-1.8 1.2-1 1.8-0.3 1.4-0.2 2.7-0.6 1.3-0.9 1-1.4 0.6-2.9 0-4-1.6-4.8-2.3-9.5-1.8-0.6-10.8 0.6-4.7 0.4-1.6 0.4-2.4-0.2-0.9-0.5-0.3-2 0.2-1.2-0.3-1.2-1.6 0.1-1.6 0.8-2.1 1.4-2.4 0.8-2.7-0.1-1.8-0.4-1.5-1.3-2.8-0.8-1.3-2.1-2.7-0.9-1.7-0.2-1.1 0.5-0.9 0.7-0.6 1-0.1 1.6 0.2 1.1-0.7 0.3-1.4-0.1-1-1.4-2.3 0.2-0.8 0.8-0.7 2.7-1.5 1.2-1.3 0.7-2.2-0.1-1.8-0.6-1.6-1.2-2.4-2.8-3.3-8.3-6.8-1.2-1.4 6.3-2.2 0.9-1 0.8-1.5-0.2-1.7-0.9-1.4-4.5-4.8-2.5-4-1.3-4.3 7.9-1.4 6.6-2.9 4.4-4.3 10.2-17 4.6-3.1 51.8-5.7 6.9-2.8 5.6-0.7 3.2-1.5 1.7-0.3 5.1 0.5 6.7-2 7.7-0.1 1.8 9.6 0.7 1.8 1.6 1.5 2.8 1.8 4.3 3.7 5.4 3 2.5 2.5 12 15.4 2 3.5 7 8.7 1.3 2.2 3.4 3.5 1.1 1.9 0.9 3.4 1.7 8.2 0.1 1.9-0.3 4.1 0.2 1.8 0.6 1.6 2.6 3.7 2.6 2.1 4.4 0.6z" id="county_romania_suceava_5" name="Suceava"></path><path fill="#f3d973" stroke="#fff"     d="m737.9 240.5l2.1 2.9 1.5 1.6 4.8 4.1 2 2.2 1.2 2.7 0.1 3.8-0.3 3.5 0.4 3.5 11 19.3 4 9.4 2.4 9.5 1.1 7.1 0.8 19.3-3.2-0.4-3.7-1.1-1 0.1-1.4 1.9-0.8 0.8-1.2 0.3-1.9-0.2-4.5-2.8-2.1-0.4-2.7 0.1-7.8 1.6-2.6 1.5-1.2 1.3-1.8 2.5-1.1 1.1-2.9 1.9-1 1.2-1.2 2.3-0.9 0.7-1.4 0.3-5.5-2-1.4-0.3-1.6 0.2-1.8 0.9-0.9 1-0.8 2.2-0.4 0.6-1 0.2-4.1-1.7-1.6-0.2-1.8 0-2.1 0.5-1.7-0.2-2.6-0.7-4.6-0.2-3.2-0.6-10.2 0.7-1.7 0.5-1.2 1.1-0.7 1.3-0.3 1.4-0.3 4.4-3.2 1.5-12.2-1.8-1.7-0.9-1.4-2.6-1-3.3-0.5-1.3-0.9-1.1-1.2-0.9-2-1-0.6-1.4 0.3-1.1 1.4-1.6 0.3-1-0.6-1.3-1-1.3-3.9-2.4-0.8-0.8-1.5-1.8-0.8-0.4-0.9 0.1-3.4 3-4.4 1.5 0.8-5.8 0.5-1.6 1.3-2.7 0.4-1.6 0.5-6.2 0.2-1.3 1.5-4-0.2-1.4-0.6-1.3-1.8-1.1-1.5-0.2-1.5 0.3-4.2 2.3-2.7 0.8-1.5 0-0.9-1 0.1-2.1 0.8-3.6-0.1-1.8-0.5-1.8-1.6-1.7-1.5-0.9-5.6-0.8-4.3-1.2-1.5-1.4-0.6-2.2 0.5-4.3 0.9-2 1.5-1.3 1.4-0.6 1.1-1-0.1-1.8-1.4-2.8-1.5-2.3-1.4-2.5-1.8-7-0.3-11.4 3.9-1.1 1.4-0.1 2.4 0.7 3.1 1.7 1.4 0.3 2-0.3 2.7-1.2 6.5-4.7 1.2-0.7 1.3-0.2 1.5 0.6 0.7 0.8 1.2 2.4 1.3 2.2 0.3 1.1-0.5 3 0.3 0.6 1.2 0.3 8.4-0.1 1.8-0.2 1-0.9 1.8-2.6 1-0.9 1.1-0.4 4 0 3.8-0.9 4.3 0.9 1.4-0.2 0.9-0.8 2-2.6 1.5-1 6.5-2.8 0.9-1.1 0.9-2.1 1.3-0.8 2-0.2 2.8 1 3.2 2.4 1.3 0.7 1.7 0 1.7-0.8 1.2-1 0.6-1.2 0-1.2-0.2-1.3 0.1-1.2 0.5-1 2.8-2.4 0.7-1 0.2-1.3-0.2-2.3 0.6-0.6 1.1 0.1 2.2 1.6 0.6 1.3 0.1 1.1-0.1 2.1 0.6 1.5 1.5 1.6 2.1 1.5 7.4-1.1 2.6-0.1 8.5 2 1.1 0.6 3 0.9 4.2-2.1z" id="county_romania_bacau_1" name="Bacau"></path><path fill="#f3d973" stroke="#fff"     d="m822.8 445.5l-0.6 2.7-0.3 4.4-0.2 1.1-1.1 1.9-0.5 2.3-1.9 3.1 5.8 5.1 3.6 1.5 3.7-1.5 1.3 1.3 0.8 1.8-1.3 2-1.6 3.1-0.5 2.9 1.6 1.3 2 0.6 2.1 1.6 1.8 2 0.9 1.9-0.4 2-1.2 2-1.6 1.5-1.4 0.7-0.3 0.7 0.7 4.8 0.6 1.2-0.1 1.8-1 1.6-0.3 1.1 1.1 5.4 0.1 3.4-1.5 1.5-0.4 0.7 0.1 7.9-0.8 1.5-2.8 3.8-1.1 2.3-0.4 3.6-0.7 3.1-1.6 2.8-2.1 2-2.2 0.8-2-0.4-3.1-2.1-2.1-0.5-2 0.1-1.7 0.3-3.2-3-0.8-1.1-1.9-1.2-2.2-0.4-4.9 0.5-2.4 0.8-1.8 1-2.4 0.8-4.1 0.9-28.8-0.8-3-1.2-1.3-0.7-1.4-0.2-1.8 0.6-2.4 1.2-2.1 0.1-1.7-0.2-8.7-3.6-0.4-1.1 0.7-6.9-0.7-1.8-2.1-2.2-0.3-1.4 0.4-1.4 1.4-1.3 1.1-0.6 3.8-1 0.9-1.4 0.8-2.6 1.1-5.5 0.5-3.2 0.1-2.4-0.2-1.4-0.5-0.9-1-0.4-2.5 0.1-1.4-0.2-0.8-0.5-0.4-1.1 0.1-4.2-0.1-1.5-0.7-1.2-0.8-0.7-2.3-0.9-0.6-1-0.1-1.6 0.1-3-0.1-1.3-0.4-1.1-0.7-0.8-0.9-0.5-1-0.1-0.9 0.4-0.7 0.6-0.1 2-0.3 1-1 0.9-1.2 0.3-1-0.3-0.7-0.6-1.6-4.1 0.1-2.2 0.9-1.2 1.5-1.3 8.4-2.9 5 0.7 1.3 0 4.2-1.3 1.4 0 2.7 1.1 0.6-0.6 0.4-2.2-0.5-3.4 0-1.6 0.7-1.2 2-0.9 1.6 0 1.6 0.3 1.3-0.3 1-1.2 0.8-3.4 0.7-2.1 1.9-3.3 0.4-2.9 1-3.1 2.6-4.1 2.7-3.5 1.9-1.7 2.1-1.4 6.2-2.3 6.1 2.7 3.7-0.2 1.9-0.4 1.3 0.3 0.9 0.9 2.1 2.6 3.6 3.1 5.8 3.2 3.7 0.7 6.9-0.3 2.5 0.4 2.6 0.9 6.4 0.8z" id="county_romania_braila_9" name="Braila"></path><path fill="#f3d973" stroke="#fff"     d="m758.8 446.9l-0.4 2.9-1.9 3.3-0.7 2.1-0.8 3.4-1 1.2-1.3 0.3-1.6-0.3-1.6 0-2 0.9-0.7 1.2 0 1.6 0.5 3.4-0.4 2.2-0.6 0.6-2.7-1.1-1.4 0-4.2 1.3-1.3 0-5-0.7-8.4 2.9-1.5 1.3-0.9 1.2-0.1 2.2 1.6 4.1 0.7 0.6 1 0.3 1.2-0.3 1-0.9 0.3-1 0.1-2 0.7-0.6 0.9-0.4 1 0.1 0.9 0.5 0.7 0.8 0.4 1.1 0.1 1.3-0.1 3 0.1 1.6 0.6 1 2.3 0.9 0.8 0.7 0.7 1.2 0.1 1.5-0.1 4.2 0.4 1.1 0.8 0.5 1.4 0.2 2.5-0.1 1 0.4 0.5 0.9 0.2 1.4-0.1 2.4-0.5 3.2-1.1 5.5-0.8 2.6-0.9 1.4-3.8 1-1.1 0.6-1.4 1.3-0.4 1.4 0.3 1.4 2.1 2.2 0.7 1.8-0.7 6.9 0.4 1.1-2.3 1.2-0.5 1.5 0.7 0.7 1.9 1.5 0.5 0.8-0.5 0.7-1 0.5-2.4 0.6-3 1.2-1.5 0.1-0.4-0.4-0.1-1.5 0.2-1.9-0.1-1.1-0.6-1-1-1-1.4-0.9-1.7-0.9-2.5-0.7-1.6 0.2-1.3 0.8-1.1 1.2-1.5 0.9-1.5 0-1.4-0.6-3.1-2-2.5-0.9-2.1-0.1-3.7 0.7-1.5 0-2.4-0.8-6.3-1.1-7 0.5-2.5-0.2-1.9-0.5-3.5-3.1-2.4-1.2-2-3.6-4-4-0.4-1.5 0-1.4 0.7-1.1 1.9-1.9 0.9-1.2 0.2-2.1-0.6-1.3-0.8-1.1-2.4-2.3-0.9-0.4-2.9-0.9-1.8-1-0.7-1.6-0.5-2.2-0.2-5.7-0.7-4.4-0.7-1.5-0.9-1.4-2.5-2-1.5-1.7-0.3-1.7 0.4-2.7-0.1-1.1-0.5-0.3-0.9 0.3-2.5 2.2-0.9-0.2-1.1-1-0.5-1.9-1.1-0.9-1.2-0.4-4.6 0.4-1.5-0.3-1.5-0.9-0.7-1-0.4-1.1-0.4-3-1.1-1.5-3-3.1-0.5-1.6 0.2-1.3 0.7-1 0.1-1.4-0.5-2.3-3.7-7.9-1.4-2.2-1.4-1.4-4.3-3.2-6.4-7.6 5.8-12.4 4.1-1.3 5.2-0.2 1.3-0.5 0.7-0.9 0.4-2.8 0.4-1.5 1-1.6 1-0.4 1.1 0.2 1.1 0.7 1.9 1.9 1.2 0.6 1.8 0.1 1.9-1 1-1.4 0.8-3.5 0.6-2.1 1.7-2.6 0.9-2 0.4-2 0.2-1.7 0.4-1.8 2-4.2 0.2-1.8-0.3-1.7-0.5-1.4-1-3.2 4.7 4.5 4.4 6.4 6.9 12.2 2.1 2.4 1.8 1.5 3 0.4 1.5-0.1 2.4-0.8 1.3 0 2.4 1 6.7 5.8 2.3 2.9 3.6 2.7 4.5 2.6 1.3 0.5 2.1 0.3 1.5 0.6 1.8 0.1 0.7-1.6-0.4-1.3 1-1.1 1.6-0.1 2.5 0.5 3.2 1.4 1.8 1.4 0.6 1.3 0 3.1 0.8 1.9 2.7 2.9 1.9 1.3 1.4 0.5 1.4-0.1 1.2-0.5 2.6-1.5 1.2-0.4 1.5-0.1 0.6 0.6 0.2 1-0.3 2.7 0.4 1.4 0.9 0.2 1-0.4 1.8-1.9 1-0.8 1-0.3 1.7 0.3 1.2 0.7 1 1 0.9 0.3 1.8-0.1 1.3 0.3 0.8 0.7 0.4 1 0.4 2.4 0.7 1.1 1.1 0.6 5 1.4 2.4 0.3 4.8-0.2z" id="county_romania_buzau_15" name="Buzau"></path><path fill="#f3d973" stroke="#fff"     d="m831 339.5l-0.7 2.2-0.9 0.5-0.2 1.6 0.6 0.4 0.1 0.9-1.3 5.3-0.2 1.5 0.3 2.2 2.6 7.6 0.5 2.6 1 2.2-0.6 2.3-0.2 1.2 0.3 1.2 1.2 2.5-0.3 0.7-1.4 1-0.5 0.8 0.3 4.4 1.6 4.6 1.9 3.6 0.9 1.5 0.9 15.1-0.2 2.5 0.7 1.9-1.5 0.8-3.5-0.1-1.4 0.5-1.7 1.3-1.8 1.7-1.3 1.7 5.9 3.1 2.4 1.9 2.6 4.8 0 5.1 0.8 1.5 4.2 5.2 0.2 0-1.6 2-0.9 3-1 0.6-1.1-0.2-3-1.5-1.9-0.6-2.1 0.2-4.6 1.6-1.1 0.2-0.7 0.5-1.5 2.4-6.4-0.8-2.6-0.9-2.5-0.4-6.9 0.3-3.7-0.7-5.8-3.2-3.6-3.1-2.1-2.6-0.9-0.9-1.3-0.3-1.9 0.4-3.7 0.2-6.1-2.7-2.8-3.1-1-1.7-1.9-5.3-0.4-1.1 0-3.2-0.8-3.3-0.9-2.1-1.1-1.8-2.2-2.2-1.8-3.1-1.1-0.7-2.9-1.5-1-1-2.7-3.9-1.4-3.3-0.6-2.2-11.2-28.4-1-4.1 0.1-3.3 0.3-1.7 0.8-1.5 0.9-1.2 1.5-1.6 2.6-3.3 2.3-2 1.9-1.2 3-0.6 3.7-0.2 1.7-0.5 1.8-1.6 1-1.4 2.2-1.9 6.1-0.4 3.6 5 1.3 2.6 1 4.4 1.3 3.8 0.9 1.7 1.1 0.8 1.3-0.6 0.6-1.6 0-2.3 0.6-4.1 0-1.4-0.9-2.8-2.1-4.1-0.2-1.2 0.4-1 1.4-0.9 18.1 2.3 1.7 0.6 0.8 0.9 0.3 2.3 0.7 0.9 1.1 0 0.9-0.6 1.7-3.1 0.8-1.3 1-0.8 1.7-0.8 1.5 0 7.9 2.6 3.9 2.1 2.7 0.7 1.6 0.1 3.5-0.9 0.4-0.2z" id="county_romania_galati_31" name="Galati"></path><path fill="#f3d973" stroke="#fff"     d="m832.6 225.1l-0.1 1.3 1.7 4.3 4.2 7.3 0 2.9 5.9 11.9 1.1 4.2 0.3 2.2 0 2.1-0.7 1.7-1 1.9-0.6 2.2 0.9 2.5-0.9 0.7-0.4 1.2-0.2 5.7 0.2 1.2 1.3 2.8 1.3 0.4 0.1 1.2 0 4.8-0.1 1.3-0.6 1.1-1.5 0.8 0.8 2.1-0.5 0.8-1 0.4-0.7 0.8-0.6 4.6-0.5 0.7-1.3 0.4-0.2 1.1 0.4 3.1 0.1 1.9-1.6 3.7-1.3 1.3-3.2 1.4-0.4 1.1 0.3 2.6-0.2 0.8-2.5 0.9 0.3 1.3 1.9 3.2 1.3 1.9 0.3 1.3-1.2 3.6-0.6 3.7-2.1 6-0.4 0.2-3.5 0.9-1.6-0.1-2.7-0.7-3.9-2.1-7.9-2.6-1.5 0-1.7 0.8-1 0.8-0.8 1.3-1.7 3.1-0.9 0.6-1.1 0-0.7-0.9-0.3-2.3-0.8-0.9-1.7-0.6-18.1-2.3-1.4 0.9-0.4 1 0.2 1.2 2.1 4.1 0.9 2.8 0 1.4-0.6 4.1 0 2.3-0.6 1.6-1.3 0.6-1.1-0.8-0.9-1.7-1.3-3.8-1-4.4-1.3-2.6-3.6-5-1.4-7-0.8-19.3-1.1-7.1-2.4-9.5-4-9.4-11-19.3-0.4-3.5 0.3-3.5-0.1-3.8-1.2-2.7-2-2.2-4.8-4.1-1.5-1.6-2.1-2.9 1.2-2.5 0-1.7-0.4-2.5-2.4-6.5-0.6-4.8 12.2 0.8 7.9-1.4 2 0 2 0.6 1.9 0.7 2.6 0.6 1.9-0.1 3.9-1.3 1.1-1 1.2-2.4 0.7-1 1.5 0 1.9 0.8 3.9 0.7 2.1-0.3 1.3-0.7 0.5-1 0.2-1.8-1-0.7-1.9 0.3-1.2-0.1-0.7-0.5-0.2-0.7 0.5-2.3-0.1-2.5-0.8-2.3 0.2-1.1 0.8-1 1.2 0 1.4 0.7 6.3 5 2.9 3 4 5.3 1.2 0.8 0.7 0 0.3-0.9 0-2.9 0.5-1.4 1.4-1 1.3 0.2 0.9 0.9 0.4 1.5-0.1 1.7-1.7 5.6 0.1 1.1 1.1 0.9 1.4 0.1 1.7-0.2 1.1 0.3 3.4 2.2 3.9 1.3 1.5 0 0.9-0.7 0.4-1 1.3-0.8 0.9 0.1 1.9 1.5 1.3 0.6 1.2 0 1.7-1.3 1.8-1.1 5.4-0.7 0.8-0.5z" id="county_romania_vaslui_38" name="Vaslui"></path><path fill="#f3d973" stroke="#fff"     d="m769 329.4l1.4 7-6.1 0.4-2.2 1.9-1 1.4-1.8 1.6-1.7 0.5-3.7 0.2-3 0.6-1.9 1.2-2.3 2-2.6 3.3-1.5 1.6-0.9 1.2-0.8 1.5-0.3 1.7-0.1 3.3 1 4.1 11.2 28.4 0.6 2.2 1.4 3.3 2.7 3.9 1 1 2.9 1.5 1.1 0.7 1.8 3.1 2.2 2.2 1.1 1.8 0.9 2.1 0.8 3.3 0 3.2 0.4 1.1 1.9 5.3 1 1.7 2.8 3.1-6.2 2.3-2.1 1.4-1.9 1.7-2.7 3.5-2.6 4.1-1 3.1-4.8 0.2-2.4-0.3-5-1.4-1.1-0.6-0.7-1.1-0.4-2.4-0.4-1-0.8-0.7-1.3-0.3-1.8 0.1-0.9-0.3-1-1-1.2-0.7-1.7-0.3-1 0.3-1 0.8-1.8 1.9-1 0.4-0.9-0.2-0.4-1.4 0.3-2.7-0.2-1-0.6-0.6-1.5 0.1-1.2 0.4-2.6 1.5-1.2 0.5-1.4 0.1-1.4-0.5-1.9-1.3-2.7-2.9-0.8-1.9 0-3.1-0.6-1.3-1.8-1.4-3.2-1.4-2.5-0.5-1.6 0.1-1 1.1 0.4 1.3-0.7 1.6-1.8-0.1-1.5-0.6-2.1-0.3-1.3-0.5-4.5-2.6-3.6-2.7-2.3-2.9-6.7-5.8-2.4-1-1.3 0-2.4 0.8-1.5 0.1-3-0.4-1.8-1.5-2.1-2.4-6.9-12.2-4.4-6.4-4.7-4.5 0.9-7.4 1.5-7.7 0.2-2.2 1.7-5 6.7-10.8 12.2 1.8 3.2-1.5 0.3-4.4 0.3-1.4 0.7-1.3 1.2-1.1 1.7-0.5 10.2-0.7 3.2 0.6 4.6 0.2 2.6 0.7 1.7 0.2 2.1-0.5 1.8 0 1.6 0.2 4.1 1.7 1-0.2 0.4-0.6 0.8-2.2 0.9-1 1.8-0.9 1.6-0.2 1.4 0.3 5.5 2 1.4-0.3 0.9-0.7 1.2-2.3 1-1.2 2.9-1.9 1.1-1.1 1.8-2.5 1.2-1.3 2.6-1.5 7.8-1.6 2.7-0.1 2.1 0.4 4.5 2.8 1.9 0.2 1.2-0.3 0.8-0.8 1.4-1.9 1-0.1 3.7 1.1 3.2 0.4z" id="county_romania_vrancea_27" name="Vrancea"></path><path fill="#f3d973" stroke="#fff"     d="m637 540.6l2 0.6 4.2 0.6 1.1 0.4 0.6 0.7 0 2.5 0.3 1.2 0.8 1.5 0.3 1.2 0.2 2.4 1.1 1.4 6.5 3.6 0.9 1.1 0.3 1-0.5 1.2-0.7 0.8-4.1 2.9-0.9 1-1.2 2.3-0.5 2.5 0.3 1.2 0.9 1.3 3.3 1.7 2.5 1.9-1.9 1.3-0.4 0.9-0.1 1.9 1 1.1 1.5 0.9 2 0.7 0.6 0.6 0.1 0.8-1.2 2.4-1.2 1.3-6.3 3-2 1.4-1.8 1.8-2.7 3.6-2.7 4.3-1.2 3.9-5.7 6-2.6 2.1-1.3 0.8-1.4 0.3-1.4 0.1-1.6-0.3-1.7-0.4-1.6-0.8-1.8-1.1-8-7.2-1.2-0.6-2.4 0-0.9-0.3-0.8-0.8-0.8-1.8-1.5-1-2-0.7-2.8-1.4-1.1-1.8-0.7-2.8 1-6.7 1-2.9 1.7-3.3 0.5-1.6 0.4-4.3-2.6-5.7 2.4-1.9 5-6 1-1.4 0.5-1.3-0.4-1.2-3.6-1.2-0.4-0.9 0-0.9 0.4-0.9 2.3-1.7 0.6-1 0.4-1.5 0.7-1.5 1.3-1 2.6-3.1 0.6-0.6 0.8-1.7 6.5-0.1 6.4-2.1 2.4 0.1 2.8 1.1 1.5-0.2 4.4 0.3z m-6.2 48.2l-4.6-3.9 2.6-7.6-8.3-2-0.9-9.9-7.1 2.6-5.1 8.9 5.6 2.4 0 4.7-7 0.6 0 4.7 7 7.5 5.8 1.3 5.1 6.7 2.8-2.5-3.3-8.1 0.8-2.3 5 1.6 1.6-4.7z" id="county_romania_ilfov_17" name="Ilfov"></path><path fill="#f3d973" stroke="#fff"     d="m902.5 552.5l-6-1.4-6.1-3.2-6.8 2.1-8.4 0-7.6-3.2-5.3-6.4-6.1 0-2.2 6.4-4.6 1.1-9.1-8.6-5.3-2.1-9.6 0.8 1.6-2.8 0.7-3.1 0.4-3.6 1.1-2.3 2.8-3.8 0.8-1.5-0.1-7.9 0.4-0.7 1.5-1.5-0.1-3.4-1.1-5.4 0.3-1.1 1-1.6 0.1-1.8-0.6-1.2-0.7-4.8 0.3-0.7 1.4-0.7 1.6-1.5 1.2-2 0.4-2-0.9-1.9-1.8-2-2.1-1.6-2-0.6-1.6-1.3 0.5-2.9 1.6-3.1 1.3-2-0.8-1.8-1.3-1.3-3.7 1.5-3.6-1.5-5.8-5.1 1.9-3.1 0.5-2.3 1.1-1.9 0.2-1.1 0.3-4.4 0.6-2.7 1.5-2.4 0.7-0.5 1.1-0.2 4.6-1.6 2.1-0.2 1.9 0.6 3 1.5 1.1 0.2 1-0.6 0.9-3 1.6-2 2.4-0.3 3.1 1.7 2.1 2.9-0.6 3 3.1 8.1 2.1 3.7 2.4 1.6 1.8 0.5 3.7 2.1 9.4 2.4 8.7 4.6 14.1 3.2 3.9-0.5 3.3-0.1 1.4-0.6 1.1-1.4-2.9-1.3-0.8-0.7-0.8-2.5 0.2-1.1 3-1.6-0.1-2.2 0.1-2.2 2.8-0.7 1.6 0.6 2.8 2 2.4 0.4 1.3 1 1.8 1.9 2.1 1.2 2.4-0.9 0.5-1 0.3-2.9 0.6-1.3 1.7-0.9 2.4-0.1 1.4-0.7 5.4-4.5 4.3-1.2 1.8-0.8 1.5-1.6 0.9-0.4 2.6-0.2 0.5-0.4 0.4-1.1 0.9-1.1 1.6-1.4 2.3-1.2 1.7-0.1 1.7 0.3 2.2 0 1.9-1 1.4-1.6 1-0.7 1.1 0.3 2.2 0.9 8.1 0.9 14.7 5.3 4.9 4.4 1.3 0.7 2.3 2.2 1.8 5.2 0.5 5.8-1.4 4.3 0.7 1 0.1 1.1-0.8 2.2-0.9-0.2-2.8 0.1 0 0.9 1.6 2.2 1.1 2.7 1.9 2 3.4 0.4-2.4 2.5-1.3 4.2-0.9 13.1-0.6 2.6-1.3 4.2-0.3 2.1-0.2 2.4-0.2 2.2-0.8 1.4 0.7 3.2-2.7 4.2 1.4 2.7-0.7 1.8-0.9 0.6-1 0.2-1 0.6-1.5 2.3-0.8 0.7-2.1-1.2-1.2 0.3-2.1 0.8-20.6 3.3-13.1 0.8-3.8 1.3-10.5 7.3-3.1 3.1-2.7 3.8-0.8-1.1 0.1-2.2-1.4-2.7-0.7-2.3 2.4-1 2.5-0.5 3.9-2 4.2-1.1 2.4-1.6 1.9-2.6 0.6-3.4-0.6-1.9-1.3-1.9-3.2-3.4 0.6 2.4 0.2 2.8-1.6-0.4-1.6 1.1-1.4 0.5-1.2-2.2-0.5-2.8-0.2-8.9 1.1-2.9 4.9-1.8 1.2-2-0.9-1.5-4.6-3.1-1.4-0.6-3.2 0-3.3-1.1-1.1 0.2-0.7 2.2-0.6 1.3-1.2 0.6-2.3 0.2-1.1 0.4-3.9 3.7-1.1 1.7-0.6 3.2 0.1 0.8 1 0.8 0.3 1-0.3 0.8-1.1 1.1 0.3 1.4 0.7 1.1 0.9 0.8 2.3 1 5.2 5.4-1.4 1.5-1.5 0.5 1.4 1 0 1.2-1.3 0.8-0.1 1.4 0.8 1.5 1.4 1.2-1 0.8-1.4 0.4-4.7 0.1-1.1 0.5-6.3 3.9-1.1 1-1 2.1-0.2 1.9 0.7 0.8 1.5-1.2-0.4 1.8-2 0.7z" id="county_romania_tulcea_13" name="Tulcea"></path>    <ng-container *ngFor="let county of ids; let i = index">            <image xlink:href="assets/images/medkit.svg" height="0" width="0" id="icon_res_{{county.id}}" style="pointer-events:none"/>    </ng-container>    <ng-container *ngFor="let county of ids; let i = index">        <image xlink:href="assets/images/volunteers.svg" height="0" width="0" id="icon_vol_{{county.id}}" style="pointer-events:none"/>    </ng-container>    <rect x="0" y="0" width="0" height="0" fill="#000" id="recttest" style="pointer-events: none"></rect>    <text x="0" y="0" fill="#ffffff" id="recttext" style="pointer-events:none"></text></svg></div></div></div>'
+    var COMPONENTS = [{'name': 'AddResourceComponent', 'selector': 'app-add-resource'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AddVolunteerComponent', 'selector': 'app-add-volunteer'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'CurrentProfileComponent', 'selector': 'app-current-profile'},{'name': 'EditResourceComponent', 'selector': 'app-edit-resource'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'EditVolunteerComponent', 'selector': 'app-edit-volunteer'},{'name': 'ImportResourcesComponent', 'selector': 'app-import-resources'},{'name': 'ImportVolunteersComponent', 'selector': 'app-import-volunteers'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'NgodetailsComponent', 'selector': 'app-organisation-details'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'OrganisationaddComponent', 'selector': 'app-organisation-add'},{'name': 'OrganisationEditComponent', 'selector': 'app-organisation-edit'},{'name': 'OrganisationsComponent', 'selector': 'app-organisations'},{'name': 'OrganisationsDashboardComponent', 'selector': 'app-organisations-dashboard'},{'name': 'RecoverPasswordComponent', 'selector': 'app-recover-password'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ResourcedetailsComponent', 'selector': 'app-resource-details'},{'name': 'ResourceListComponent', 'selector': 'app-resource-list'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'ResourcesdashboardComponent', 'selector': 'app-resources-dashboard'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'},{'name': 'TableSearchComponent', 'selector': 'app-table-search'},{'name': 'TopBarComponent', 'selector': 'app-top-bar'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UsersComponent', 'selector': 'app-users'},{'name': 'VolunteerDashboardComponent', 'selector': 'app-volunteer-dashboard'},{'name': 'VolunteerDetailsComponent', 'selector': 'app-volunteer-details'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'}];
+    var DIRECTIVES = [{'name': 'TableSortDirective', 'selector': '[appTableSort]'}];
+    var ACTUAL_COMPONENT = {'name': 'MapComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MapComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

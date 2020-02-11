@@ -1,0 +1,1033 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rvm-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rvm-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ImportResourcesComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/resources/resources/components/import-resources/import-resources.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-import-resources</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./import-resources.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./import-resources.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authService">authService</a>
+                            </li>
+                            <li>
+                                <a href="#csvReader">csvReader</a>
+                            </li>
+                            <li>
+                                <a href="#file">file</a>
+                            </li>
+                            <li>
+                                <a href="#loading">loading</a>
+                            </li>
+                            <li>
+                                <a href="#NGOValues">NGOValues</a>
+                            </li>
+                            <li>
+                                <a href="#organisation_id">organisation_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#resp">resp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fileReset">fileReset</a>
+                            </li>
+                            <li>
+                                <a href="#isValidCSVFile">isValidCSVFile</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#uploadListener">uploadListener</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(resourceService: <a href="../injectables/ResourcesService.html">ResourcesService</a>, filterService: <a href="../injectables/FiltersService.html">FiltersService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, authService: <a href="../injectables/AuthenticationService.html">AuthenticationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>resourceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ResourcesService.html" target="_self" >ResourcesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>filterService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FiltersService.html" target="_self" >FiltersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthenticationService.html" target="_self" >AuthenticationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileReset"></a>
+                    <span class="name">
+                        <b>
+                            fileReset
+                        </b>
+                        <a href="#fileReset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fileReset()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>reset file input and response records</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>observable with response</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValidCSVFile"></a>
+                    <span class="name">
+                        <b>
+                            isValidCSVFile
+                        </b>
+                        <a href="#isValidCSVFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isValidCSVFile(file: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>check if file is ending with csv</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>that will be uploaded</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadListener"></a>
+                    <span class="name">
+                        <b>
+                            uploadListener
+                        </b>
+                        <a href="#uploadListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>uploadListener($event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>send file to service and upload to server</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="authService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            authService</b>
+                            <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/AuthenticationService.html" target="_self" >AuthenticationService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="csvReader"></a>
+                        <span class="name">
+                            <b>
+                            csvReader</b>
+                            <a href="#csvReader"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;csvReader&#x27;, {static: true})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>csv reader input reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="file"></a>
+                        <span class="name">
+                            <b>
+                            file</b>
+                            <a href="#file"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>the file that will be extracted from file input</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <span class="name">
+                            <b>
+                            loading</b>
+                            <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>flag for HTML to display loading animation</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="NGOValues"></a>
+                        <span class="name">
+                            <b>
+                            NGOValues</b>
+                            <a href="#NGOValues"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>list of all the NGO from which the DSU can select</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="organisation_id"></a>
+                        <span class="name">
+                            <b>
+                            organisation_id</b>
+                            <a href="#organisation_id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>id of the org to which the resources will be added</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resp"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            resp</b>
+                            <a href="#resp"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/resources/resources/components/import-resources/import-resources.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>response from server. contains all errors</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { ResourcesService } from &#x27;@app/pages/resources/resources.service&#x27;;
+import { FiltersService, AuthenticationService } from &#x27;@app/core&#x27;;
+import { Location } from &#x27;@angular/common&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+@Component({
+	selector: &#x27;app-import-resources&#x27;,
+	templateUrl: &#x27;./import-resources.component.html&#x27;,
+	styleUrls: [&#x27;./import-resources.component.scss&#x27;]
+})
+export class ImportResourcesComponent implements OnInit {
+	/**
+	 * csv reader input reference
+	 */
+	@ViewChild(&#x27;csvReader&#x27;, { static: true }) csvReader: any;
+	/**
+	 * the file that will be extracted from file input
+	 */
+	file: any &#x3D; null;
+	/**
+	 * flag for HTML to display loading animation
+	 */
+	loading &#x3D; false;
+	/**
+	 * id of the org to which the resources will be added
+	 */
+	organisation_id: any &#x3D; &#x27;&#x27;;
+	/**
+	 * list of all the NGO from which the DSU can select
+	 */
+	NGOValues: any[] &#x3D; [];
+	/**
+	 * response from server. contains all errors
+	 */
+	public resp: any &#x3D; {};
+	constructor(private resourceService: ResourcesService,
+		private filterService: FiltersService,
+		private router: Router,
+		public authService: AuthenticationService) {
+			this.resp.has_errors &#x3D; false;
+			if (authService.is(&#x27;NGO&#x27;)) {
+				this.organisation_id &#x3D; this.authService.user.organisation._id;
+			}
+		}
+
+	ngOnInit() {
+		this.filterService.getorganisationbyName(&#x27;&#x27;).subscribe((data) &#x3D;&gt; {
+			this.NGOValues &#x3D; data;
+		});
+	}
+/**
+	 * send file to service and upload to server
+	 * @param {any} event contains the file
+	 */
+	uploadListener($event: any): void {
+		const files &#x3D; $event.srcElement.files;
+		this.loading &#x3D; true;
+
+		if (this.isValidCSVFile(files[0])) {
+			const input &#x3D; $event.target;
+			this.file &#x3D; input.files[0];
+			this.resourceService.importCsv(this.file, this.organisation_id).subscribe((response: any) &#x3D;&gt; {
+				this.resp &#x3D; response;
+				if (!this.resp.has_errors) {
+					this.loading &#x3D; false;
+					this.router.navigateByUrl(&#x27;/resources&#x27;);
+				} else {
+					this.loading &#x3D; false;
+				}
+			}, error &#x3D;&gt; {
+				this.loading &#x3D; false;
+			});
+		} else {
+			alert(&#x27;Vă rog introduceți un fișier CSV valid.&#x27;);
+			this.fileReset();
+		}
+	}
+/**
+	 * check if file is ending with csv
+	 * @param {any} file that will be uploaded
+	 * @returns {boolead}
+	 */
+	isValidCSVFile(file: any) {
+		return file.name.endsWith(&#x27;.csv&#x27;);
+	}
+/**
+	 * reset file input and response records
+	 * @returns observable with response
+	 */
+	fileReset() {
+		this.csvReader.nativeElement.value &#x3D; &#x27;&#x27;;
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
+	&lt;nav class&#x3D;&quot;navbar navbar-expand-lg justify-content-between navbar-light my-5&quot;&gt;
+		&lt;app-back-button&gt;&lt;/app-back-button&gt;
+	&lt;/nav&gt;
+	&lt;p class&#x3D;&quot;page-title&quot;&gt;Adaugă resurse:&lt;/p&gt;
+
+	&lt;div class&#x3D;&quot;note col-md-7&quot;&gt;
+		&lt;span&gt;
+			Vrei să adaugi resurse individual?
+			&lt;a ref&#x3D;&quot;javascript:void(0)&quot; [routerLink]&#x3D;&quot;[&#x27;../add&#x27;]&quot;&gt;Adaugă o resursa&lt;/a&gt;.
+		&lt;/span&gt;
+	&lt;/div&gt;
+
+	&lt;p class&#x3D;&quot;m-2&quot; *ngIf&#x3D;&quot;!!file&quot;&gt;{{ file.name }}&lt;/p&gt;
+
+	&lt;div *ngIf&#x3D;&quot;!loading&quot; class&#x3D;&quot;col-md-7&quot;&gt;
+		&lt;select class&#x3D;&quot;form-control mt-2&quot; *ngIf&#x3D;&quot;authService.is(&#x27;DSU&#x27;)&quot; [(ngModel)]&#x3D;&quot;organisation_id&quot;&gt;
+			&lt;option value&#x3D;&quot;&quot; selected disabled&gt;Vă rugăm să selectați o organizație la care să adaugați&lt;/option&gt;
+			&lt;option *ngFor&#x3D;&quot;let org of NGOValues; let i&#x3D;index&quot; [value]&#x3D;&quot;org._id&quot;&gt;
+				{{org.name}}
+			&lt;/option&gt;
+		&lt;/select&gt;
+		&lt;div class&#x3D;&quot;import-box&quot; &gt;
+			&lt;button class&#x3D;&quot;btn btn-info mt-4 btn-import&quot; [disabled]&#x3D;&quot;organisation_id&#x3D;&#x3D;&#x27;&#x27;&quot;&gt;
+				Importați un fișier CSV
+			&lt;/button&gt;
+			&lt;input type&#x3D;&quot;file&quot; #csvReader name&#x3D;&quot;Upload CSV&quot; id&#x3D;&quot;txtFileUpload&quot; (change)&#x3D;&quot;uploadListener($event)&quot; [disabled]&#x3D;&quot;organisation_id&#x3D;&#x3D;&#x27;&#x27;&quot;
+				accept&#x3D;&quot;.csv&quot; class&#x3D;&quot;import-csv&quot; /&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class&#x3D;&quot;spinner-border text-green&quot; role&#x3D;&quot;status&quot; *ngIf&#x3D;&quot;loading&quot;&gt;
+		&lt;span class&#x3D;&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class&#x3D;&quot;error-table&quot; *ngIf&#x3D;&quot;resp.has_errors&quot;&gt;
+		&lt;span&gt;Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}. Au apărut erori la unele rânduri:&lt;/span&gt;
+		&lt;div class&#x3D;&quot;col-md-12&quot; *ngFor&#x3D;&quot;let err of resp.errors&quot;&gt;
+			&lt;span&gt;Rândul {{err.line}}: &lt;/span&gt;
+			&lt;div *ngFor&#x3D;&quot;let ex of err.error&quot;&gt;
+				&lt;span&gt;{{ex.value}} &amp;nbsp; - &amp;nbsp; {{ex.error}}&lt;/span&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./import-resources.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.error-table {
+    margin-top: 100px;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">		<app-back-button></app-back-button>	</nav>	<p class="page-title">Adaugă resurse:</p>	<div class="note col-md-7">		<span>			Vrei să adaugi resurse individual?			<a ref="javascript:void(0)" [routerLink]="[\'../add\']">Adaugă o resursa</a>.		</span>	</div>	<p class="m-2" *ngIf="!!file">{{ file.name }}</p>	<div *ngIf="!loading" class="col-md-7">		<select class="form-control mt-2" *ngIf="authService.is(\'DSU\')" [(ngModel)]="organisation_id">			<option value="" selected disabled>Vă rugăm să selectați o organizație la care să adaugați</option>			<option *ngFor="let org of NGOValues; let i=index" [value]="org._id">				{{org.name}}			</option>		</select>		<div class="import-box" >			<button class="btn btn-info mt-4 btn-import" [disabled]="organisation_id==\'\'">				Importați un fișier CSV			</button>			<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" [disabled]="organisation_id==\'\'"				accept=".csv" class="import-csv" />		</div>	</div>	<div class="spinner-border text-green" role="status" *ngIf="loading">		<span class="sr-only">Loading...</span>	</div>	<div class="error-table" *ngIf="resp.has_errors">		<span>Au fost importate {{resp.rows_imported}} rânduri din {{resp.rows_discovered}}. Au apărut erori la unele rânduri:</span>		<div class="col-md-12" *ngFor="let err of resp.errors">			<span>Rândul {{err.line}}: </span>			<div *ngFor="let ex of err.error">				<span>{{ex.value}} &nbsp; - &nbsp; {{ex.error}}</span>			</div>		</div>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AddResourceComponent', 'selector': 'app-add-resource'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AddVolunteerComponent', 'selector': 'app-add-volunteer'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'CurrentProfileComponent', 'selector': 'app-current-profile'},{'name': 'EditResourceComponent', 'selector': 'app-edit-resource'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'EditVolunteerComponent', 'selector': 'app-edit-volunteer'},{'name': 'ImportResourcesComponent', 'selector': 'app-import-resources'},{'name': 'ImportVolunteersComponent', 'selector': 'app-import-volunteers'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'NgodetailsComponent', 'selector': 'app-organisation-details'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'OrganisationaddComponent', 'selector': 'app-organisation-add'},{'name': 'OrganisationEditComponent', 'selector': 'app-organisation-edit'},{'name': 'OrganisationsComponent', 'selector': 'app-organisations'},{'name': 'OrganisationsDashboardComponent', 'selector': 'app-organisations-dashboard'},{'name': 'RecoverPasswordComponent', 'selector': 'app-recover-password'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ResourcedetailsComponent', 'selector': 'app-resource-details'},{'name': 'ResourceListComponent', 'selector': 'app-resource-list'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'ResourcesdashboardComponent', 'selector': 'app-resources-dashboard'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'},{'name': 'TableSearchComponent', 'selector': 'app-table-search'},{'name': 'TopBarComponent', 'selector': 'app-top-bar'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UsersComponent', 'selector': 'app-users'},{'name': 'VolunteerDashboardComponent', 'selector': 'app-volunteer-dashboard'},{'name': 'VolunteerDetailsComponent', 'selector': 'app-volunteer-details'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'}];
+    var DIRECTIVES = [{'name': 'TableSortDirective', 'selector': '[appTableSort]'}];
+    var ACTUAL_COMPONENT = {'name': 'ImportResourcesComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ImportResourcesComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

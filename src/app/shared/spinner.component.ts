@@ -1,58 +1,69 @@
 import {
-  Component,
-  Input,
-  OnDestroy,
-  Inject,
-  ViewEncapsulation
+	Component,
+	Input,
+	OnDestroy,
+	Inject,
+	ViewEncapsulation
 } from '@angular/core';
 import {
-  Router,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError
+	Router,
+	NavigationStart,
+	NavigationEnd,
+	NavigationCancel,
+	NavigationError
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-spinner',
-  template: `<div class="preloader" *ngIf="isSpinnerVisible">
-        <div class="spinner">
-          <div class="double-bounce1"></div>
-          <div class="double-bounce2"></div>
-        </div>
-    </div>`,
-  encapsulation: ViewEncapsulation.None
+	selector: 'app-spinner',
+	template: `<div class="preloader" *ngIf="isSpinnerVisible">
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+		</div>`,
+	encapsulation: ViewEncapsulation.None
 })
 export class SpinnerComponent implements OnDestroy {
-  public isSpinnerVisible = true;
+	/**
+	 * Variable for spinner visibility status
+	 */
+	public isSpinnerVisible = true;
 
-  @Input()
-  public backgroundColor = 'rgba(0, 115, 170, 0.69)';
+	/**
+	 * Background input variable
+	 */
+	@Input()
+	public backgroundColor = 'rgba(0, 115, 170, 0.69)';
+	/**
+	 * loading screen spinner trigger
+	 */
+	constructor(
+		private router: Router,
+		@Inject(DOCUMENT) private document: Document
+	) {
+		this.router.events.subscribe(
+			event => {
+				if (event instanceof NavigationStart) {
+					this.isSpinnerVisible = true;
+				} else if (
+					event instanceof NavigationEnd ||
+					event instanceof NavigationCancel ||
+					event instanceof NavigationError
+				) {
+					this.isSpinnerVisible = false;
+				}
+			},
+			() => {
+				this.isSpinnerVisible = false;
+			}
+		);
+	}
 
-  constructor(
-    private router: Router,
-    @Inject(DOCUMENT) private document: Document
-  ) {
-    this.router.events.subscribe(
-      event => {
-        if (event instanceof NavigationStart) {
-          this.isSpinnerVisible = true;
-        } else if (
-          event instanceof NavigationEnd ||
-          event instanceof NavigationCancel ||
-          event instanceof NavigationError
-        ) {
-          this.isSpinnerVisible = false;
-        }
-      },
-      () => {
-        this.isSpinnerVisible = false;
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.isSpinnerVisible = false;
-  }
+	/**
+	 * Spinner component destroy method called by Angular internally
+	 */
+	ngOnDestroy(): void {
+		this.isSpinnerVisible = false;
+	}
 }
