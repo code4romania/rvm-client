@@ -1,8 +1,7 @@
-on: 
-  push:
-    branches:
-      - staging
-
+on:
+    push:
+        branches:
+            - staging
 
 name: Build and deploy
 jobs:
