@@ -42,7 +42,12 @@ API: https://github.com/code4romania/rvm-api
 
 ## Deployment
 
-TBD
+The frontend of the RVM application can be run entirely inside a Docker container. The image needs to be built using the `Dockerfile` inside the project. The Docker image will use the `local` environment configuration. The built image will then be ran by the Docker engine.
+
+```
+$ docker build -t rvm-client .
+$ docker run --name rvm-client -p 80:80 -d rvm-client
+```
 
 ## Feedback
 
