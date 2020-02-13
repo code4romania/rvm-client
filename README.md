@@ -49,6 +49,8 @@ $ docker build -t rvm-client .
 $ docker run --name rvm-client -p 80:80 -d rvm-client
 ```
 
+Navigate to `http://localhost` to access the web application.
+
 ## Feedback
 
 * Request a new feature on GitHub.
