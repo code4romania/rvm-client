@@ -1,8 +1,8 @@
+// the local development environment works in conjunction with the API development environment
+// that can be configured following the README at https://github.com/code4romania/rvm-api
 export const environment = {
 	env: 'LOCAL',
 	production: false,
-	serverBaseUrl: 'http://192.168.0.115',
-	serverUrl: 'http://192.168.0.115/api'
-	// serverBaseUrl: 'https://rvm-api.lxhost.ro',
-	// serverUrl: 'https://rvm-api.lxhost.ro/api'
+	serverBaseUrl: 'http://locahost:8080',
+	serverUrl: 'http://localhost:8080/api'
 };
