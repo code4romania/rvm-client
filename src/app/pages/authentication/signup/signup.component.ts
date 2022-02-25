@@ -5,6 +5,7 @@ import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
+import { Authentication } from '@core/model/authentication.model';
 
 @Component({
 	selector: 'app-signup',

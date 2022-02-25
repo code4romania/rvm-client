@@ -13,7 +13,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-            "aot": true,
+						"aot": true,
 						"outputPath": "dist/rvm",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -25,7 +25,6 @@
 							"src/manifest.json"
 						],
 						"styles": [
-							"node_modules/custom-select-dropdown/dist/assets/style.css",
 							"src/styles.scss",
 							"src/assets/scss/style.scss"
 						],
@@ -33,12 +32,12 @@
 					},
 					"configurations": {
 						"local": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"sourceMap": true,
 							"fileReplacements": [
 								{
@@ -48,12 +47,12 @@
 							]
 						},
 						"development": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
@@ -64,12 +63,12 @@
 							]
 						},
 						"production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
@@ -80,12 +79,12 @@
 							]
 						},
 						"stage": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
@@ -131,7 +130,9 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "src/karma.conf.js",
-						"styles": ["src/styles.scss"],
+						"styles": [
+							"src/styles.scss"
+						],
 						"scripts": [],
 						"assets": [
 							"src/favicon.ico",
@@ -147,7 +148,9 @@
 							"src/tsconfig.app.json",
 							"src/tsconfig.spec.json"
 						],
-						"exclude": ["**/node_modules/**"]
+						"exclude": [
+							"**/node_modules/**"
+						]
 					}
 				}
 			}
@@ -172,7 +175,9 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": "e2e/tsconfig.e2e.json",
-						"exclude": ["**/node_modules/**"]
+						"exclude": [
+							"**/node_modules/**"
+						]
 					}
 				}
 			}

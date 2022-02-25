@@ -1,4 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { ErrorModel } from '@core/model/error.model';
+
 @Injectable()
 /**
 	* Error service to show http error message in console
