@@ -15,6 +15,9 @@
 						<li *ngIf="authService.is('DSU', 'NGO')">
 							<a routerLink='/resources' class="nav__link" routerLinkActive="active-link">Resurse</a>
 						</li>
+						<li *ngIf="authService.is('DSU')"	>
+							<a routerLink="/categories" class="nav__link" routerLinkActive="active-link">Categorii</a>
+						</li>
 						<li *ngIf="authService.is('DSU')">
 							<a routerLink='/organisations' class="nav__link" routerLinkActive="active-link">Organizații</a>
 						</li>
@@ -38,6 +41,7 @@
 									<button ngbDropdownItem [routerLink]="['users', 'id', authService.user._id]">Profil</button>
 									<button ngbDropdownItem routerLink='/volunteers' class="hidden-button">Voluntari</button>
 									<button *ngIf="authService.is('DSU', 'NGO')" ngbDropdownItem routerLink='/resources' class="hidden-button">Resurse</button>
+									<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/categories' class="hidden-button">Categorii</button>
 									<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/organisations' class="hidden-button">Organizații</button>
 									<button *ngIf="authService.is('DSU', 'INS')" ngbDropdownItem routerLink='/users' class="hidden-button">Utilizatori</button>
 									<button *ngIf="authService.is('DSU')" ngbDropdownItem routerLink='/map' class="hidden-button">Hartă</button>
