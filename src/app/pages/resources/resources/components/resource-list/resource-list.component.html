@@ -4,7 +4,14 @@
     </nav>
     <div class="ngo-details row">
         <h3 class="col-md-12">Denumire resursă: {{data?.name}}</h3>
+		<div class="col-md-12 baseline-text">
+			<b> Categorii: </b>
+			<span *ngFor = "let elem of data?.categories">
+				{{elem.name}};
+			</span>
+		</div>
     </div>
+
     <div class="resource-list">
 
         <div class="table-responsive-md">

@@ -18,6 +18,7 @@ import { CitiesCountiesService } from '../../../../../core/service/cities-counti
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
 import { FiltersService, UsersService } from '@app/core';
+import * as moment from 'moment';
 
 /**
 	 * Alert message interface
@@ -171,7 +172,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		 */
 	getData() {
 		this.organisationService.getorganisation(this.ngoid).subscribe(data => {
-			this.data = data;
+			this.data = { ...data, updated_at: moment(data.updated_at) };
 			this.navigationExtras = {
 				state: {
 					ngo: {
