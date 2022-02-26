@@ -252,11 +252,41 @@ export class AddResourceComponent implements OnInit {
 		}
 	}
 
+	onSubmitValidation() {
+		// TODO: Consider if is there a need for generic custom validation on submission
+		const validators = [
+			{
+				input: 'organisation',
+				rule: (value: any) => {
+					return value._id !== undefined;
+				}
+			},
+			{
+				input: 'city',
+				rule: (value: any) => {
+					return value._id !== undefined;
+				}
+			}
+		];
 
+		const results = validators.map(item => {
+			return {
+				input: item.input,
+				valid: item.rule(this.form.controls[item.input].value)
+			};
+		});
+
+		results.forEach(result => {
+			if (!result.valid) {
+				this.form.controls[result.input].setErrors({error: 'Error'});
+			}
+		});
+	}
 	/**
 	 * Process form values and send data to server. If success close page
 	 */
 	onSubmit() {
+		this.onSubmitValidation();
 		this.loading = true;
 		const resource = this.form.value;
 		resource.organisation_id = this.form.controls['organisation'].value._id;
