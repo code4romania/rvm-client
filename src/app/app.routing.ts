@@ -12,37 +12,37 @@ const AppRoutes: Routes = [
 		children: [
 			{
 				path: 'volunteers',
-				loadChildren: './pages/volunteers/volunteers.module#VolunteersModule',
+				loadChildren: () => import('./pages/volunteers/volunteers.module').then(m => m.VolunteersModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO', 'INS']}
 			},
 			{
 				path: 'resources',
-				loadChildren: './pages/resources/resources.module#ResourcesModule',
+				loadChildren: () => import('./pages/resources/resources.module').then(m => m.ResourcesModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'organisations',
-				loadChildren: './pages/organisations/organisations.module#OrganisationsModule',
+				loadChildren: () => import('./pages/organisations/organisations.module').then(m => m.OrganisationsModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO']}
 			},
 			{
 				path: 'map',
-				loadChildren: './pages/map/map.module#MapModule',
+				loadChildren: () => import('./pages/map/map.module').then(m => m.MapModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU']}
 			},
 			{
 				path: 'info',
-				loadChildren: './pages/info/info.module#InfoModule',
+				loadChildren: () => import('./pages/info/info.module').then(m => m.InfoModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO', 'INS']}
 			},
 			{
 				path: 'users',
-				loadChildren: './pages/users/users.module#UsersModule',
+				loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
 				canActivate: [RoleGuard],
 				data: {roles: ['DSU', 'NGO', 'INS']}
 			}
@@ -50,7 +50,7 @@ const AppRoutes: Routes = [
 	},
 	{
 		path: '',
-		loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
+		loadChildren: () => import('./pages/authentication/authentication.module').then(m => m.AuthenticationModule)
 	},
 	{
 		path: '404',
