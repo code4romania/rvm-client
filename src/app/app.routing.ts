@@ -59,7 +59,7 @@ const AppRoutes: Routes = [
 	{ path: '**', redirectTo: '/404' }
 ];
 @NgModule({
-	imports: [RouterModule.forRoot(AppRoutes)],
+	imports: [RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule {}
