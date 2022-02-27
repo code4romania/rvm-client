@@ -13,6 +13,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/rvm",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -32,6 +33,12 @@
 					},
 					"configurations": {
 						"local": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"sourceMap": true,
 							"fileReplacements": [
 								{
@@ -41,6 +48,12 @@
 							]
 						},
 						"development": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
@@ -51,6 +64,12 @@
 							]
 						},
 						"production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
@@ -61,6 +80,12 @@
 							]
 						},
 						"stage": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
 							"sourceMap": true,
 							"aot": true,
 							"fileReplacements": [
