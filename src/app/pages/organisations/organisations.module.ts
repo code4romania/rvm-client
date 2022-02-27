@@ -9,30 +9,30 @@ import { OrganisationsRoutingModule } from './organisations.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../shared/shared.module';
-import { SelectDropDownModule } from 'custom-select-dropdown';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { OrganisationEditComponent } from './organisations/components/organisation-edit/organisation-edit.component';
 @NgModule({
-    declarations: [
-        OrganisationsComponent,
-        NgodetailsComponent,
-        OrganisationaddComponent,
-        OrganisationsDashboardComponent,
-        OrganisationEditComponent,
-    ],
-    imports: [
-        NgxMultiselectModule,
-        SelectDropDownModule,
-        SharedModule,
-        NgbModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CommonModule,
-        OrganisationsRoutingModule,
-    ],
-    providers: [
-        OrganisationService
-    ]
+	declarations: [
+		OrganisationsComponent,
+		NgodetailsComponent,
+		OrganisationaddComponent,
+		OrganisationsDashboardComponent,
+		OrganisationEditComponent,
+	],
+	imports: [
+		NgxMultiselectModule,
+		SelectDropDownModule,
+		SharedModule,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		CommonModule,
+		OrganisationsRoutingModule,
+	],
+	providers: [
+		OrganisationService
+	]
 })
 
 export class OrganisationsModule {

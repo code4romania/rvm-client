@@ -24,7 +24,7 @@
 							"src/manifest.json"
 						],
 						"styles": [
-							"node_modules/custom-select-dropdown/dist/assets/style.css",
+							"../node_modules/ngx-select-dropdown/dist/assets/style.css",
 							"src/styles.scss",
 							"src/assets/scss/style.scss"
 						],
@@ -38,12 +38,12 @@
 					},
 					"configurations": {
 						"local": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -52,12 +52,12 @@
 							]
 						},
 						"development": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -66,12 +66,12 @@
 							]
 						},
 						"production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -80,12 +80,12 @@
 							]
 						},
 						"stage": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -130,7 +130,9 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "src/karma.conf.js",
-						"styles": ["src/styles.scss"],
+						"styles": [
+							"src/styles.scss"
+						],
 						"scripts": [],
 						"assets": [
 							"src/favicon.ico",

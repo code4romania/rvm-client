@@ -50,6 +50,7 @@
     "core-js": "^3.21.1",
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
+    "ngx-select-dropdown": "^2.1.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
