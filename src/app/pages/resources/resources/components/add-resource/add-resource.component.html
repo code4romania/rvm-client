@@ -76,6 +76,9 @@
 						(focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
 						#instance="ngbTypeahead" />
 				</div>
+				<span class="error-message"
+					  *ngIf="form.controls.organisation.invalid && form.controls.organisation.touched">* Trebuie sa
+						alegeți o organizație din listă.</span>
 			</div>
 
 			<div class="mt-4 col-md-4 col-sm-12">
@@ -102,6 +105,9 @@
 					<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities">
 						<span class="sr-only">Loading...</span>
 					</div>
+					<span class="error-message"
+						  *ngIf="form.controls.organisation.invalid && form.controls.organisation.touched">* Trebuie sa
+						alegeți o localitate din listă.</span>
 				</div>
 			</div>
 
