@@ -13,7 +13,6 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-            "aot": true,
 						"outputPath": "dist/rvm",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -29,7 +28,13 @@
 							"src/styles.scss",
 							"src/assets/scss/style.scss"
 						],
-						"scripts": []
+						"scripts": [],
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"buildOptimizer": false,
+						"sourceMap": true,
+						"optimization": false,
+						"namedChunks": true
 					},
 					"configurations": {
 						"local": {
@@ -39,7 +44,6 @@
                   "maximumWarning": "6kb"
                 }
               ],
-							"sourceMap": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -54,8 +58,6 @@
                   "maximumWarning": "6kb"
                 }
               ],
-							"sourceMap": true,
-							"aot": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -70,8 +72,6 @@
                   "maximumWarning": "6kb"
                 }
               ],
-							"sourceMap": true,
-							"aot": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -86,8 +86,6 @@
                   "maximumWarning": "6kb"
                 }
               ],
-							"sourceMap": true,
-							"aot": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -95,7 +93,8 @@
 								}
 							]
 						}
-					}
+					},
+					"defaultConfiguration": ""
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
