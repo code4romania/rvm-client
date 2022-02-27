@@ -31,7 +31,7 @@
 			[propertyMap]="propertyMap"	>
 			<ng-template let-option="option">
 				<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
-				   {{option.name}} 
+				   {{option.name}}
 				</span>
 			 </ng-template>
 		</ngx-multiselect>
@@ -54,21 +54,22 @@
 							<h4 class="card-title">{{elem.name}}</h4>
 							<div class="card-text row">
 								<div *ngIf="elem.categories" class="col-md-12 d-flex">
-									<i class="fa fa-list"></i>
-									<span *ngFor="let cat of elem.categories;let isLast=last">
-										&nbsp;{{cat?.name}}{{isLast ? '' : ', '}}
-									</span>
+									<i class="fa fa-list col-md-1"></i>
+									<div class="col-md-11">
+										<span *ngFor="let cat of elem.categories;let isLast=last" class="category-element">
+											&nbsp;{{cat?.name}}{{isLast ? '' : ','}}
+										</span>
+									</div>
 								</div>
-								
-								<span class="col-md-12">
-									<i class="fa fa-hashtag"></i>
-									{{elem.quantity}}
-								</span>
-								<span class="col-md-12">
-									<i class="fa fa-building"></i>
-									{{elem.organisations_total}}
+								<div class="col-md-12 d-flex">
+									<i class="fa fa-hashtag col-md-1"></i>
+									<span class="col-md-11">{{elem.quantity}}</span>
+								</div>
+								<div class="col-md-12 d-flex">
+									<i class="fa fa-building col-md-1"></i>
+									<span class="col-md-11">{{elem.organisations_total}}</span>
 									<!-- TODO add actual organisations number -->
-								</span>
+								</div>
 							</div>
 						</a>
 					</div>
