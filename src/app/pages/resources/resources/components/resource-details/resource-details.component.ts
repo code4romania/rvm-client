@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 import { Location } from '@angular/common';
 
-
 @Component({
 	selector: 'app-resource-details',
 	templateUrl: './resource-details.component.html',
@@ -32,15 +31,15 @@ export class ResourcedetailsComponent implements OnInit {
 	ngOnInit() {
 		this.getData();
 	}
-/**
-	 * edit this resource
-	 */
+	/**
+		 * edit this resource
+		 */
 	edit() {
 		this.router.navigateByUrl(`/resources/edit/${this.data._id}`);
 	}
-/**
-	 * delete this resource
-	 */
+	/**
+		 * delete this resource
+		 */
 	deleteSelf() {
 		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
 			this.loading = true;
@@ -52,16 +51,16 @@ export class ResourcedetailsComponent implements OnInit {
 			});
 		}
 	}
-/**
-	 * get resource data from server
-	 */
+	/**
+		 * get resource data from server
+		 */
 
 	getData() {
 		this.resourceService.getResource(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
 
 			this.canEdit = this.authService.is('DSU') ||
-			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
+				(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
 		});
 	}
 

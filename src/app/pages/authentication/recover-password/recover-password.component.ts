@@ -14,9 +14,9 @@ export class RecoverPasswordComponent implements OnInit {
 	 * Form holds data to be completed
 	 */
 	resetPasswordForm: FormGroup;
-  /**
-	 * flag for HTML to display loading animation
-	 */
+	/**
+	   * flag for HTML to display loading animation
+	   */
 	loading = false;
 	/**
 	 * Message to be displaied on error
@@ -26,7 +26,7 @@ export class RecoverPasswordComponent implements OnInit {
 	constructor(
 		public router: Router,
 		private authenticationService: AuthenticationService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.resetPasswordForm = new FormGroup({

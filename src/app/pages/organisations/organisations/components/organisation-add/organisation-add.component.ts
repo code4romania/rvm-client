@@ -5,7 +5,7 @@ import {
 	FormBuilder
 } from '@angular/forms';
 import { OrganisationService } from '../../../organisations.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
@@ -83,7 +83,7 @@ export class OrganisationaddComponent implements OnInit {
 			cover: [''],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			county: ['', [Validators.required, LocationValidation.locationValidation]],
-			city: [{ value: '', disabled: true }, [Validators.required, ]],
+			city: [{ value: '', disabled: true }, [Validators.required,]],
 			comments: ['']
 		});
 	}

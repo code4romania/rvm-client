@@ -24,9 +24,9 @@ export class ResourcesdashboardComponent implements OnInit {
 	 * flag for HTML to know how to display data
 	 */
 	displayBlock = false;
-		/**
-	 *values to select from when filtering
-	 */
+	/**
+ *values to select from when filtering
+ */
 	categoryFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
 	/**
@@ -40,9 +40,9 @@ export class ResourcesdashboardComponent implements OnInit {
 		'_id': 'id',
 		'parent_id': 'parent_id'
 	};
-		/**
-	 * navigation extras will be sent to add resource if user is ngo.
-	 */
+	/**
+ * navigation extras will be sent to add resource if user is ngo.
+ */
 	navigationExtras: any;
 	constructor(private resourceService: ResourcesService,
 		private filterService: FiltersService,
@@ -56,9 +56,9 @@ export class ResourcesdashboardComponent implements OnInit {
 		this.pager = this.resourceService.getPager();
 
 		this.getData();
-	/**
-	 * get filterable values
-	 */
+		/**
+		 * get filterable values
+		 */
 		this.filterService.getCategoryFilters().subscribe((data) => {
 			this.categoryFilterValues = data.map((x: any) => {
 				const parent = data.find((y: any) => y._id === x.parent_id);
@@ -66,7 +66,7 @@ export class ResourcesdashboardComponent implements OnInit {
 					id: x._id,
 					name: x.name,
 					parent_id: x.parent_id,
-					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					pp: x.parent_id === '0' ? x.name : (parent ? parent.name : null),
 					level: x.parent_id === '0' ? 0 : 1
 				};
 			});
@@ -77,9 +77,9 @@ export class ResourcesdashboardComponent implements OnInit {
 			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
 			this.locationFilterValues = aux;
 		});
-	/**
-	 *observe screen chage and and switch to grid view if screen is too smal
-	 */
+		/**
+		 *observe screen chage and and switch to grid view if screen is too smal
+		 */
 		this.breakpointObserver
 			.observe(['(max-width: 768px)'])
 			.subscribe(result => {

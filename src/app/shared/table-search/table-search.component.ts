@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input, Output, EventEmitter, HostListener, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Subject, fromEvent } from 'rxjs';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 @Component({

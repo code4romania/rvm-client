@@ -66,7 +66,7 @@ export class EditResourceComponent implements OnInit {
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder, private utilService: UtilService,
 		private filterService: FiltersService,
-		public authService: AuthenticationService) {}
+		public authService: AuthenticationService) { }
 
 	ngOnInit() {
 
@@ -80,18 +80,22 @@ export class EditResourceComponent implements OnInit {
 		}
 
 		this.form = this.fb.group({
-			subCategory: [{value: '', disabled: true}],
+			subCategory: [{ value: '', disabled: true }],
 			name: ['', Validators.required],
 			address: '',
 			resource_type: ['', Validators.required],
-			category:  ['', Validators.required],
+			category: ['', Validators.required],
 			organisation: this.authService.is('NGO') ?
-								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
-									disabled: true }, Validators.required]
-								:	fixedOrg ?
-									[{value: {name: fixedOrg.name, _id: fixedOrg._id},
-										disabled: false }, Validators.required]
-										:	[{value: '' , disabled: false }, Validators.required],
+				[{
+					value: { name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id },
+					disabled: true
+				}, Validators.required]
+				: fixedOrg ?
+					[{
+						value: { name: fixedOrg.name, _id: fixedOrg._id },
+						disabled: false
+					}, Validators.required]
+					: [{ value: '', disabled: false }, Validators.required],
 			quantity: ['', [Validators.required, Validators.min(1)]],
 			city: [{ value: '', disabled: true }, Validators.required],
 			county: ['', Validators.required],
@@ -115,24 +119,24 @@ export class EditResourceComponent implements OnInit {
 					address: this.res.address,
 					resource_type: [this.res.resource_type, Validators.required],
 					category: ['', Validators.required],
-					organisation: [{value: this.res.organisation, disabled: this.authService.is('NGO')} , Validators.required],
+					organisation: [{ value: this.res.organisation, disabled: this.authService.is('NGO') }, Validators.required],
 					quantity: [this.res.quantity, [Validators.required, Validators.min(0)]],
 					city: ['', [Validators.required, LocationValidation.locationValidation]],
 					county: ['', [Validators.required, LocationValidation.locationValidation]],
 					comments: this.res.comments
 				});
 				if (this.res.categories && this.res.categories[0] && this.res.categories[0]._id) {
-					this.form.patchValue({category: this.res.categories[0]._id});
+					this.form.patchValue({ category: this.res.categories[0]._id });
 					if (this.res.categories[1]) {
 						this.filterService.getSubCategories(this.res.categories[0]._id, '').subscribe(resp => {
 							this.form.controls.subCategory.enable();
 							this.subCategories = resp;
-							this.form.patchValue({subCategory: this.res.categories[1]._id});
+							this.form.patchValue({ subCategory: this.res.categories[1]._id });
 						});
 					}
 				}
-				this.selectedCounty({item: this.res.county});
-				this.selectedCity({item: this.res.city});
+				this.selectedCounty({ item: this.res.county });
+				this.selectedCity({ item: this.res.city });
 			});
 		}
 	}
@@ -156,10 +160,10 @@ export class EditResourceComponent implements OnInit {
 			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
-/**
-	 * trigger for city typeahead. registers typing, focus, and click and searches the stored list of cities
-	 * @param {Observable} text observable event with the filter text
-	 */
+	/**
+		 * trigger for city typeahead. registers typing, focus, and click and searches the stored list of cities
+		 * @param {Observable} text observable event with the filter text
+		 */
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -199,16 +203,16 @@ export class EditResourceComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				return this.filterService.getorganisationbyName(term);
-		}));
+			}));
 	}
-/**
-	 * trigger for select county from county typeahead. will unlock the city field
-	 * @param {any} val result object from typeahead that needs to be stored
-	 */
+	/**
+		 * trigger for select county from county typeahead. will unlock the city field
+		 * @param {any} val result object from typeahead that needs to be stored
+		 */
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
-			this.form.patchValue({county: val.item});
+			this.form.patchValue({ county: val.item });
 			this.loadingCities = true;
 			this.citiesandCounties.getCitiesbyCounty(val.item._id, '').subscribe((res: any) => {
 				this.cities = res;
@@ -217,13 +221,13 @@ export class EditResourceComponent implements OnInit {
 			});
 			this.cityPlaceholder = 'Alegeți Orașul';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
-			this.form.patchValue({county: '', city: ''});
+			this.form.patchValue({ county: '', city: '' });
 		}
 	}
-/**
-	 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
-	 * @param {any} event to be verified for which key has been pressed
-	*/
+	/**
+		 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
+		 * @param {any} event to be verified for which key has been pressed
+		*/
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -233,13 +237,13 @@ export class EditResourceComponent implements OnInit {
 			this.cityPlaceholder = 'Selectați mai întâi județul';
 		}
 	}
-/**
-	 * trigger for select city from city typeahead
-	 * @param {any} val result object from typeahead that needs to be stored
-	 */
+	/**
+		 * trigger for select city from city typeahead
+		 * @param {any} val result object from typeahead that needs to be stored
+		 */
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
-		this.form.patchValue({city: val.item});
+		this.form.patchValue({ city: val.item });
 	}
 	/**
 	 * trigger for select organisation from organisation typeahead.
@@ -248,9 +252,9 @@ export class EditResourceComponent implements OnInit {
 	selectedOrganisation(val: any) {
 		this.form.controls.organisation.markAsTouched();
 		if (val.item && val.item._id) {
-			this.form.patchValue({organisation: val.item});
+			this.form.patchValue({ organisation: val.item });
 		} else if (this.form.controls.organisation.value.name && val !== this.form.controls.organisation.value.name) {
-			this.form.patchValue({organisation: ''});
+			this.form.patchValue({ organisation: '' });
 		}
 	}
 	/**
@@ -293,7 +297,7 @@ export class EditResourceComponent implements OnInit {
 				this.location.back();
 			}, () => {
 				this.loading = false;
-		});
+			});
 	}
 
 }

@@ -9,9 +9,9 @@ import { AuthenticationService } from '@app/core';
 	styleUrls: ['./resource-list.component.scss']
 })
 export class ResourceListComponent implements OnInit {
-/**
-	 * data holds info about current resource
-	 */
+	/**
+		 * data holds info about current resource
+		 */
 	data: any;
 	/**
 	 * list of resources with same slug
@@ -63,9 +63,9 @@ export class ResourceListComponent implements OnInit {
 		this.pager = pager;
 		this.getData();
 	}
-/**
-	 * get the resourses with the same slug from server
-	 */
+	/**
+		 * get the resourses with the same slug from server
+		 */
 	getData() {
 		this.resourceService.getResourceBySlug(this.resslug, this.pager).subscribe((response: any) => {
 			this.data = response.data[0];

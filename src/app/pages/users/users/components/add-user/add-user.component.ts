@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/core/service/users.service';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
@@ -50,7 +50,6 @@ export class AddUserComponent implements OnInit {
 	displayOrganisation = false;
 
 	constructor(private fb: FormBuilder,
-		private router: Router,
 		private filterService: FiltersService,
 		public route: ActivatedRoute,
 		public authService: AuthenticationService,
@@ -60,8 +59,8 @@ export class AddUserComponent implements OnInit {
 	ngOnInit() {
 		this.form = this.fb.group({
 			name: ['', Validators.required],
-			email: ['', [ Validators.required, EmailValidation.emailValidation ]],
-			phone: ['', [ Validators.required, PhoneValidation.phoneValidation ]],
+			email: ['', [Validators.required, EmailValidation.emailValidation]],
+			phone: ['', [Validators.required, PhoneValidation.phoneValidation]],
 			institution: [''],
 			organisation: ['']
 		});
@@ -71,9 +70,9 @@ export class AddUserComponent implements OnInit {
 			this.setPageByRoles();
 		}
 	}
-/**
-	 * call function to complete form depending on the role of the user
-	 */
+	/**
+		 * call function to complete form depending on the role of the user
+		 */
 	setPageByRoles() {
 		if ((this.role === '0' || this.role === '1') && this.authService.is('DSU')) {
 			this.setInstitutions();
@@ -83,9 +82,9 @@ export class AddUserComponent implements OnInit {
 			this.setOrganisations();
 		}
 	}
-/**
-	 * set organisation form if needed
-	 */
+	/**
+		 * set organisation form if needed
+		 */
 	setOrganisations() {
 		this.filterService.getorganisationbyName().subscribe(response => {
 			this.organisations = response;
@@ -94,10 +93,10 @@ export class AddUserComponent implements OnInit {
 		this.displayOrganisation = true;
 		this.form.controls['organisation'].setValidators(Validators.required);
 	}
-/**
-	 * set institution form if needed
-	 *
-	 */
+	/**
+		 * set institution form if needed
+		 *
+		 */
 	setInstitutions() {
 		this.filterService.getInstitutionFilters().subscribe(response => {
 			this.institutions = response;
@@ -113,7 +112,7 @@ export class AddUserComponent implements OnInit {
 	 */
 	selectedInstitut(val: { item: any }) {
 		this.form.controls.institution.markAsTouched();
-		this.form.patchValue({institution: val.item});
+		this.form.patchValue({ institution: val.item });
 	}
 
 	/**
@@ -150,6 +149,6 @@ export class AddUserComponent implements OnInit {
 	 */
 
 	setDuplicateEmailError() {
-		this.form.controls['email'].setErrors({'email': 'Adresa de email introdusă există deja în sistem.'});
+		this.form.controls['email'].setErrors({ 'email': 'Adresa de email introdusă există deja în sistem.' });
 	}
 }

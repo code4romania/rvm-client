@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
 	FormGroup,
-	FormControl,
 	Validators,
 	FormBuilder
 } from '@angular/forms';
@@ -21,7 +20,6 @@ import { merge } from 'rxjs';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { AuthenticationService, FiltersService, UtilService } from '@app/core';
 import { Location } from '@angular/common';
-import { LocationValidation } from '@app/core/validators/location-validation';
 
 @Component({
 	selector: 'app-add-resource',
@@ -81,7 +79,7 @@ export class AddResourceComponent implements OnInit {
 		private citiesandCounties: CitiesCountiesService,
 		private fb: FormBuilder, private utilService: UtilService,
 		private filterService: FiltersService,
-		public authService: AuthenticationService) {}
+		public authService: AuthenticationService) { }
 
 	ngOnInit() {
 
@@ -95,27 +93,31 @@ export class AddResourceComponent implements OnInit {
 		}
 
 		this.form = this.fb.group({
-			subCategory: [{value: '', disabled: true}],
+			subCategory: [{ value: '', disabled: true }],
 			name: ['', Validators.required],
 			address: '',
 			resource_type: ['', Validators.required],
-			category:  ['', Validators.required],
+			category: ['', Validators.required],
 			organisation: this.authService.is('NGO') ?
-								[{value: {name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id},
-									disabled: true }, Validators.required]
-								:	fixedOrg ?
-									[{value: {name: fixedOrg.name, _id: fixedOrg._id},
-										disabled: false }, Validators.required]
-										:	[{value: '' , disabled: false }, Validators.required],
+				[{
+					value: { name: this.authService.user.organisation.name, _id: this.authService.user.organisation._id },
+					disabled: true
+				}, Validators.required]
+				: fixedOrg ?
+					[{
+						value: { name: fixedOrg.name, _id: fixedOrg._id },
+						disabled: false
+					}, Validators.required]
+					: [{ value: '', disabled: false }, Validators.required],
 			quantity: ['', [Validators.required, Validators.min(1)]],
 			city: [{ value: '', disabled: true }, Validators.required],
 			county: ['', Validators.required],
 			comments: ''
 		});
 	}
-/**
-	 * formater to display only name from object
-	 */
+	/**
+		 * formater to display only name from object
+		 */
 	formatter = (result: { name: string }) => result.name;
 	/**
 	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
@@ -135,10 +137,10 @@ export class AddResourceComponent implements OnInit {
 			switchMap((term: string) => this.citiesandCounties.getCounties(term))
 		);
 	}
-/**
-	 * trigger for county typeahead. registers typing, focus, and click and searches the backend
-	 * @param {Observable} text observable event with the filter text
-	 */
+	/**
+		 * trigger for county typeahead. registers typing, focus, and click and searches the backend
+		 * @param {Observable} text observable event with the filter text
+		 */
 	searchcity = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(
 			debounceTime(200),
@@ -178,16 +180,16 @@ export class AddResourceComponent implements OnInit {
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			switchMap((term: string) => {
 				return this.filterService.getorganisationbyName(term);
-		}));
+			}));
 	}
-/**
-	 * trigger for select county from county typeahead. will unlock the city field
-	 * @param {any} val result object from typeahead that needs to be stored
-	 */
+	/**
+		 * trigger for select county from county typeahead. will unlock the city field
+		 * @param {any} val result object from typeahead that needs to be stored
+		 */
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
-			this.form.patchValue({county: val.item});
+			this.form.patchValue({ county: val.item });
 			this.loadingCities = true;
 			this.citiesandCounties.getCitiesbyCounty(val.item._id, '').subscribe((res: any) => {
 				this.cities = res;
@@ -196,13 +198,13 @@ export class AddResourceComponent implements OnInit {
 			});
 			this.cityPlaceholder = 'Alegeți Orașul';
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
-			this.form.patchValue({county: '', city: ''});
+			this.form.patchValue({ county: '', city: '' });
 		}
 	}
-/**
-	 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
-	 * @param {any} event to be verified for which key has been pressed
-	*/
+	/**
+		 * trigger for editing the county field. When activated, disable the city form until enter is pressed or mouse selection
+		 * @param {any} event to be verified for which key has been pressed
+		*/
 	countykey(event: any) {
 		this.form.controls.county.markAsTouched();
 		if (event.code !== 'Enter') {
@@ -212,13 +214,13 @@ export class AddResourceComponent implements OnInit {
 			this.cityPlaceholder = 'Selectați mai întâi județul';
 		}
 	}
-/**
-	 * trigger for select city from city typeahead
-	 * @param {any} val result object from typeahead that needs to be stored
-	 */
+	/**
+		 * trigger for select city from city typeahead
+		 * @param {any} val result object from typeahead that needs to be stored
+		 */
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
-		this.form.patchValue({city: val.item});
+		this.form.patchValue({ city: val.item });
 	}
 	/**
 	 * trigger for select organisation from organisation typeahead.
@@ -227,9 +229,9 @@ export class AddResourceComponent implements OnInit {
 	selectedOrganisation(val: any) {
 		this.form.controls.organisation.markAsTouched();
 		if (val.item && val.item._id) {
-			this.form.patchValue({organisation: val.item});
+			this.form.patchValue({ organisation: val.item });
 		} else if (this.form.controls.organisation.value.name && val !== this.form.controls.organisation.value.name) {
-			this.form.patchValue({organisation: ''});
+			this.form.patchValue({ organisation: '' });
 		}
 	}
 	/**
@@ -273,7 +275,7 @@ export class AddResourceComponent implements OnInit {
 				this.location.back();
 			}, () => {
 				this.loading = false;
-		});
+			});
 	}
 
 }
