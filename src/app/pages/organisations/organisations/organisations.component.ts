@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class OrganisationsComponent implements OnInit {
-/**
-	 * wrapper for the organisations pages. acts as frame
-	 */
+	/**
+		 * wrapper for the organisations pages. acts as frame
+		 */
 	constructor() { }
 
 	ngOnInit() {

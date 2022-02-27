@@ -8,7 +8,7 @@ import { UserDetailsComponent } from './users/components/user-details/user-detai
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
-import { SelectDropDownModule } from 'custom-select-dropdown';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { EditUserComponent } from './users/components/edit-user/edit-user.component';
 

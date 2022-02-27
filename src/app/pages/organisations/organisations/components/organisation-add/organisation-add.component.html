@@ -1,6 +1,5 @@
 <div class="container wide-container mt-5">
-	<nav
-		class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
 		<app-back-button></app-back-button>
 	</nav>
 
@@ -21,7 +20,8 @@
 					<label>Website Organizație *</label>
 					<input formControlName="website" class="form-control" type="text"
 						[ngClass]="{ 'error': form.controls.website.invalid && form.controls.website.touched }" />
-					<span class="error-message" *ngIf="form.controls.website.invalid && form.controls.website.touched">* {{form.controls.website.errors.website}}</span>
+					<span class="error-message" *ngIf="form.controls.website.invalid && form.controls.website.touched">*
+						{{form.controls.website.errors.website}}</span>
 				</div>
 			</div>
 
@@ -29,12 +29,13 @@
 				<div class="form-group">
 					<label>Acoperire *</label>
 					<select class="form-control" formControlName="cover"
-					[ngClass]="{ 'error': form.controls.cover.invalid && form.controls.cover.touched }"
-					class="form-control">
+						[ngClass]="{ 'error': form.controls.cover.invalid && form.controls.cover.touched }"
+						class="form-control">
 						<option>Națională</option>
 						<option>Locală</option>
 					</select>
-					<span class="error-message" *ngIf="form.controls.cover.invalid && form.controls.cover.touched">* Trebuie să alegeți un tip.</span>
+					<span class="error-message" *ngIf="form.controls.cover.invalid && form.controls.cover.touched">*
+						Trebuie să alegeți un tip.</span>
 				</div>
 			</div>
 
@@ -51,7 +52,8 @@
 					<label>Email *</label>
 					<input formControlName="email" class="form-control" type="email"
 						[ngClass]="{ 'error': form.controls.email.invalid && form.controls.email.touched }" />
-					<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">* {{form.controls.email.errors.email}}</span>
+					<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">*
+						{{form.controls.email.errors.email}}</span>
 				</div>
 			</div>
 
@@ -60,16 +62,17 @@
 					<label>Număr de Telefon *</label>
 					<input formControlName="phone" class="form-control" type="tel"
 						[ngClass]="{ 'error': form.controls.phone.invalid && form.controls.phone.touched }" />
-					<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">* {{form.controls.phone.errors.phone}}</span>
+					<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">*
+						{{form.controls.phone.errors.phone}}</span>
 				</div>
 			</div>
 
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Județ *</label>
-					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
-						class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
-						(keyup)="countykey($event)"
+					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+						(blur)="selectedCounty($event.target.value)" class="form-control" [ngbTypeahead]="searchcounty"
+						(focus)="focus1$.next($event.target.value)" (keyup)="countykey($event)"
 						[inputFormatter]="formatter" [resultFormatter]="formatter"
 						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
 						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
@@ -79,8 +82,8 @@
 			<div class="mt-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Localitate *</label>
-					<input type="text" formControlName="city" class="form-control"
-						[ngbTypeahead]="searchcity" (selectItem)="selectedCity($event)"
+					<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+						(selectItem)="selectedCity($event)"
 						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
 						placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
 						[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
@@ -109,8 +112,8 @@
 		</div>
 
 		<div class="text-right">
-			<button *ngIf="!loading" class="btn btn-info btn-rounded waves-effect waves-light mt-5" [disabled]="form.invalid"
-				type="submit">
+			<button *ngIf="!loading" class="btn btn-info btn-rounded waves-effect waves-light mt-5"
+				[disabled]="form.invalid" type="submit">
 				Salvează
 			</button>
 			<div class="spinner-border text-green" role="status" *ngIf="loading">

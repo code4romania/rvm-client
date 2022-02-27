@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { LocalStorageService } from '@app/core/local-storage.service';
+import { Credentials, LoginPayload, SignupPayload, User } from '../model/authentication.model';
 
 /**
 * Local storage variable name
@@ -16,7 +17,7 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
-	private _credentials: Authentication.Credentials | null;
+	private _credentials: Credentials | null;
 
 	private roles = ['OFF', 'INS', 'NGO', 'DSU'];
 	private homes = ['', 'users', 'organisations/id/:id', 'organisations'];
@@ -37,7 +38,7 @@ export class AuthenticationService {
 	}
 	/**
 	 *
-	 * @param {Authentication.LoginPayload} payload  Login with object of specific type
+	 * @param {LoginPayload} payload  Login with object of specific type
 	 *
 	 * Function auto stores credentials for future use.
 	 *
@@ -45,28 +46,28 @@ export class AuthenticationService {
 	 *
 	 */
 	login(
-		payload: Authentication.LoginPayload
+		payload: LoginPayload
 	): Observable<any> {
 
 		return this.httpClient.post('/login', payload).pipe(map((credentials: any) => {
-				if (credentials.user.role !== '0') {
-					this.setCredentials(credentials);
-				}
-				return credentials;
-			}));
+			if (credentials.user.role !== '0') {
+				this.setCredentials(credentials);
+			}
+			return credentials;
+		}));
 	}
 	/**
 	 *
-	 * @param {Authentication.SignupPayload} payload  Signup with object of specific type
+	 * @param {SignupPayload} payload  Signup with object of specific type
 	 *
 	 * @returns The post result mapped to User type, not very useful
 	 *
 	 */
 	signup(
-		payload: Authentication.SignupPayload
-	): Observable<Authentication.User> {
+		payload: SignupPayload
+	): Observable<User> {
 		return this.httpClient.post('/register', payload).pipe(
-			map((body: Authentication.User) => {
+			map((body: User) => {
 				return body;
 			})
 		);
@@ -99,7 +100,7 @@ export class AuthenticationService {
 	 *
 	 * @return {Credentials} The user credentials or null if the user is not authenticated.
 	 */
-	get credentials(): Authentication.Credentials | null {
+	get credentials(): Credentials | null {
 		return this._credentials;
 	}
 
@@ -175,9 +176,9 @@ export class AuthenticationService {
 	/**
 	 * Sets the user credentials.
 	 *
-	 * @param {Credentials=} Authentication.Credentials The user credentials.
+	 * @param {Credentials=} Credentials The user credentials.
 	 */
-	public setCredentials(credentials?: Authentication.Credentials) {
+	public setCredentials(credentials?: Credentials) {
 		this._credentials = credentials || null;
 		if (credentials) {
 			this.localStorageService.setItem(
@@ -193,13 +194,13 @@ export class AuthenticationService {
 	* Recover user password service endpoint
 	*/
 	public recoverPassword(email: string) {
-		return this.httpClient.post('/recoverpassword', {email: email});
+		return this.httpClient.post('/recoverpassword', { email: email });
 	}
 
 	/**
 	* Reset user password service endpoint
 	*/
 	public resetPassword(password: string, token: string) {
-		return this.httpClient.post('/resetpassword', {password: password, password_confirmation: password, token: token});
+		return this.httpClient.post('/resetpassword', { password: password, password_confirmation: password, token: token });
 	}
 }

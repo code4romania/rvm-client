@@ -15,16 +15,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class RedirectGuard implements CanActivate {
 	/**
-	* Current user data
-	*/
-	private currentUser: any;
-
-	/**
 	* Redirect angular guard constructor
 	*/
 	constructor(private authService: AuthenticationService,
 		private router: Router) {
-		this.currentUser = this.authService.user;
 	}
 	/**
 	 * Redirect guard will redirect the user to its specific home page.
@@ -33,7 +27,7 @@ export class RedirectGuard implements CanActivate {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<boolean> | Promise<boolean> | boolean {
-		if (this.authService.isAuthenticated) {
+		if (this.authService.isAuthenticated()) {
 			this.router.navigate([this.authService.homePath()]);
 		}
 

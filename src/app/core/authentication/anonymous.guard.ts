@@ -11,7 +11,7 @@ export class AnonymousGuard implements CanActivate {
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService
-	) {}
+	) { }
 	/**
 	 * @returns Boolean based on authentification Service isAuthenticated Answer
 	 *

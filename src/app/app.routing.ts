@@ -7,44 +7,44 @@ import { NotFoundComponent } from './pages/404';
 const AppRoutes: Routes = [
 	{
 		path: '',
-		data: {dashboard: true},
+		data: { dashboard: true },
 		canActivate: [AuthenticationGuard],
 		children: [
 			{
 				path: 'volunteers',
 				loadChildren: () => import('./pages/volunteers/volunteers.module').then(m => m.VolunteersModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			},
 			{
 				path: 'resources',
 				loadChildren: () => import('./pages/resources/resources.module').then(m => m.ResourcesModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'organisations',
 				loadChildren: () => import('./pages/organisations/organisations.module').then(m => m.OrganisationsModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'map',
 				loadChildren: () => import('./pages/map/map.module').then(m => m.MapModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU']}
+				data: { roles: ['DSU'] }
 			},
 			{
 				path: 'info',
 				loadChildren: () => import('./pages/info/info.module').then(m => m.InfoModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			},
 			{
 				path: 'users',
 				loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			}
 		]
 	},
@@ -62,4 +62,4 @@ const AppRoutes: Routes = [
 	imports: [RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' })],
 	exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

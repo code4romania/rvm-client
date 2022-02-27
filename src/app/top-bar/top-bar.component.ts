@@ -13,28 +13,28 @@ export class TopBarComponent implements OnInit {
 	 * top bar to be shown over all the other components
 	 */
 	constructor(public authService: AuthenticationService,
-		private router: Router) {}
+		private router: Router) { }
 
-  ngOnInit() { }
+	ngOnInit() { }
 
-  /**
-	 * logout from account
-	 */
+	/**
+	   * logout from account
+	   */
 	logout() {
 		this.authService.logout().subscribe(
-		(didlogout: Boolean) => {
-			if (didlogout) {
-				this.router.navigate(['/login']);
-			}
-		},
-		(error: any) => {
-			console.log('logout error: ', error);
-		});
-  }
+			(didlogout: Boolean) => {
+				if (didlogout) {
+					this.router.navigate(['/login']);
+				}
+			},
+			(error: any) => {
+				console.log('logout error: ', error);
+			});
+	}
 
-  /**
-	 * go to home path on icon click
-	 */
+	/**
+	   * go to home path on icon click
+	   */
 	goToDashboard() {
 		this.router.navigate(['/' + this.authService.homePath()], {
 			replaceUrl: true

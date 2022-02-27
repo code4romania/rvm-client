@@ -5,6 +5,7 @@ import { AuthenticationService } from '@app/core';
 import { finalize } from 'rxjs/operators';
 import { EmailValidation } from '@app/core/validators/email-validation';
 import { PhoneValidation } from '@app/core/validators/phone-validation';
+import { User } from '@app/core/model/authentication.model';
 
 @Component({
 	selector: 'app-signup',
@@ -31,7 +32,7 @@ export class SignupComponent implements OnInit {
 	/**
 	 * Angular ng on init
 	 */
-	ngOnInit() {}
+	ngOnInit() { }
 
 
 	/**
@@ -48,7 +49,7 @@ export class SignupComponent implements OnInit {
 				})
 			)
 			.subscribe(
-				(user: Authentication.User) => {
+				(user: User) => {
 					console.log(user);
 					this.router.navigate(['/login']);
 				},

@@ -5,10 +5,10 @@ Email: niravjoshi87@gmail.com
 File: scss
 */
 // Variables
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 
-$bodyfont: 'Montserrat', sans-serif;
-$headingfont: 'Montserrat', sans-serif;
+$bodyfont: "Montserrat", sans-serif;
+$headingfont: "Montserrat", sans-serif;
 
 /*Theme Colors*/
 
@@ -59,35 +59,35 @@ $red-dark: #d61f1f;
 $inverse-dark: #232a37;
 $dark-transparent: rgba(0, 0, 0, 0.05);
 
-$info-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14),
-  0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
-$info-shadow-hover: 0 14px 26px -12px rgba(83, 107, 112, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
+$info-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2),
+	0 1px 5px 0 rgba(66, 165, 245, 0.12);
+$info-shadow-hover: 0 14px 26px -12px rgba(83, 107, 112, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(23, 105, 255, 0.2);
 
-$warning-shadow: 0 2px 2px 0 rgba(248, 194, 0, 0.14),
-  0 3px 1px -2px rgba(248, 194, 0, 0.2), 0 1px 5px 0 rgba(248, 194, 0, 0.12);
-$warning-shadow-hover: 0 14px 26px -12px rgba(248, 194, 0, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2);
+$warning-shadow: 0 2px 2px 0 rgba(248, 194, 0, 0.14), 0 3px 1px -2px rgba(248, 194, 0, 0.2),
+	0 1px 5px 0 rgba(248, 194, 0, 0.12);
+$warning-shadow-hover: 0 14px 26px -12px rgba(248, 194, 0, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(248, 194, 0, 0.2);
 
-$danger-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14),
-  0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
-$danger-shadow-hover: 0 14px 26px -12px rgba(239, 83, 80, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2);
+$danger-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2),
+	0 1px 5px 0 rgba(239, 83, 80, 0.12);
+$danger-shadow-hover: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(239, 83, 80, 0.2);
 
-$success-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14),
-  0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
-$success-shadow-hover: 0 14px 26px -12px rgba(40, 190, 189, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
+$success-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2),
+	0 1px 5px 0 rgba(40, 190, 189, 0.12);
+$success-shadow-hover: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(40, 190, 189, 0.2);
 
-$primary-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14),
-  0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
-$primary-shadow-hover: 0 14px 26px -12px rgba(116, 96, 238, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+$primary-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2),
+	0 1px 5px 0 rgba(116, 96, 238, 0.12);
+$primary-shadow-hover: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(116, 96, 238, 0.2);
 
-$default-shadow: 0 2px 2px 0 rgba(169, 169, 169, 0.14),
-  0 3px 1px -2px rgba(169, 169, 169, 0.2), 0 1px 5px 0 rgba(169, 169, 169, 0.12);
-$default-shadow-hover: 0 14px 26px -12px rgba(169, 169, 169, 0.42),
-  0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(169, 169, 169, 0.2);
+$default-shadow: 0 2px 2px 0 rgba(169, 169, 169, 0.14), 0 3px 1px -2px rgba(169, 169, 169, 0.2),
+	0 1px 5px 0 rgba(169, 169, 169, 0.12);
+$default-shadow-hover: 0 14px 26px -12px rgba(169, 169, 169, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12),
+	0 8px 10px -5px rgba(169, 169, 169, 0.2);
 
 /*Normal Color*/
 $white: #ffffff;
@@ -110,15 +110,15 @@ $form-brd: #b1b8bb;
 /*Preloader*/
 
 .preloader {
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  position: fixed;
-  z-index: 99999;
-  background: #fff;
-  .cssload-speeding-wheel {
-    position: absolute;
-    top: calc(50% - 3.5px);
-    left: calc(50% - 3.5px);
-  }
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	position: fixed;
+	z-index: 99999;
+	background: #fff;
+	.cssload-speeding-wheel {
+		position: absolute;
+		top: calc(50% - 3.5px);
+		left: calc(50% - 3.5px);
+	}
 }

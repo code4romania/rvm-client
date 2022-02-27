@@ -83,7 +83,7 @@ export class OrganisationaddComponent implements OnInit {
 			cover: [''],
 			email: ['', [Validators.required, EmailValidation.emailValidation]],
 			county: ['', [Validators.required, LocationValidation.locationValidation]],
-			city: [{value: '', disabled: true }, [Validators.required, ]],
+			city: [{ value: '', disabled: true }, [Validators.required, ]],
 			comments: ['']
 		});
 	}
@@ -138,7 +138,7 @@ export class OrganisationaddComponent implements OnInit {
 	selectedCounty(val: any) {
 		this.form.controls.county.markAsTouched();
 		if (val.item && val.item._id) {
-			this.form.patchValue({county: val.item});
+			this.form.patchValue({ county: val.item });
 			this.loadingCities = true;
 			this.citiesandCounties.getCitiesbyCounty(val.item._id, '').subscribe((res: any) => {
 				this.cities = res;
@@ -147,7 +147,7 @@ export class OrganisationaddComponent implements OnInit {
 				this.form.controls.city.enable();
 			});
 		} else if (this.form.controls.county.value.name && val !== this.form.controls.county.value.name) {
-			this.form.patchValue({county: '', city: ''});
+			this.form.patchValue({ county: '', city: '' });
 		}
 	}
 
@@ -170,7 +170,7 @@ export class OrganisationaddComponent implements OnInit {
 	 */
 	selectedCity(val: { item: any }) {
 		this.form.controls.city.markAsTouched();
-		this.form.patchValue({city: val.item});
+		this.form.patchValue({ city: val.item });
 	}
 
 	/**
@@ -182,12 +182,12 @@ export class OrganisationaddComponent implements OnInit {
 		ngo.city = ngo.city._id;
 		ngo.county = ngo.county._id;
 		this.organisationService
-		.addorganisation(ngo)
-		.subscribe(() => {
-			this.loading = false;
-			this.location.back();
-		}, () => {
-			this.loading = false;
-		});
+			.addorganisation(ngo)
+			.subscribe(() => {
+				this.loading = false;
+				this.location.back();
+			}, () => {
+				this.loading = false;
+			});
 	}
 }

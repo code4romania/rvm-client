@@ -8,9 +8,9 @@ describe('VolunteerDashboardComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ VolunteerDashboardComponent ]
+			declarations: [VolunteerDashboardComponent]
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {

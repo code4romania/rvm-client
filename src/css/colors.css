@@ -1,27 +1,27 @@
 /* Theme  */
 .black {
-  background-color: #000;
+	background-color: #000;
 }
 
 .black-text {
-  color: #000;
+	color: #000;
 }
 
 .white-text {
-  color: #fff;
+	color: #fff;
 }
 
 /* Grey */
 .grey-text-1 {
-  color: #7C8284;
+	color: #7c8284;
 }
 
 /* Yellow */
 .yellow-1 {
-  background-color: rgba(255, 204, 0, 0.5);
+	background-color: rgba(255, 204, 0, 0.5);
 }
 
 /* Blue */
 .blue-1 {
-  background-color: #264998;
+	background-color: #264998;
 }

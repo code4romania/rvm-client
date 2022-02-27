@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
     </head>
     <body>
 
@@ -41,7 +42,7 @@
 <p>You can also list any pending features and planned improvements for the project here.</p>
 <h2 id="built-with">Built With</h2>
 <h3 id="programming-languages">Programming languages</h3>
-<p>JavaScript</p>
+<p>TypeScript</p>
 <h3 id="platforms">Platforms</h3>
 <h3 id="frontend-framework">Frontend framework</h3>
 <p>Angular</p>
@@ -51,18 +52,20 @@
 <h2 id="repos-and-projects">Repos and projects</h2>
 <p>API: <a href="https://github.com/code4romania/rvm-api">https://github.com/code4romania/rvm-api</a></p>
 <h2 id="deployment">Deployment</h2>
-<p>TBD</p>
+<p>The frontend of the RVM application can be run entirely inside a Docker container. The image needs to be built using the <code>Dockerfile</code> inside the project. The Docker image will use the <code>local</code> environment configuration. The built image will then be ran by the Docker engine.</p>
+<div><pre class="line-numbers"><code class="language-none">$ docker build -t rvm-client .
+$ docker run --name rvm-client -p 80:80 -d rvm-client</code></pre></div><p>Navigate to <code>http://localhost</code> to access the web application.</p>
 <h2 id="feedback">Feedback</h2>
 <ul>
 <li>Request a new feature on GitHub.</li>
 <li>Vote for popular feature requests.</li>
 <li>File a bug in GitHub Issues.</li>
-<li>Email us with other feedback <a href="mailto:contact@code4.ro">contact@code4.ro</a></li>
+<li>Email us with other feedback <a href="mailto:&#99;&#x6f;&#x6e;&#116;&#x61;&#99;&#116;&#64;&#x63;&#111;&#100;&#x65;&#52;&#46;&#114;&#111;">&#99;&#x6f;&#x6e;&#116;&#x61;&#99;&#116;&#64;&#x63;&#111;&#100;&#x65;&#52;&#46;&#114;&#111;</a></li>
 </ul>
 <h2 id="license">License</h2>
 <p>This project is licensed under the MPL 2.0 License - see the <a href="LICENSE">LICENSE</a> file for details</p>
 <h2 id="about-code4ro">About Code4Ro</h2>
-<p>Started in 2016, Code for Romania is a civic tech NGO, official member of the Code for All network. We have a community of over 500 volunteers (developers, ux/ui, communications, data scientists, graphic designers, devops, it security and more) who work pro-bono for developing digital solutions to solve social problems. #techforsocialgood. If you want to learn more details about our projects <a href="https://www.code4.ro/en/">visit our site</a> or if you want to talk to one of our staff members, please e-mail us at <a href="mailto:contact@code4.ro">contact@code4.ro</a>.</p>
+<p>Started in 2016, Code for Romania is a civic tech NGO, official member of the Code for All network. We have a community of over 500 volunteers (developers, ux/ui, communications, data scientists, graphic designers, devops, it security and more) who work pro-bono for developing digital solutions to solve social problems. #techforsocialgood. If you want to learn more details about our projects <a href="https://www.code4.ro/en/">visit our site</a> or if you want to talk to one of our staff members, please e-mail us at <a href="mailto:&#x63;&#111;&#110;&#x74;&#97;&#99;&#x74;&#x40;&#x63;&#111;&#x64;&#101;&#52;&#x2e;&#x72;&#x6f;">&#x63;&#111;&#110;&#x74;&#97;&#99;&#x74;&#x40;&#x63;&#111;&#x64;&#101;&#52;&#x2e;&#x72;&#x6f;</a>.</p>
 <p>Last, but not least, we rely on donations to ensure the infrastructure, logistics and management of our community that is widely spread across 11 timezones, coding for social change to make Romania and the world a better place. If you want to support us, <a href="https://code4.ro/en/donate/">you can do it here</a>.</p>
 
 
@@ -78,14 +81,16 @@
 
 
 
-                   
+
+
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -97,17 +102,27 @@
            </div>
        </div>
 
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

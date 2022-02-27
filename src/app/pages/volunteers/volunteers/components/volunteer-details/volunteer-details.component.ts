@@ -46,15 +46,15 @@ export class VolunteerDetailsComponent implements OnInit {
 		this.getData();
 		this.getAllocations();
 	}
-/**
-	 * edit this volunteer
-	 */
+	/**
+		 * edit this volunteer
+		 */
 	edit() {
 		this.router.navigateByUrl(`/volunteers/edit/${this.data._id}`);
 	}
-/**
-	 * delete this volunteer
-	 */
+	/**
+		 * delete this volunteer
+		 */
 	deleteSelf() {
 		if (confirm('Sunteți sigur că doriți să ștergeți această intrare? Odată ștearsă nu va mai putea fi recuperată.')) {
 			this.loading = true;
@@ -66,9 +66,9 @@ export class VolunteerDetailsComponent implements OnInit {
 			});
 		}
 	}
-/**
-	 * get alocations data from server
-	 */
+	/**
+		 * get alocations data from server
+		 */
 	getAllocations() {
 		this.volunteerService.getAllocations(this.route.snapshot.paramMap.get('id')).subscribe((data: any[]) => {
 			this.allocations = data;
@@ -78,9 +78,9 @@ export class VolunteerDetailsComponent implements OnInit {
 			}
 		});
 	}
-/**
-	 * get volunteer data from server
-	 */
+	/**
+		 * get volunteer data from server
+		 */
 	getData() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
@@ -90,7 +90,7 @@ export class VolunteerDetailsComponent implements OnInit {
 			}
 
 			this.canEdit = this.authService.is('DSU') ||
-			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
+				(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
 		});
 	}
 

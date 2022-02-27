@@ -1,273 +1,218 @@
 <div class="container wide-container mt-5">
-		<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
-			<app-back-button></app-back-button>
-		</nav>
-		<p class="page-title">Modifică voluntarul:</p>
-		<form [formGroup]="form" (ngSubmit)="onSubmit()">
-			<div class="row">
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div class="form-group">
-						<label>Nume și Prenume *</label>
-						<input
-							[ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
-							formControlName="name"
-							class="form-control"
-							type="text"	/>
+	<nav class="navbar navbar-expand-lg justify-content-between navbar-light my-5">
+		<app-back-button></app-back-button>
+	</nav>
+	<p class="page-title">Modifică voluntarul:</p>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Nume și Prenume *</label>
+					<input [ngClass]="{ 'error': form.controls.name.invalid && form.controls.name.touched }"
+						formControlName="name" class="form-control" type="text" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12" *ngIf="!authService.is('DSU')">
+				<div class="form-group">
+					<label>CNP *</label>
+					<input [ngClass]="{ 'error': form.controls.ssn.invalid && form.controls.ssn.touched }"
+						formControlName="ssn" class="form-control" type="number" />
+					<span class="error-message" *ngIf="form.controls.ssn.invalid && form.controls.ssn.touched">*
+						{{form.controls.ssn.errors.ssn}}</span>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Email *</label>
+					<input [ngClass]="{ 'error': form.controls.email.invalid && form.controls.email.touched }"
+						formControlName="email" class="form-control" type="email" />
+					<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">*
+						{{form.controls.email.errors.email}}</span>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Profesie</label>
+					<input [ngClass]="{ 'error': form.controls.job.invalid && form.controls.job.touched }"
+						formControlName="job" class="form-control" type="text" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Telefon *</label>
+					<input [ngClass]="{ 'error': form.controls.phone.invalid && form.controls.phone.touched }"
+						formControlName="phone" class="form-control" type="tel" />
+					<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">*
+						{{form.controls.phone.errors.phone}}</span>
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Organizație *</label>
+					<input formControlName="organisation" type="text"
+						[ngClass]="{ 'error': form.controls.organisation.invalid && form.controls.organisation.touched }"
+						(selectItem)="selectedorganisation($event)" class="form-control"
+						[ngbTypeahead]="searchorganisation" [resultFormatter]="formatter" [inputFormatter]="formatter"
+						(focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
+						#instance="ngbTypeahead" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Județ *</label>
+					<input type="text" formControlName="county" (selectItem)="selectedCounty($event)"
+						(blur)="selectedCounty($event.target.value)" class="form-control" [ngbTypeahead]="searchcounty"
+						(focus)="focus1$.next($event.target.value)" [inputFormatter]="formatter"
+						[resultFormatter]="formatter" (keyup)="countykey($event)"
+						[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
+						(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
+				</div>
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div class="form-group">
+					<label>Localitate *</label>
+					<input type="text" formControlName="city" class="form-control" [ngbTypeahead]="searchcity"
+						(selectItem)="selectedCity($event)"
+						[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
+						placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
+						[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
+						(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
+					<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities">
+						<span class="sr-only">Loading...</span>
 					</div>
 				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12" *ngIf="!authService.is('DSU')">
+			</div>
+
+			<div class="mt-4 col-md-4 col-sm-12">
+				<div>
 					<div class="form-group">
-						<label>CNP *</label>
-						<input
-							[ngClass]="{ 'error': form.controls.ssn.invalid && form.controls.ssn.touched }"
-							formControlName="ssn"
-							class="form-control"
-							type="number"	/>
-						<span class="error-message" *ngIf="form.controls.ssn.invalid && form.controls.ssn.touched">* {{form.controls.ssn.errors.ssn}}</span>
+						<label>Adresă</label>
+						<input formControlName="address"
+							[ngClass]="{ 'error': form.controls.address.invalid && form.controls.address.touched }"
+							class="form-control" type="text" />
 					</div>
 				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div class="form-group">
-						<label>Email *</label>
-						<input
-							[ngClass]="{ 'error': form.controls.email.invalid && form.controls.email.touched }"
-							formControlName="email"
-							class="form-control"
-							type="email"/>
-						<span class="error-message" *ngIf="form.controls.email.invalid && form.controls.email.touched">* {{form.controls.email.errors.email}}</span>
-					</div>
-				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div class="form-group">
-						<label>Profesie</label>
-						<input
-							[ngClass]="{ 'error': form.controls.job.invalid && form.controls.job.touched }"
-							formControlName="job"
-							class="form-control"
-							type="text"	/>
-					</div>
-				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div class="form-group">
-						<label>Telefon *</label>
-						<input
-							[ngClass]="{ 'error': form.controls.phone.invalid && form.controls.phone.touched }"
-							formControlName="phone"
-							class="form-control"
-							type="tel"	/>
-						<span class="error-message" *ngIf="form.controls.phone.invalid && form.controls.phone.touched">* {{form.controls.phone.errors.phone}}</span>
-					</div>
-				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div class="form-group">
-						<label>Organizație *</label>
-						<input formControlName="organisation"
-							type="text"
-							[ngClass]="{ 'error': form.controls.organisation.invalid && form.controls.organisation.touched }"
-							(selectItem)="selectedorganisation($event)"
-							class="form-control"
-							[ngbTypeahead]="searchorganisation"
-							[resultFormatter]="formatter"
-							[inputFormatter]="formatter"
-							(focus)="focus$.next($event.target.value)"
-							(click)="click$.next($event.target.value)"
-							#instance="ngbTypeahead"/>
-					</div>
-				</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-						<div class="form-group">
-							<label>Județ *</label>
-							<input type="text" formControlName="county" (selectItem)="selectedCounty($event)" (blur)="selectedCounty($event.target.value)"
-								class="form-control" [ngbTypeahead]="searchcounty" (focus)="focus1$.next($event.target.value)"
-								[inputFormatter]="formatter" [resultFormatter]="formatter" (keyup)="countykey($event)"
-								[ngClass]="{ 'error': form.controls.county.invalid && form.controls.county.touched}"
-								(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
-						</div>
-					</div>
-		
-					<div class="mt-4 col-md-4 col-sm-12">
-						<div class="form-group">
-							<label>Localitate *</label>
-							<input type="text" formControlName="city" class="form-control"
-								[ngbTypeahead]="searchcity" (selectItem)="selectedCity($event)"
-								[ngClass]="{ 'error': form.controls.city.invalid && form.controls.city.touched }"
-								placeholder="{{ cityPlaceholder }}" autocomplete="new-password" [inputFormatter]="formatter"
-								[resultFormatter]="formatter" (focus)="focus2$.next($event.target.value)"
-								(click)="click2$.next($event.target.value)" #instance="ngbTypeahead" />
-								<div class="spinner-border text-grey input-loader" role="status" *ngIf="loadingCities">
-									<span class="sr-only">Loading...</span>
+			</div>
+
+			<div class="col-md-12 mt-4">
+				<table class="w-100 table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>
+								Specializare
+							</th>
+							<th>
+								Data acreditării
+							</th>
+							<th>
+								Acreditat de
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let course of c.controls; let i = index" [formGroup]="course" class="mb-3">
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
+									<input readonly formControlName="course_name" class="form-control" type="text" />
 								</div>
-						</div>
-					</div>
-	
-				<div class="mt-4 col-md-4 col-sm-12">
-					<div>
-						<div class="form-group">
-							<label>Adresă</label>
-							<input
-								formControlName="address"
-								[ngClass]="{ 'error': form.controls.address.invalid && form.controls.address.touched }"
-								class="form-control"
-								type="text"	/>
-						</div>
-					</div>
-				</div>
-	
-				<div class="col-md-12 mt-4">
-					<table class="w-100 table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>
-									Specializare
-								</th>
-								<th>
-									Data acreditării
-								</th>
-								<th>
-									Acreditat de
-								</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr	*ngFor="let course of c.controls; let i = index"
-								[formGroup]="course"
-								class="mb-3">
-								<td style="padding-right:15px">
-									<div class="form-group">
-											<!-- [ngClass]="{ 'error': course.controls.name.invalid && course.controls.name.touched }" -->
-										<input
-										readonly
-											formControlName="course_name"
-											class="form-control"
-											type="text"	/>
-									</div>
-								</td>
-								<td style="padding-right:15px">
-									<div class="form-group">
-										<input	formControlName="obtained"
-										readonly
-											class="form-control"
-											/>
-									</div>
-								</td>
-								<td>
-									<div class="form-group">
-										<input formControlName="accredited_by"
-											class="form-control"
-											readonly
-											type="text"	/>
-									</div>
-								</td>
-								<td>
-									<button
-										placement="top" ngbTooltip="Șterge cursul"
-										(click)="removeCourse(i)"
-										class="btn-danger btn margin-auto-center"
-										type="button">
-										<span class="fa fa-trash"></span>
-									</button>
-								</td>
-							</tr>
-							<tr *ngIf="c.controls.length === 0">
-								<td colspan="4" class="text-center p-4">Nicio specializare adăugată. Vă rugăm completați formularul de mai jos și apăsați pe butonul "<span class="fa fa-plus-circle text-info"></span>"  pentru a salva acreditarea.</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td style="padding-right:15px">
-									<div class="form-group">
-										<input 
-											[(ngModel)]="coursename"
-											[ngModelOptions]="{ standalone: true }"
-											type="text"
-											class="form-control"
-											[ngClass]="{ 'error': coursenameError }"
-											(selectItem)="selectedcourse($event)"
-											(keyup)="courseKey($event)"
-											[ngbTypeahead]="searchcourse"
-											[resultFormatter]="formatter"
-											[inputFormatter]="formatter"
-											(focus)="focus3$.next($event.target.value)"
-											(click)="click3$.next($event.target.value)"
-											#instance="ngbTypeahead"/>
-									</div>
-									<span class="error-message" *ngIf="coursenameError">*Alegeți un curs din listă</span>
-								</td>
-								<td style="padding-right:15px">
-									<div class="form-group">
-										<div class="input-group datepicker">
-											<input class="form-control" placeholder="dd.mm.yyyy" [ngModelOptions]="{ standalone: true }"
-											readonly style="background: white;"
-											(focus)="d.open()"
-											name="dp" [(ngModel)]="obtained" ngbDatepicker [maxDate]="now" #d="ngbDatepicker">
-											<div class="input-group-append">
-												<button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
-											</div>
+							</td>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<input formControlName="obtained" readonly class="form-control" />
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<input formControlName="accredited_by" class="form-control" readonly type="text" />
+								</div>
+							</td>
+							<td>
+								<button placement="top" ngbTooltip="Șterge cursul" (click)="removeCourse(i)"
+									class="btn-danger btn margin-auto-center" type="button">
+									<span class="fa fa-trash"></span>
+								</button>
+							</td>
+						</tr>
+						<tr *ngIf="c.controls.length === 0">
+							<td colspan="4" class="text-center p-4">Nicio specializare adăugată. Vă rugăm completați
+								formularul de mai jos și apăsați pe butonul "<span
+									class="fa fa-plus-circle text-info"></span>" pentru a salva acreditarea.</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<input [(ngModel)]="coursename" [ngModelOptions]="{ standalone: true }" type="text"
+										class="form-control" [ngClass]="{ 'error': coursenameError }"
+										(selectItem)="selectedcourse($event)" (keyup)="courseKey($event)"
+										[ngbTypeahead]="searchcourse" [resultFormatter]="formatter"
+										[inputFormatter]="formatter" (focus)="focus3$.next($event.target.value)"
+										(click)="click3$.next($event.target.value)" #instance="ngbTypeahead" />
+								</div>
+								<span class="error-message" *ngIf="coursenameError">*Alegeți un curs din listă</span>
+							</td>
+							<td style="padding-right:15px">
+								<div class="form-group">
+									<div class="input-group datepicker">
+										<input class="form-control" placeholder="dd.mm.yyyy"
+											[ngModelOptions]="{ standalone: true }" readonly style="background: white;"
+											(focus)="d.open()" name="dp" [(ngModel)]="obtained" ngbDatepicker
+											[maxDate]="now" #d="ngbDatepicker">
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+												type="button"><i class="fa fa-calendar"></i></button>
 										</div>
 									</div>
-									<span class="error-message" *ngIf="dateError">*Data trebuie să fie anterioară</span>
-								</td>
-								<td>
-									<div class="form-group">
-										<input
-											[(ngModel)]="acreditedby"
-											[ngModelOptions]="{ standalone: true }"
-											type="text"
-											(keyup)="acreditorKey()"
-											[disabled]=static_accreditor
-											class="form-control"
-											[ngbTypeahead]="searchacreditedby"
-											[resultFormatter]="formatter"
-											[inputFormatter]="formatter"
-											(focus)="focus4$.next($event.target.value)"
-											(click)="click4$.next($event.target.value)"
-											#instance="ngbTypeahead"/>
-									</div>
-									<span class="error-message" *ngIf="accreditedError">*Acest câmp este obligatoriu</span>
-								</td>
-								<td>
-									<button	placement="top" ngbTooltip="Adaugă cursul"
-										(click)="addCourse()"
-										class="btn-info btn margin-auto-center"
-										type="button">
-										<span class="fa fa-plus-circle"></span>
-									</button>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-	
-				<div class="mt-4 col-md-12">
-					<div class="form-group">
-						<label>Comentarii</label>
-						<textarea
-							class="form-control"
-							rows="3"
-							[ngClass]="{ 'error': form.controls.comments.invalid && form.controls.comments.touched }"
-							formControlName="comments"
-							type="text">
+								</div>
+								<span class="error-message" *ngIf="dateError">*Data trebuie să fie anterioară</span>
+							</td>
+							<td>
+								<div class="form-group">
+									<input [(ngModel)]="acreditedby" [ngModelOptions]="{ standalone: true }" type="text"
+										(keyup)="acreditorKey()" [disabled]=static_accreditor class="form-control"
+										[ngbTypeahead]="searchacreditedby" [resultFormatter]="formatter"
+										[inputFormatter]="formatter" (focus)="focus4$.next($event.target.value)"
+										(click)="click4$.next($event.target.value)" #instance="ngbTypeahead" />
+								</div>
+								<span class="error-message" *ngIf="accreditedError">*Acest câmp este obligatoriu</span>
+							</td>
+							<td>
+								<button placement="top" ngbTooltip="Adaugă cursul" (click)="addCourse()"
+									class="btn-info btn margin-auto-center" type="button">
+									<span class="fa fa-plus-circle"></span>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div class="mt-4 col-md-12">
+				<div class="form-group">
+					<label>Comentarii</label>
+					<textarea class="form-control" rows="3"
+						[ngClass]="{ 'error': form.controls.comments.invalid && form.controls.comments.touched }"
+						formControlName="comments" type="text">
 						</textarea>
-					</div>
 				</div>
 			</div>
-			<button
-				[disabled]="form.invalid"
-				*ngIf="!loading"
-				class=" btn btn-info btn-rounded waves-effect waves-light mt-5 float-right mb-5"
-				type="submit">
-				Salvează
-			</button>
-			<div class="spinner-border text-green float-right mt-5" role="status" *ngIf="loading">
-				<span class="sr-only">Loading...</span>
-			</div>
-		</form>
-	</div>
-	
+		</div>
+		<button [disabled]="form.invalid" *ngIf="!loading"
+			class=" btn btn-info btn-rounded waves-effect waves-light mt-5 float-right mb-5" type="submit">
+			Salvează
+		</button>
+		<div class="spinner-border text-green float-right mt-5" role="status" *ngIf="loading">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</form>
+</div>

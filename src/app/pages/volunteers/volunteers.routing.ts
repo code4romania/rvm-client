@@ -20,7 +20,7 @@ const routes: Routes = [
 				path: 'add',
 				component: AddVolunteerComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'id/:id',
@@ -30,13 +30,13 @@ const routes: Routes = [
 				path: 'edit/:id',
 				component: EditVolunteerComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'import',
 				component: ImportVolunteersComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			}
 		]
 	}
@@ -46,4 +46,4 @@ const routes: Routes = [
 	exports: [RouterModule],
 	imports: [RouterModule.forChild(routes)]
 })
-export class VolunteersRoutingModule {}
+export class VolunteersRoutingModule { }

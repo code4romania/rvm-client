@@ -1,36 +1,36 @@
-::ng-deep .category{
-    .none-selected:before {
-        content: 'Categorie' !important;
-    }
+::ng-deep .category {
+	.none-selected:before {
+		content: "Categorie" !important;
+	}
 }
-::ng-deep .specialization{
-    .none-selected:before{
-        content:'Specializări' !important;
-    }
+::ng-deep .specialization {
+	.none-selected:before {
+		content: "Specializări" !important;
+	}
 }
 
 .hide {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 .show {
-    visibility: unset;
+	visibility: unset;
 }
-button{
-    word-break: break-word;
+button {
+	word-break: break-word;
 }
-td{
-    p{
-        word-break: break-word;
-    }
+td {
+	p {
+		word-break: break-word;
+	}
 }
-.no-borders{
-    td{
-        border:none;
-        padding: 5px;
-        word-break: normal;
-    }
+.no-borders {
+	td {
+		border: none;
+		padding: 5px;
+		word-break: normal;
+	}
 }
-.non-clickable{
-    cursor: default !important;
+.non-clickable {
+	cursor: default !important;
 }

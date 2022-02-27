@@ -1,12 +1,12 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-    "module": "es2020",
+		"module": "es2020",
 		"outDir": "./dist/out-tsc",
 		"noImplicitAny": true,
 		"sourceMap": true,
 		"declaration": false,
-    "moduleResolution": "node",
+		"moduleResolution": "node",
 		"experimentalDecorators": true,
 		"removeComments": false,
 		"target": "es2015",

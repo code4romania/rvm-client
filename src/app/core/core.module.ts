@@ -53,4 +53,4 @@ import {
 		},
 	]
 })
-export class CoreModule {}
+export class CoreModule { }

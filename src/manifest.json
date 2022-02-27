@@ -1,12 +1,10 @@
 {
-  "name": "rvm-client",
-  "short_name": "rvm-client",
-  "start_url": "index.html",
-  "display": "fullscreen",
-  "icons": [
-    
-  ],
-  "background_color": "#285DAB",
-  "theme_color": "#0090E3",
-  "orientation": "portrait"
+	"name": "rvm-client",
+	"short_name": "rvm-client",
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"icons": [],
+	"background_color": "#285DAB",
+	"theme_color": "#0090E3",
+	"orientation": "portrait"
 }

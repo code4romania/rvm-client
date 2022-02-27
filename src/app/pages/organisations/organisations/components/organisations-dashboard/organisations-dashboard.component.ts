@@ -24,7 +24,7 @@ export class OrganisationsDashboardComponent implements OnInit {
 	* values to be displayed in filter menus
 	*/
 	categoryFilterValues: any[];
-	typeFilterValues = [{id: 'Națională', name: 'Națională'}, {id: 'Locală', name: 'Locală'}];
+	typeFilterValues = [{ id: 'Națională', name: 'Națională' }, { id: 'Locală', name: 'Locală' }];
 	specializationFilterValues: any[];
 	locationFilterValues: any[];
 	/**
@@ -40,7 +40,7 @@ export class OrganisationsDashboardComponent implements OnInit {
 		private filterService: FiltersService,
 		private citiesandcounties: CitiesCountiesService,
 		private router: Router
-	) {}
+	) { }
 
 
 	ngOnInit() {
@@ -56,7 +56,7 @@ export class OrganisationsDashboardComponent implements OnInit {
 
 		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem._id, name: elem.name};
+				return { id: elem._id, name: elem.name };
 			});
 		});
 		this.filterService.getCategoryFilters().subscribe((data) => {
@@ -66,7 +66,7 @@ export class OrganisationsDashboardComponent implements OnInit {
 					id: x._id,
 					name: x.name,
 					parent_id: x.parent_id,
-					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					pp: x.parent_id === '0' ? x.name : (parent ? parent.name : null),
 					level: x.parent_id === '0' ? 0 : 1
 				};
 			});
@@ -120,17 +120,17 @@ export class OrganisationsDashboardComponent implements OnInit {
 	* @param {number} id the index in the pager filters and filters selected array
 	*/
 	filterChanged(id?: number) {
-		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
+		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
-		/**
-	* single select filter callback
-	* @param {number} id the index in the pager filters and filters selected array
-	*/
+	/**
+* single select filter callback
+* @param {number} id the index in the pager filters and filters selected array
+*/
 	singleFilterChanged(id?: number) {
 
 		if (this.selected[id]) {
-			this.pager.filters[id] =  this.selected[id].id;
+			this.pager.filters[id] = this.selected[id].id;
 		} else {
 			this.pager.filters[id] = null;
 		}

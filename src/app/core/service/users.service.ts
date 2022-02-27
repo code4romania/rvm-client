@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -8,10 +9,10 @@ import { HttpClient } from '@angular/common/http';
 	 * User service class
 	 */
 export class UsersService {
-/**
-	 * class constructor
-	 */
-	constructor(private httpClient: HttpClient) {}
+	/**
+		 * class constructor
+		 */
+	constructor(private httpClient: HttpClient) { }
 	/**
 	 *init pager
 	 */
@@ -23,17 +24,17 @@ export class UsersService {
 		total: 0,
 		filters: {}
 	};
-/**
-	 * return pager
-	 */
+	/**
+		 * return pager
+		 */
 	getPager() {
-		return {...this.pager};
+		return { ...this.pager };
 	}
 	/**
 	 * post a new User to website, auto add Header
 	 */
 	addUser(payload: any) {
-		return this.httpClient.post('/users', payload );
+		return this.httpClient.post('/users', payload);
 	}
 
 	/**
@@ -41,7 +42,7 @@ export class UsersService {
 	 */
 	getUsers(paginationObj?: any): Observable<any> {
 		let params: any = {};
-		params = {...params, ...paginationObj};
+		params = { ...params, ...paginationObj };
 		if (params.filters) {
 			Object.keys(params.filters).forEach((key) => {
 				if (params.filters[key]) {
@@ -58,8 +59,8 @@ export class UsersService {
 	 */
 	getUser(id: string, paginationObj?: any): Observable<any> {
 		let params: any = {};
-		params = {...params, ...paginationObj};
-		return this.httpClient.get(`/users/${id}`, {params: params});
+		params = { ...params, ...paginationObj };
+		return this.httpClient.get(`/users/${id}`, { params: params });
 	}
 
 	/**
@@ -67,7 +68,7 @@ export class UsersService {
 	 * @param payload
 	 */
 	updateUser(payload: any): Observable<any> {
-		return this.httpClient.put(`/users/${payload._id}`, payload );
+		return this.httpClient.put(`/users/${payload._id}`, payload);
 	}
 
 	/**

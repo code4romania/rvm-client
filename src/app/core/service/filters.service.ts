@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class FiltersService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 	/**
 	* get resource categories
 	* @returns an observable containing the categories object list
 	*/
 	getCategoryFilters(): Observable<any> {
-		return this.http.get('/resources/categories' );
+		return this.http.get('/resources/categories');
 	}
 	/**
 	* get subcategories of a category (filters[2]) and optionaly filter by name (filters[1])
@@ -28,8 +28,8 @@ export class FiltersService {
 	*/
 	getorganisationbyName(name?: String): Observable<any> {
 		let params = {};
-		if (name) { params = {...params, ...{name: name}}; }
-		return this.http.get('/filter/organisations', {params: params} );
+		if (name) { params = { ...params, ...{ name: name } }; }
+		return this.http.get('/filter/organisations', { params: params });
 	}
 	/**
 	* get all courses in system, but only name and id. Optional filter by name
@@ -38,8 +38,8 @@ export class FiltersService {
 	*/
 	getSpecializationFilters(name?: String): Observable<any> {
 		let params = {};
-		if (name) { params = {...params, ...{name: name}}; }
-		return this.http.get('/filter/volunteers/courses', {params: params} );
+		if (name) { params = { ...params, ...{ name: name } }; }
+		return this.http.get('/filter/volunteers/courses', { params: params });
 	}
 	/**
 	* get all institutions in system, but only name and id. Optional filter by name
@@ -48,8 +48,8 @@ export class FiltersService {
 	*/
 	getInstitutionFilters(name?: String): Observable<any> {
 		let params = {};
-		if (name) { params = {...params, ...{name: name}}; }
-		return this.http.get('/filter/users/institutions', {params: params});
+		if (name) { params = { ...params, ...{ name: name } }; }
+		return this.http.get('/filter/users/institutions', { params: params });
 	}
 	/**
 	* get all acreditors in system, but only name and id. Optional filter by name
@@ -58,7 +58,7 @@ export class FiltersService {
 	*/
 	getAcreditedFilters(name?: String): Observable<any> {
 		let params = {};
-		if (name) { params = {...params, ...{name: name}}; }
-		return this.http.get('/filter/accreditedby', {params: params} );
+		if (name) { params = { ...params, ...{ name: name } }; }
+		return this.http.get('/filter/accreditedby', { params: params });
 	}
 }

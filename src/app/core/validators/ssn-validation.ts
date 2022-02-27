@@ -15,14 +15,14 @@ export class SsnValidation {
 			const s = idx.map((x) => coefs[x] * cnp[x]);
 			const res = s.reduce((a, b) => a + b, 0) % 11;
 
-			if ((res < 10 && res === cnp[12]) || (res === 10 && cnp[12] === 1) ) {
+			if ((res < 10 && res === cnp[12]) || (res === 10 && cnp[12] === 1)) {
 				return null;
 			} else {
-				return {ssn: 'CNP-ul introdus nu este valid.'};
+				return { ssn: 'CNP-ul introdus nu este valid.' };
 			}
 
 		} else {
-			return {ssn: 'CNP-ul introdus nu este valid.'};
+			return { ssn: 'CNP-ul introdus nu este valid.' };
 		}
 	}
 }

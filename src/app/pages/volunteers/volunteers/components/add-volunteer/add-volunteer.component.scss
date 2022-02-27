@@ -23,8 +23,8 @@
 .border-spacing {
 	border-collapse: separate;
 	border-spacing: 10px;
-	border-collapse: expression('separate', cellSpacing = '10px');
+	border-collapse: expression("separate", cellSpacing = "10px");
 }
-::ng-deep .form-group .datepicker .dropdown-menu.show{
+::ng-deep .form-group .datepicker .dropdown-menu.show {
 	max-height: initial;
 }

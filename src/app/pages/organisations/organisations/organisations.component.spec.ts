@@ -8,9 +8,9 @@ describe('OrganisationsComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ OrganisationsComponent ]
+			declarations: [OrganisationsComponent]
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {

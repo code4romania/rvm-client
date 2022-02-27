@@ -16,11 +16,10 @@ File: scss
  *	7. Widgets
  *	8. Custom Templates
  */
- 
-@import 'variable'; 
+
+@import "variable";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-@import 'app';
-@import 'pages';
-@import 'responsive';  
-
+@import "app";
+@import "pages";
+@import "responsive";

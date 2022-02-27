@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 	styleUrls: ['./volunteer-dashboard.component.scss']
 })
 export class VolunteerDashboardComponent implements OnInit {
-		/**
-	 * store the volunteers list
-	 */
+	/**
+ * store the volunteers list
+ */
 	volunteersData: any = [];
-		/**
-	 * pager for the resources table
-	 */
+	/**
+ * pager for the resources table
+ */
 	pager: any = {};
 	/**
 	 * flag for HTML to know how to display data
@@ -34,8 +34,8 @@ export class VolunteerDashboardComponent implements OnInit {
 	specializationFilterValues: any[];
 
 	constructor(private volunteerService: VolunteerService, public breakpointObserver: BreakpointObserver,
-			private citiesandcounties: CitiesCountiesService, private filterService: FiltersService,
-			public authService: AuthenticationService, private router: Router) { }
+		private citiesandcounties: CitiesCountiesService, private filterService: FiltersService,
+		public authService: AuthenticationService, private router: Router) { }
 
 	ngOnInit() {
 		this.volunteerService.setPager();
@@ -45,7 +45,7 @@ export class VolunteerDashboardComponent implements OnInit {
 		/**
 		 * get filterable values
 		 */
-		this.citiesandcounties.getCounties('').subscribe((response:  any) => {
+		this.citiesandcounties.getCounties('').subscribe((response: any) => {
 			const aux = response;
 			aux.map((elem: { id: any; _id: any; }) => elem.id = elem._id);
 			this.locationFilterValues = aux;
@@ -53,13 +53,13 @@ export class VolunteerDashboardComponent implements OnInit {
 
 		this.filterService.getorganisationbyName('').subscribe((data) => {
 			this.NGOFilterValues = data.map((elem: any) => {
-				return {id: elem._id, name: elem.name};
-				});
+				return { id: elem._id, name: elem.name };
+			});
 			// this.ngofilterResult = data.map((elem:any) => elem.name);
 		});
 		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem._id, name: elem.name};
+				return { id: elem._id, name: elem.name };
 			});
 		});
 
@@ -74,10 +74,10 @@ export class VolunteerDashboardComponent implements OnInit {
 			}
 		});
 	}
-/**
-	 * get data from server and store localy
+	/**
+		 * get data from server and store localy
 
-	 */
+		 */
 	getData() {
 		this.volunteerService.getVolunteers(this.pager).subscribe((element: any) => {
 			if (element) {
@@ -86,9 +86,9 @@ export class VolunteerDashboardComponent implements OnInit {
 			}
 		});
 	}
-/**
-	 * send user to add volunteers. if is NGO the ngo id is static.
-	 */
+	/**
+		 * send user to add volunteers. if is NGO the ngo id is static.
+		 */
 	addvolunteer() {
 		if (this.authService.is('NGO')) {
 			const navigationExtras = {
@@ -105,29 +105,29 @@ export class VolunteerDashboardComponent implements OnInit {
 			this.router.navigate(['volunteers/add']);
 		}
 	}
-/**
-	 * sort callback. Filters added to pager and then a request is made
-	 * @param {any} pager the pager with the search filer added
-	 */
+	/**
+		 * sort callback. Filters added to pager and then a request is made
+		 * @param {any} pager the pager with the search filer added
+		 */
 	sortChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-/**
-	 * search callback. Filters added to pager and then a request is made
-	 * @param {any} pager the pager with the search filer added
-	 */
+	/**
+		 * search callback. Filters added to pager and then a request is made
+		 * @param {any} pager the pager with the search filer added
+		 */
 	searchChanged(pager: any) {
 		this.pager = pager;
 		this.getData();
 	}
-/**
-	 * filter callback. Filters added to pager and then a request is made
-	 * @param {number} id the index in the pager filters and filters Selected array
-	 */
+	/**
+		 * filter callback. Filters added to pager and then a request is made
+		 * @param {number} id the index in the pager filters and filters Selected array
+		 */
 	filterChanged(id?: number) {
 		console.log(this.selected[id]);
-		this.pager.filters[id] =  this.selected[id].map((elem: any) => elem.id).join(',');
+		this.pager.filters[id] = this.selected[id].map((elem: any) => elem.id).join(',');
 		this.getData();
 	}
 

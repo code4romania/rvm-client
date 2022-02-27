@@ -1,17 +1,10 @@
 import {
 	Component,
-	OnInit,
-	ViewChild,
-	AfterContentChecked,
+	OnInit
 } from '@angular/core';
-import { ActivatedRoute, Router, NavigationExtras, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { OrganisationService } from '../../../organisations.service';
-import { NgbModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
-import {
-	FormGroup,
-	Validators,
-	FormBuilder
-} from '@angular/forms';
+
 import { AuthenticationService } from '../../../../../core/authentication/authentication.service';
 
 import { CitiesCountiesService } from '../../../../../core/service/cities-counties.service';
@@ -19,20 +12,12 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 import { Location } from '@angular/common';
 import { FiltersService, UsersService } from '@app/core';
 
-/**
-	 * Alert message interface
-	 */
-interface Alert {
-	type: string;
-	message: string;
-}
-
 @Component({
 	selector: 'app-organisation-details',
 	templateUrl: './organisation-details.component.html',
 	styleUrls: ['./organisation-details.component.scss']
 })
-export class NgodetailsComponent implements OnInit, AfterContentChecked {
+export class NgodetailsComponent implements OnInit {
 
 	/**
 	 * var that holds data about NGO, resources and volunteers
@@ -70,10 +55,10 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	categoryFilterValues: any[] = [];
 	specializationFilterValues: any[] = [];
 	locationFilterValues: any[] = [];
+
 	/**
 	 * Tabs reference for vefifing which is open
 	 */
-	@ViewChild('tabRef', { static: true}) tabRef: NgbTabset;
 	tabsInitialized = false;
 	selectedTab = 'volunteers';
 
@@ -138,14 +123,14 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 					id: x._id,
 					name: x.name,
 					parent_id: x.parent_id,
-					pp: x.parent_id === '0' ? x.name : ( parent ? parent.name : null),
+					pp: x.parent_id === '0' ? x.name : (parent ? parent.name : null),
 					level: x.parent_id === '0' ? 0 : 1
 				};
 			});
 		});
 		this.filterService.getSpecializationFilters().subscribe((data) => {
 			this.specializationFilterValues = data.map((elem: any) => {
-				return {id: elem._id, name: elem.name};
+				return { id: elem._id, name: elem.name };
 			});
 		});
 		/**
@@ -158,14 +143,7 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		this.getResources();
 		this.getVolunteers();
 	}
-	/**
-		 * switch tab of necessary
-		 */
-	ngAfterContentChecked() {
-		if (this.tabRef.tabs) {
-			this.tabRef.select(this.selectedTab);
-		}
-	}
+
 	/**
 		 * get org data
 		 */
@@ -182,9 +160,9 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 			};
 		});
 	}
-		/**
-		 * get volunteers data
-		 */
+	/**
+	 * get volunteers data
+	 */
 	getVolunteers() {
 		this.organisationService.getVolunteersbyorganisation(this.ngoid, this.volunteerPager).subscribe(data => {
 			this.volunteerPager.total = data.pager.total;
@@ -237,13 +215,13 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 		 * @param {number} id the index in the pager filters and filters Selected array
 		 */
 	resourcefilterChanged(id: number) {
-		this.resourcePager.filters[id] =  this.resourceFiltersSelected[id].map((elem: any) => elem.id).join(',');
+		this.resourcePager.filters[id] = this.resourceFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getResources();
 	}
-/**
-	 * volunteer filter callback. Filters added to pager and then a request is made
-	 * @param {number} id the index in the pager filters and filters Selected array
-	 */
+	/**
+		 * volunteer filter callback. Filters added to pager and then a request is made
+		 * @param {number} id the index in the pager filters and filters Selected array
+		 */
 	volunteerfilterChanged(id: number) {
 		this.volunteerPager.filters[id] = this.volunteerFiltersSelected[id].map((elem: any) => elem.id).join(',');
 		this.getVolunteers();
@@ -304,11 +282,11 @@ export class NgodetailsComponent implements OnInit, AfterContentChecked {
 	*/
 	resourceSortChanged(pager: any) {
 		this.resourcePager = pager;
-			this.getResources();
+		this.getResources();
 	}
-/**
-	* search callback for both tabels
-	*/
+	/**
+		* search callback for both tabels
+		*/
 	searchChanged(pager: any) {
 		if (pager.search !== '') {
 			if (this.selectedTab === 'volunteers') {

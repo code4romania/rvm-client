@@ -1,17 +1,19 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { ErrorMessageObject } from '../model/error.model';
+
 @Injectable()
 /**
 	* Error service to show http error message in console
 */
 export class ErrorMessageService {
-	private _errors: ErrorModel.ErrorMessageObject[] = [];
-	public errors$ = new EventEmitter<ErrorModel.ErrorMessageObject[]>();
+	private _errors: ErrorMessageObject[] = [];
+	public errors$ = new EventEmitter<ErrorMessageObject[]>();
 
-	constructor() {}
+	constructor() { }
 	/*
 		* return errors
 */
-	get errors(): ErrorModel.ErrorMessageObject[] {
+	get errors(): ErrorMessageObject[] {
 		return this._errors;
 	}
 	/**
@@ -27,9 +29,9 @@ export class ErrorMessageService {
 		console.log(this._errors);
 		this.errors$.emit(this._errors);
 	}
-/**
-	* Clear all errors from error list
-*/
+	/**
+		* Clear all errors from error list
+	*/
 	public clear() {
 		this._errors = [];
 		this.errors$.emit(this._errors);

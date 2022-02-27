@@ -5,17 +5,17 @@ import { MapRoutingModule } from './map.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MapService } from './map.service';
 @NgModule({
-    declarations: [
-        MapComponent
-    ],
-    imports: [
-        NgbModule,
-        CommonModule,
-        MapRoutingModule,
-    ],
-    providers: [
-        MapService,
-    ]
+	declarations: [
+		MapComponent
+	],
+	imports: [
+		NgbModule,
+		CommonModule,
+		MapRoutingModule,
+	],
+	providers: [
+		MapService,
+	]
 })
 export class MapModule {
 

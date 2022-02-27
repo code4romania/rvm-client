@@ -15,37 +15,37 @@ const routes: Routes = [
 				path: '',
 				component: OrganisationsDashboardComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU']}
+				data: { roles: ['DSU'] }
 			},
 			{
 				path: 'add',
 				component: OrganisationaddComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU']}
+				data: { roles: ['DSU'] }
 			},
 			{
 				path: 'edit/:id',
 				component: OrganisationEditComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'id/:id',
 				component: NgodetailsComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']},
+				data: { roles: ['DSU', 'NGO'] },
 			},
 			{
 				path: 'id/:id/:tabname',
 				component: NgodetailsComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']},
+				data: { roles: ['DSU', 'NGO'] },
 			},
 			{
 				path: 'id/:id/validate',
 				component: NgodetailsComponent,
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']},
+				data: { roles: ['DSU', 'NGO'] },
 			},
 		]
 	}

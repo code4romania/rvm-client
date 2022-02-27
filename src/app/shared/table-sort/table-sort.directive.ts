@@ -4,9 +4,9 @@ import { Directive, HostBinding, Input, Output, EventEmitter, HostListener } fro
 	selector: '[appTableSort]'
 })
 export class TableSortDirective {
-		/**
-	 * internal pager value
-	 */
+	/**
+ * internal pager value
+ */
 	_pager: any = {};
 	/**
 	 * angular bindings for class display
@@ -14,19 +14,19 @@ export class TableSortDirective {
 	@HostBinding('class.sort') active = false;
 	@HostBinding('class.asc') asc = false;
 	@HostBinding('class.desc') desc = false;
-/**
-	 * value
-	 */
+	/**
+		 * value
+		 */
 	@Input() value: any;
-/**
-	 * return pager
-	 */
+	/**
+		 * return pager
+		 */
 	get pager(): any {
 		return this._pager;
 	}
-/**
-	 * set pager from input value and adjendat values
-	 */
+	/**
+		 * set pager from input value and adjendat values
+		 */
 	@Input()
 	set pager(data: any) {
 		this._pager = data;
@@ -47,9 +47,9 @@ export class TableSortDirective {
 
 	constructor() {
 	}
-/**
-	 * emit sort event on click
-	 */
+	/**
+		 * emit sort event on click
+		 */
 	sort() {
 		if (this.pager.sort === this.value) {
 			this.pager.method = this.pager.method === 'ASC' ? 'DESC' : 'ASC';
@@ -57,7 +57,7 @@ export class TableSortDirective {
 			this.pager.method = 'ASC';
 		}
 		this.pager.sort = this.value;
-		this.sortChanged.emit({...this.pager});
+		this.sortChanged.emit({ ...this.pager });
 	}
 
 }

@@ -36,6 +36,6 @@ import { DateParserFormatter } from './shared/date-parser-formatter';
 		SharedModule
 	],
 	bootstrap: [AppComponent],
-	providers: [{provide: NgbDateParserFormatter, useClass: DateParserFormatter}]
+	providers: [{ provide: NgbDateParserFormatter, useClass: DateParserFormatter }]
 })
-export class AppModule {}
+export class AppModule { }

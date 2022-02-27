@@ -1,10 +1,10 @@
-::ng-deep .specialization{
-    .none-selected:before{
-        content:'Specializări' !important;
-    }
+::ng-deep .specialization {
+	.none-selected:before {
+		content: "Specializări" !important;
+	}
 }
-::ng-deep .ngo{
-    .none-selected:before{
-        content:'Organizații' !important;
-    }
+::ng-deep .ngo {
+	.none-selected:before {
+		content: "Organizații" !important;
+	}
 }

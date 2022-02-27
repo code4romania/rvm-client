@@ -13,7 +13,7 @@ export class ButtonLoaderComponent implements OnInit {
 	@Input()
 	label: string;
 
-	constructor() {}
+	constructor() { }
 
-	ngOnInit() {}
+	ngOnInit() { }
 }

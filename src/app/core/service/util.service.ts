@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 	* class with general utility methods
 	*/
 export class UtilService {
-	constructor() {}
+	constructor() { }
 	/**
 	* remove all empty prop in obj sent as param
 	* @param {any} obj the object from which to remove

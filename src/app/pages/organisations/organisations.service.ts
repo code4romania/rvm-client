@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
-		providedIn: 'root'
-	})
+	providedIn: 'root'
+})
 export class OrganisationService {
 	/**
 	 * pagers for the tables in the component
@@ -33,12 +33,12 @@ export class OrganisationService {
 		total: 0,
 		filters: {}
 	};
-/**
-	 * get the standard organisation pager
-	 * @returns pager
-	 */
+	/**
+		 * get the standard organisation pager
+		 * @returns pager
+		 */
 	getPager() {
-		return {...this.pager};
+		return { ...this.pager };
 	}
 	/**
 	 * init pager with default values
@@ -53,22 +53,22 @@ export class OrganisationService {
 			filters: {}
 		};
 	}
-/**
-	 * volunteer pager for ngo details volunteer table
-	 */
+	/**
+		 * volunteer pager for ngo details volunteer table
+		 */
 	getVolunteerPager() {
-		return {...this.volunteerPager};
+		return { ...this.volunteerPager };
 	}
-/**
-	 * resource pager for ngo details resource table
-	 */
+	/**
+		 * resource pager for ngo details resource table
+		 */
 	getResourcePager() {
-		return {...this.resourcePager};
+		return { ...this.resourcePager };
 	}
 	/**
 	 * fields for adding a new resource
 	 */
-	constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) { }
 
 	/**
 	 * post a new organisation to website, auto add Header
@@ -76,17 +76,17 @@ export class OrganisationService {
 	 * @returns observable with response
 	 */
 	addorganisation(payload: any) {
-		return this.httpClient.post('/organisations', payload );
+		return this.httpClient.post('/organisations', payload);
 	}
-/**
-	 * edit a new organisation
-	 * @param {any} payload the org data to be modified
-	 * @param {string} id of the organistation to be modified
-	 * @returns observable with response
-	 */
+	/**
+		 * edit a new organisation
+		 * @param {any} payload the org data to be modified
+		 * @param {string} id of the organistation to be modified
+		 * @returns observable with response
+		 */
 	editOrganisation(id: string, payload: any) {
 
-		return this.httpClient.put(`/organisations/${id}`, payload );
+		return this.httpClient.put(`/organisations/${id}`, payload);
 	}
 
 	/**
@@ -97,7 +97,7 @@ export class OrganisationService {
 	getorganisations(paginationObj?: any): Observable<any> {
 		let params: any = {};
 
-		params = {...params, ...paginationObj};
+		params = { ...params, ...paginationObj };
 		if (params.filters) {
 			Object.keys(params.filters).forEach((key) => {
 				if (params.filters[key]) {
@@ -147,19 +147,19 @@ export class OrganisationService {
 	 */
 	getorganisationbyName(name: String): Observable<any> {
 		let params = {};
-		params = {...params, ...{name: name}};
-		return this.httpClient.get('/organisations', {params: params} );
+		params = { ...params, ...{ name: name } };
+		return this.httpClient.get('/organisations', { params: params });
 	}
-/**
-	 * get resource table with ngo id
-	 * @param {string} id of the organistation to be queried
-	 * @param {any} paginationObj of the resource table
-	 * @returns observable with response
-	 */
+	/**
+		 * get resource table with ngo id
+		 * @param {string} id of the organistation to be queried
+		 * @param {any} paginationObj of the resource table
+		 * @returns observable with response
+		 */
 	getResourcesbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
 
-		params = {...params, ...paginationObj};
+		params = { ...params, ...paginationObj };
 		if (params.filters) {
 			Object.keys(params.filters).forEach((key) => {
 				if (params.filters[key]) {
@@ -168,18 +168,18 @@ export class OrganisationService {
 			});
 			delete params.filters;
 		}
-		return this.httpClient.get(`/organisations/${id}/resources`, {params: params});
+		return this.httpClient.get(`/organisations/${id}/resources`, { params: params });
 	}
-/**
-	 * get volunteers table with ngo id
-	 * @param {string} id of the organistation to be queried
-	 * @param {any} paginationObj of the volunteers table
-	 * @returns observable with response
-	 */
+	/**
+		 * get volunteers table with ngo id
+		 * @param {string} id of the organistation to be queried
+		 * @param {any} paginationObj of the volunteers table
+		 * @returns observable with response
+		 */
 	getVolunteersbyorganisation(id: String, paginationObj?: any): Observable<any> {
 		let params: any = {};
 
-		params = {...params, ...paginationObj};
+		params = { ...params, ...paginationObj };
 		if (params.filters) {
 			Object.keys(params.filters).forEach((key) => {
 				if (params.filters[key]) {
@@ -188,6 +188,6 @@ export class OrganisationService {
 			});
 			delete params.filters;
 		}
-		return this.httpClient.get(`/organisations/${id}/volunteers`, {params: params});
+		return this.httpClient.get(`/organisations/${id}/volunteers`, { params: params });
 	}
 }

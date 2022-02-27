@@ -8,9 +8,9 @@ describe('AddVolunteerComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ AddVolunteerComponent ]
+			declarations: [AddVolunteerComponent]
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {

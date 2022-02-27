@@ -8,35 +8,35 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourcesService } from './resources.service';
 import { SharedModule } from '../../shared/shared.module';
-import { SelectDropDownModule } from 'custom-select-dropdown';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { AddResourceComponent } from './resources/components/add-resource/add-resource.component';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { ImportResourcesComponent } from './resources/components/import-resources/import-resources.component';
 import { ResourceListComponent } from './resources/components/resource-list/resource-list.component';
 import { EditResourceComponent } from './resources/components/edit-resource/edit-resource.component';
 @NgModule({
-    declarations: [
-        ResourcesComponent,
-        ImportResourcesComponent,
-        ResourcesdashboardComponent,
-        ResourcedetailsComponent,
-        AddResourceComponent,
-        ResourceListComponent,
-        EditResourceComponent,
-    ],
-    imports: [
-        NgxMultiselectModule,
-        SelectDropDownModule,
-        NgbModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ResourcesRoutingModule,
-        SharedModule,
-    ],
-    providers: [
-        ResourcesService,
-    ]
+	declarations: [
+		ResourcesComponent,
+		ImportResourcesComponent,
+		ResourcesdashboardComponent,
+		ResourcedetailsComponent,
+		AddResourceComponent,
+		ResourceListComponent,
+		EditResourceComponent,
+	],
+	imports: [
+		NgxMultiselectModule,
+		SelectDropDownModule,
+		NgbModule,
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		ResourcesRoutingModule,
+		SharedModule,
+	],
+	providers: [
+		ResourcesService,
+	]
 })
 export class ResourcesModule {
 

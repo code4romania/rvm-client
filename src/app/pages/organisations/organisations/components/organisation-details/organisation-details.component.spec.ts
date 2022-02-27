@@ -8,9 +8,9 @@ describe('NgodetailsComponent', () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [ NgodetailsComponent ]
+			declarations: [NgodetailsComponent]
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {

@@ -15,7 +15,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
  */
 @Injectable()
 export class ApiPrefixInterceptor implements HttpInterceptor {
-	constructor(private authService: AuthenticationService) {}
+	constructor(private authService: AuthenticationService) { }
 	intercept(
 		request: HttpRequest<any>,
 		next: HttpHandler
