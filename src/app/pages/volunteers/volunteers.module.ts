@@ -14,25 +14,24 @@ import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { EditVolunteerComponent } from './volunteers/components/edit-volunteer/edit-volunteer.component';
 
 @NgModule({
-	declarations: [
-		VolunteersComponent,
-		VolunteerDashboardComponent,
-		AddVolunteerComponent,
-		VolunteerDetailsComponent,
-		ImportVolunteersComponent,
-		EditVolunteerComponent
-	],
-	imports: [
-		NgxMultiselectModule,
-		SharedModule,
-		SelectDropDownModule,
-		NgbModule,
-		ReactiveFormsModule,
-		FormsModule,
-		CommonModule,
-		VolunteersRoutingModule
-	],
-	entryComponents: [],
-	providers: []
+    declarations: [
+        VolunteersComponent,
+        VolunteerDashboardComponent,
+        AddVolunteerComponent,
+        VolunteerDetailsComponent,
+        ImportVolunteersComponent,
+        EditVolunteerComponent
+    ],
+    imports: [
+        NgxMultiselectModule,
+        SharedModule,
+        SelectDropDownModule,
+        NgbModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        VolunteersRoutingModule
+    ],
+    providers: []
 })
 export class VolunteersModule {}

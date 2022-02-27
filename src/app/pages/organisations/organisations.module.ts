@@ -13,29 +13,26 @@ import { SelectDropDownModule } from 'custom-select-dropdown';
 import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 import { OrganisationEditComponent } from './organisations/components/organisation-edit/organisation-edit.component';
 @NgModule({
-	declarations: [
-		OrganisationsComponent,
-		NgodetailsComponent,
-		OrganisationaddComponent,
-		OrganisationsDashboardComponent,
-		OrganisationEditComponent,
-	],
-	imports: [
-		NgxMultiselectModule,
-		SelectDropDownModule,
-		SharedModule,
-		NgbModule,
-		FormsModule,
-		ReactiveFormsModule,
-		CommonModule,
-		OrganisationsRoutingModule,
-	],
-	entryComponents: [
-
-	],
-	providers: [
-		OrganisationService
-	]
+    declarations: [
+        OrganisationsComponent,
+        NgodetailsComponent,
+        OrganisationaddComponent,
+        OrganisationsDashboardComponent,
+        OrganisationEditComponent,
+    ],
+    imports: [
+        NgxMultiselectModule,
+        SelectDropDownModule,
+        SharedModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        OrganisationsRoutingModule,
+    ],
+    providers: [
+        OrganisationService
+    ]
 })
 
 export class OrganisationsModule {

@@ -15,32 +15,29 @@ import { ImportResourcesComponent } from './resources/components/import-resource
 import { ResourceListComponent } from './resources/components/resource-list/resource-list.component';
 import { EditResourceComponent } from './resources/components/edit-resource/edit-resource.component';
 @NgModule({
-		declarations: [
-			ResourcesComponent,
-			ImportResourcesComponent,
-			ResourcesdashboardComponent,
-			ResourcedetailsComponent,
-			AddResourceComponent,
-			ResourceListComponent,
-			EditResourceComponent,
-		],
-		imports: [
-			NgxMultiselectModule,
-			SelectDropDownModule,
-			NgbModule,
-			CommonModule,
-			FormsModule,
-			ReactiveFormsModule,
-			ResourcesRoutingModule,
-			SharedModule,
-
-		],
-		entryComponents: [
-		],
-		providers: [
-			ResourcesService,
-		]
-	})
+    declarations: [
+        ResourcesComponent,
+        ImportResourcesComponent,
+        ResourcesdashboardComponent,
+        ResourcedetailsComponent,
+        AddResourceComponent,
+        ResourceListComponent,
+        EditResourceComponent,
+    ],
+    imports: [
+        NgxMultiselectModule,
+        SelectDropDownModule,
+        NgbModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ResourcesRoutingModule,
+        SharedModule,
+    ],
+    providers: [
+        ResourcesService,
+    ]
+})
 export class ResourcesModule {
 
 }

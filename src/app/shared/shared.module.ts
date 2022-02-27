@@ -25,16 +25,15 @@ const list = [
 	BackButtonComponent
 ];
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		RouterModule,
-		NgbModule,
-		ReactiveFormsModule
-	],
-	declarations: [...list],
-	exports: [...list],
-	entryComponents: [],
-	providers: []
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        NgbModule,
+        ReactiveFormsModule
+    ],
+    declarations: [...list],
+    exports: [...list],
+    providers: []
 })
 export class SharedModule {}
