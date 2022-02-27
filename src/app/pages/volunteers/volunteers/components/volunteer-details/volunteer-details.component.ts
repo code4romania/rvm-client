@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VolunteerService } from '../../../volunteers.service';
 import { AuthenticationService } from '@app/core';
 import { Location } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-volunteer-details',
@@ -84,6 +85,14 @@ export class VolunteerDetailsComponent implements OnInit {
 	getData() {
 		this.volunteerService.getVolunteer(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
 			this.data = data;
+			this.data = {
+				...data,
+				updated_at: moment(data.updated_at),
+				courses: data.courses.map((course: any) => ({
+					...course,
+					obtained: moment(course.obtained),
+				}))
+			};
 
 			if (data.courses && data.courses.length > 0) {
 				this.hasAccreditation = true;
