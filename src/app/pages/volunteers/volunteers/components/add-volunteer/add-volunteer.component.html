@@ -98,7 +98,7 @@
 							(click)="click1$.next($event.target.value)" #instance="ngbTypeahead" />
 					</div>
 				</div>
-	
+
 				<div class="mt-4 col-md-4 col-sm-12">
 					<div class="form-group">
 						<label>Localitate *</label>
@@ -159,7 +159,7 @@
 							</td>
 							<td>
 								<div class="form-group">
-									<input formControlName="accredited_by" class="form-control" readonlytype="text"/>
+									<input formControlName="accredited_by" class="form-control" readonlytype="text" readonly/>
 								</div>
 							</td>
 							<td>
@@ -176,7 +176,7 @@
 						<tr>
 							<td style="padding-right:15px">
 								<div class="form-group">
-									<input 
+									<input
 										[(ngModel)]="coursename"
 										[ngModelOptions]="{ standalone: true }"
 										type="text"
@@ -222,10 +222,9 @@
 										[inputFormatter]="formatter"
 										(focus)="focus4$.next($event.target.value)"
 										(click)="click4$.next($event.target.value)"
-                    #instance="ngbTypeahead"
-                    placeholder="Acreditat de"/>
+                    					#instance="ngbTypeahead"
+                    					placeholder="Acreditat de"/>
 								</div>
-								<span class="error-message" *ngIf="accreditedError">*Acest câmp este obligatoriu</span>
 							</td>
 							<td>
 								<button	placement="top" ngbTooltip="Adaugă cursul"
