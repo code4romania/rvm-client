@@ -9,24 +9,26 @@
 			<div class="row" style="width: 100%; margin: 0">
 				<div class="flex-column pr-3 d-none d-xl-block col-xl-10 pl-0">
 					<ul class="nav">
-						<li>
-							<a routerLink="/volunteers" class="nav__link" routerLinkActive="active-link">Voluntari</a>
-						</li>
-						<li *ngIf="authService.is('DSU', 'NGO')">
-							<a routerLink='/resources' class="nav__link" routerLinkActive="active-link">Resurse</a>
-						</li>
-						<li *ngIf="authService.is('DSU')">
-							<a routerLink='/organisations' class="nav__link" routerLinkActive="active-link">Organizații</a>
-						</li>
-						<li *ngIf="authService.is('DSU', 'INS')">
-							<a routerLink='/users' class="nav__link" routerLinkActive="active-link">Utilizatori</a>
-						</li>
-						<li *ngIf="authService.is('DSU')">
-							<a routerLink='/map' class="nav__link" routerLinkActive="active-link">Hartă</a>
-						</li>
-						<li>
-							<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Info</a>
-						</li>
+						<div *ngFor="let link of links | slice: 0:6">
+							<li *ngIf="link.condition">
+								<a
+									[routerLink]="link.routerLink"
+									class="nav__link"
+									routerLinkActive="active-link"
+									>{{ link.label }}</a
+								>
+							</li>
+						</div>
+						<div *ngIf="links.length > 6">
+							<div ngbDropdown class="d-inline-block">
+								<div class="overflow-area" id="dropdown0" ngbDropdownToggle></div>
+								<div ngbDropdownMenu aria-labelledby="dropdown0" class="nav-dropdown-menu">
+									<div *ngFor="let link of links | slice: 6">
+										<button *ngIf="link.condition" ngbDropdownItem [routerLink]="link.routerLink" class="nav-dropdown-item">{{link.label}}</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</ul>
 				</div>
 				<div class="navbar-btn flex-row d-flex justify-end align-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pr-4 pl-0">

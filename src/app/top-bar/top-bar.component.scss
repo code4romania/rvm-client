@@ -23,7 +23,7 @@ header {
   white-space: nowrap;
 }
 
-.nav .nav__link {
+.nav .nav__link, .nav-dropdown-item.dropdown-item, .overflow-area {
   color: #000;
   display: inline-block;
   font-weight: bold;
@@ -32,12 +32,12 @@ header {
   text-transform: uppercase;
 }
 
-.nav .nav__link:hover {
+.nav .nav__link:hover, .nav-dropdown-item.dropdown-item:active, .nav-dropdown-item.dropdown-item:hover, .overflow-area:active, .overflow-area:hover {
   background-color: #264998;
   color: #fff;
 }
 
-.yellow {
+.yellow, .nav-dropdown-item.dropdown-item, .nav-dropdown-menu {
   background-color:rgb(243,	217,	115	);
 }
 /* Layout */
@@ -84,4 +84,12 @@ header {
 .active-link {
   background-color: #264998;
   color: #fff!important;
+}
+
+.nav-dropdown-menu {
+  margin-top: 0 !important;
+  padding: 0 !important;
+  transform: translate(-102.5px, 60px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
 }
