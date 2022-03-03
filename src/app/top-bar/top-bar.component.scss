@@ -62,16 +62,6 @@ header {
  height: 100%;
 }
 
-.hidden-button {
-  display: none;
-}
-
-@media (max-width: 1199px) {
-  .hidden-button {
-    display: block;
-  }
-}
-
 .dropdown-item:active {
   background-color: gray;
 }
