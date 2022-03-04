@@ -37,6 +37,28 @@ header {
   color: #fff;
 }
 
+.nav .nav-btn-drop:hover {
+  background-color: #264998;
+  color: #fff;
+}
+
+#ulHiddenLinks li,
+#ulHiddenLinks li a {
+  width: 100%;
+}
+
+.nav-btn {
+  width: 3rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 575px) {
+  .nav-btn {
+    width: 5rem;
+    text-align: center;
+  }
+}
+
 .yellow {
   background-color:rgb(243,	217,	115	);
 }

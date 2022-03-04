@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthenticationService } from '@app/core';
 import { Router } from '@angular/router';
 
@@ -21,15 +21,9 @@ export class TopBarComponent implements OnInit {
 		this.onResized();
 	}
 
-	onNavBtn() {
-		/*
-		var hlinks = document.getElementById("ulHiddenLinks");
-		if (hlinks.className.includes("d-none")) {
-			hlinks.classList.remove("d-none")
-		} else {
-			hlinks.classList.add("d-none")
-		}
-		*/
+	@HostListener('window:resize', ['$event'])
+	onResize() {
+		this.onResized();
 	}
 
 	onResized() {
@@ -40,12 +34,14 @@ export class TopBarComponent implements OnInit {
 		var hlinksChildren = hlinks.getElementsByTagName("li");
 
 		var numVisibleItems = 0;
-		var totalSpace = vlinks.clientWidth;
+		var totalItems = vlinksChildren.length + hlinksChildren.length;
+		var totalSpace = document.getElementById("divVisibleLinks").clientWidth - 30;
 		var usedSpace = 0;
-		var remainingSpace = totalSpace - usedSpace - 20;
+		var remainingSpace = totalSpace - usedSpace;
 
 		// get all links in one array
-		for (var k = 0; k < hlinksChildren.length; k++) {
+		var initiallength = hlinksChildren.length;
+		for (var k = 0; k < initiallength; k++) {
 			vlinks.append(hlinksChildren[0]);
 		}
 
@@ -65,11 +61,26 @@ export class TopBarComponent implements OnInit {
 			hlinks.prepend(vlinksChildren[j]);
 		}
 
-		// TODO update button
+		// update height of dropdown menu
 		var divHiddenLinks = document.getElementById("divHiddenLinks");
-		var height = hlinksChildren.length * 60 + 20 + 'px';
-		divHiddenLinks.style.height = height;
+		var newHeight = hlinksChildren.length * 60 + 20 + 'px';
+		divHiddenLinks.style.height = newHeight;
 
+		// if no items visible, add 'Menu' to button
+		if (numVisibleItems == 0) {
+			btn.innerText = "Menu";
+		} else {
+			btn.innerText = "";
+		}
+
+		// if all items visible, hide the button
+		if (numVisibleItems == totalItems) {
+			btn.classList.add("d-none");
+			divHiddenLinks.classList.add("d-none");
+		} else {
+			btn.classList.remove("d-none");
+			divHiddenLinks.classList.remove("d-none");
+		}
 	}
 
 	/**

@@ -1,5 +1,5 @@
 <header *ngIf="authService.isAuthenticated()">
-	<nav class=" yellow  container-full-height greedy" id="greedy-nav" (window:resize)="onResized($event)">
+	<nav class=" yellow  container-full-height greedy" id="greedy-nav">
 		<div class="flex-container container flex-row">
 
 			<div class="px-3 bg-white">
@@ -10,7 +10,7 @@
 
 			<div class="row" style="width: 100%; margin: 0">
 
-				<div class="flex-column col-4 col-sm-6 col-md-7 col-lg-8 col-xl-9">
+				<div id="divVisibleLinks" class="flex-column d-none d-sm-flex col-sm-7 col-md-8 col-lg-9 col-xl-9">
 					<ul class="nav" id="ulVisibleLinks">
 						<li>
 							<a routerLink="/volunteers" class="nav__link" routerLinkActive="active-link">Voluntari</a>
@@ -31,23 +31,20 @@
 						<li>
 							<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Info</a>
 						</li>
-						<li>
-							<a routerLink="/info" class="nav__link" routerLinkActive="active-link">Extra</a>
-						</li>
 					</ul>
 				</div>
 
-				<div class="navbar-btn flex-row d-flex justify-end align-center col-8 col-sm-6 
-				 col-md-5 col-lg-4 col-xl-3">
-
-					<div ngbDropdown class="d-inline-block pr-2">
-						<div class="nav-btn" id="greedy-nav-btn" (click)="onNavBtn()"
-							ngbDropdownToggle>Menu</div>
+				<div class="nav flex-row d-flex align-center col-4 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+					<div ngbDropdown class="px-0 nav-btn-drop d-inline-block">
+						<div class="nav-btn" id="greedy-nav-btn" ngbDropdownToggle></div>
 						<div ngbDropdownMenu id="divHiddenLinks" class="yellow">
-							<ul class='nav' id="ulHiddenLinks"></ul>
+							<ul class="nav" id="ulHiddenLinks"></ul>
 						</div>
 					</div>
+				</div>
 
+				<div class="navbar-btn flex-row d-flex justify-end align-center col-8 col-sm-4 
+				 col-md-3 col-lg-2 col-xl-2">
 					<div ngbDropdown class="d-inline-block">
 						<div class="userarea" id="dropdown1" ngbDropdownToggle>
 							<app-current-profile></app-current-profile>
