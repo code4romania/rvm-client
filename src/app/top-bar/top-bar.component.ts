@@ -27,7 +27,7 @@ export class TopBarComponent implements OnInit {
 	}
 
 	onResized() {
-		var btn = document.getElementById("greedy-nav-btn");
+		var btn = document.getElementById("nav-btn");
 		var vlinks = document.getElementById("ulVisibleLinks");
 		var vlinksChildren = vlinks.getElementsByTagName("li");
 		var hlinks = document.getElementById("ulHiddenLinks");
