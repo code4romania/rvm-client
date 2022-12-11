@@ -1,4 +1,4 @@
-declare namespace Authentication {
+export namespace Authentication {
 	/**
 	*	Login payload model to be sent to server
 	*/

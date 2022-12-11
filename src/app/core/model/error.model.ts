@@ -1,4 +1,4 @@
-declare namespace ErrorModel {
+export namespace ErrorModel {
 	/**
 	*	Error object model for consistency
 	*/

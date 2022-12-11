@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-
+import { Authentication } from '@core/model/authentication.model';
 import { LocalStorageService } from '@app/core/local-storage.service';
 
 /**
