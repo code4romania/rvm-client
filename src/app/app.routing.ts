@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticationGuard, RoleGuard } from './core';
 import { NgModule } from '@angular/core';
@@ -7,50 +7,61 @@ import { NotFoundComponent } from './pages/404';
 const AppRoutes: Routes = [
 	{
 		path: '',
-		data: {dashboard: true},
+		data: { dashboard: true },
 		canActivate: [AuthenticationGuard],
 		children: [
 			{
 				path: 'volunteers',
-				loadChildren: './pages/volunteers/volunteers.module#VolunteersModule',
+				loadChildren:
+					'./pages/volunteers/volunteers.module#VolunteersModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			},
 			{
 				path: 'resources',
-				loadChildren: './pages/resources/resources.module#ResourcesModule',
+				loadChildren:
+					'./pages/resources/resources.module#ResourcesModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
+			},
+			{
+				path: 'categories',
+				loadChildren:
+					'./pages/categories/categories.module#CategoriesModule',
+				canActivate: [RoleGuard],
+				data: { roles: ['DSU'] }
 			},
 			{
 				path: 'organisations',
-				loadChildren: './pages/organisations/organisations.module#OrganisationsModule',
+				loadChildren:
+					'./pages/organisations/organisations.module#OrganisationsModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO']}
+				data: { roles: ['DSU', 'NGO'] }
 			},
 			{
 				path: 'map',
 				loadChildren: './pages/map/map.module#MapModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU']}
+				data: { roles: ['DSU'] }
 			},
 			{
 				path: 'info',
 				loadChildren: './pages/info/info.module#InfoModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			},
 			{
 				path: 'users',
 				loadChildren: './pages/users/users.module#UsersModule',
 				canActivate: [RoleGuard],
-				data: {roles: ['DSU', 'NGO', 'INS']}
+				data: { roles: ['DSU', 'NGO', 'INS'] }
 			}
 		]
 	},
 	{
 		path: '',
-		loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
+		loadChildren:
+			'./pages/authentication/authentication.module#AuthenticationModule'
 	},
 	{
 		path: '404',
@@ -58,6 +69,7 @@ const AppRoutes: Routes = [
 	},
 	{ path: '**', redirectTo: '/404' }
 ];
+
 @NgModule({
 	imports: [RouterModule.forRoot(AppRoutes)],
 	exports: [RouterModule]

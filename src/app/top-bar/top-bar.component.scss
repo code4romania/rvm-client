@@ -16,11 +16,12 @@ header {
 }
 
 .nav {
-  display: flex;
-  height: 60px;
-  flex-direction: row;
-  line-height: 60px;
-  white-space: nowrap;
+	display: flex;
+	height: 60px;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	line-height: 60px;
+	white-space: nowrap;
 }
 
 .nav .nav__link {
