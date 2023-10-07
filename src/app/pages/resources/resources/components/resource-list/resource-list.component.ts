@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-resource-list',
@@ -68,8 +69,11 @@ export class ResourceListComponent implements OnInit {
 	 */
 	getData() {
 		this.resourceService.getResourceBySlug(this.resslug, this.pager).subscribe((response: any) => {
-			this.data = response.data[0];
-			this.resources = response.data;
+			this.resources = response.data.map((resource: any) => ({
+				...resource,
+				updated_at: moment(resource.updated_at)
+			}));
+			this.data = this.resources[0];
 			this.pager.total = response.pager.total;
 		});
 	}

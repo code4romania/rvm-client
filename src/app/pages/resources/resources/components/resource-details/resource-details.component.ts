@@ -3,7 +3,7 @@ import { ResourcesService } from '@app/pages/resources/resources.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 import { Location } from '@angular/common';
-
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-resource-details',
@@ -58,7 +58,7 @@ export class ResourcedetailsComponent implements OnInit {
 
 	getData() {
 		this.resourceService.getResource(this.route.snapshot.paramMap.get('id')).subscribe((data) => {
-			this.data = data;
+			this.data = { ...data, updated_at: moment(data.updated_at) };
 
 			this.canEdit = this.authService.is('DSU') ||
 			(this.authService.is('NGO') && (this.data.organisation._id === this.authService.user.organisation._id));
