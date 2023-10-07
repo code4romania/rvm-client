@@ -37,7 +37,7 @@ export class EditVolunteerComponent implements OnInit {
 	coursenameError = false;
 	acreditedby: any;
 	accreditedError = false;
-	obtained: Date;
+	obtained: { year: number; month: number; day: number };
 	dateError = false;
 
 /**
@@ -306,8 +306,7 @@ export class EditVolunteerComponent implements OnInit {
 			this.acreditedby = obj.item.static_accreditor;
 			this.static_accreditor = true;
 		} else {
-			this.acreditedby = {
-			};
+			this.acreditedby = '';
 			this.static_accreditor = false;
 		}
 		this.coursenameError = false;
@@ -332,7 +331,9 @@ export class EditVolunteerComponent implements OnInit {
 					this.fb.group({
 						course_name: this.coursename.name,
 						course_name_id: this.coursename._id,
-						obtained: moment(this.obtained).format('DD.MM.YYYY'),
+						// moment.js indexes months from 0; one month has to be extracted from the value
+						// returned by ngbDatepicker
+						obtained: moment({...this.obtained, month: this.obtained.month - 1}).format('DD.MM.YYYY'),
 						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
 					})
 				);
