@@ -18,7 +18,7 @@
 
 @media (max-width: 1199px) {
     .btn-adjusting {
-        width: min-content;       
+        width: min-content;
     }
 }
 ::ng-deep .category{
@@ -27,7 +27,7 @@
     }
 }
 .card-text {
-	
+
 	span {
 		line-height: 1;
 		height: auto;
@@ -36,4 +36,12 @@
 		overflow-wrap: initial;
 		word-break:initial;
     }
+
+	div.col-md-12.d-flex {
+		margin-bottom: 0.3rem;
+
+		.category-element {
+			margin-bottom: 0.25rem;
+		}
+	}
 }
