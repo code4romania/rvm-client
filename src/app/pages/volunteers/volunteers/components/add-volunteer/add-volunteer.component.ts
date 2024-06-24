@@ -140,7 +140,7 @@ export class AddVolunteerComponent implements OnInit {
 /**
 	 * formater to display only name from object
 	 */
-	formatter = (result: { name: string }) => result.name;
+	formatter = (result: { name: string }) => result.name ? result.name : result;
 	/**
 	* trigger for organistion typeahead. registers typing, focus, and click and searches the backend
 	* @param {Observable} text observable event with the filter text
@@ -250,7 +250,7 @@ export class AddVolunteerComponent implements OnInit {
 		if (event.code !== 'Enter') {
 			this.coursenameError = true;
 			this.static_accreditor = false;
-			this.acreditedby = '';
+			this.resetAccreditedByField();
 		}
 	}
 	/**
@@ -268,47 +268,46 @@ export class AddVolunteerComponent implements OnInit {
 			this.acreditedby = obj.item.static_accreditor;
 			this.static_accreditor = true;
 		} else {
-			this.acreditedby = {
-			};
+			this.resetAccreditedByField();
 			this.static_accreditor = false;
 		}
 		this.coursenameError = false;
+	}
+
+	resetAccreditedByField() {
+		this.acreditedby = '';
+	}
+
+	resetCourseForm() {
+		this.static_accreditor = false;
+		this.coursename = null;
+		this.obtained = null;
+		this.dateError = false;
+		this.accreditedError = false;
+		this.coursenameError = false;
+		this.resetAccreditedByField();
 	}
 /**
 	 * trigger for add course from course table footer. willbe added to form and displayed in table
 	 */
 	addCourse() {
-		const now = new Date();
-		if (!this.acreditedby) {
-			this.accreditedError = true;
-		}
 		if (!this.coursename) {
 			this.coursenameError = true;
 		}
 		if (!this.obtained) {
 			this.dateError = true;
 		}
-		// if (this.obtained > now) {
-			if (!this.coursenameError && this.coursename && this.acreditedby) {
-				this.c.push(
-					this.fb.group({
-						course_name: this.coursename.name,
-						course_name_id: this.coursename._id,
-						obtained: moment(this.obtained).format('DD.MM.YYYY'),
-						accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
-					})
-				);
-				this.static_accreditor = false;
-				this.coursename = null;
-				this.acreditedby = null;
-				this.obtained = null;
-				this.dateError = false;
-				this.accreditedError = false;
-				this.coursenameError = false;
-			}
-		// } else {
-		// 	this.dateError = true;
-		// }
+		if (!this.coursenameError && this.coursename) {
+			this.c.push(
+				this.fb.group({
+					course_name: this.coursename.name,
+					course_name_id: this.coursename._id,
+					obtained: moment(this.obtained).format('DD.MM.YYYY'),
+					accredited_by: this.acreditedby.hasOwnProperty('name') ? this.acreditedby.name : this.acreditedby
+				})
+			);
+			this.resetCourseForm();
+		}
 	}
 	/**
 	* remove one of the courses from the table by index
