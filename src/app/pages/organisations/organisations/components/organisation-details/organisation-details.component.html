@@ -83,9 +83,9 @@
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3">
 								<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-									class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+									class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>
 								<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
-									class="fa fa-check-square"></span></button>		
+									class="fa fa-check-square"></span></button>
 							</div>
 						</div>
 						<div class="table-responsive-md">
@@ -102,7 +102,7 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let res of volunteersData">
-										
+
 										<td>{{res.name}}</td>
 										<td>{{res.city.name}}, {{res.county.name}}</td>
 										<td>
@@ -123,11 +123,11 @@
 														{{ course.obtained | date: 'dd.MM.yyyy' }}
 													</p>
 												</td>
-												
+
 												<td *ngIf="currentVolunteerId !== res._id">
 													{{ res.courses[0]?.obtained | date: 'dd.MM.yyyy'}}
 												</td> -->
-											
+
 											</table>
 										</td>
 										<td>
@@ -152,13 +152,6 @@
 									(pageChange)="getVolunteers()" [collectionSize]="volunteerPager.total">
 								</ngb-pagination>
 							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3">
-									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
-									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span></button>		
-							</div>
-								
 						</div>
 					</div>
 					<ng-template #noVolunteers>
@@ -189,7 +182,7 @@
 									[propertyMap]="propertyMap"	>
 										<ng-template let-option="option">
 											<span [ngClass]="{'pl-3': option.parent_id!=='0'}">
-											{{option.name}} 
+											{{option.name}}
 											</span>
 										</ng-template>
 									</ngx-multiselect>
@@ -206,12 +199,12 @@
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
+										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>
 									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span></button>		
-								</div>	
+										class="fa fa-check-square"></span></button>
+								</div>
 							</div>
-							
+
 							<div class="table-responsive-md">
 							<table class="table customTable table-sm mb-1">
 								<thead>
@@ -241,11 +234,11 @@
 												<span class="fa fa-edit"></span>&nbsp;Editează</button>
 											<button class="d-lg-none m-1 pull-right btn btn-info"
 												[routerLink]="['/resources/edit/', res._id]">
-												<span class="fa fa-edit"></span></button>	
+												<span class="fa fa-edit"></span></button>
 											<button class="btn btn-danger m-1 d-none d-lg-block" (click)="deleteRes(res._id)">
 												<span class="fa fa-trash-o"></span>&nbsp;Șterge</button>
 											<button class="d-lg-none m-1 pull-right btn btn-danger" (click)="deleteRes(res._id)"><span
-												class="fa fa-trash-o"></span></button>	
+												class="fa fa-trash-o"></span></button>
 											<!-- <button class="btn btn-info m-1 d-md-none"
 												(click)="viewdetails(res)">
 												<span class="fa fa-eye"></span></button>
@@ -261,14 +254,7 @@
 												(pageChange)="getResources()" [collectionSize]="resourcePager.total">
 									</ngb-pagination>
 								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3">
-									<button *ngIf = "authService.is('NGO')" class="d-none d-md-inline pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span>&nbsp;&nbsp;Validează datele</button>	
-									<button *ngIf = "authService.is('NGO')" class="d-md-none pull-right btn btn-info" (click)="validateinfo()"><span
-										class="fa fa-check-square"></span></button>		
-								</div>
 							</div>
-							
 						</div>
 					</div>
 					<ng-template #noResources>
